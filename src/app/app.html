@@ -1,2 +1,7 @@
-  <pioneer-tree [nodes]="nodes">
-  </pioneer-tree>
+<pioneer-tree [nodes]="nodes">
+  <ul>
+    <ng-template ngFor let-node [ngForOf]="nodes">
+      <pioneer-tree-node [node]="node"></pioneer-tree-node>
+    </ng-template>
+  </ul>
+</pioneer-tree>

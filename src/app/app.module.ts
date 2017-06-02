@@ -3,18 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { PioneerTreeComponent } from './components/pioneer-tree/pioneer-tree.component';
-import { PioneerTreeNodeComponent } from './components/pioneer-tree-node/pioneer-tree-node.component'
-
-import { PioneerTreeInclude } from './components/pioneer-tree-include/pioneer-tree-include.component'
+import { PioneerTreeModule } from 'pioneer-tree';
 
 @NgModule({
-  imports: [BrowserModule],
+  imports: [
+    BrowserModule,
+    PioneerTreeModule
+  ],
   declarations: [
-    AppComponent,
-    PioneerTreeComponent,
-    PioneerTreeNodeComponent,
-    PioneerTreeInclude
+    AppComponent
   ],
   bootstrap: [AppComponent]
 })

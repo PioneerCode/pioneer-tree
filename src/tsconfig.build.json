@@ -4,19 +4,19 @@
     "declaration": true,
     "stripInternal": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "module": "commonjs",
+    "strictNullChecks": true,
+    "module": "es2015",
     "moduleResolution": "node",
-    "outDir": "../node_modules/@pioneer-code/pioneer-tree",
+    "outDir": "dist",
     "rootDir": ".",
     "sourceMap": true,
     "inlineSources": true,
+    "target": "es5",
     "lib": [
-      "es2015",
+      "es6",
       "dom"
     ],
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true
+    "skipLibCheck": true
   },
   "files": [
     "lib/pioneer-tree.ts"

@@ -15,32 +15,32 @@ export class AppComponent {
               "children": [
                 {
                   "folder": {
-                    "name": "root-1-child-1"
+                    "name": "sub-1"
                   },
                 },
                 {
                   "folder": {
-                    "name": "root-1-child-2"
+                    "name": "sub-2"
                   },
                 },
                 {
                   "folder": {
-                    "name": "root-1-child-3"
+                    "name": "sub-3"
                   },
                 }
               ],
-              "name": "root-6"
+              "name": "child-1"
             },
-            "name": "root-1-child-1"
+            "name": "child-1"
           },
           {
             "folder": {
-              "name": "root-1-child-2"
+              "name": "child-2"
             },
           },
           {
             "folder": {
-              "name": "root-1-child-3"
+              "name": "child-3"
             },
           }
         ],
@@ -52,17 +52,17 @@ export class AppComponent {
         "children": [
           {
             "folder": {
-              "name": "root-2 child-1"
+              "name": "child-1"
             },
           },
           {
             "folder": {
-              "name": "root-2 child-2"
+              "name": "child-2"
             },
           },
           {
             "folder": {
-              "name": "root-2 child-3"
+              "name": "child-3"
             },
           }
         ],

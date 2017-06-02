@@ -16,5 +16,8 @@ export class PioneerTreeComponent {
   ) { }
 
   ngOnInit() {
+    if(!this.nodeTemplate){
+      this.nodeTemplate = this.template;
+    }
   }
 }

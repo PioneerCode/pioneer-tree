@@ -1,5 +1,17 @@
 <pioneer-tree [nodes]="nodes">
-  <ng-template #nodeTemplate let-node let-index="index">
+  <ng-template #nodeTemplate let-node>
     <span>{{node.folder.name}}</span>
+    <ol>
+      <li *ngFor="let child of node.folder.children">
+        <pioneer-tree-node [template]="nodeTemplate" [node]="child">
+        </pioneer-tree-node>
+      </li>
+    </ol>
   </ng-template>
+  <ol>
+    <li *ngFor="let node of nodes">
+      <pioneer-tree-node [template]="nodeTemplate" [node]="node">
+      </pioneer-tree-node>
+    </li>
+  </ol>
 </pioneer-tree>

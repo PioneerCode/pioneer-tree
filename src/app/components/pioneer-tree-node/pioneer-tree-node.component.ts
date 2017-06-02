@@ -15,6 +15,5 @@ export class PioneerTreeNodeComponent {
     ) { }
 
     ngOnInit() {
-        console.log(this.node);
     }
 }

@@ -18,7 +18,7 @@ if (process.env.BUNDLE_MIN === 'true') {
 }
 
 export default {
-  entry: 'node_modules/@pioneer-code/pioneer-tree/lib/pioneer-tree.js',
+  entry: 'src/_temp/lib/pioneer-tree.js',
   dest: dest,
   format: 'umd',
   moduleName: '@pioneer-code/pioneer-tree',

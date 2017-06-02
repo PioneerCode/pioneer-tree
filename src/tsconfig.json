@@ -1,24 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "declaration": true,
-    "stripInternal": true,
-    "experimentalDecorators": true,
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "../node_modules/@pioneer-code/pioneer-tree",
-    "rootDir": ".",
     "sourceMap": true,
-    "inlineSources": true,
-    "lib": [
-      "es2015",
-      "dom"
-    ],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [ "es2015", "dom" ],
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true
-  },
-  "files": [
-    "lib/pioneer-tree.ts"
-  ]
+  }
 }

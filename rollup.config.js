@@ -9,16 +9,16 @@ const plugins = [
   })
 ];
 
-let dest = 'node_modules/@pioneer-code/pioneer-tree/bundles/pioneer-tree.umd.js';
+let dest = 'src/node_modules/@pioneer-code/pioneer-tree/bundles/pioneer-tree.umd.js';
 if (process.env.BUNDLE_MIN === 'true') {
-  dest = 'node_modules/@pioneer-code/pioneer-tree/bundles/pioneer-tree.umd.min.js';
+  dest = 'src/node_modules/@pioneer-code/pioneer-tree/bundles/pioneer-tree.umd.min.js';
   plugins.push(
     uglify()
   );
 }
 
 export default {
-  entry: 'src/_temp/lib/pioneer-tree.js',
+  entry: 'src/lib/pioneer-tree.js',
   dest: dest,
   format: 'umd',
   moduleName: '@pioneer-code/pioneer-tree',

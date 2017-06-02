@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Angular tree component.",
   "scripts": {
-    "build": "tsc -p src/",
-    "build:watch": "tsc -p src/ -w",
+    "build": "tsc -p src/ && npm run roll && npm run roll-min",
+    "build:watch": "tsc -p src/ -w && npm run roll && npm run roll-min",
     "build:e2e": "tsc -p e2e/",
     "build-release": "gulp clean && tsc -p src/tsconfig.build.json",
     "serve": "lite-server -c=bs-config.json",
@@ -19,7 +19,9 @@
     "test": "concurrently \"npm run build:watch\" \"karma start karma.conf.js\"",
     "pretest:once": "npm run build",
     "test:once": "karma start karma.conf.js --single-run",
-    "lint": "tslint ./src/**/*.ts -t verbose"
+    "lint": "tslint ./src/**/*.ts -t verbose",
+    "roll": "node_modules/.bin/rollup -c",
+    "roll-min": "node_modules/.bin/rollup -c --environment BUNDLE_MIN"
   },
   "keywords": [
     "angular",

@@ -3,12 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { PioneerTreeModule } from 'pioneer-tree';
 
 @NgModule({
   imports: [
-    BrowserModule,
-    PioneerTreeModule
+    BrowserModule
   ],
   declarations: [
     AppComponent

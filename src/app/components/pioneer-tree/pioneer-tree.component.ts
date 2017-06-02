@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, TemplateRef, ContentChild } from '@angular/core';
 import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node.component'
 
 @Component({
@@ -9,6 +9,8 @@ import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node
 })
 export class PioneerTreeComponent {
   @Input() nodes: any[];
+  @Input() template: any;
+  @ContentChild('nodeTemplate') nodeTemplate: TemplateRef<any>;
 
   constructor(
   ) { }

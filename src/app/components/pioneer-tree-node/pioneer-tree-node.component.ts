@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 
 
 @Component({
@@ -9,10 +9,12 @@ import { Component, Input } from '@angular/core';
 })
 export class PioneerTreeNodeComponent {
     @Input() node: any;
+    @Input() template: any;
 
     constructor(
     ) { }
 
     ngOnInit() {
+        console.log(this.node);
     }
 }

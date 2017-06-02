@@ -18,11 +18,11 @@ export class AppComponent {
                   "name": "root-1-child-1"
                 },
                 {
-                  "folder": [],
+                  "folder": {},
                   "name": "root-1-child-2"
                 },
                 {
-                  "folder": [],
+                  "folder": {},
                   "name": "root-1-child-3"
                 }
               ],

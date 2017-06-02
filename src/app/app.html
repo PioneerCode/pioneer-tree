@@ -1,18 +1,5 @@
 <pioneer-tree [nodes]="nodes">
-  <ul>
-    <ng-template ngFor let-node [ngForOf]="nodes">
-      <pioneer-tree-node [node]="node">
-        <li class="pioneer-tree-node">
-          <a class="iconButton" (click)="toggle()"> 
-            <i class="fa fa-stop"></i> {{node.folder.name}}
-          </a>
-          <ul>
-            <ng-template ngFor let-node [ngForOf]="node.folder.children">
-              <pioneer-tree-node [node]="node"></pioneer-tree-node>
-            </ng-template>
-          </ul>
-        </li>
-      </pioneer-tree-node>
-    </ng-template>
-  </ul>
+  <ng-template #nodeTemplate let-node let-index="index">
+    <span>{{node.folder.name}}</span>
+  </ng-template>
 </pioneer-tree>

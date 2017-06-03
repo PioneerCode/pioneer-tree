@@ -1,0 +1,25 @@
+# dependencies
+/node_modules
+
+# compiled output
+
+# file
+.editorconfig
+.gitignore
+.npmignore
+.travis.yml
+bs-config.e2e.json
+bs-config.json
+CHANGELOG.md
+gulpfile.js
+karma.conf.js
+karam-test-shim.js
+package-lock.json
+package.json
+protractor.conf.js
+rollup.config.js
+tslint.json
+/e2e
+/src/**/*pipe.ts
+/src/**/*spec.ts
+/srs/tsconfig*

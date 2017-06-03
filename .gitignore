@@ -17,4 +17,5 @@ src/lib/**/*.map
 src/lib/**/*.d.ts
 src/app/**/*.js
 src/app/**/*.map
-src/app/**/*.d.ts
+src/app/**/*.d.
+package-lock.json

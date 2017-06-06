@@ -12,6 +12,7 @@ e2e/**/*.js
 e2e/**/*.js.map
 _test-output
 _temp
+bundles
 src/app/lib/**/*.js
 src/app/lib/**/*.map
 src/app/lib/**/*.d.ts

@@ -3,7 +3,9 @@ import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node
 
 @Component({
   selector: 'pioneer-tree',
-  templateUrl: './pioneer-tree.html',
+  template: `
+<ng-content></ng-content>  
+  `,
   entryComponents: [PioneerTreeNodeComponent],
   providers: []
 })

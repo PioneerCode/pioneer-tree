@@ -6,7 +6,6 @@ function clean() {
     '_temp/**',
     'bundles/**',
     'src/**/*.d.ts',
-    'src/**/*.js',
     'src/**/*.map'
   ]);
 }

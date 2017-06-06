@@ -12,10 +12,10 @@ e2e/**/*.js
 e2e/**/*.js.map
 _test-output
 _temp
-src/lib/**/*.js
-src/lib/**/*.map
-src/lib/**/*.d.ts
+src/app/lib/**/*.js
+src/app/lib/**/*.map
+src/app/lib/**/*.d.ts
 src/app/**/*.js
 src/app/**/*.map
-src/app/**/*.d.
+src/app/**/*.d*
 package-lock.json

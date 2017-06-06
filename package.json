@@ -1,5 +1,5 @@
 {
-  "name": "pioneer-tree",
+  "name": "@pioneer-code/pioneer-tree",
   "version": "1.0.0",
   "description": "Angular tree component.",
   "scripts": {

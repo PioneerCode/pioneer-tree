@@ -7,7 +7,6 @@
     "strictNullChecks": true,
     "module": "es2015",
     "moduleResolution": "node",
-    "outDir": "dist",
     "rootDir": ".",
     "sourceMap": true,
     "inlineSources": true,
@@ -19,6 +18,12 @@
     "skipLibCheck": true
   },
   "files": [
-    "lib/pioneer-tree.ts"
-  ]
+    "app/lib/pioneer-tree.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "@angular/core"
+  }
 }

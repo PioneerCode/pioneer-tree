@@ -5,7 +5,7 @@
   "scripts": {
     "roll": "node_modules/.bin/rollup -c",
     "roll:min": "node_modules/.bin/rollup -c --environment BUNDLE_MIN",
-    "build:release": "gulp clean && tsc -p src/tsconfig.json && npm run roll && npm run roll:min",
+    "build:release": "gulp clean && tsc -p src/tsconfig.build.json && npm run roll && npm run roll:min",
 
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",

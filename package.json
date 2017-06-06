@@ -1,14 +1,12 @@
 {
-  "name": "pioneer-tree",
+  "name": "@pioneer-code/pioneer-tree",
   "version": "1.0.0",
   "description": "Angular tree component.",
   "scripts": {
     "roll": "node_modules/.bin/rollup -c",
     "roll:min": "node_modules/.bin/rollup -c --environment BUNDLE_MIN",
-
     "build:dev": "tsc -p src/ -w && npm run roll",
     "start:dev": "concurrently \"npm run build:dev\" \"npm run serve\"",
-
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",
     "build:e2e": "tsc -p e2e/",

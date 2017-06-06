@@ -1,12 +1,12 @@
 {
   "name": "@pioneer-code/pioneer-tree",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Angular tree component.",
   "scripts": {
     "roll": "node_modules/.bin/rollup -c",
     "roll:min": "node_modules/.bin/rollup -c --environment BUNDLE_MIN",
-    "build:dev": "tsc -p src/ -w && npm run roll",
-    "start:dev": "concurrently \"npm run build:dev\" \"npm run serve\"",
+    "build:release": "gulp clean && tsc -p src/tsconfig.json && npm run roll && npm run roll:min",
+
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",
     "build:e2e": "tsc -p e2e/",
@@ -34,7 +34,7 @@
     "angualr-tree",
     "pioneer-tree"
   ],
-  "typings": "./pioneer-tree.d.ts",
+  "typings": "./src/app/lib/pioneer-tree.d.ts",
   "author": "Chad Ramos <dev@pioneercode.com> (http://pioneercode.com)",
   "license": "MIT",
   "dependencies": {

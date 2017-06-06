@@ -4,8 +4,10 @@ var del = require('del');
 function clean() {
   return del([
     '_temp/**',
+    'bundles/**',
     'src/**/*.d.ts',
-    'node_modules/@pioneer-code/**'
+    'src/**/*.js',
+    'src/**/*.map'
   ]);
 }
 

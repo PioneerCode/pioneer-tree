@@ -1,17 +1,19 @@
 <pioneer-tree [nodes]="nodes">
   <ng-template #nodeTemplate let-node>
-    <span>{{node.folder.name}}</span>
-    <ol>
+    <pioneer-tree-collapse>
+      {{node.folder.name}}
+    </pioneer-tree-collapse>
+    <ul>
       <li *ngFor="let child of node.folder.children">
         <pioneer-tree-node [template]="nodeTemplate" [node]="child">
         </pioneer-tree-node>
       </li>
-    </ol>
+    </ul>
   </ng-template>
-  <ol>
+  <ul>
     <li *ngFor="let node of nodes">
       <pioneer-tree-node [template]="nodeTemplate" [node]="node">
       </pioneer-tree-node>
     </li>
-  </ol>
+  </ul>
 </pioneer-tree>

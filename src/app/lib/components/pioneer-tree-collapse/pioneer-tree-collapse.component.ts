@@ -4,10 +4,10 @@ import { Component, Output, EventEmitter } from '@angular/core';
 @Component({
     selector: '[pioneer-tree-collapse]',
     template: `
-<span class="pioneer-tree-node">
+<div class="pioneer-tree-node">
     <ng-content>
     </ng-content>
-</span>
+</div>
 `,
     entryComponents: [],
     providers: []

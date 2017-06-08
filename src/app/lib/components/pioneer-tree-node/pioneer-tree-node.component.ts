@@ -1,10 +1,9 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 
-
 @Component({
     selector: 'pioneer-tree-node',
     template: `
-<ng-container [ngTemplateOutlet]="template" [ngOutletContext]="{ $implicit: node }">
+<ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
 </ng-container>
     `,
     entryComponents: [],
@@ -12,10 +11,9 @@ import { Component, Input, TemplateRef } from '@angular/core';
 })
 export class PioneerTreeNodeComponent {
     @Input() node: any;
-    @Input() template: any;
+    @Input() nodeTemplate: any;
 
-    constructor(
-    ) { }
+    constructor() { }
 
     ngOnInit() {
     }

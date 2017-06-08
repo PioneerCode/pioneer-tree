@@ -6,6 +6,8 @@ import { PioneerTreeComponent } from './lib/components/pioneer-tree/pioneer-tree
 import { PioneerTreeNodeComponent } from './lib/components/pioneer-tree-node/pioneer-tree-node.component'
 import { PioneerTreeCollapseComponent } from './lib/components/pioneer-tree-collapse/pioneer-tree-collapse.component'
 
+import { PioneerTreeModule } from './lib/pioneer-tree'
+
 @NgModule({
   imports: [BrowserModule],
   declarations: [

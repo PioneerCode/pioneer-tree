@@ -6,7 +6,7 @@ import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-t
 import { PioneerTreeService } from '../../services/pioneer-tree.service'
 
 @Component({
-  selector: 'pioneer-tree',
+  selector: '[pioneer-tree]',
   template: `
   <ng-content></ng-content>
   `,
@@ -20,9 +20,4 @@ import { PioneerTreeService } from '../../services/pioneer-tree.service'
 })
 export class PioneerTreeComponent {
   @Input() nodes: any[];
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 }

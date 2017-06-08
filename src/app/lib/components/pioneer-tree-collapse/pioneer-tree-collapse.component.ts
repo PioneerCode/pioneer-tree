@@ -2,9 +2,9 @@ import { Component, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
-    selector: 'pioneer-tree-collapse',
+    selector: '[pioneer-tree-collapse]',
     template: `
-<span (click)="onClicked()">
+<span class="pioneer-tree-node">
     <ng-content>
     </ng-content>
 </span>
@@ -13,15 +13,9 @@ import { Component, Output, EventEmitter } from '@angular/core';
     providers: []
 })
 export class PioneerTreeCollapseComponent {
-    @Output() onCollapse = new EventEmitter<boolean>();
-
-    constructor(
-    ) { }
-
-    ngOnInit() {
-    }
+    @Output() collapse = new EventEmitter<boolean>();
 
     onClicked(){
-        this.onCollapse.emit();
+        this.collapse.emit();
     }
 }

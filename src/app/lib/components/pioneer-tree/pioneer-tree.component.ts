@@ -32,6 +32,5 @@ export class PioneerTreeComponent {
   ngOnChanges(changes: any) {
     console.log(changes);
     this.pioneerTree.setTree(this.nodes);
-    // changes.prop contains the old and the new value...
   }
 }

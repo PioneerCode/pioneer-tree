@@ -4,7 +4,6 @@ import { PioneerTreeComponent } from './components/pioneer-tree/pioneer-tree.com
 import { PioneerTreeNodeComponent } from './components/pioneer-tree-node/pioneer-tree-node.component';
 import { PioneerTreeCollapseComponent } from './components/pioneer-tree-collapse/pioneer-tree-collapse.component'
 
-
 export {
     PioneerTreeComponent,
     PioneerTreeNodeComponent,

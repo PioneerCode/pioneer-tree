@@ -6,16 +6,9 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     collapsed = false;
 
     private uid: string;
-    private node = {} as any;
 
-    constructor(node: any) {
-        this.node = node;
-        this.generateUid();
-        this.setChildern();
-    }
-
-    private setChildern(): void {
-
+    constructor() {
+         this.generateUid();
     }
 
     private generateUid(): void {

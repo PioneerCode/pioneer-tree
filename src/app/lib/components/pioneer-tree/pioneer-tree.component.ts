@@ -27,11 +27,13 @@ export class PioneerTreeComponent {
   }
 
   ngOnChanges(changes: any) {
-    // if (!this.nodes) return;
-    // this.nodes = this.nodes.map((x: any) => {
-    //   x.pioneerTreeNode =  new PioneerTreeNode(x)
-    //   return x;
-    // });
+    if (!this.nodes) return;
+
+    const newNodes = this.nodes.map((x: any) => {
+      x.pioneerTreeNode =  new PioneerTreeNode()
+      return x;
+    });
+    this.nodes = newNodes;
     // this.pioneerTree.setTree(this.nodes);
   }
 }

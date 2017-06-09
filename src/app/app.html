@@ -6,7 +6,7 @@
         <div pioneer-tree-collapse [node]="node">
           {{node.folder.name}}
         </div>
-        <ul pioneer-tree [nodes]="node.folder.children" [ngStyle]="node.pioneerTreeRepeater.getStyles()" [ngClass]="node.pioneerTreeRepeater.getClasses()">
+        <ul pioneer-tree-repeater [nodes]="node.folder.children" [ngStyle]="node.pioneerTreeRepeater.getStyles()" [ngClass]="node.pioneerTreeRepeater.getClasses()">
           <li pioneer-tree-node *ngFor="let node of node.folder.children" [nodeTemplate]="nodeTemplate" [node]="node">
           </li>
         </ul>

@@ -1,5 +1,5 @@
 /**
- * Represents the extend idea of the dynamic nested element
+ * Represents a repeated nested node element
  * Example :
  * <ul>
  *     <li>
@@ -14,6 +14,9 @@ export interface IPioneerTreeRepeater {
     getClasses(): string[];
 }
 
+/**
+ * Track dynamic styling for a repeater object
+ */
 export interface IPioneerTreeRepeaterStyles {
     display: string;
 }

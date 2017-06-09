@@ -11,6 +11,7 @@ export interface IPioneerTreeRepeater {
     collapsed: boolean;
     getId(): string;
     getStyles(): IPioneerTreeRepeaterStyles;
+    getClasses(): string[];
 }
 
 export interface IPioneerTreeRepeaterStyles {
@@ -30,6 +31,16 @@ export class PioneerTreeRepeater implements IPioneerTreeRepeater {
         return {
             display: this.collapsed ? 'none' : 'block'
         } as IPioneerTreeRepeaterStyles;
+    }
+
+    getClasses(): string[] {
+        const classes = [] as string[]
+
+        if (this.collapsed) {
+            classes.push('pt-reapeater-collapsed')
+        }
+
+        return classes;
     }
 
     getId(): string {

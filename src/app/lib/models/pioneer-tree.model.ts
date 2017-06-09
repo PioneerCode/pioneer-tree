@@ -8,9 +8,6 @@ export class PioneerTree implements IPioneerTree {
     private nodes = [] as any;
     private tree = [] as IPioneerTreeNode[];
 
-    /**
-     *
-     */
     constructor() {
     }
 

@@ -5,7 +5,6 @@ import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-t
 
 import { PioneerTree } from '../../models/pioneer-tree.model'
 
-
 @Component({
   selector: '[pioneer-tree]',
   template: `
@@ -22,15 +21,10 @@ import { PioneerTree } from '../../models/pioneer-tree.model'
 export class PioneerTreeComponent {
   @Input() nodes: any[];
 
-  /**
-   *
-   */
   constructor(private pioneerTree: PioneerTree) {
-
   }
 
   ngOnChanges(changes: any) {
-    console.log(changes);
     this.pioneerTree.setTree(this.nodes);
   }
 }

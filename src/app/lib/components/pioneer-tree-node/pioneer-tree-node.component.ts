@@ -1,5 +1,5 @@
-import { Component, Input, TemplateRef } from '@angular/core';
-
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-tree-collapse.component'
 @Component({
     selector: '[pioneer-tree-node]',
     template: `
@@ -7,14 +7,14 @@ import { Component, Input, TemplateRef } from '@angular/core';
     <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
     </ng-container>
 </div>
-    `,
-    entryComponents: [],
-    providers: []
+    `
 })
 export class PioneerTreeNodeComponent {
     @Input() node: any;
     @Input() nodeTemplate: any;
+    @ViewChild(PioneerTreeCollapseComponent) collapseComponent: PioneerTreeCollapseComponent;
 
-    onCollapse() {
-    }
+  ngAfterViewInit() {
+    this.collapseComponent.temp = "My"
+  }
 }

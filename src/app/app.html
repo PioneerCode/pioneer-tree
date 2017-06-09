@@ -1,7 +1,7 @@
 <ng-template #nodeTemplate let-node>
-  <span pioneer-tree-collapse>
+  <div pioneer-tree-collapse>
     {{node.folder.name}}
-  </span>
+  </div>
   <ul pioneer-tree [nodes]="node.folder.children">
     <li *ngFor="let node of node.folder.children" pioneer-tree-node [nodeTemplate]="nodeTemplate" [node]="node">
     </li>

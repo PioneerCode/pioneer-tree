@@ -11,7 +11,7 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     constructor(node: any) {
         this.node = node;
         this.generateUid();
-        this.setChildern;
+        this.setChildern();
     }
 
     private setChildern(): void {

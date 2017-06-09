@@ -3,7 +3,7 @@
   "logLevel": "silent",
   "port": 8080,
   "server": {
-    "baseDir": "src",
+    "baseDir": "src/site",
     "routes": {
       "/node_modules": "node_modules"
     },

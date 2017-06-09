@@ -19,21 +19,22 @@ function clean() {
 }
 
 function styles() {
-  return gulp.src(['./sass/styles.scss'])
+  return gulp.src(['./src/sass/styles.scss'])
     .pipe(sass({
       includePaths: sassPaths,
       outputStyle: 'compressed'
     }).on('error', sass.logError))
-    // .pipe(autoprefixer({
-    //   browsers: ['last 2 versions', 'ie >= 9']
-    // }))
-    // .pipe(cleanCss({ keepSpecialComments: 0 }))
-    .pipe(gulp.dest('./src'));
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions', 'ie >= 9']
+    }))
+    .pipe(cleanCss({ keepSpecialComments: 0 }))
+    .pipe(gulp.dest('./src/site'));
 }
+
 
 function watch() {
   gulp.watch([
-    "./sass/**/*.scss"
+    "./src/sass/**/*.scss"
   ], styles);
 }
 

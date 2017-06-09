@@ -1,3 +1,7 @@
+<h1>Raw Tree</h1>
+{{nodes | json}}
+
+<h1>Tree Component</h1>
 <ng-template #nodeTemplate let-node>
   <div pioneer-tree-collapse>
     {{node.folder.name}}
@@ -11,3 +15,4 @@
   <li *ngFor="let node of nodes" pioneer-tree-node [nodeTemplate]="nodeTemplate" [node]="node">
   </li>
 </ul>
+

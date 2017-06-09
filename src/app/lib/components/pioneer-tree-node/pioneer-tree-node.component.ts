@@ -14,7 +14,7 @@ export class PioneerTreeNodeComponent {
     @Input() nodeTemplate: any;
     @ViewChild(PioneerTreeCollapseComponent) collapseComponent: PioneerTreeCollapseComponent;
 
-  ngAfterViewInit() {
-    this.collapseComponent.temp = "My"
-  }
+    ngAfterViewInit() {
+        // this.collapseComponent.temp = "My"
+    }
 }

@@ -3,6 +3,7 @@ var del = require('del');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var cleanCss = require('gulp-clean-css');
+var ghPages = require('gulp-gh-pages')
 
 var sassPaths = [
   'node_modules/normalize.scss/sass',

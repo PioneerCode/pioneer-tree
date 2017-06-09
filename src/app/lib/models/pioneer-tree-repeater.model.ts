@@ -10,6 +10,11 @@
 export interface IPioneerTreeRepeater {
     collapsed: boolean;
     getId(): string;
+    getStyles(): IPioneerTreeRepeaterStyles;
+}
+
+export interface IPioneerTreeRepeaterStyles {
+    display: string;
 }
 
 export class PioneerTreeRepeater implements IPioneerTreeRepeater {
@@ -18,7 +23,13 @@ export class PioneerTreeRepeater implements IPioneerTreeRepeater {
     private uid: string;
 
     constructor() {
-         this.generateUid();
+        this.generateUid();
+    }
+
+    getStyles(): IPioneerTreeRepeaterStyles {
+        return {
+            display: this.collapsed ? 'none' : 'block'
+        } as IPioneerTreeRepeaterStyles;
     }
 
     getId(): string {

@@ -3,7 +3,8 @@ import { Component, Input, ViewChild, TemplateRef, ContentChild } from '@angular
 import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node.component'
 import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-tree-collapse.component'
 
-import { PioneerTreeNode, IPioneerTreeNode } from "../../models/pioneer-tree-node.model"
+import { PioneerTreeNode } from "../../models/pioneer-tree-node.model"
+import { PioneerTreeRepeater } from "../../models/pioneer-tree-repeater.model"
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
 
 @Component({
@@ -25,7 +26,8 @@ export class PioneerTreeComponent {
     if (!this.nodes) return;
 
     this.nodes = this.nodes.map((x: IPioneerTreeExpandedNode) => {
-      x.pioneerTreeNode = new PioneerTreeNode()
+      x.pioneerTreeNode = new PioneerTreeNode();
+      x.pioneerTreeRepeater = new PioneerTreeRepeater()
       return x;
     });
   }

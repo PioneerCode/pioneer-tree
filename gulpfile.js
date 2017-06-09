@@ -38,8 +38,17 @@ function watch() {
   ], styles);
 }
 
+function deployGhPages() {
+  return gulp.src('./src/site/**/*')
+    .pipe(ghPages());
+}
+
 gulp.task('clean', gulp.series(
   clean
+));
+
+gulp.task('deploy:gh-pages', gulp.series(
+  deployGhPages
 ));
 
 gulp.task('default', gulp.series(

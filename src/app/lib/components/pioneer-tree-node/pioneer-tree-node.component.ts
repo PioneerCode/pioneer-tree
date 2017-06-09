@@ -1,20 +1,22 @@
-import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
-import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-tree-collapse.component'
+import { Component, Input, TemplateRef, ElementRef, ContentChild, ViewChild, ContentChildren, ViewChildren, QueryList, } from '@angular/core';
+import { PioneerTreeComponent } from '../pioneer-tree/pioneer-tree.component'
+import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
+
 @Component({
     selector: '[pioneer-tree-node]',
     template: `
 <div class="pioneer-tree-node">
     <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
     </ng-container>
+    <ng-container [ngTemplateOutlet]="treeTemplate" [ngOutletContext]="{ $implicit: children }">
+    </ng-container>
 </div>
     `
 })
 export class PioneerTreeNodeComponent {
-    @Input() node: any;
-    @Input() nodeTemplate: any;
-    @ViewChild(PioneerTreeCollapseComponent) collapseComponent: PioneerTreeCollapseComponent;
+    @Input() node: IPioneerTreeExpandedNode;
+    @Input() children = [] as IPioneerTreeExpandedNode[];
+    @Input() nodeTemplate: TemplateRef<any>;
+    @Input() treeTemplate: TemplateRef<any>;
 
-    ngAfterViewInit() {
-        // this.collapseComponent.temp = "My"
-    }
 }

@@ -1,5 +1,6 @@
 export interface IPioneerTreeNode {
     collapsed: boolean;
+    getId(): string;
 }
 
 export class PioneerTreeNode implements IPioneerTreeNode {
@@ -9,6 +10,10 @@ export class PioneerTreeNode implements IPioneerTreeNode {
 
     constructor() {
          this.generateUid();
+    }
+
+    getId(): string {
+        return this.uid
     }
 
     private generateUid(): void {

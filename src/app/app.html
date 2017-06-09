@@ -3,16 +3,16 @@
     <h2>Tree Component</h2>
     <div class="callout">
       <ng-template #nodeTemplate let-node>
-        <div pioneer-tree-collapse>
+        <div pioneer-tree-collapse [node]="node">
           {{node.folder.name}}
         </div>
-        <ul pioneer-tree [nodes]="node.folder.children">
-          <li *ngFor="let node of node.folder.children" pioneer-tree-node [nodeTemplate]="nodeTemplate" [node]="node">
+        <ul pioneer-tree [nodes]="node.folder.children" [style.display]="node.pioneerTreeNode.collapsed ? 'none' : 'block' ">
+          <li pioneer-tree-node *ngFor="let node of node.folder.children" [nodeTemplate]="nodeTemplate" [node]="node">
           </li>
         </ul>
       </ng-template>
       <ul pioneer-tree [nodes]="nodes">
-        <li *ngFor="let node of nodes" pioneer-tree-node [nodeTemplate]="nodeTemplate" [node]="node">
+        <li pioneer-tree-node *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [node]="node">
         </li>
       </ul>
     </div>

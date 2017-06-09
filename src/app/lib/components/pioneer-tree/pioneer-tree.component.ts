@@ -3,9 +3,8 @@ import { Component, Input, ViewChild, TemplateRef, ContentChild } from '@angular
 import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node.component'
 import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-tree-collapse.component'
 
-import { PioneerTree } from '../../models/pioneer-tree.model'
-
 import { PioneerTreeNode, IPioneerTreeNode } from "../../models/pioneer-tree-node.model"
+import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
 
 @Component({
   selector: '[pioneer-tree]',
@@ -17,23 +16,17 @@ import { PioneerTreeNode, IPioneerTreeNode } from "../../models/pioneer-tree-nod
     PioneerTreeCollapseComponent
   ],
   providers: [
-    PioneerTree
   ]
 })
 export class PioneerTreeComponent {
-  @Input() nodes: any[];
-
-  constructor(private pioneerTree: PioneerTree) {
-  }
+  @Input() nodes: IPioneerTreeExpandedNode[];
 
   ngOnChanges(changes: any) {
     if (!this.nodes) return;
 
-    const newNodes = this.nodes.map((x: any) => {
-      x.pioneerTreeNode =  new PioneerTreeNode()
+    this.nodes = this.nodes.map((x: IPioneerTreeExpandedNode) => {
+      x.pioneerTreeNode = new PioneerTreeNode()
       return x;
     });
-    this.nodes = newNodes;
-    // this.pioneerTree.setTree(this.nodes);
   }
 }

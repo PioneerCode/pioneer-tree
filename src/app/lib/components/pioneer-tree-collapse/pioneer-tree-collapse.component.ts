@@ -1,5 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
 
 @Component({
     selector: '[pioneer-tree-collapse]',
@@ -13,12 +13,11 @@ import { Component, Output, EventEmitter } from '@angular/core';
     providers: []
 })
 export class PioneerTreeCollapseComponent {
-    temp ="";
-
+    @Input() node: IPioneerTreeExpandedNode;
     @Output() collapse = new EventEmitter<boolean>();
 
-    onClicked(){
-        alert(this.temp);
+    onClicked() {
+        this.node.pioneerTreeNode.collapsed = !this.node.pioneerTreeNode.collapsed;
         this.collapse.emit();
     }
 }

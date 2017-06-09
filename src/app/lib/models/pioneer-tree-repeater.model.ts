@@ -1,8 +1,20 @@
-export interface IPioneerTreeNode {
+/**
+ * Represents the extend idea of the dynamic nested element
+ * Example :
+ * <ul>
+ *     <li>
+ *         <ul><!-- This is a repeater --></ul>
+ *     <li>
+ * </ul>
+ */
+export interface IPioneerTreeRepeater {
+    collapsed: boolean;
     getId(): string;
 }
 
-export class PioneerTreeNode implements IPioneerTreeNode {
+export class PioneerTreeRepeater implements IPioneerTreeRepeater {
+    collapsed = false;
+
     private uid: string;
 
     constructor() {

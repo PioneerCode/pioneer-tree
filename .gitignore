@@ -20,3 +20,4 @@ src/site/app/**/*.js
 src/site/app/**/*.map
 src/site/app/**/*.d*
 package-lock.json
+.publish

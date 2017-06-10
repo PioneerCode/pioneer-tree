@@ -7,7 +7,6 @@
     "roll:min": "node_modules/.bin/rollup -c --environment BUNDLE_MIN",
     "build:release": "gulp clean && tsc -p src/lib/tsconfig.build.json && npm run roll && npm run roll:min",
     "deploy:gh-pages": "gulp deploy-gh-pages",
-
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",
     "build:e2e": "tsc -p e2e/",

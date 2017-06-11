@@ -16,5 +16,11 @@ Are you intrested in contributing features or squashing bugs? Please take a look
 
 - Anguular 4 or greater
 
+## Demo
+
+## Setup
+
+##
+
 ## Changlog
 [CHANGELOG](CHANGELOG.md)

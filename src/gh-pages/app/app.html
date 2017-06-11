@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="large-6 columns">
+    <h2>Tree Component</h2>
+    <div class="callout">
+      <ng-template #nodeTemplate let-node>
+        <div pioneer-tree-collapse [node]="node">
+          {{node.folder.name}}
+        </div>
+        <ul pioneer-tree-repeater [nodes]="node.folder.children" [ngStyle]="node.pioneerTreeRepeater.getStyles()" [ngClass]="node.pioneerTreeRepeater.getClasses()">
+          <li pioneer-tree-node *ngFor="let node of node.folder.children" [nodeTemplate]="nodeTemplate" [node]="node">
+          </li>
+        </ul>
+      </ng-template>
+      <ul pioneer-tree [nodes]="nodes">
+        <li pioneer-tree-node *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [node]="node">
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="large-6 columns">
+    <h2>Raw Tree</h2>
+    <div class="callout">
+      <pre>{{nodes | json}}</pre>
+    </div>
+  </div>
+</div>

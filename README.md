@@ -8,10 +8,13 @@ Are you intrested in contributing features or squashing bugs? Please take a look
 
 - [CONTRIBUTING](CONTRIBUTING.md)
 
-
 ## Features
 
 - 
+
+## Requirements
+
+- Anguular 4 or greater
 
 ## Changlog
 [CHANGELOG](CHANGELOG.md)

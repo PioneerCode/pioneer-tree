@@ -40,7 +40,7 @@ function watch() {
 }
 
 function deployGhPages() {
-  return gulp.src('./src/site/**/*')
+  return gulp.src('./src/gh-pages/**/*')
     .pipe(ghPages());
 }
 

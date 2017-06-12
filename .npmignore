@@ -1,9 +1,8 @@
 # dependencies
 /node_modules
 
-# compiled output
-
 # file
+.github
 .editorconfig
 .gitignore
 .npmignore
@@ -19,13 +18,14 @@ package.json
 protractor.config.js
 rollup.config.js
 tslint.json
+CONTRIBUTING.md
 /e2e
 /src/**/*pipe.ts
 /src/**/*spec.ts
-/src/tsconfig*
-/src/systemjs*
-/src/*css
+/src/**/tsconfig*
+/src/**/systemjs*
+/src/**/*css
 /src/**/*js
 /src/**/*map
 /src/**/*html
-/src/favicon*
+/src/**/favicon*

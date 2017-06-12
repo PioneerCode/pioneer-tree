@@ -18,7 +18,7 @@
     "skipLibCheck": true
   },
   "files": [
-    "app/lib/pioneer-tree.ts"
+    "./pioneer-tree.ts"
   ],
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

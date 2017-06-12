@@ -43,6 +43,5 @@ export class PioneerTreeComponent {
       x.pioneerTreeRepeater = new PioneerTreeRepeater()
       return x;
     });
-
   }
 }

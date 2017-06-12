@@ -28,6 +28,6 @@ export class PioneerTreeNodeComponent {
    constructor(private treeService: PioneerTreeService) { }
 
     onClicked() {
-    this.treeService.currentSlectedNodeId = this.node.pioneerTreeNode.getId();
+        this.treeService.currentSlectedNodeId = this.node.pioneerTreeNode.getId();
     }
 }

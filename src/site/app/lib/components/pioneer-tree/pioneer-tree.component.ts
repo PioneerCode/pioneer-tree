@@ -8,7 +8,7 @@ import { PioneerTreeRepeater } from "../../models/pioneer-tree-repeater.model"
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
 
 @Component({
-  selector: '[pioneer-tree],[pioneer-tree-repeater]',
+  selector: '[pioneer-tree],[pioneer-tree-repeater],[pt],[pt-repeater]',
   template: `
   <ng-content></ng-content>
   `,

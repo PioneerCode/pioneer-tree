@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
 
 @Component({
-    selector: '[pioneer-tree-collapse]',
+    selector: '[pioneer-tree-collapse],[pt-collapse]',
     template: `
 <div class="pioneer-tree-collapse" (click)="onClicked()">
     <ng-content>

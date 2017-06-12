@@ -3,7 +3,7 @@ import { PioneerTreeComponent } from '../pioneer-tree/pioneer-tree.component'
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
 
 @Component({
-    selector: '[pioneer-tree-node]',
+    selector: '[pioneer-tree-node],[pt-node]',
     template: `
 <div class="pioneer-tree-node">
     <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">

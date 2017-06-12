@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
 
+import { PioneerTreeService } from "../../services/pioneer-tree.service"
+
 @Component({
     selector: '[pioneer-tree-collapse],[pt-collapse]',
     template: `
@@ -10,7 +12,7 @@ import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-nod
 </div>
 `,
     entryComponents: [],
-    providers: []
+    providers: [PioneerTreeService]
 })
 export class PioneerTreeCollapseComponent {
     @Input() node: IPioneerTreeExpandedNode;

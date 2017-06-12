@@ -1,6 +1,8 @@
-import { Component, Input, TemplateRef, ElementRef, ContentChild, ViewChild, ContentChildren, ViewChildren, QueryList, } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 import { PioneerTreeComponent } from '../pioneer-tree/pioneer-tree.component'
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
+
+import { PioneerTreeService } from "../../services/pioneer-tree.service"
 
 @Component({
     selector: '[pioneer-tree-node],[pt-node]',
@@ -11,12 +13,12 @@ import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-nod
     <ng-container [ngTemplateOutlet]="treeTemplate" [ngOutletContext]="{ $implicit: children }">
     </ng-container>
 </div>
-    `
+    `,
+    providers: [PioneerTreeService]
 })
 export class PioneerTreeNodeComponent {
     @Input() node: IPioneerTreeExpandedNode;
     @Input() children = [] as IPioneerTreeExpandedNode[];
     @Input() nodeTemplate: TemplateRef<any>;
     @Input() treeTemplate: TemplateRef<any>;
-
 }

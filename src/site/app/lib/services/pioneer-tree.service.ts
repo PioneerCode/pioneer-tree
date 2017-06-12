@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { IPioneerTreeExpandedNode } from "../models/pioneer-tree-expanded-node.model";
 
 /**
@@ -14,16 +15,17 @@ export interface IPioneerTreeService {
     nodes: IPioneerTreeExpandedNode[];
 
     /**
-     * On node clicke, we need to flip current selected
-     * to unselected before appying to new node
+     * Track current selected node UID
+     * Set when node is selected
+     * 
+     * TODO: Consider danage of tracking public
+     * 
      */
-    flipAllSelectedToFalse(): void;
+    currentSlectedNodeId: string
 }
 
+@Injectable()
 export class PioneerTreeService implements IPioneerTreeService {
     nodes: IPioneerTreeExpandedNode[];
-
-    flipAllSelectedToFalse(): void {
-        throw new Error("Method not implemented.");
-    }
+    currentSlectedNodeId: string;
 }

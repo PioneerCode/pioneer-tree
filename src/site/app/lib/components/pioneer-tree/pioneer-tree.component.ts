@@ -18,9 +18,7 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
     PioneerTreeNodeComponent,
     PioneerTreeCollapseComponent
   ],
-  providers: [
-    PioneerTreeService
-  ]
+  providers: [PioneerTreeService]
 })
 export class PioneerTreeComponent {
   @Input() nodes: IPioneerTreeExpandedNode[];
@@ -40,14 +38,11 @@ export class PioneerTreeComponent {
   ngOnChanges(changes: any) {
     if (!this.nodes) return;
 
-    if (!this.pioneerTreeService.nodes) {
-      this.pioneerTreeService.nodes = this.nodes;
-    }
-
     this.nodes = this.nodes.map((x: IPioneerTreeExpandedNode) => {
       x.pioneerTreeNode = new PioneerTreeNode();
       x.pioneerTreeRepeater = new PioneerTreeRepeater()
       return x;
     });
+
   }
 }

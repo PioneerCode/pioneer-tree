@@ -7,18 +7,27 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
 @Component({
     selector: '[pioneer-tree-node],[pt-node]',
     template: `
-<div class="pioneer-tree-node">
+<div class="pioneer-tree-node" 
+    (click)="onClicked()" 
+    [ngClass]="{
+        'pt-node-selected': this.treeService.currentSlectedNodeId === this.node.pioneerTreeNode.getId()
+    }">
     <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
     </ng-container>
     <ng-container [ngTemplateOutlet]="treeTemplate" [ngOutletContext]="{ $implicit: children }">
     </ng-container>
 </div>
-    `,
-    providers: [PioneerTreeService]
+    `
 })
 export class PioneerTreeNodeComponent {
     @Input() node: IPioneerTreeExpandedNode;
     @Input() children = [] as IPioneerTreeExpandedNode[];
     @Input() nodeTemplate: TemplateRef<any>;
     @Input() treeTemplate: TemplateRef<any>;
+
+   constructor(private treeService: PioneerTreeService) { }
+
+    onClicked() {
+    this.treeService.currentSlectedNodeId = this.node.pioneerTreeNode.getId();
+    }
 }

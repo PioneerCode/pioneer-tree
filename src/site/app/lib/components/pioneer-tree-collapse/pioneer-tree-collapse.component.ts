@@ -10,9 +10,7 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
     <ng-content>
     </ng-content>
 </div>
-`,
-    entryComponents: [],
-    providers: [PioneerTreeService]
+`
 })
 export class PioneerTreeCollapseComponent {
     @Input() node: IPioneerTreeExpandedNode;

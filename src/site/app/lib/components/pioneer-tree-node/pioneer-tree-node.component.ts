@@ -8,12 +8,14 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
     selector: '[pioneer-tree-node],[pt-node]',
     template: `
 <div class="pioneer-tree-node" 
-    (click)="onClicked()" 
-    [ngClass]="{
-        'pt-node-selected': this.treeService.currentSlectedNodeId === this.node.pioneerTreeNode.getId()
-    }">
-    <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
-    </ng-container>
+    (click)="onClicked()">
+    <div class="pioneer-tree-node-content"
+        [ngClass]="{
+            'pt-node-selected': this.treeService.currentSlectedNodeId === this.node.pioneerTreeNode.getId()
+        }">
+        <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
+        </ng-container>
+    </div>
     <div class="pioneer-tree-repeater">
         <ng-container [ngTemplateOutlet]="repeaterTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container>

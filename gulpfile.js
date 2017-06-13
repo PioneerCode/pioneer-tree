@@ -20,7 +20,7 @@ function clean() {
 }
 
 function styles() {
-  return gulp.src(['./src/sass/styles.scss'])
+  return gulp.src(['./src/sass/styles.scss','./src/sass/pioneer-tree.scss'])
     .pipe(sass({
       includePaths: sassPaths,
       outputStyle: 'compressed'

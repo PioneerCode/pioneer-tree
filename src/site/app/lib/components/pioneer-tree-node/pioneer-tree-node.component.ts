@@ -10,9 +10,7 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
 <div class="pioneer-tree-node">
     <div class="pioneer-tree-node-content"
         (click)="onClicked()"
-        [ngClass]="{
-            'pt-node-selected': this.treeService.currentSelectedNodeId === this.node.pioneerTreeNode.getId()
-        }">
+        [ngClass]="this.node.pioneerTreeNode.getContentClasses()">
         <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container> 
     </div>

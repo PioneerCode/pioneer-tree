@@ -40,7 +40,7 @@ export class PioneerTreeComponent {
     if (!this.nodes) return;
 
     this.nodes = this.nodes.map((x: IPioneerTreeExpandedNode) => {
-      x.pioneerTreeNode = new PioneerTreeNode();
+      x.pioneerTreeNode = new PioneerTreeNode(this.pioneerTreeService);
       return x;
     });
   }

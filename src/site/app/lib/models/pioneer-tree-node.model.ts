@@ -8,6 +8,12 @@ export interface IPioneerTreeNode {
      */
     getId(): string;
 
+    
+    /**
+     * Get collection of content classes to set on ngClass
+     */
+    getContentClasses(): string[];
+
     /**
      * A repeater lives inside a node
      * this is the node id
@@ -16,17 +22,28 @@ export interface IPioneerTreeNode {
 }
 
 export class PioneerTreeNode implements IPioneerTreeNode {
+
     pioneerTreeRepeater: IPioneerTreeRepeater;
 
     private uid: string;
 
-    constructor() {
+    constructor(private pioneerTreeService: IPioneerTreeService) {
         this.generateUid();
         this.pioneerTreeRepeater = new PioneerTreeRepeater()
     }
 
     getId(): string {
         return this.uid
+    }
+
+    getContentClasses(): string[] {
+        const classes = [] as string[]
+
+        if (this.pioneerTreeService.currentSelectedNodeId === this.getId()) {
+            classes.push('pt-node-selected')
+        }
+
+        return classes;
     }
 
     private generateUid(): void {

@@ -13,6 +13,11 @@
         .pioneer-tree-collapse {
             cursor: pointer;
         }
+
+        &.pt-node-selected{
+            background: #ccc;
+        }
+
         .pt-repeater-collapsed{
             display: none;
         }

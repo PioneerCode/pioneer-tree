@@ -11,7 +11,6 @@ export interface IPioneerTreeService {
      * Set when node is selected
      * 
      * TODO: Consider damage of tracking public
-     * 
      */
     currentSelectedNodeId: string
 }

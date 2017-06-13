@@ -18,6 +18,7 @@ import { PioneerTreeService, IPioneerTreeService } from "./lib/services/pioneer-
     PioneerTreeNodeComponent,
     PioneerTreeCollapseComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [PioneerTreeService]
 })
 export class AppModule { }

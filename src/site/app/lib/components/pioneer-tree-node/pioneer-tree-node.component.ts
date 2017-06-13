@@ -14,9 +14,9 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
             'pt-node-selected': this.treeService.currentSelectedNodeId === this.node.pioneerTreeNode.getId()
         }">
         <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
-        </ng-container>
+        </ng-container> 
     </div>
-    <div class="pioneer-tree-repeater" >
+    <div class="pioneer-tree-repeater" [ngClass]="this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()">
         <ng-container [ngTemplateOutlet]="repeaterTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container>
     </div>

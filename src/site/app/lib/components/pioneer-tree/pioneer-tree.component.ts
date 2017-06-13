@@ -19,8 +19,7 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
   entryComponents: [
     PioneerTreeNodeComponent,
     PioneerTreeCollapseComponent
-  ],
-  providers: [PioneerTreeService]
+  ]
 })
 export class PioneerTreeComponent {
   @Input() nodes: IPioneerTreeExpandedNode[];

@@ -13,6 +13,7 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
   selector: '[pioneer-tree],[pioneer-tree-repeater],[pt],[pt-repeater]',
   template: `
   <span class="pioneer-tree">
+    {{this.pioneerTreeService.currentSelectedNodeId}}
     <ng-content></ng-content>
   </span>
   `,

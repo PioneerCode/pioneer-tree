@@ -7,9 +7,9 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
 @Component({
     selector: '[pioneer-tree-node],[pt-node]',
     template: `
-<div class="pioneer-tree-node" 
-    (click)="onClicked()">
+<div class="pioneer-tree-node">
     <div class="pioneer-tree-node-content"
+        (click)="onClicked()"
         [ngClass]="{
             'pt-node-selected': this.treeService.currentSelectedNodeId === this.node.pioneerTreeNode.getId()
         }">

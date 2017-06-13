@@ -6,10 +6,10 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
 @Component({
     selector: '[pioneer-tree-collapse],[pt-collapse]',
     template: `
-<div class="pioneer-tree-collapse" (click)="onClicked()">
+<span class="pioneer-tree-collapse" (click)="onClicked()">
     <ng-content>
     </ng-content>
-</div>
+</span>
 `
 })
 export class PioneerTreeCollapseComponent {

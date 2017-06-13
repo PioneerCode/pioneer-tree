@@ -7,14 +7,14 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
 @Component({
     selector: '[pioneer-tree-node],[pt-node]',
     template: `
-<div class="pioneer-tree-node" 
+<span class="pioneer-tree-node" 
     (click)="onClicked()" 
     [ngClass]="{
         'pt-node-selected': this.treeService.currentSlectedNodeId === this.node.pioneerTreeNode.getId()
     }">
     <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
     </ng-container>
-</div>
+</span>
     `
 })
 export class PioneerTreeNodeComponent {

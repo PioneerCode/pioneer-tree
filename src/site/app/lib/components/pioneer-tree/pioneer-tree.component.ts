@@ -12,7 +12,9 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
 @Component({
   selector: '[pioneer-tree],[pioneer-tree-repeater],[pt],[pt-repeater]',
   template: `
-  <ng-content></ng-content>
+  <span class="pioneer-tree">
+    <ng-content></ng-content>
+  </span>
   `,
   entryComponents: [
     PioneerTreeNodeComponent,

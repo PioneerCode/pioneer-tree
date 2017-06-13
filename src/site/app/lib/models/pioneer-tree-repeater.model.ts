@@ -55,7 +55,7 @@ export class PioneerTreeRepeater implements IPioneerTreeRepeater {
         const classes = [] as string[]
 
         if (this.collapsed) {
-            classes.push('pt-reapeater-collapsed')
+            classes.push('pt-repeater-collapsed')
         }
 
         return classes;

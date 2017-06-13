@@ -1,3 +1,20 @@
 /// <reference path="../../node_modules/foundation-sites/scss/foundation" />
 @import "base"; 
 
+/**
+ * A class with a prefix of "pioneer-tree" is static and always available.
+ *  Of which is typically supplied on the wrapper of a components content.
+ *
+ * A class with a prefix of "pt" is dynamic and add or removed on events
+ */
+
+.pioneer-tree {
+    .pioneer-tree-node {
+        .pioneer-tree-collapse {
+            cursor: pointer;
+        }
+        .pt-repeater-collapsed{
+            display: none;
+        }
+    }
+}

@@ -11,7 +11,7 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
     (click)="onClicked()">
     <div class="pioneer-tree-node-content"
         [ngClass]="{
-            'pt-node-selected': this.treeService.currentSlectedNodeId === this.node.pioneerTreeNode.getId()
+            'pt-node-selected': this.treeService.currentSelectedNodeId === this.node.pioneerTreeNode.getId()
         }">
         <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container>
@@ -31,6 +31,6 @@ export class PioneerTreeNodeComponent {
     constructor(private treeService: PioneerTreeService) { }
 
     onClicked() {
-        this.treeService.currentSlectedNodeId = this.node.pioneerTreeNode.getId();
+        this.treeService.currentSelectedNodeId = this.node.pioneerTreeNode.getId();
     }
 }

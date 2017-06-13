@@ -6,7 +6,6 @@ import { IPioneerTreeRepeater, PioneerTreeRepeater } from "./pioneer-tree-repeat
  */
 export interface IPioneerTreeExpandedNode {
     pioneerTreeNode: IPioneerTreeNode;
-    pioneerTreeRepeater: IPioneerTreeRepeater;
 }
 
 export class PioneerTreeExpandedNode {

@@ -14,18 +14,15 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
     }">
     <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
     </ng-container>
-    <ng-container [ngTemplateOutlet]="treeTemplate" [ngOutletContext]="{ $implicit: children }">
-    </ng-container>
 </div>
     `
 })
 export class PioneerTreeNodeComponent {
     @Input() node: IPioneerTreeExpandedNode;
-    @Input() children = [] as IPioneerTreeExpandedNode[];
     @Input() nodeTemplate: TemplateRef<any>;
-    @Input() treeTemplate: TemplateRef<any>;
+    @Input() repeaterTemplate: TemplateRef<any>;
 
-   constructor(private treeService: PioneerTreeService) { }
+    constructor(private treeService: PioneerTreeService) { }
 
     onClicked() {
         this.treeService.currentSlectedNodeId = this.node.pioneerTreeNode.getId();

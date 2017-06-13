@@ -39,7 +39,6 @@ export interface IPioneerTreeRepeaterStyles {
 
 export class PioneerTreeRepeater implements IPioneerTreeRepeater {
     collapsed = false;
-
     private uid: string;
 
     constructor() {

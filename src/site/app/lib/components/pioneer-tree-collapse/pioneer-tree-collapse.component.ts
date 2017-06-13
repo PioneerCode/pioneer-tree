@@ -17,7 +17,7 @@ export class PioneerTreeCollapseComponent {
     @Output() collapse = new EventEmitter<boolean>();
 
     onClicked() {
-        this.node.pioneerTreeRepeater.collapsed = !this.node.pioneerTreeRepeater.collapsed;
+        this.node.pioneerTreeNode.pioneerTreeRepeater.collapsed = !this.node.pioneerTreeNode.pioneerTreeRepeater.collapsed;
         this.collapse.emit();
     }
 }

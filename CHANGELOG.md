@@ -1,5 +1,10 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
+<a name="1.1.0"></a>
+# 1.1.0
+### Added
+* Class style targets
+
 <a name="1.0.5"></a>
 # 1.0.5
 ### Added

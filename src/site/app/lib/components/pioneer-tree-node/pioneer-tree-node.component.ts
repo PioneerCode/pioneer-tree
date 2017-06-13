@@ -16,7 +16,7 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
         <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container>
     </div>
-    <div class="pioneer-tree-repeater">
+    <div class="pioneer-tree-repeater" >
         <ng-container [ngTemplateOutlet]="repeaterTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container>
     </div>

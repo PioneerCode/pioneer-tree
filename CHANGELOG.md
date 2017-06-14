@@ -3,7 +3,8 @@
 <a name="1.0.10"></a>
 # 1.0.10
 ### Added
-* Class style targets
+* Add component style sheet
+* Abstract repeater into template for better targeting
 
 <a name="1.0.5"></a>
 # 1.0.5

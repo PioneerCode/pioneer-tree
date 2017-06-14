@@ -8,7 +8,7 @@ export interface IPioneerTreeNode {
      */
     getId(): string;
 
-    
+
     /**
      * Get collection of content classes to set on ngClass
      */

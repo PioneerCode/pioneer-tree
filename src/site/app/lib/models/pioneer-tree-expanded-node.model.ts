@@ -7,7 +7,3 @@ import { IPioneerTreeRepeater, PioneerTreeRepeater } from "./pioneer-tree-repeat
 export interface IPioneerTreeExpandedNode {
     pioneerTreeNode: IPioneerTreeNode;
 }
-
-export class PioneerTreeExpandedNode {
-    pioneerTreeNode = new PioneerTreeNode();
-}

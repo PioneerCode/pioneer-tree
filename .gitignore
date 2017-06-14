@@ -13,6 +13,7 @@ e2e/**/*.js.map
 _test-output
 _temp
 bundles
+dist
 src/site/app/lib/**/*.js
 src/site/site/app/lib/**/*.map
 src/site/app/lib/**/*.d.ts

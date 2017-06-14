@@ -32,6 +32,15 @@ function styles() {
     .pipe(gulp.dest('./src/site'));
 }
 
+function moveReleaseApiAssets() {
+  return gulp.src(['./src/site/app/lib/**/*.d.ts'])
+    .pipe(gulp.dest('./dist/api'));
+}
+
+function moveReleaseStyleAssets() {
+  return gulp.src(['./src/sass/pioneer-tree.scss','./src/site/pioneer-tree.css'])
+    .pipe(gulp.dest('./dist/styles'));
+}
 
 function watch() {
   gulp.watch([
@@ -50,6 +59,11 @@ gulp.task('clean', gulp.series(
 
 gulp.task('deploy:gh-pages', gulp.series(
   deployGhPages
+));
+
+gulp.task('deploy:release', gulp.series(
+  moveReleaseApiAssets,
+  moveReleaseStyleAssets
 ));
 
 gulp.task('default', gulp.series(

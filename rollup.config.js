@@ -9,9 +9,9 @@ const plugins = [
   })
 ];
 
-let dest = 'bundles/pioneer-tree.umd.js';
+let dest = 'dist/bundles/pioneer-tree.umd.js';
 if (process.env.BUNDLE_MIN === 'true') {
-  dest = 'bundles/pioneer-tree.umd.min.js';
+  dest = 'dist/bundles/pioneer-tree.umd.min.js';
   plugins.push(
     uglify()
   );

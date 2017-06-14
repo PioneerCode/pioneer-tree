@@ -8,7 +8,7 @@ import { PioneerTreeCollapseComponent } from './lib/components/pioneer-tree-coll
 
 import { PioneerTreeModule } from './lib/pioneer-tree'
 
-import { PioneerTreeService, IPioneerTreeService } from "./lib/services/pioneer-tree.service"
+import { PioneerTreeService } from "./lib/services/pioneer-tree.service"
 
 @NgModule({
   imports: [BrowserModule],

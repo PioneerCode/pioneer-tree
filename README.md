@@ -42,7 +42,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
-import { PioneerTreeComponentm, PioneerTreeNodeComponent, PioneerTreeCollapseComponent } from '@pioneer-code/pioneer-tree'
+import { PioneerTreeComponent, PioneerTreeNodeComponent, PioneerTreeCollapseComponent } from '@pioneer-code/pioneer-tree'
+import { PioneerTreeService } from "@pioneer-code/pioneer-tree"
 
 @NgModule({
   imports: [BrowserModule],
@@ -52,7 +53,8 @@ import { PioneerTreeComponentm, PioneerTreeNodeComponent, PioneerTreeCollapseCom
     PioneerTreeNodeComponent,
     PioneerTreeCollapseComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [PioneerTreeService]
 })
 export class AppModule { }
 ```
@@ -64,13 +66,15 @@ export class AppModule { }
     <div pioneer-tree-collapse [node]="node">
         {{node.folder.name}}
     </div>
-    <ul pioneer-tree-repeater [nodes]="node.folder.children" [ngStyle]="node.pioneerTreeRepeater.getStyles()" [ngClass]="node.pioneerTreeRepeater.getClasses()">
-        <li pioneer-tree-node *ngFor="let node of node.folder.children" [nodeTemplate]="nodeTemplate" [node]="node">
-        </li>
-    </ul>
+</ng-template>
+<ng-template #repeaterTemplate let-node>
+<ul pioneer-tree-repeater [nodes]="node.folder.children">
+    <li pioneer-tree-node *ngFor="let node of node.folder.children" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
+    </li>
+</ul>
 </ng-template>
 <ul pioneer-tree [nodes]="nodes">
-    <li pioneer-tree-node *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [node]="node">
+    <li pioneer-tree-node *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
     </li>
 </ul>
 ```

@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,11 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var pioneer_tree_node_component_1 = require("../pioneer-tree-node/pioneer-tree-node.component");
-var pioneer_tree_collapse_component_1 = require("../pioneer-tree-collapse/pioneer-tree-collapse.component");
-var pioneer_tree_node_model_1 = require("../../models/pioneer-tree-node.model");
-var pioneer_tree_service_1 = require("../../services/pioneer-tree.service");
+import { Component, Input } from '@angular/core';
+import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node.component';
+import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-tree-collapse.component';
+import { PioneerTreeNode } from "../../models/pioneer-tree-node.model";
+import { PioneerTreeService } from "../../services/pioneer-tree.service";
 var PioneerTreeComponent = (function () {
     function PioneerTreeComponent(pioneerTreeService) {
         this.pioneerTreeService = pioneerTreeService;
@@ -31,26 +30,26 @@ var PioneerTreeComponent = (function () {
         if (!this.nodes)
             return;
         this.nodes = this.nodes.map(function (x) {
-            x.pioneerTreeNode = new pioneer_tree_node_model_1.PioneerTreeNode(_this.pioneerTreeService);
+            x.pioneerTreeNode = new PioneerTreeNode(_this.pioneerTreeService);
             return x;
         });
     };
     return PioneerTreeComponent;
 }());
 __decorate([
-    core_1.Input(),
+    Input(),
     __metadata("design:type", Array)
 ], PioneerTreeComponent.prototype, "nodes", void 0);
 PioneerTreeComponent = __decorate([
-    core_1.Component({
+    Component({
         selector: '[pioneer-tree],[pioneer-tree-repeater],[pt],[pt-repeater]',
         template: "\n  <span class=\"pioneer-tree\">\n    <ng-content></ng-content>\n  </span>\n  ",
         entryComponents: [
-            pioneer_tree_node_component_1.PioneerTreeNodeComponent,
-            pioneer_tree_collapse_component_1.PioneerTreeCollapseComponent
+            PioneerTreeNodeComponent,
+            PioneerTreeCollapseComponent
         ]
     }),
-    __metadata("design:paramtypes", [pioneer_tree_service_1.PioneerTreeService])
+    __metadata("design:paramtypes", [PioneerTreeService])
 ], PioneerTreeComponent);
-exports.PioneerTreeComponent = PioneerTreeComponent;
+export { PioneerTreeComponent };
 //# sourceMappingURL=pioneer-tree.component.js.map

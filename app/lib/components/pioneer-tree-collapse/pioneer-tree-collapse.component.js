@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
+import { Component, Input } from '@angular/core';
 var PioneerTreeCollapseComponent = (function () {
     function PioneerTreeCollapseComponent() {
     }
@@ -18,14 +17,14 @@ var PioneerTreeCollapseComponent = (function () {
     return PioneerTreeCollapseComponent;
 }());
 __decorate([
-    core_1.Input(),
+    Input(),
     __metadata("design:type", Object)
 ], PioneerTreeCollapseComponent.prototype, "node", void 0);
 PioneerTreeCollapseComponent = __decorate([
-    core_1.Component({
+    Component({
         selector: '[pioneer-tree-collapse],[pt-collapse]',
         template: "\n<span class=\"pioneer-tree-collapse\" (click)=\"onClicked()\">\n    <ng-content>\n    </ng-content>\n</span>\n"
     })
 ], PioneerTreeCollapseComponent);
-exports.PioneerTreeCollapseComponent = PioneerTreeCollapseComponent;
+export { PioneerTreeCollapseComponent };
 //# sourceMappingURL=pioneer-tree-collapse.component.js.map

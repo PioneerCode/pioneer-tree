@@ -1,43 +1,38 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var core_1 = require("@angular/core");
-var pioneer_tree_component_1 = require("./components/pioneer-tree/pioneer-tree.component");
-exports.PioneerTreeComponent = pioneer_tree_component_1.PioneerTreeComponent;
-var pioneer_tree_node_component_1 = require("./components/pioneer-tree-node/pioneer-tree-node.component");
-exports.PioneerTreeNodeComponent = pioneer_tree_node_component_1.PioneerTreeNodeComponent;
-var pioneer_tree_collapse_component_1 = require("./components/pioneer-tree-collapse/pioneer-tree-collapse.component");
-exports.PioneerTreeCollapseComponent = pioneer_tree_collapse_component_1.PioneerTreeCollapseComponent;
-var pioneer_tree_service_1 = require("./services/pioneer-tree.service");
-exports.PioneerTreeService = pioneer_tree_service_1.PioneerTreeService;
+import { NgModule } from '@angular/core';
+import { PioneerTreeComponent } from './components/pioneer-tree/pioneer-tree.component';
+import { PioneerTreeNodeComponent } from './components/pioneer-tree-node/pioneer-tree-node.component';
+import { PioneerTreeCollapseComponent } from './components/pioneer-tree-collapse/pioneer-tree-collapse.component';
+import { PioneerTreeService } from "./services/pioneer-tree.service";
+export { PioneerTreeComponent, PioneerTreeNodeComponent, PioneerTreeCollapseComponent, PioneerTreeService };
 var PioneerTreeModule = (function () {
     function PioneerTreeModule() {
     }
     return PioneerTreeModule;
 }());
 PioneerTreeModule = __decorate([
-    core_1.NgModule({
+    NgModule({
         declarations: [
-            pioneer_tree_component_1.PioneerTreeComponent,
-            pioneer_tree_node_component_1.PioneerTreeNodeComponent,
-            pioneer_tree_collapse_component_1.PioneerTreeCollapseComponent
+            PioneerTreeComponent,
+            PioneerTreeNodeComponent,
+            PioneerTreeCollapseComponent
         ],
         exports: [
-            pioneer_tree_component_1.PioneerTreeComponent,
-            pioneer_tree_node_component_1.PioneerTreeNodeComponent,
-            pioneer_tree_collapse_component_1.PioneerTreeCollapseComponent
+            PioneerTreeComponent,
+            PioneerTreeNodeComponent,
+            PioneerTreeCollapseComponent
         ],
         imports: [],
         providers: [
-            pioneer_tree_service_1.PioneerTreeService
+            PioneerTreeService
         ]
     })
 ], PioneerTreeModule);
-exports.PioneerTreeModule = PioneerTreeModule;
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = PioneerTreeModule;
+export { PioneerTreeModule };
+export default PioneerTreeModule;
 //# sourceMappingURL=pioneer-tree.js.map

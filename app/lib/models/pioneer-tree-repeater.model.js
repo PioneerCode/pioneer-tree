@@ -1,4 +1,3 @@
-"use strict";
 var PioneerTreeRepeater = (function () {
     function PioneerTreeRepeater() {
         this.collapsed = false;
@@ -27,5 +26,5 @@ var PioneerTreeRepeater = (function () {
     };
     return PioneerTreeRepeater;
 }());
-exports.PioneerTreeRepeater = PioneerTreeRepeater;
+export { PioneerTreeRepeater };
 //# sourceMappingURL=pioneer-tree-repeater.model.js.map

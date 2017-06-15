@@ -20,5 +20,6 @@ src/site/app/lib/**/*.d.ts
 src/site/app/**/*.js
 src/site/app/**/*.map
 src/site/app/**/*.d*
+src/site/pioneer-tree/**/*
 package-lock.json
 .publish

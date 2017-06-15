@@ -12,7 +12,6 @@ var sassPaths = [
 
 function clean() {
   return del([
-    '_temp/**',
     'bundles/**',
     'src/**/*.d.ts',
     'src/**/*.map'
@@ -20,7 +19,7 @@ function clean() {
 }
 
 function styles() {
-  return gulp.src(['./src/sass/styles.scss','./src/sass/pioneer-tree.scss'])
+  return gulp.src(['./src/sass/styles.scss', './src/sass/pioneer-tree.scss'])
     .pipe(sass({
       includePaths: sassPaths,
       outputStyle: 'compressed'
@@ -38,7 +37,7 @@ function moveReleaseApiAssets() {
 }
 
 function moveReleaseStyleAssets() {
-  return gulp.src(['./src/sass/pioneer-tree.scss','./src/site/pioneer-tree.css'])
+  return gulp.src(['./src/sass/pioneer-tree.scss', './src/site/pioneer-tree.css'])
     .pipe(gulp.dest('./dist/styles'));
 }
 
@@ -48,17 +47,8 @@ function watch() {
   ], styles);
 }
 
-function deployGhPages() {
-  return gulp.src('./src/gh-pages/**/*')
-    .pipe(ghPages());
-}
-
 gulp.task('clean', gulp.series(
   clean
-));
-
-gulp.task('deploy:gh-pages', gulp.series(
-  deployGhPages
 ));
 
 gulp.task('deploy:release', gulp.series(
@@ -70,4 +60,86 @@ gulp.task('default', gulp.series(
   clean,
   styles,
   gulp.parallel(watch)
+));
+
+
+/******************** 
+  gh-pages
+********************/
+
+/**
+ * Clean the .github/gh-page directory
+ */
+function cleanGhPages() {
+  return del([
+    './.github/gh-pages/**/*'
+  ]);
+}
+
+/**
+ * Move root assets that defer from site assets
+ */
+function moveRootGhPages() {
+  return gulp.src([
+    './.github/site/**/*'
+  ])
+    .pipe(gulp.dest('./.github/gh-pages'));
+}
+
+/**
+ * Send all pre-built assets to the .github/gh-page dir
+ */
+function moveStylesGhPages() {
+  return gulp.src([
+    './src/site/styles.css',
+    './src/site/pioneer-tree.css'
+  ])
+    .pipe(gulp.dest('./.github/gh-pages/pioneer-tree'));
+}
+
+/**
+ * Send all pre-built assets to the .github/gh-page dir
+ */
+function moveGhPages() {
+  return gulp.src([
+    './src/site/**/*',
+    '!./src/site/index.html',
+    '!./src/site/systemjs.config.js',
+    '!./src/site/**/*.ts',
+    '!./src/site/**/*spec.js',
+    '!./src/site/*.css'
+  ])
+    .pipe(gulp.dest('./.github/gh-pages'));
+}
+
+/**
+ * Send all node modules to the .github/gh-page dir
+ */
+function moveNodeGhPages() {
+  return gulp.src([
+    './node_modules/@angular/**/*',
+    './node_modules/core-js/**/*',
+    './node_modules/zone.js/**/*',
+    './node_modules/systemjs/**/*',
+    './node_modules/rxjs/**/*'
+  ],  {base: './node_modules/'})
+    .pipe(gulp.dest('./.github/gh-pages/pioneer-tree/node_modules'));
+}
+
+/**
+ * Deploy to gh-pages branch
+ */
+function deployGhPages() {
+  return gulp.src('./.github/gh-pages/**/*')
+    .pipe(ghPages());
+}
+
+gulp.task('deploy:gh-pages', gulp.series(
+  styles,
+  cleanGhPages,
+  moveStylesGhPages,
+  moveGhPages,
+  moveRootGhPages,
+  moveNodeGhPages,
+  deployGhPages
 ));

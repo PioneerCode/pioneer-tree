@@ -3,7 +3,36 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  templateUrl: './app.html'
+  templateUrl: `
+<div class="row expanded">
+  <div class="large-6 columns">
+    <h2>Tree Component</h2>
+    <div class="callout">
+      <ng-template #nodeTemplate let-node>
+        <div pioneer-tree-collapse [node]="node">
+          {{node.folder.name}}
+        </div>
+      </ng-template>
+      <ng-template #repeaterTemplate let-node>
+        <ul pioneer-tree-repeater [nodes]="node.folder.children">
+          <li pioneer-tree-node *ngFor="let node of node.folder.children" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
+          </li>
+        </ul>
+      </ng-template>
+      <ul pioneer-tree [nodes]="nodes">
+        <li pioneer-tree-node *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="large-6 columns">
+    <h2>Raw Tree</h2>
+    <div class="callout">
+      <pre>{{nodes | json}}</pre>
+    </div>
+  </div>
+</div>  
+`
 })
 export class AppComponent {
   name = 'Angular';

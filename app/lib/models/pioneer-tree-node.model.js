@@ -1,9 +1,10 @@
-import { PioneerTreeRepeater } from "./pioneer-tree-repeater.model";
+"use strict";
+var pioneer_tree_repeater_model_1 = require("./pioneer-tree-repeater.model");
 var PioneerTreeNode = (function () {
     function PioneerTreeNode(pioneerTreeService) {
         this.pioneerTreeService = pioneerTreeService;
         this.generateUid();
-        this.pioneerTreeRepeater = new PioneerTreeRepeater();
+        this.pioneerTreeRepeater = new pioneer_tree_repeater_model_1.PioneerTreeRepeater();
     }
     PioneerTreeNode.prototype.getId = function () {
         return this.uid;
@@ -23,5 +24,5 @@ var PioneerTreeNode = (function () {
     };
     return PioneerTreeNode;
 }());
-export { PioneerTreeNode };
+exports.PioneerTreeNode = PioneerTreeNode;
 //# sourceMappingURL=pioneer-tree-node.model.js.map

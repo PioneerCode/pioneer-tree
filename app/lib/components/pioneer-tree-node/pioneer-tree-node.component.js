@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, TemplateRef } from '@angular/core';
-import { PioneerTreeService } from "../../services/pioneer-tree.service";
+var core_1 = require("@angular/core");
+var pioneer_tree_service_1 = require("../../services/pioneer-tree.service");
 var PioneerTreeNodeComponent = (function () {
     function PioneerTreeNodeComponent(treeService) {
         this.treeService = treeService;
@@ -19,23 +20,23 @@ var PioneerTreeNodeComponent = (function () {
     return PioneerTreeNodeComponent;
 }());
 __decorate([
-    Input(),
+    core_1.Input(),
     __metadata("design:type", Object)
 ], PioneerTreeNodeComponent.prototype, "node", void 0);
 __decorate([
-    Input(),
-    __metadata("design:type", TemplateRef)
+    core_1.Input(),
+    __metadata("design:type", core_1.TemplateRef)
 ], PioneerTreeNodeComponent.prototype, "nodeTemplate", void 0);
 __decorate([
-    Input(),
-    __metadata("design:type", TemplateRef)
+    core_1.Input(),
+    __metadata("design:type", core_1.TemplateRef)
 ], PioneerTreeNodeComponent.prototype, "repeaterTemplate", void 0);
 PioneerTreeNodeComponent = __decorate([
-    Component({
+    core_1.Component({
         selector: '[pioneer-tree-node],[pt-node]',
         template: "\n<div class=\"pioneer-tree-node\">\n    <div class=\"pioneer-tree-node-content\"\n        (click)=\"onClicked()\"\n        [ngClass]=\"this.node.pioneerTreeNode.getContentClasses()\">\n        <ng-container [ngTemplateOutlet]=\"nodeTemplate\" [ngOutletContext]=\"{ $implicit: node }\">\n        </ng-container> \n    </div>\n    <div class=\"pioneer-tree-repeater\" [ngClass]=\"this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()\">\n        <ng-container [ngTemplateOutlet]=\"repeaterTemplate\" [ngOutletContext]=\"{ $implicit: node }\">\n        </ng-container>\n    </div>\n</div>\n    "
     }),
-    __metadata("design:paramtypes", [PioneerTreeService])
+    __metadata("design:paramtypes", [pioneer_tree_service_1.PioneerTreeService])
 ], PioneerTreeNodeComponent);
-export { PioneerTreeNodeComponent };
+exports.PioneerTreeNodeComponent = PioneerTreeNodeComponent;
 //# sourceMappingURL=pioneer-tree-node.component.js.map

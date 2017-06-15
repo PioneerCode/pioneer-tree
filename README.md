@@ -4,7 +4,7 @@ Pioneer Tree is an Angular 4 and up tree component the aims to stay out of your 
 
 ###
 
-Are you intrested in contributing features or squashing bugs? Please take a look at the following to get started.
+Are you interested in contributing features or squashing bugs? Please take a look at the following to get started.
 
 - [CONTRIBUTING](CONTRIBUTING.md)
 
@@ -14,11 +14,13 @@ Are you intrested in contributing features or squashing bugs? Please take a look
 
 ## Demo
 
+[Demo](https://pioneercode.github.io/pioneer-tree)
+
 ## Setup
 
 ### Requirements
 
-- Anguular 4 or greater
+- Angular 4 or greater
 
 ### Download
 
@@ -29,7 +31,7 @@ npm i @pioneer-code/pioneer-tree
 
 ### Supply Module
 
-For example, in SystemJS you would ad the following mapping.
+For example, in SystemJS you would add the following mapping.
 
 ```javascript
 '@pioneer-code/pioneer-tree': 'npm:@pioneer-tree/pioneer-tree/bundles/pioneer-tree.umd.js'

@@ -121,7 +121,8 @@ function moveNodeGhPages() {
     './node_modules/core-js/**/*',
     './node_modules/zone.js/**/*',
     './node_modules/systemjs/**/*',
-    './node_modules/rxjs/**/*'
+    './node_modules/rxjs/**/*',
+    './node_modules/angular-in-memory-web-api/**/*'
   ], { base: './node_modules/' })
     .pipe(gulp.dest('./.github/gh-pages/pioneer-tree/node_modules'));
 }

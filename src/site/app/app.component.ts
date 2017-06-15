@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  templateUrl: `
+  template: `
 <div class="row expanded">
   <div class="large-6 columns">
     <h2>Tree Component</h2>

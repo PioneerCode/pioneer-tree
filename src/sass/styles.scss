@@ -1,2 +1,24 @@
 /// <reference path="../../node_modules/foundation-sites/scss/foundation" />
 @import "base"; 
+@import "../../node_modules/font-awesome/scss/font-awesome";
+
+body {
+    background: #2A2E31;
+    color: $white;
+}
+
+header {
+    padding: 0.5rem 0;
+    color: $white;
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 100;
+        span {
+            font-weight: 800;
+        }
+    }
+}
+
+h2  {
+    font-weight: 800;
+}

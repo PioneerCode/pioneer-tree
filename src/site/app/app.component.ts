@@ -1,10 +1,27 @@
 import { Component } from '@angular/core';
 
-
 @Component({
   selector: 'my-app',
   template: `
-<div class="row expanded">
+<header>
+  <div class="row expanded">
+    <div class="large-12 columns clearfix">
+      <div class="float-left">
+        <h1>Pioneer <span>Tree</span></h1>
+      </div>
+      <div class="float-right">
+        <ul class="menu simple">
+          <li>
+            <a href="" target="_blank" title="">
+              <i class="fa fa-github fa-2x"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="row">
   <div class="large-6 columns">
     <h2>Tree Component</h2>
     <div class="callout">

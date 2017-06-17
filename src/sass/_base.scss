@@ -31,7 +31,7 @@
 //@import '../../node_modules/foundation-sites/scss/forms/forms';
 @import '../../node_modules/foundation-sites/scss/components/visibility';
 @import '../../node_modules/foundation-sites/scss/components/float';
-//@import '../../node_modules/foundation-sites/scss/components/button';
+@import '../../node_modules/foundation-sites/scss/components/button';
 //@import '../../node_modules/foundation-sites/scss/components/button-group';
 //@import '../../node_modules/foundation-sites/scss/components/accordion-menu';
 //@import '../../node_modules/foundation-sites/scss/components/accordion';
@@ -68,7 +68,7 @@
 @include foundation-grid;
 @include foundation-typography;
 //@include foundation-forms;
-//@include foundation-button;
+@include foundation-button;
 //@include foundation-accordion;
 //@include foundation-accordion-menu;
 //@include foundation-badge;

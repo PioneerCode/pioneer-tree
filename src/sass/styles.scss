@@ -4,21 +4,31 @@
 
 body {
     background: #2A2E31;
-    color: $white;
+    margin: 0 0 2rem;
+}
+
+h2  {
+    font-weight: 800;
+        color: $white;
 }
 
 header {
-    padding: 0.5rem 0;
+    padding: 1rem 0;
     color: $white;
     h1 {
         font-size: 1.5rem;
         font-weight: 100;
+            color: $white;
         span {
             font-weight: 800;
         }
     }
 }
 
-h2  {
-    font-weight: 800;
+.data {
+    .menu {
+        li {
+            padding: 0 1rem 0 0;
+        }
+    }
 }

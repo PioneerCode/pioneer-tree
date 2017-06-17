@@ -22,99 +22,103 @@ import { Component } from '@angular/core';
   </div>
 </header>
 <div class="row">
-  <div class="large-6 columns">
-    <h2>Tree Component</h2>
-    <div class="callout">
-      <ng-template #nodeTemplate let-node>
-        <div pioneer-tree-collapse [node]="node">
-          {{node.folder.name}}
-        </div>
-      </ng-template>
-      <ng-template #repeaterTemplate let-node>
-        <ul pioneer-tree-repeater [nodes]="node.folder.children">
-          <li pioneer-tree-node *ngFor="let node of node.folder.children" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
-          </li>
-        </ul>
-      </ng-template>
-      <ul pioneer-tree [nodes]="nodes">
-        <li pioneer-tree-node *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
+  <div class="large-8 columns">
+    <section class="data">
+      <ul class="menu">
+        <li>
+          <h2>Data</h2>
+        </li>
+        <li>
+          <a class="hollow button" (click)="dataView = 'raw'" [ngClass]="dataView === 'raw' ? 'disabled' : ''">Raw</a>
+        </li>
+        <li>
+          <a class="hollow button" (click)="dataView = 'bound'" [ngClass]="dataView === 'bound' ? 'disabled' : ''">Bound</a>
         </li>
       </ul>
-    </div>
+      <div *ngIf="dataView === 'raw'">
+        <pre>{{raw | json}}</pre>
+      </div>
+      <div *ngIf="dataView === 'bound'">
+        <pre>{{nodes | json}}</pre>
+      </div>
+    </section>
   </div>
-  <div class="large-6 columns">
-    <h2>Raw Tree</h2>
-    <div class="callout">
-      <pre>{{nodes | json}}</pre>
-    </div>
+  <div class="large-4 columns">
+    <h2>Component</h2>
+    <ng-template #nodeTemplate let-node>
+      <div pioneer-tree-collapse [node]="node">
+        {{node.name}}
+      </div>
+    </ng-template>
+    <ng-template #repeaterTemplate let-node>
+      <ul pioneer-tree-repeater [nodes]="node.children">
+        <li pioneer-tree-node *ngFor="let node of node.children" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
+        </li>
+      </ul>
+    </ng-template>
+    <ul pioneer-tree [nodes]="nodes">
+      <li pioneer-tree-node *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
+      </li>
+    </ul>
   </div>
 </div>  
 `
 })
 export class AppComponent {
-  name = 'Angular';
+  dataView = "raw";
+  name = 'Pioneer Tree';
   nodes = [
     {
-      "folder": {
-        "children": [
-          {
-            "folder": {
-              "children": [
-                {
-                  "folder": {
-                    "name": "sub-1"
-                  },
-                },
-                {
-                  "folder": {
-                    "name": "sub-2"
-                  },
-                },
-                {
-                  "folder": {
-                    "name": "sub-3"
-                  },
-                }
-              ],
-              "name": "child-1"
+      "name": "root-1",
+      "children": [
+        {
+          "name": "child-1",
+          "children": [
+            {
+              "name": "sub-1",
+              "children": []
             },
-            "name": "child-1"
-          },
-          {
-            "folder": {
-              "name": "child-2"
-            },
-          },
-          {
-            "folder": {
-              "name": "child-3"
-            },
-          }
-        ],
-        "name": "root-1"
-      }
+            {
+              "name": "sub-2",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "child-2"
+        }
+      ]
     },
     {
-      "folder": {
-        "children": [
-          {
-            "folder": {
-              "name": "child-1"
-            },
-          },
-          {
-            "folder": {
-              "name": "child-2"
-            },
-          },
-          {
-            "folder": {
-              "name": "child-3"
-            },
-          }
-        ],
-        "name": "root-2"
-      }
+      "name": "root-2",
+      "children": []
     }
-  ]
+  ] as any;
+  raw = [
+    {
+      "name": "root-1",
+      "children": [
+        {
+          "name": "child-1",
+          "children": [
+            {
+              "name": "sub-1",
+              "children": []
+            },
+            {
+              "name": "sub-2",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "child-2"
+        }
+      ]
+    },
+    {
+      "name": "root-2",
+      "children": []
+    }
+  ] as any;
 }

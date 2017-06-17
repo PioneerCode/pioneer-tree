@@ -34,7 +34,7 @@ npm i @pioneer-code/pioneer-tree
 For example, in SystemJS you would add the following mapping.
 
 ```javascript
-'@pioneer-code/pioneer-tree': 'npm:@pioneer-tree/pioneer-tree/bundles/pioneer-tree.umd.js'
+'@pioneer-code/pioneer-tree': 'npm:@pioneer-tree/pioneer-tree/dist/bundles/pioneer-tree.umd.js'
 ```
 
 ### Import 
@@ -66,14 +66,14 @@ export class AppModule { }
 ```html
 <ng-template #nodeTemplate let-node>
     <div pioneer-tree-collapse [node]="node">
-        {{node.folder.name}}
+    {{node.name}}
     </div>
 </ng-template>
 <ng-template #repeaterTemplate let-node>
-<ul pioneer-tree-repeater [nodes]="node.folder.children">
-    <li pioneer-tree-node *ngFor="let node of node.folder.children" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
-    </li>
-</ul>
+    <ul pioneer-tree-repeater [nodes]="node.children">
+        <li pioneer-tree-node *ngFor="let node of node.children" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
+        </li>
+    </ul>
 </ng-template>
 <ul pioneer-tree [nodes]="nodes">
     <li pioneer-tree-node *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">

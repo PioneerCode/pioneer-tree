@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
       <div class="float-right">
         <ul class="menu simple">
           <li>
-            <a href="" target="_blank" title="">
+            <a href="https://github.com/PioneerCode/pioneer-tree" target="_blank" title="Pioneer Tree">
               <i class="fa fa-github fa-2x"></i>
             </a>
           </li>

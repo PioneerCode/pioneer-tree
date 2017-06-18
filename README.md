@@ -6,7 +6,7 @@ Pioneer Tree is an Angular 4 and up tree component the aims to stay out of your 
 
 Are you interested in contributing features or squashing bugs? Please take a look at the following to get started.
 
-- [CONTRIBUTING](CONTRIBUTING.md)
+<a href="CONTRIBUTING.md" target="_blank">CONTRIBUTING</a>
 
 ## Features
 
@@ -14,7 +14,7 @@ Are you interested in contributing features or squashing bugs? Please take a loo
 
 ## Demo
 
-[Demo](https://pioneercode.github.io/pioneer-tree)
+<a href="https://pioneercode.github.io/pioneer-tree" target="_blank">Demo</a>
 
 ## Setup
 
@@ -24,7 +24,8 @@ Are you interested in contributing features or squashing bugs? Please take a loo
 
 ### Download
 
-[npm](https://www.npmjs.com/package/@pioneer-code/pioneer-tree)
+<a href="https://www.npmjs.com/package/@pioneer-code/pioneer-tree" target="_blank">npm</a>
+
 ```bash
 npm i @pioneer-code/pioneer-tree
 ```
@@ -82,4 +83,4 @@ export class AppModule { }
 ```
 
 ## Changlog
-[CHANGELOG](CHANGELOG.md)
+<a href="CHANGELOG.md" target="_blank">CHANGELOG</a>

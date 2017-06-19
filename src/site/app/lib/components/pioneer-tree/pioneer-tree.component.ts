@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, TemplateRef, ContentChild } from '@angular/core';
+import { Component, Input, ViewChild, TemplateRef, ContentChild, ElementRef } from '@angular/core';
 
 import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node.component'
 import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-tree-collapse.component'
@@ -12,9 +12,7 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
 @Component({
   selector: '[pioneer-tree],[pioneer-tree-repeater],[pt],[pt-repeater]',
   template: `
-  <span class="pioneer-tree">
     <ng-content></ng-content>
-  </span>
   `,
   entryComponents: [
     PioneerTreeNodeComponent,
@@ -24,7 +22,11 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
 export class PioneerTreeComponent {
   @Input() nodes: IPioneerTreeExpandedNode[];
 
-  constructor(private pioneerTreeService: PioneerTreeService) {
+  constructor(private pioneerTreeService: PioneerTreeService, private elementRef: ElementRef) {
+  }
+
+  ngAfterContentInit() {
+    this.elementRef.nativeElement.className += ' pioneer-tree'
   }
 
   /**

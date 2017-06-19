@@ -19,6 +19,16 @@ export interface IPioneerTreeNode {
      * this is the node id
      */
     pioneerTreeRepeater: IPioneerTreeRepeater;
+
+    /**
+     * Is this node currently selected
+     */
+    isSelected(): boolean;
+
+    /**
+     * Is this node currently collapsed
+     */
+    isCollapsed(): boolean
 }
 
 export class PioneerTreeNode implements IPioneerTreeNode {
@@ -39,11 +49,19 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     getContentClasses(): string[] {
         const classes = [] as string[]
 
-        if (this.pioneerTreeService.currentSelectedNodeId === this.getId()) {
+        if (this.isSelected()) {
             classes.push('pt-node-selected')
         }
 
         return classes;
+    }
+
+    isSelected(): boolean {
+        return this.pioneerTreeService.currentSelectedNodeId === this.getId();
+    }
+
+    isCollapsed(): boolean {
+        return this.pioneerTreeRepeater.collapsed;
     }
 
     private generateUid(): void {

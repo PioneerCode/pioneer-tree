@@ -107,7 +107,7 @@ import { Component } from '@angular/core';
       <h2>Component</h2>
       <ng-template #nodeTemplate let-node>
         <div pioneer-tree-collapse [node]="node">
-          <i class="fa fa-folder"></i>
+          <i class="fa" [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'"></i>
           {{node.name}}
         </div>
       </ng-template>

@@ -1,5 +1,10 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
+<a name="1.0.x"></a>
+# 1.0.12
+### Added
+* Public access to isCollapsed and isSelected
+
 <a name="1.0.12"></a>
 # 1.0.12
 ### Added

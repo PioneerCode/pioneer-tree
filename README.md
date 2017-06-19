@@ -10,7 +10,9 @@ Are you interested in contributing features or squashing bugs? Please take a loo
 
 ## Features
 
-- 
+- Intuitive markup defined by you.
+- Does not take a dependencies on third party libraries.
+    - Eases module loading i.e. SystemJs is supported.
 
 ## Demo
 

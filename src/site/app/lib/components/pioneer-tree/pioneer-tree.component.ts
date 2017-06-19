@@ -12,7 +12,7 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
 @Component({
   selector: '[pioneer-tree],[pioneer-tree-repeater],[pt],[pt-repeater]',
   template: `
-    <ng-content></ng-content>
+  <ng-content></ng-content>
   `,
   entryComponents: [
     PioneerTreeNodeComponent,
@@ -26,7 +26,8 @@ export class PioneerTreeComponent {
   }
 
   ngAfterContentInit() {
-    this.elementRef.nativeElement.className += ' pioneer-tree'
+    console.log(this.elementRef);
+    this.setClasses();
   }
 
   /**
@@ -45,5 +46,21 @@ export class PioneerTreeComponent {
       x.pioneerTreeNode = new PioneerTreeNode(this.pioneerTreeService);
       return x;
     });
+  }
+
+  /**
+   * Identify root & set pioneer-tree-root
+   * Set pioneer-tree for all
+   */
+  private setClasses() {
+    let isRoot = true;
+    for (let i = 0; i < this.elementRef.nativeElement.parentNode.classList.length; i++) {
+      const parentClass = this.elementRef.nativeElement.parentNode.classList[i];
+      if (parentClass === 'pioneer-tree-repeater' || parentClass === 'pt-repeater' || parentClass === 'pt' || parentClass === 'pioneer-tree') {
+        this.elementRef.nativeElement.className += ' pioneer-tree'
+        return;
+      }
+    }
+    this.elementRef.nativeElement.className += ' pioneer-tree-root pioneer-tree'
   }
 }

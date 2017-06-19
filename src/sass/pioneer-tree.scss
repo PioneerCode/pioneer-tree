@@ -8,11 +8,13 @@
  * components. This is not the most effecient and can be refactored to cut some 
  * size out of your style sheet.
  */
+ .pioneer-tree-root {
+    margin: 0;     
+ }
 
 .pioneer-tree {
     list-style: none;
-    margin: 0;
-    
+
     .pioneer-tree-node {
 
         .pioneer-tree-node-content {

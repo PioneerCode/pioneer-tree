@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Pioneer Code - Pioneer Tree</title>
-    <base href="/">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="pioneer-tree/pioneer-tree/styles.css">
-    <link rel="stylesheet" href="pioneer-tree/pioneer-tree/pioneer-tree.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
-    
-    <!-- Polyfill(s) for older browsers -->
-    <script src="pioneer-tree/pioneer-tree/node_modules/core-js/client/shim.min.js"></script>
 
-    <script src="pioneer-tree/pioneer-tree/node_modules/zone.js/dist/zone.js"></script>
-    <script src="pioneer-tree/pioneer-tree/node_modules/systemjs/dist/system.src.js"></script>
+<head>
+  <title>Pioneer Code - Pioneer Tree</title>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="pioneer-tree/pioneer-tree/styles.css">
+  <link rel="stylesheet" href="pioneer-tree/pioneer-tree/pioneer-tree.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
 
-    <script src="pioneer-tree/pioneer-tree/systemjs.config.js"></script>
-    <script>
-      System.import('main.js').catch(function(err){ console.error(err); });
-    </script>
-  </head>
+  <!-- Polyfill(s) for older browsers -->
+  <script src="pioneer-tree/pioneer-tree/node_modules/core-js/client/shim.min.js"></script>
 
-  <body>
-    <my-app>Loading AppComponent content here ...</my-app>
-  </body>
+  <script src="pioneer-tree/pioneer-tree/node_modules/zone.js/dist/zone.js"></script>
+  <script src="pioneer-tree/pioneer-tree/node_modules/systemjs/dist/system.src.js"></script>
+
+  <script src="pioneer-tree/pioneer-tree/systemjs.config.js"></script>
+  <script>
+    System.import('main.js').catch(function (err) { console.error(err); });
+  </script>s
+</head>
+
+<body>
+  <my-app><i class="fa fa-spinner fa-spin fa-4x"></i></my-app>
+</body>
+
 </html>

@@ -14,9 +14,14 @@ var pioneer_tree_collapse_component_1 = require("../pioneer-tree-collapse/pionee
 var pioneer_tree_node_model_1 = require("../../models/pioneer-tree-node.model");
 var pioneer_tree_service_1 = require("../../services/pioneer-tree.service");
 var PioneerTreeComponent = (function () {
-    function PioneerTreeComponent(pioneerTreeService) {
+    function PioneerTreeComponent(pioneerTreeService, elementRef) {
         this.pioneerTreeService = pioneerTreeService;
+        this.elementRef = elementRef;
     }
+    PioneerTreeComponent.prototype.ngAfterContentInit = function () {
+        console.log(this.elementRef);
+        this.setClasses();
+    };
     /**
      * TODO: Keep an eye on this to understand the in-memory values
      *  coming from this.nodes and this.pioneerTreeService.nodes
@@ -35,6 +40,21 @@ var PioneerTreeComponent = (function () {
             return x;
         });
     };
+    /**
+     * Identify root & set pioneer-tree-root
+     * Set pioneer-tree for all
+     */
+    PioneerTreeComponent.prototype.setClasses = function () {
+        var isRoot = true;
+        for (var i = 0; i < this.elementRef.nativeElement.parentNode.classList.length; i++) {
+            var parentClass = this.elementRef.nativeElement.parentNode.classList[i];
+            if (parentClass === 'pioneer-tree-repeater' || parentClass === 'pt-repeater' || parentClass === 'pt' || parentClass === 'pioneer-tree') {
+                this.elementRef.nativeElement.className += ' pioneer-tree';
+                return;
+            }
+        }
+        this.elementRef.nativeElement.className += ' pioneer-tree-root pioneer-tree';
+    };
     return PioneerTreeComponent;
 }());
 __decorate([
@@ -44,13 +64,13 @@ __decorate([
 PioneerTreeComponent = __decorate([
     core_1.Component({
         selector: '[pioneer-tree],[pioneer-tree-repeater],[pt],[pt-repeater]',
-        template: "\n  <span class=\"pioneer-tree\">\n    <ng-content></ng-content>\n  </span>\n  ",
+        template: "\n  <ng-content></ng-content>\n  ",
         entryComponents: [
             pioneer_tree_node_component_1.PioneerTreeNodeComponent,
             pioneer_tree_collapse_component_1.PioneerTreeCollapseComponent
         ]
     }),
-    __metadata("design:paramtypes", [pioneer_tree_service_1.PioneerTreeService])
+    __metadata("design:paramtypes", [pioneer_tree_service_1.PioneerTreeService, core_1.ElementRef])
 ], PioneerTreeComponent);
 exports.PioneerTreeComponent = PioneerTreeComponent;
 //# sourceMappingURL=pioneer-tree.component.js.map

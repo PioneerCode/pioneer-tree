@@ -11,10 +11,16 @@ var PioneerTreeNode = (function () {
     };
     PioneerTreeNode.prototype.getContentClasses = function () {
         var classes = [];
-        if (this.pioneerTreeService.currentSelectedNodeId === this.getId()) {
+        if (this.isSelected()) {
             classes.push('pt-node-selected');
         }
         return classes;
+    };
+    PioneerTreeNode.prototype.isSelected = function () {
+        return this.pioneerTreeService.currentSelectedNodeId === this.getId();
+    };
+    PioneerTreeNode.prototype.isCollapsed = function () {
+        return this.pioneerTreeRepeater.collapsed;
     };
     PioneerTreeNode.prototype.generateUid = function () {
         this.uid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {

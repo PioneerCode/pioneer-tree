@@ -16,15 +16,17 @@
     list-style: none;
 
     .pioneer-tree-node {
-
+        
         .pioneer-tree-node-content {
+            padding: 0 0.5rem;
             
             .pioneer-tree-collapse {
                 cursor: pointer;
             }
 
             &.pt-node-selected{
-                background: #ccc;
+                background: #fff;
+                color: #2A2E31;
             }
         }
 

@@ -7,7 +7,11 @@ import { Component } from '@angular/core';
   <div class="row expanded">
     <div class="large-12 columns">
       <div class="float-left">
-        <h2>Pioneer <span>Code</span></h2>
+        <h2>
+          <a href="http://pioneercode.com" target="_blank" title="Pioneer Code">
+            Pioneer <span>Code</span>
+          </a>
+        </h2>
       </div>
       <div class="float-right">
         <ul class="menu simple">
@@ -58,6 +62,9 @@ import { Component } from '@angular/core';
             </li>
             <li>
               Selected node tracking
+            </li>
+            <li>
+              Opt-in public state tracking
             </li>
           </ul>
         </div>

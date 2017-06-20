@@ -1,7 +1,7 @@
 /**
  * Adds drag and drop functionality to pioneer-tree-node child elements
  */
-import { Component, Input, HostListener } from '@angular/core';
+import { Component, Input, HostListener, HostBinding } from '@angular/core';
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
 
 @Component({
@@ -16,13 +16,18 @@ import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-nod
 export class PioneerTreeHandleComponent {
     @Input() node: IPioneerTreeExpandedNode;
 
-  @HostListener('dragstart', ['$event']) 
-  onDragStart(event: Event) {
-      console.log('drag started');
-  }
+    @HostBinding('draggable')
+    get draggable() {
+        return true;
+    }
 
-  @HostListener('dragend')
-  onDragEnd() {
-    alert('drag ended');
-  }
+    @HostListener('dragstart', ['$event'])
+    onDragStart(event: Event) {
+        console.log('drag started ' + event);
+    }
+
+    @HostListener('dragend')
+    onDragEnd() {
+        alert('drag ended');
+    }
 }

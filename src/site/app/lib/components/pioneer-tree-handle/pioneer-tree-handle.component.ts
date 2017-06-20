@@ -16,16 +16,25 @@ import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-nod
 export class PioneerTreeHandleComponent {
     @Input() node: IPioneerTreeExpandedNode;
 
+    /**
+     * Enable HTML5 draggable on entire component
+     */
     @HostBinding('draggable')
     get draggable() {
         return true;
     }
 
+    /**
+     * Act on dragstart event
+     */
     @HostListener('dragstart', ['$event'])
     onDragStart(event: Event) {
         console.log('drag started ' + event);
     }
 
+    /**
+     * Act on drag end event
+     */
     @HostListener('dragend')
     onDragEnd() {
         alert('drag ended');

@@ -1,7 +1,6 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 import { PioneerTreeComponent } from '../pioneer-tree/pioneer-tree.component'
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
-
 import { PioneerTreeService } from "../../services/pioneer-tree.service"
 
 @Component({

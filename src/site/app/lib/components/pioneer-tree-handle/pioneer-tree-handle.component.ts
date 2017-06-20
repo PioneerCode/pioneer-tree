@@ -1,9 +1,10 @@
+import { Component, Input, HostListener, HostBinding, Renderer2, ElementRef } from '@angular/core';
+import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
+import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-tree.service"
+
 /**
  * Adds drag and drop functionality to pioneer-tree-node child elements
  */
-import { Component, Input, HostListener, HostBinding } from '@angular/core';
-import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
-
 @Component({
     selector: '[pioneer-tree-handle],[pt-handle]',
     template: `
@@ -15,6 +16,12 @@ import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-nod
 })
 export class PioneerTreeHandleComponent {
     @Input() node: IPioneerTreeExpandedNode;
+
+    constructor(
+        private elementRef: ElementRef, 
+        private renderer: Renderer2,
+        private pioneerTreeService: PioneerTreeService
+    ) { }
 
     /**
      * Enable HTML5 draggable on entire component
@@ -29,6 +36,8 @@ export class PioneerTreeHandleComponent {
      */
     @HostListener('dragstart', ['$event'])
     onDragStart(event: Event) {
+         this.renderer.addClass(this.elementRef.nativeElement, 'pt-handle-drag-start');
+         this.pioneerTreeService.currentDragNodeId = this.node.pioneerTreeNode.getId();
     }
 
     /**
@@ -36,5 +45,7 @@ export class PioneerTreeHandleComponent {
      */
     @HostListener('dragend')
     onDragEnd() {
+        this.renderer.removeClass(this.elementRef.nativeElement, 'pt-handle-drag-start');
+        this.pioneerTreeService.currentDragNodeId = null;
     }
 }

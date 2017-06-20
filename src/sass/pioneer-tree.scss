@@ -11,6 +11,7 @@
 $dark-color: #2A2E31;
 $grey-color: #666;
 $green-color: #3b805e;
+$red-color: #cc4b37;
 
 .pioneer-tree-root {
     margin: 0;     
@@ -23,10 +24,8 @@ $green-color: #3b805e;
 
         .pioneer-tree-node-content {
             padding: 0 0.5rem;
-            border: 1px solid $dark-color;
 
             &:hover {
-                border: 1px solid $grey-color;
                 background: $grey-color;
             }
             
@@ -42,10 +41,14 @@ $green-color: #3b805e;
             .pioneer-tree-handle {
                 cursor: move;
             }
-        }
-        
-        .pt-dropzone-drag-over {
-            background: $green-color;
+
+            &.pt-dropzone-drag-over {
+                background: $green-color;
+            }
+
+            &.pt-dropzone-drag-over-deny {
+                background: $red-color;
+            }
         }
 
         .pt-repeater-collapsed{

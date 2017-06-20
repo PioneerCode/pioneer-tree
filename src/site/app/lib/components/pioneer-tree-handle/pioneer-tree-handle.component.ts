@@ -29,7 +29,6 @@ export class PioneerTreeHandleComponent {
      */
     @HostListener('dragstart', ['$event'])
     onDragStart(event: Event) {
-        console.log('drag started ' + event);
     }
 
     /**
@@ -37,6 +36,5 @@ export class PioneerTreeHandleComponent {
      */
     @HostListener('dragend')
     onDragEnd() {
-        alert('drag ended');
     }
 }

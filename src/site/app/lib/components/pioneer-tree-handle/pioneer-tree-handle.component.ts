@@ -13,7 +13,7 @@ import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-nod
 </span>
     `
 })
-export class PioneerTreeNodeComponent {
+export class PioneerTreeHandleComponent {
     @Input() node: IPioneerTreeExpandedNode;
 
   @HostListener('dragstart', ['$event']) 

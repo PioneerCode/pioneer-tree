@@ -26,7 +26,6 @@ export class PioneerTreeComponent {
   }
 
   ngAfterContentInit() {
-    console.log(this.elementRef);
     this.setClasses();
   }
 

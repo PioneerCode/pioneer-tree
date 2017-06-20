@@ -113,10 +113,12 @@ import { Component } from '@angular/core';
     <div class="large-4 columns">
       <h2>Component</h2>
       <ng-template #nodeTemplate let-node>
-        <div pioneer-tree-collapse [node]="node">
+        <span pioneer-tree-collapse [node]="node">
           <i class="fa" [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'"></i>
+        </span>
+        <span pioneer-tree-handle [node]="node">
           {{node.name}}
-        </div>
+        </span>
       </ng-template>
       <ng-template #repeaterTemplate let-node>
         <ul pioneer-tree-repeater [nodes]="node.children">

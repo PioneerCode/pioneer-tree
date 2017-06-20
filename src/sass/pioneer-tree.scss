@@ -8,17 +8,27 @@
  * components. This is not the most effecient and can be refactored to cut some 
  * size out of your style sheet.
  */
- .pioneer-tree-root {
+$dark-color: #2A2E31;
+$grey-color: #666;
+$green-color: #3b805e;
+
+.pioneer-tree-root {
     margin: 0;     
- }
+}
 
 .pioneer-tree {
     list-style: none;
 
     .pioneer-tree-node {
-        
+
         .pioneer-tree-node-content {
             padding: 0 0.5rem;
+            border: 1px solid $dark-color;
+
+            &:hover {
+                border: 1px solid $grey-color;
+                background: $grey-color;
+            }
             
             .pioneer-tree-collapse {
                 cursor: pointer;
@@ -26,12 +36,16 @@
 
             &.pt-node-selected{
                 background: #fff;
-                color: #2A2E31;
+                color: $dark-color;
             }
 
             .pioneer-tree-handle {
                 cursor: move;
             }
+        }
+        
+        .pt-dropzone-drag-over {
+            background: $green-color;
         }
 
         .pt-repeater-collapsed{

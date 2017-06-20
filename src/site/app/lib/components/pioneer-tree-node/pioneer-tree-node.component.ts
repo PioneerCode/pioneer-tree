@@ -6,8 +6,9 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
 @Component({
     selector: '[pioneer-tree-node],[pt-node]',
     template: `
-<div class="pioneer-tree-node" pioneer-tree-dropzone>
+<div class="pioneer-tree-node" >
     <div class="pioneer-tree-node-content"
+        pioneer-tree-dropzone
         (click)="onClicked()"
         [ngClass]="this.node.pioneerTreeNode.getContentClasses()">
         <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">

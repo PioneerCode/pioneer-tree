@@ -138,6 +138,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   dataView = "raw";
   name = 'Pioneer Tree';
+  configuration = {
+
+  } as any;
   nodes = [
     {
       "name": "root-1",

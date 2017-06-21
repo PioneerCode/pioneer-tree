@@ -14,16 +14,13 @@ import { PioneerTreeModule } from './lib/pioneer-tree'
 import { PioneerTreeService } from "./lib/services/pioneer-tree.service"
 
 @NgModule({
-  imports: [BrowserModule],
-  declarations: [
-    AppComponent,
-    PioneerTreeComponent,
-    PioneerTreeNodeComponent,
-    PioneerTreeCollapseComponent,
-    PioneerTreeHandleComponent,
-    PioneerTreeDropzoneDirective
+  imports: [
+    BrowserModule, 
+    PioneerTreeModule
   ],
-  bootstrap: [AppComponent],
-  providers: [PioneerTreeService]
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

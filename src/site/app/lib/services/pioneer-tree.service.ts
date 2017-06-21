@@ -19,7 +19,7 @@ export interface IPioneerTreeService {
      * Track current node being dragged
      */
     currentSelectedNode: IPioneerTreeExpandedNode;
-    
+
     /**
      * Track current nodes
      */
@@ -46,7 +46,7 @@ export class PioneerTreeService implements IPioneerTreeService {
     currentDragNode: IPioneerTreeExpandedNode;
     currentSelectedNode: IPioneerTreeExpandedNode;
     currentNodes: IPioneerTreeExpandedNode[];
-    configuration: IPioneerTreeConfiguration = new PioneerTreeConfiguration();
+    configuration = new PioneerTreeConfiguration();
 
     isNodeDroppable(nodeId: string): boolean {
         if (!this.currentDragNode) return false;
@@ -54,6 +54,8 @@ export class PioneerTreeService implements IPioneerTreeService {
     }
 
     moveCurrentDragNodeToDropzone(dropzone: IPioneerTreeExpandedNode): void {
+        console.log(this.configuration.childProperty);
+
         // locate dropzone index(s)
 
         // locate drag index()

@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, TemplateRef, ContentChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, TemplateRef, ContentChild, ElementRef, Renderer2 } from '@angular/core';
 
 import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node.component'
 import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-tree-collapse.component'
@@ -22,7 +22,10 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
 export class PioneerTreeComponent {
   @Input() nodes: IPioneerTreeExpandedNode[];
 
-  constructor(private pioneerTreeService: PioneerTreeService, private elementRef: ElementRef) {
+  constructor(
+    private pioneerTreeService: PioneerTreeService,
+     private elementRef: ElementRef,
+     private renderer: Renderer2) {
   }
 
   ngAfterContentInit() {
@@ -53,6 +56,7 @@ export class PioneerTreeComponent {
    */
   private setClasses() {
     let isRoot = true;
+    this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree')
     for (let i = 0; i < this.elementRef.nativeElement.parentNode.classList.length; i++) {
       const parentClass = this.elementRef.nativeElement.parentNode.classList[i];
       if (parentClass === 'pioneer-tree-repeater' || parentClass === 'pt-repeater' || parentClass === 'pt' || parentClass === 'pioneer-tree') {
@@ -60,6 +64,7 @@ export class PioneerTreeComponent {
         return;
       }
     }
-    this.elementRef.nativeElement.className += ' pioneer-tree-root pioneer-tree'
+    this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree')
+    this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree-root')
   }
 }

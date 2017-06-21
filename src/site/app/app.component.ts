@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IPioneerTreeConfiguration } from "./lib/models/pioneer-tree-configuration.model"
 
 @Component({
   selector: 'my-app',
@@ -121,12 +122,12 @@ import { Component } from '@angular/core';
         </span>
       </ng-template>
       <ng-template #repeaterTemplate let-node>
-        <ul pioneer-tree-repeater [nodes]="node.children">
+        <ul pioneer-tree-repeater [nodes]="node.children" [configuration]="configuration">
           <li pioneer-tree-node *ngFor="let node of node.children" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
           </li>
         </ul>
       </ng-template>
-      <ul pioneer-tree [nodes]="nodes">
+      <ul pioneer-tree [nodes]="nodes" [configuration]="configuration">
         <li pioneer-tree-node *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
         </li>
       </ul>
@@ -139,8 +140,8 @@ export class AppComponent {
   dataView = "raw";
   name = 'Pioneer Tree';
   configuration = {
-
-  } as any;
+    childPropertyName: "children"
+  } as IPioneerTreeConfiguration;
   nodes = [
     {
       "name": "root-1",

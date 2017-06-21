@@ -28,7 +28,7 @@ export interface IPioneerTreeService {
     /**
      * Track global configuration
      */
-    configuration: IPioneerTreeConfiguration;
+    //configuration: IPioneerTreeConfiguration;
 
     /**
      * Check to see if draggable node is droppable on drag-over event
@@ -46,7 +46,7 @@ export class PioneerTreeService implements IPioneerTreeService {
     currentDragNode: IPioneerTreeExpandedNode;
     currentSelectedNode: IPioneerTreeExpandedNode;
     currentNodes: IPioneerTreeExpandedNode[];
-    configuration = new PioneerTreeConfiguration();
+    configuration: PioneerTreeConfiguration;
 
     isNodeDroppable(nodeId: string): boolean {
         if (!this.currentDragNode) return false;
@@ -54,14 +54,16 @@ export class PioneerTreeService implements IPioneerTreeService {
     }
 
     moveCurrentDragNodeToDropzone(dropzone: IPioneerTreeExpandedNode): void {
-        console.log(this.configuration.childProperty);
-
         // locate dropzone index(s)
 
         // locate drag index()
 
         // Add drag to dropzone.children
+        dropzone[this.configuration.childPropertyName].push(this.currentDragNode);
 
         // Remove drag from original node
+
+        // clean up
+        this.currentDragNode = null;
     }
 }

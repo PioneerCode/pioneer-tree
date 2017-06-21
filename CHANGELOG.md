@@ -1,9 +1,11 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
-<a name="1.0.x"></a>
-# 1.0.12
+<a name="1.1.x"></a>
+# 1.1.x
 ### Added
 * Public access to isCollapsed and isSelected
+* Drag and Drop support
+* Module loader
 
 <a name="1.0.12"></a>
 # 1.0.12

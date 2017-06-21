@@ -22,7 +22,7 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
 })
 export class PioneerTreeComponent {
   @Input() nodes: IPioneerTreeExpandedNode[];
-  @Input() configuration: PioneerTreeConfiguration;
+  @Input() configuration: IPioneerTreeConfiguration;
 
   constructor(
     private pioneerTreeService: PioneerTreeService,
@@ -45,12 +45,19 @@ export class PioneerTreeComponent {
    */
   ngOnChanges(changes: any) {
     if (!this.nodes) return;
+    this.pioneerTreeService.configuration = this.getConfiguration();
+
     this.pioneerTreeService.currentNodes = this.nodes;
-    this.pioneerTreeService.configuration = this.configuration;
     this.nodes = this.nodes.map((x: IPioneerTreeExpandedNode) => {
       x.pioneerTreeNode = new PioneerTreeNode(this.pioneerTreeService);
       return x;
     });
+  }
+
+  private getConfiguration(): IPioneerTreeConfiguration {
+    let config = new PioneerTreeConfiguration();
+    let merge = Object.assign(config, this.configuration);
+    return merge;
   }
 
   /**

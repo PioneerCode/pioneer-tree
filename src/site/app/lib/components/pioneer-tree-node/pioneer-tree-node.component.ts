@@ -15,6 +15,10 @@ import { PioneerTreeService } from "../../services/pioneer-tree.service"
         <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container> 
     </div>
+    <div class="pioneer-tree-dropzone-sort"
+        pioneer-tree-dropzone
+        [node]="node">
+    </div>
     <div class="pioneer-tree-repeater" [ngClass]="this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()">
         <ng-container [ngTemplateOutlet]="repeaterTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container>

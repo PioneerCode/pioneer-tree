@@ -12,6 +12,7 @@ $dark-color: #2A2E31;
 $grey-color: #666;
 $green-color: #3b805e;
 $red-color: #cc4b37;
+$white-color: #fefefe;
 
 .pioneer-tree-root {
     margin: 0;     
@@ -34,7 +35,7 @@ $red-color: #cc4b37;
             }
 
             &.pt-node-selected{
-                background: #fff;
+                background: $white-color;
                 color: $dark-color;
             }
 
@@ -48,6 +49,16 @@ $red-color: #cc4b37;
 
             &.pt-dropzone-drag-over-deny {
                 background: $red-color;
+            }
+        }
+
+        .pioneer-tree-dropzone-sort {
+            height: 2px;
+            
+            &.pt-dropzone-drag-over {
+                height: 1.5rem;
+                border: 2px dashed $white-color;
+                background: $green-color;
             }
         }
 

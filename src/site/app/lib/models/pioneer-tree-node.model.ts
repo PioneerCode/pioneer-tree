@@ -56,7 +56,8 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     }
 
     isSelected(): boolean {
-        return this.pioneerTreeService.currentSelectedNode === this.getId();
+        if(!this.pioneerTreeService.currentSelectedNode) return false;
+        return this.pioneerTreeService.currentSelectedNode.pioneerTreeNode.getId() === this.getId();
     }
 
     isCollapsed(): boolean {

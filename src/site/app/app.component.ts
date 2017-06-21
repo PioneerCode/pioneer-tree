@@ -111,7 +111,7 @@ import { Component } from '@angular/core';
         </div>
     </div>
     <div class="large-4 columns">
-      <h2>Component</h2>
+      <h2>Component</h2> 
       <ng-template #nodeTemplate let-node>
         <span pioneer-tree-collapse [node]="node">
           <i class="fa" [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'"></i>

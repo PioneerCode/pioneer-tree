@@ -36,10 +36,6 @@ export class PioneerTreeHandleComponent {
      */
     @HostListener('dragstart', ['$event'])
     onDragStart(event: DragEvent) {
-        event.dataTransfer.setData('Text', JSON.stringify({
-            dragNode: this.node,
-            event: event
-        }))
         this.pioneerTreeService.currentDragNode = this.node;
         this.renderer.addClass(this.elementRef.nativeElement, 'pt-handle-drag-start');
     }
@@ -48,7 +44,7 @@ export class PioneerTreeHandleComponent {
      * Act on drag end event
      */
     @HostListener('dragend')
-    onDragEnd() {
+    onDragEnd(event: DragEvent) {
         this.renderer.removeClass(this.elementRef.nativeElement, 'pt-handle-drag-start');
         this.pioneerTreeService.currentDragNode = null;
     }

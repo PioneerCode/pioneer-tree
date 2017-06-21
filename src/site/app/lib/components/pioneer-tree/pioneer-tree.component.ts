@@ -24,8 +24,8 @@ export class PioneerTreeComponent {
 
   constructor(
     private pioneerTreeService: PioneerTreeService,
-     private elementRef: ElementRef,
-     private renderer: Renderer2) {
+    private elementRef: ElementRef,
+    private renderer: Renderer2) {
   }
 
   ngAfterContentInit() {
@@ -43,7 +43,8 @@ export class PioneerTreeComponent {
    */
   ngOnChanges(changes: any) {
     if (!this.nodes) return;
-
+    console.log('on-change');
+    this.pioneerTreeService.currentNodes = this.nodes;
     this.nodes = this.nodes.map((x: IPioneerTreeExpandedNode) => {
       x.pioneerTreeNode = new PioneerTreeNode(this.pioneerTreeService);
       return x;
@@ -56,7 +57,6 @@ export class PioneerTreeComponent {
    */
   private setClasses() {
     let isRoot = true;
-    this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree')
     for (let i = 0; i < this.elementRef.nativeElement.parentNode.classList.length; i++) {
       const parentClass = this.elementRef.nativeElement.parentNode.classList[i];
       if (parentClass === 'pioneer-tree-repeater' || parentClass === 'pt-repeater' || parentClass === 'pt' || parentClass === 'pioneer-tree') {

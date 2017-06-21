@@ -6,6 +6,7 @@ import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-t
 import { PioneerTreeNode } from "../../models/pioneer-tree-node.model"
 import { PioneerTreeRepeater } from "../../models/pioneer-tree-repeater.model"
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
+import { IPioneerTreeConfiguration, PioneerTreeConfiguration } from "../../models/pioneer-tree-configuration.model"
 
 import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-tree.service"
 
@@ -21,6 +22,7 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
 })
 export class PioneerTreeComponent {
   @Input() nodes: IPioneerTreeExpandedNode[];
+  @Input() configuration: PioneerTreeConfiguration;
 
   constructor(
     private pioneerTreeService: PioneerTreeService,
@@ -43,8 +45,8 @@ export class PioneerTreeComponent {
    */
   ngOnChanges(changes: any) {
     if (!this.nodes) return;
-    console.log('on-change');
     this.pioneerTreeService.currentNodes = this.nodes;
+    this.pioneerTreeService.configuration = this.configuration;
     this.nodes = this.nodes.map((x: IPioneerTreeExpandedNode) => {
       x.pioneerTreeNode = new PioneerTreeNode(this.pioneerTreeService);
       return x;

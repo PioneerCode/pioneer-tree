@@ -18,7 +18,7 @@ export class PioneerTreeHandleComponent {
     @Input() node: IPioneerTreeExpandedNode;
 
     constructor(
-        private elementRef: ElementRef, 
+        private elementRef: ElementRef,
         private renderer: Renderer2,
         private pioneerTreeService: PioneerTreeService
     ) { }
@@ -35,9 +35,13 @@ export class PioneerTreeHandleComponent {
      * Act on dragstart event
      */
     @HostListener('dragstart', ['$event'])
-    onDragStart(event: Event) {
-         this.renderer.addClass(this.elementRef.nativeElement, 'pt-handle-drag-start');
-         this.pioneerTreeService.currentDragNodeId = this.node.pioneerTreeNode.getId();
+    onDragStart(event: DragEvent) {
+        event.dataTransfer.setData('Text', JSON.stringify({
+            dragNode: this.node,
+            event: event
+        }))
+        this.pioneerTreeService.currentDragNode = this.node;
+        this.renderer.addClass(this.elementRef.nativeElement, 'pt-handle-drag-start');
     }
 
     /**
@@ -46,6 +50,6 @@ export class PioneerTreeHandleComponent {
     @HostListener('dragend')
     onDragEnd() {
         this.renderer.removeClass(this.elementRef.nativeElement, 'pt-handle-drag-start');
-        this.pioneerTreeService.currentDragNodeId = null;
+        this.pioneerTreeService.currentDragNode = null;
     }
 }

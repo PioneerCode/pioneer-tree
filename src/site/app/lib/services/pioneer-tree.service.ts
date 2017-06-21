@@ -7,16 +7,16 @@ import { IPioneerTreeExpandedNode } from "../models/pioneer-tree-expanded-node.m
  */
 export interface IPioneerTreeService {
     /**
-     * Track current selected node UID
-     * TODO: Consider damage of tracking public
+     * Track current selected node
+     * TODO: Consider weight of tracking public
      */
-    currentSelectedNodeId: string
+    currentDragNode: IPioneerTreeExpandedNode;
 
     /**
      * Track current node being dragged
-     * TODO: Consider damage of tracking public
+     * TODO: Consider weight of tracking public
      */
-    currentDragNodeId: string;
+    currentSelectedNode: IPioneerTreeExpandedNode;
 
     /**
      * Check to see if draggable node is droppable on drag-over event
@@ -26,13 +26,11 @@ export interface IPioneerTreeService {
 
 @Injectable()
 export class PioneerTreeService implements IPioneerTreeService {
-    currentDragNodeId: string;
-    currentSelectedNodeId: string;
+    currentDragNode: IPioneerTreeExpandedNode;
+    currentSelectedNode: IPioneerTreeExpandedNode;
 
     isNodeDroppable(nodeId: string): boolean {
-        if(nodeId === this.currentDragNodeId) {
-            return false;
-        }
-        return true;
+        if (!this.currentDragNode) return false;
+        return nodeId !== this.currentDragNode.pioneerTreeNode.getId();
     }
 }

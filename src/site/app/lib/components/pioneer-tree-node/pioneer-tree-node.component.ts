@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, Output } from '@angular/core';
 import { PioneerTreeComponent } from '../pioneer-tree/pioneer-tree.component'
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
 import { PioneerTreeService } from "../../services/pioneer-tree.service"
@@ -34,6 +34,6 @@ export class PioneerTreeNodeComponent {
     constructor(private treeService: PioneerTreeService) { }
 
     onClicked() {
-        this.treeService.currentSelectedNodeId = this.node.pioneerTreeNode.getId();
+        this.treeService.currentSelectedNode = this.node;
     }
 }

@@ -8,7 +8,6 @@ export interface IPioneerTreeNode {
      */
     getId(): string;
 
-
     /**
      * Get collection of content classes to set on ngClass
      */
@@ -57,7 +56,7 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     }
 
     isSelected(): boolean {
-        return this.pioneerTreeService.currentSelectedNodeId === this.getId();
+        return this.pioneerTreeService.currentSelectedNode === this.getId();
     }
 
     isCollapsed(): boolean {

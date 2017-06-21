@@ -5,5 +5,5 @@ import { IPioneerTreeRepeater, PioneerTreeRepeater } from "./pioneer-tree-repeat
  * Sets a base type of <any> nodes to allow IntelliSense  
  */
 export interface IPioneerTreeExpandedNode {
-    pioneerTreeNode: IPioneerTreeNode;
+    pioneerTreeNode: PioneerTreeNode;
 }

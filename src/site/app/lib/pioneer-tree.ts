@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { PioneerTreeComponent } from './components/pioneer-tree/pioneer-tree.component';
+import { PioneerTreeRepeaterComponent } from './components/pioneer-tree-repeater/pioneer-tree-repeater.component';
 import { PioneerTreeNodeComponent } from './components/pioneer-tree-node/pioneer-tree-node.component';
 import { PioneerTreeCollapseComponent } from './components/pioneer-tree-collapse/pioneer-tree-collapse.component'
 import { PioneerTreeService, IPioneerTreeService } from "./services/pioneer-tree.service"
@@ -10,6 +11,7 @@ import { PioneerTreeDropzoneDirective } from './directives/pioneer-tree-dropzone
 
 export {
     PioneerTreeComponent,
+    PioneerTreeRepeaterComponent,
     PioneerTreeNodeComponent,
     PioneerTreeCollapseComponent,
     PioneerTreeHandleComponent,
@@ -23,6 +25,7 @@ export {
     ],
     declarations: [
         PioneerTreeComponent,
+        PioneerTreeRepeaterComponent, 
         PioneerTreeNodeComponent,
         PioneerTreeCollapseComponent,
         PioneerTreeHandleComponent,
@@ -30,6 +33,7 @@ export {
     ],
     exports: [
         PioneerTreeComponent,
+        PioneerTreeRepeaterComponent,
         PioneerTreeNodeComponent,
         PioneerTreeCollapseComponent,
         PioneerTreeHandleComponent,

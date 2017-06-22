@@ -54,16 +54,33 @@ export class PioneerTreeService implements IPioneerTreeService {
     }
 
     moveCurrentDragNodeToDropzone(dropzone: IPioneerTreeExpandedNode): void {
-        // locate dropzone index(s)
-
-        // locate drag index()
-
-        // Add drag to dropzone.children
         dropzone[this.configuration.childPropertyName].push(this.currentDragNode);
-
-        // Remove drag from original node
-
-        // clean up
+        this.prune(this.currentNodes, this.currentDragNode.pioneerTreeNode.getId())
         this.currentDragNode = null;
+    }
+
+    private prune(nodes: IPioneerTreeExpandedNode[], nodeId: string) {
+        for (var i = 0; i < nodes.length; ++i) {
+            var obj: IPioneerTreeExpandedNode = nodes[i];
+            if (obj.pioneerTreeNode.getId() === nodeId) {
+                // splice out 1 element starting at position i
+                nodes.splice(i, 1);
+                return true;
+            }
+            if (obj[this.configuration.childPropertyName]) {
+                if (this.prune(obj[this.configuration.childPropertyName], nodeId)) {
+                    if (obj[this.configuration.childPropertyName].length === 0) {
+                        // delete children property when empty
+                        delete obj[this.configuration.childPropertyName];
+
+                        // or, to delete this parent altogether
+                        // as a result of it having no more children
+                        // do this instead
+                        nodes.splice(i, 1);
+                    }
+                    return true;
+                }
+            }
+        }
     }
 }

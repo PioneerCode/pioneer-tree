@@ -11,7 +11,7 @@ import { IPioneerTreeConfiguration, PioneerTreeConfiguration } from "../../model
 import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-tree.service"
 
 @Component({
-  selector: '[pioneer-tree],[pt]',
+  selector: '[pioneer-tree-repeater],[pt-repeater]',
   template: `
   <ng-content></ng-content>
   `,
@@ -20,7 +20,7 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
     PioneerTreeCollapseComponent
   ]
 })
-export class PioneerTreeComponent {
+export class PioneerTreeRepeaterComponent {
   private isRoot: boolean = false;
   
   @Input() nodes: IPioneerTreeExpandedNode[];
@@ -34,7 +34,6 @@ export class PioneerTreeComponent {
 
   ngAfterContentInit() {
     this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree')
-    this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree-root')
   }
 
   /**
@@ -48,17 +47,9 @@ export class PioneerTreeComponent {
    */
   ngOnChanges(changes: any) {
     if (!this.nodes) return;
-    this.pioneerTreeService.configuration = this.getConfiguration();
-    this.pioneerTreeService.currentNodes = this.nodes;
     this.nodes = this.nodes.map((x: IPioneerTreeExpandedNode) => {
       x.pioneerTreeNode = new PioneerTreeNode(this.pioneerTreeService);
       return x;
     });
-  }
-
-  private getConfiguration(): IPioneerTreeConfiguration {
-    let config = new PioneerTreeConfiguration();
-    let merge = Object.assign(config, this.configuration);
-    return merge;
   }
 }

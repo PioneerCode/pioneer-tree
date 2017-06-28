@@ -20,7 +20,7 @@ export interface IPioneerTreeNode {
     pioneerTreeRepeater: IPioneerTreeRepeater;
 
     /**
-     * Current sort index
+     * Current internal sort index
      */
     sortIndex: number;
 

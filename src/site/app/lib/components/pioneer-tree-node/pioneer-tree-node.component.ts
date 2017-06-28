@@ -11,12 +11,14 @@ import { PioneerTree } from "../../models/pioneer-tree.model"
         pioneer-tree-dropzone
         (click)="onClicked()"
         [node]="node"
-        [ngClass]="this.node.pioneerTreeNode.getContentClasses()">
+        [ngClass]="node.pioneerTreeNode.getContentClasses()">
         <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container> 
+        - {{node.pioneerTreeNode.sortIndex}}
     </div>
     <div class="pioneer-tree-dropzone-sort"
         pioneer-tree-dropzone
+        [isSortDrop]="true"
         [node]="node">
     </div>
     <div class="pioneer-tree-repeater" [ngClass]="this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()">

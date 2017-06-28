@@ -26,9 +26,9 @@ export interface IPioneerTreeService {
     currentNodes: IPioneerTreeExpandedNode[];
 
     /**
-     * Track global configuration
+     * Setup up internal tracking of nodes
      */
-    //configuration: IPioneerTreeConfiguration;
+    setInternalTrackingOfNodes(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void;
 
     /**
      * Check to see if draggable node is droppable on drag-over event
@@ -48,16 +48,34 @@ export class PioneerTreeService implements IPioneerTreeService {
     currentNodes: IPioneerTreeExpandedNode[];
     configuration: PioneerTreeConfiguration;
 
+    setInternalTrackingOfNodes(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
+        this.currentNodes = nodes;
+        nodes = nodes.map((x: IPioneerTreeExpandedNode) => {
+            x.pioneerTreeNode = new PioneerTreeNode(this);
+            return x;
+        });
+
+        if (configuration) this.buildConfiguration(configuration);
+    }
+
     isNodeDroppable(nodeId: string): boolean {
         if (!this.currentDragNode) return false;
         return nodeId !== this.currentDragNode.pioneerTreeNode.getId();
     }
 
     moveCurrentDragNodeToDropzone(dropzone: IPioneerTreeExpandedNode): void {
-        var cachedNode = this.currentDragNode;
         this.prune(this.currentNodes, this.currentDragNode.pioneerTreeNode.getId())
         dropzone[this.configuration.childPropertyName].push(this.currentDragNode);
         this.currentDragNode = null;
+    }
+
+    /**
+     * Merge base configuration with user input configuration
+     * @param configuration Component input variable for configuration
+     */
+    private buildConfiguration(configuration: IPioneerTreeConfiguration): void {
+        let config = new PioneerTreeConfiguration();
+        this.configuration = Object.assign(config, configuration);
     }
 
     private prune(nodes: IPioneerTreeExpandedNode[], nodeId: string) {

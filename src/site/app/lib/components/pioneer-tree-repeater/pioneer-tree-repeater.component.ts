@@ -48,9 +48,6 @@ export class PioneerTreeRepeaterComponent {
    */
   ngOnChanges(changes: any) {
     if (!this.nodes) return;
-    this.nodes = this.nodes.map((x: IPioneerTreeExpandedNode) => {
-      x.pioneerTreeNode = new PioneerTreeNode(this.pioneerTreeService);
-      return x;
-    });
+    this.pioneerTreeService.setInternalTrackingOfNodes(this.nodes);
   }
 }

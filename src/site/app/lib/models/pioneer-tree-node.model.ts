@@ -31,8 +31,8 @@ export interface IPioneerTreeNode {
 }
 
 export class PioneerTreeNode implements IPioneerTreeNode {
-
     pioneerTreeRepeater: IPioneerTreeRepeater;
+    sortIndex: number;
 
     private uid: string;
 

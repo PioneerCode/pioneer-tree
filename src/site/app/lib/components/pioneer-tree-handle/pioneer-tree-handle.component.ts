@@ -1,6 +1,6 @@
 import { Component, Input, HostListener, HostBinding, Renderer2, ElementRef } from '@angular/core';
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
-import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-tree.service"
+import { PioneerTree } from "../../models/pioneer-tree.model"
 
 /**
  * Adds drag and drop functionality to pioneer-tree-node child elements
@@ -18,9 +18,9 @@ export class PioneerTreeHandleComponent {
     @Input() node: IPioneerTreeExpandedNode;
 
     constructor(
+        private pioneerTree: PioneerTree,
         private elementRef: ElementRef,
-        private renderer: Renderer2,
-        private pioneerTreeService: PioneerTreeService
+        private renderer: Renderer2
     ) { }
 
     /**
@@ -36,7 +36,7 @@ export class PioneerTreeHandleComponent {
      */
     @HostListener('dragstart', ['$event'])
     onDragStart(event: DragEvent) {
-        this.pioneerTreeService.currentDragNode = this.node;
+        this.pioneerTree.currentDragNode = this.node;
         this.renderer.addClass(this.elementRef.nativeElement, 'pt-handle-drag-start');
     }
 

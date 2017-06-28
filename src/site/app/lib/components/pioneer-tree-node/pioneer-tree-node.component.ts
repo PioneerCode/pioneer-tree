@@ -1,12 +1,12 @@
 import { Component, Input, TemplateRef, Output } from '@angular/core';
-import { PioneerTreeComponent } from '../pioneer-tree/pioneer-tree.component'
-import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
+import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model";
 import { PioneerTreeService } from "../../services/pioneer-tree.service"
+import { PioneerTree } from "../../models/pioneer-tree.model"
 
 @Component({
     selector: '[pioneer-tree-node],[pt-node]',
     template: `
-<div class="pioneer-tree-node" >
+<div class="pioneer-tree-node">
     <div class="pioneer-tree-node-content"
         pioneer-tree-dropzone
         (click)="onClicked()"
@@ -31,9 +31,17 @@ export class PioneerTreeNodeComponent {
     @Input() nodeTemplate: TemplateRef<any>;
     @Input() repeaterTemplate: TemplateRef<any>;
 
-    constructor(private treeService: PioneerTreeService) { }
+    constructor(
+        private pioneerTree: PioneerTree
+    ) { }
 
     onClicked() {
-        this.treeService.currentSelectedNode = this.node;
+        // Clear previous selected node tracking at that node level
+        if (this.pioneerTree.currentSelectedNode) {
+            this.pioneerTree.currentSelectedNode.pioneerTreeNode.currentSelectedNode = false;
+        }
+        // Set this node to current
+        this.node.pioneerTreeNode.currentSelectedNode = true;
+        this.pioneerTree.currentSelectedNode = this.node;
     }
 }

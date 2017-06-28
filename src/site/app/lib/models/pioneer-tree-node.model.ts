@@ -1,5 +1,5 @@
-import { PioneerTreeService, IPioneerTreeService } from "../services/pioneer-tree.service"
 import { IPioneerTreeRepeater, PioneerTreeRepeater } from "./pioneer-tree-repeater.model"
+import { PioneerTree } from "./pioneer-tree.model"
 
 export interface IPioneerTreeNode {
     /**
@@ -20,6 +20,11 @@ export interface IPioneerTreeNode {
     pioneerTreeRepeater: IPioneerTreeRepeater;
 
     /**
+     * Current sort index
+     */
+    sortIndex: number;
+
+    /**
      * Is this node currently selected
      */
     isSelected(): boolean;
@@ -28,15 +33,21 @@ export interface IPioneerTreeNode {
      * Is this node currently collapsed
      */
     isCollapsed(): boolean
+
+    /**
+     * Is this node currently selected
+     */
+    currentSelectedNode: boolean;
 }
 
 export class PioneerTreeNode implements IPioneerTreeNode {
     pioneerTreeRepeater: IPioneerTreeRepeater;
     sortIndex: number;
-
+    currentSelectedNode: boolean = false;
+    
     private uid: string;
 
-    constructor(private pioneerTreeService: IPioneerTreeService) {
+    constructor() {
         this.generateUid();
         this.pioneerTreeRepeater = new PioneerTreeRepeater()
     }
@@ -56,8 +67,8 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     }
 
     isSelected(): boolean {
-        if(!this.pioneerTreeService.currentSelectedNode) return false;
-        return this.pioneerTreeService.currentSelectedNode.pioneerTreeNode.getId() === this.getId();
+        if(!this.currentSelectedNode) return false;
+        return this.getId() === this.getId();
     }
 
     isCollapsed(): boolean {

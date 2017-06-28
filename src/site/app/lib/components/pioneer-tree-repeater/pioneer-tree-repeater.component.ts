@@ -21,13 +21,10 @@ import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-
   ]
 })
 export class PioneerTreeRepeaterComponent {
-  private isRoot: boolean = false;
-  
   @Input() nodes: IPioneerTreeExpandedNode[];
   @Input() configuration: IPioneerTreeConfiguration;
 
   constructor(
-    private pioneerTreeService: PioneerTreeService,
     private elementRef: ElementRef,
     private renderer: Renderer2) {
   }
@@ -35,19 +32,5 @@ export class PioneerTreeRepeaterComponent {
   ngAfterContentInit() {
     this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree')
     this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree-repeater')
-  }
-
-  /**
-   * TODO: Keep an eye on this to understand the in-memory values 
-   *  coming from this.nodes and this.pioneerTreeService.nodes
-   * 
-   * TODO: Keep an eye on this to understand the update life cycle.
-   *  If argument model is updated, do we loose all tracking because we are
-   *  resetting nodes from the map
-   * @param changes 
-   */
-  ngOnChanges(changes: any) {
-    if (!this.nodes) return;
-    this.pioneerTreeService.setInternalTrackingOfNodes(this.nodes);
   }
 }

@@ -5,9 +5,9 @@ import { PioneerTreeComponent } from './components/pioneer-tree/pioneer-tree.com
 import { PioneerTreeRepeaterComponent } from './components/pioneer-tree-repeater/pioneer-tree-repeater.component';
 import { PioneerTreeNodeComponent } from './components/pioneer-tree-node/pioneer-tree-node.component';
 import { PioneerTreeCollapseComponent } from './components/pioneer-tree-collapse/pioneer-tree-collapse.component'
-import { PioneerTreeService, IPioneerTreeService } from "./services/pioneer-tree.service"
 import { PioneerTreeHandleComponent } from './components/pioneer-tree-handle/pioneer-tree-handle.component'
 import { PioneerTreeDropzoneDirective } from './directives/pioneer-tree-dropzone/pioneer-tree-dropzone.directive'
+import { PioneerTree, IPioneerTree } from "./models/pioneer-tree.model";
 
 export {
     PioneerTreeComponent,
@@ -16,7 +16,7 @@ export {
     PioneerTreeCollapseComponent,
     PioneerTreeHandleComponent,
     PioneerTreeDropzoneDirective,
-    PioneerTreeService
+    PioneerTree
 };
 
 @NgModule({
@@ -40,9 +40,9 @@ export {
         PioneerTreeDropzoneDirective,
     ],
     providers: [
-        PioneerTreeService
+        PioneerTree
     ]
 })
-export class PioneerTreeModule { }
 
+export class PioneerTreeModule { }
 export default PioneerTreeModule;

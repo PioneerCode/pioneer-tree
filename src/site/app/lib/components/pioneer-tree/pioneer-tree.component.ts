@@ -8,17 +8,13 @@ import { PioneerTreeRepeater } from "../../models/pioneer-tree-repeater.model"
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
 import { IPioneerTreeConfiguration, PioneerTreeConfiguration } from "../../models/pioneer-tree-configuration.model"
 
-import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-tree.service"
+import { PioneerTree, IPioneerTree } from "../../models/pioneer-tree.model";
 
 @Component({
   selector: '[pioneer-tree],[pt]',
   template: `
   <ng-content></ng-content>
-  `,
-  entryComponents: [
-    PioneerTreeNodeComponent,
-    PioneerTreeCollapseComponent
-  ]
+  `
 })
 export class PioneerTreeComponent {
   private isRoot: boolean = false;
@@ -27,7 +23,7 @@ export class PioneerTreeComponent {
   @Input() configuration: IPioneerTreeConfiguration;
 
   constructor(
-    private pioneerTreeService: PioneerTreeService,
+    private pioneerTree: PioneerTree,
     private elementRef: ElementRef,
     private renderer: Renderer2) {
   }
@@ -38,9 +34,6 @@ export class PioneerTreeComponent {
   }
 
   /**
-   * TODO: Keep an eye on this to understand the in-memory values 
-   *  coming from this.nodes and this.pioneerTreeService.nodes
-   * 
    * TODO: Keep an eye on this to understand the update life cycle.
    *  If argument model is updated, do we loose all tracking because we are
    *  resetting nodes from the map
@@ -48,6 +41,6 @@ export class PioneerTreeComponent {
    */
   ngOnChanges(changes: any) {
     if (!this.nodes) return;
-    this.pioneerTreeService.setInternalTrackingOfNodes(this.nodes, this.configuration);
+    this.pioneerTree.buildTree(this.nodes, this.configuration);
   }
 }

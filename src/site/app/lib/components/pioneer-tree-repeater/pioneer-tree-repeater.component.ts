@@ -34,6 +34,7 @@ export class PioneerTreeRepeaterComponent {
 
   ngAfterContentInit() {
     this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree')
+    this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree-repeater')
   }
 
   /**

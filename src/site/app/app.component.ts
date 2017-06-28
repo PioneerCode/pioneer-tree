@@ -93,23 +93,8 @@ import { IPioneerTreeConfiguration } from "./lib/models/pioneer-tree-configurati
 <section class="data">
   <div class="row">
     <div class="large-8 columns">
-        <ul class="menu">
-          <li>
-            <h2>Data</h2>
-          </li>
-          <li>
-            <a class="hollow button" (click)="dataView = 'raw'" [ngClass]="dataView === 'raw' ? 'disabled' : ''">Raw</a>
-          </li>
-          <li>
-            <a class="hollow button" (click)="dataView = 'bound'" [ngClass]="dataView === 'bound' ? 'disabled' : ''">Bound</a>
-          </li>
-        </ul>
-        <div *ngIf="dataView === 'raw'">
-          <pre>{{raw | json}}</pre>
-        </div>
-        <div *ngIf="dataView === 'bound'">
-          <pre>{{nodes | json}}</pre>
-        </div>
+      <h2>Data</h2>
+      <pre>{{raw | json}}</pre>
     </div>
     <div class="large-4 columns">
       <h2>Component</h2> 
@@ -133,11 +118,42 @@ import { IPioneerTreeConfiguration } from "./lib/models/pioneer-tree-configurati
       </ul>
     </div>
   </div>
+  <div class="row">
+    <div class="large-12 columns">
+      <h2>HTML</h2>
+      <pre ngNonBindable>&lt;ng-template #nodeTemplate let-node&gt;
+  &lt;span pioneer-tree-collapse [node]="node"&gt;
+    &lt;i class="fa" 
+    [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'"&gt;&lt;/i&gt;
+  &lt;/span&gt;
+  &lt;span pioneer-tree-handle [node]="node"&gt;
+    {{node.name}}
+  &lt;/span&gt;
+&lt;/ng-template&gt;
+&lt;ng-template #repeaterTemplate let-node&gt;
+  &lt;ul pioneer-tree-repeater [nodes]="node.children" [configuration]="configuration"&gt;
+    &lt;li pioneer-tree-node *ngFor="let node of node.children" 
+    [nodeTemplate]="nodeTemplate" 
+    [repeaterTemplate]="repeaterTemplate" 
+    [node]="node"&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ng-template&gt;
+&lt;ul pioneer-tree [nodes]="nodes" [configuration]="configuration"&gt;
+  &lt;li pioneer-tree-node *ngFor="let node of nodes" 
+  [nodeTemplate]="nodeTemplate" 
+  [repeaterTemplate]="repeaterTemplate" 
+  [node]="node"&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+      </pre>
+    </div>
+  </div>
 </section>
 `
 })
 export class AppComponent {
-  dataView = "raw";
+  dataView = "model";
   name = 'Pioneer Tree';
   configuration = {
     childPropertyName: "children"

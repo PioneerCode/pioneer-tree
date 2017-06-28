@@ -54,8 +54,9 @@ export class PioneerTreeService implements IPioneerTreeService {
     }
 
     moveCurrentDragNodeToDropzone(dropzone: IPioneerTreeExpandedNode): void {
-        dropzone[this.configuration.childPropertyName].push(this.currentDragNode);
+        var cachedNode = this.currentDragNode;
         this.prune(this.currentNodes, this.currentDragNode.pioneerTreeNode.getId())
+        dropzone[this.configuration.childPropertyName].push(this.currentDragNode);
         this.currentDragNode = null;
     }
 

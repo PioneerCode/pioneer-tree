@@ -81,6 +81,9 @@ export class PioneerTree implements IPioneerTree {
         dropzone[this.configuration.childPropertyName].push(this.currentDragNode);
 
         this.currentDragNode.pioneerTreeNode.sortIndex = dropzone[this.configuration.childPropertyName].length;
+        if(this.userSortIndexPropertySet) {
+            this.currentDragNode[this.configuration.sortPropertyName] =  this.currentDragNode.pioneerTreeNode.sortIndex
+        }
 
         // remove current drag node tracking
         this.currentDragNode = null;

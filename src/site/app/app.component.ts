@@ -156,32 +156,39 @@ export class AppComponent {
   dataView = "model";
   name = 'Pioneer Tree';
   configuration = {
-    childPropertyName: "children"
+    childPropertyName: "children",
+    sortPropertyName: "sort"
   } as IPioneerTreeConfiguration;
   nodes = [
     {
       "name": "root-1",
+      "sort": 0,
       "children": [
         {
           "name": "child-1",
+          "sort": 0,
           "children": [
             {
               "name": "sub-1",
+              "sort": 0,
               "children": []
             },
             {
               "name": "sub-2",
+              "sort": 1,
               "children": []
             }
           ]
         },
         {
-          "name": "child-2"
+          "name": "child-2",
+          "sort": 1
         }
       ]
     },
     {
       "name": "root-2",
+      "sort": 1,
       "children": []
     }
   ] as any;

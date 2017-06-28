@@ -14,7 +14,7 @@ import { PioneerTree } from "../../models/pioneer-tree.model"
         [ngClass]="node.pioneerTreeNode.getContentClasses()">
         <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container> 
-        - {{node.pioneerTreeNode.sortIndex}}
+        - {{node.pioneerTreeNode.sortIndex}} - {{node.sort}}
     </div>
     <div class="pioneer-tree-dropzone-sort"
         pioneer-tree-dropzone

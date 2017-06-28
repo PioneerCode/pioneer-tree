@@ -1,5 +1,6 @@
 import { IPioneerTreeRepeater, PioneerTreeRepeater } from "./pioneer-tree-repeater.model"
 import { PioneerTree } from "./pioneer-tree.model"
+import { IPioneerTreeExpandedNode } from "./pioneer-tree-expanded-node.model";
 
 export interface IPioneerTreeNode {
     /**
@@ -37,13 +38,19 @@ export interface IPioneerTreeNode {
     /**
      * Is this node currently selected
      */
-    currentSelectedNode: boolean;
+    isCurrentSelectedNode: boolean;
+
+    /**
+     * Tracking access to parent node
+     */
+    parentNode: IPioneerTreeExpandedNode;
 }
 
 export class PioneerTreeNode implements IPioneerTreeNode {
     pioneerTreeRepeater: IPioneerTreeRepeater;
     sortIndex: number;
-    currentSelectedNode: boolean = false;
+    isCurrentSelectedNode: boolean = false;
+    parentNode: IPioneerTreeExpandedNode;
     
     private uid: string;
 
@@ -67,7 +74,7 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     }
 
     isSelected(): boolean {
-        if(!this.currentSelectedNode) return false;
+        if(!this.isCurrentSelectedNode) return false;
         return this.getId() === this.getId();
     }
 

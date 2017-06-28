@@ -30,19 +30,13 @@ export interface IPioneerTree {
     isNodeDroppable(nodeId: string): boolean;
 
     /**
-     * Move currentDragNode to new node
+     * Drop currentDragNode event
      */
-    moveCurrentDragNodeToNewNode(dropzone: IPioneerTreeExpandedNode): void;
-
-    /**
-     * Sort currentDragNode to new position
-     */
-    sortCurrentDragNodeToPosition(dropzone: IPioneerTreeExpandedNode): void;
+    dropNode(dropzone: IPioneerTreeExpandedNode, isSortDrop: boolean): void;
 }
 
 @Injectable()
 export class PioneerTree implements IPioneerTree {
-
     currentNodes: IPioneerTreeExpandedNode[];
     configuration: PioneerTreeConfiguration;
     currentDragNode: IPioneerTreeExpandedNode;
@@ -63,7 +57,7 @@ export class PioneerTree implements IPioneerTree {
             this.currentNodes[i].pioneerTreeNode = new PioneerTreeNode();
             this.setSortIndex(this.currentNodes[i], i);
             if (this.currentNodes[i][this.configuration.childPropertyName]) {
-                this.bindNodesToInternalTracking(this.currentNodes[i][this.configuration.childPropertyName])
+                this.bindNodesToInternalTracking(this.currentNodes[i][this.configuration.childPropertyName], this.currentNodes[i])
             }
         }
     }
@@ -73,24 +67,43 @@ export class PioneerTree implements IPioneerTree {
         return nodeId !== this.currentDragNode.pioneerTreeNode.getId();
     }
 
-    moveCurrentDragNodeToNewNode(dropzone: IPioneerTreeExpandedNode): void {
-        // remove node old position
+    dropNode(dropzone: IPioneerTreeExpandedNode, isSortDrop: boolean): void {
         this.prune(this.currentNodes, this.currentDragNode.pioneerTreeNode.getId())
 
-        // add node to new position
-        dropzone[this.configuration.childPropertyName].push(this.currentDragNode);
-
-        this.currentDragNode.pioneerTreeNode.sortIndex = dropzone[this.configuration.childPropertyName].length;
-        if(this.userSortIndexPropertySet) {
-            this.currentDragNode[this.configuration.sortPropertyName] =  this.currentDragNode.pioneerTreeNode.sortIndex
+        if (isSortDrop) {
+            dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName].push(this.currentDragNode);
+            this.sortCurrentDragNodeOnNewParent(dropzone);
+        } else {
+            dropzone[this.configuration.childPropertyName].push(this.currentDragNode);
+            this.sortCurrentDragNodeOnPosition(dropzone);
         }
 
         // remove current drag node tracking
         this.currentDragNode = null;
     }
 
-    sortCurrentDragNodeToPosition(dropzone: IPioneerTreeExpandedNode): void {
-        throw new Error("Method not implemented.");
+    /**
+     * Sort a node dropped on a new parent node
+     * @param dropzone Node being dropped on
+     */
+    private sortCurrentDragNodeOnNewParent(dropzone: IPioneerTreeExpandedNode): void {
+        this.currentDragNode.pioneerTreeNode.sortIndex = dropzone[this.configuration.childPropertyName].length;
+        if (this.userSortIndexPropertySet) {
+            this.currentDragNode[this.configuration.sortPropertyName] = this.currentDragNode.pioneerTreeNode.sortIndex
+        }
+    }
+
+    /**
+     * Sort a node dropped on a...
+     *  1) Sort dropzone in same parent node
+     *  2) Sort dropzone in new parent node
+     * @param dropzone Node being dropped on
+     */
+    private sortCurrentDragNodeOnPosition(dropzone: IPioneerTreeExpandedNode): void {
+        this.currentDragNode.pioneerTreeNode.sortIndex = dropzone[this.configuration.childPropertyName].sort + 1;
+        if (this.userSortIndexPropertySet) {
+            this.currentDragNode[this.configuration.sortPropertyName] = this.currentDragNode.pioneerTreeNode.sortIndex
+        }
     }
 
     /**
@@ -124,20 +137,6 @@ export class PioneerTree implements IPioneerTree {
     }
 
     /**
-     * Reorder child collection
-     * @param parent Node with child collection to be reordered
-     */
-    private reorderSortIndexesOfChildren(parent: IPioneerTreeExpandedNode) {
-        // parent[this.configuration.childPropertyName].sort((a: IPioneerTreeExpandedNode, b: IPioneerTreeExpandedNode) => {
-        //     return a[this.configuration.childPropertyName] - b[this.configuration.childPropertyName];
-        // });
-
-        // if (this.userSortIndexPropertySet) {
-
-        // }
-    }
-
-    /**
      * Bind public config to default config
      */
     private buildConfiguration(): void {
@@ -149,12 +148,13 @@ export class PioneerTree implements IPioneerTree {
      * Recursively build internal tracking tree
      * @param nodes Collection of nodes
      */
-    private bindNodesToInternalTracking(nodes: IPioneerTreeExpandedNode[]): void {
+    private bindNodesToInternalTracking(nodes: IPioneerTreeExpandedNode[], parent: IPioneerTreeExpandedNode): void {
         for (let i = 0; i < nodes.length; i++) {
             nodes[i].pioneerTreeNode = new PioneerTreeNode();
+            nodes[i].pioneerTreeNode.parentNode = parent;
             this.setSortIndex(nodes[i], i);
             if (nodes[i][this.configuration.childPropertyName]) {
-                this.bindNodesToInternalTracking(nodes[i][this.configuration.childPropertyName])
+                this.bindNodesToInternalTracking(nodes[i][this.configuration.childPropertyName], nodes[i])
             }
         }
     }

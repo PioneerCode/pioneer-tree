@@ -94,7 +94,7 @@ import { IPioneerTreeConfiguration } from "./lib/models/pioneer-tree-configurati
   <div class="row">
     <div class="large-8 columns">
       <h2>Data</h2>
-      <pre>{{nodes | json}}</pre>
+      <pre>{{raw | json}}</pre>
     </div>
     <div class="large-4 columns">
       <h2>Component</h2> 

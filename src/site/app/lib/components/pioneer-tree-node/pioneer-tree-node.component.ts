@@ -40,10 +40,10 @@ export class PioneerTreeNodeComponent {
     onClicked() {
         // Clear previous selected node tracking at that node level
         if (this.pioneerTree.currentSelectedNode) {
-            this.pioneerTree.currentSelectedNode.pioneerTreeNode.currentSelectedNode = false;
+            this.pioneerTree.currentSelectedNode.pioneerTreeNode.isCurrentSelectedNode = false;
         }
         // Set this node to current
-        this.node.pioneerTreeNode.currentSelectedNode = true;
+        this.node.pioneerTreeNode.isCurrentSelectedNode = true;
         this.pioneerTree.currentSelectedNode = this.node;
     }
 }

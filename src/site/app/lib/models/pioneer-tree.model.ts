@@ -4,6 +4,7 @@ import { IPioneerTreeConfiguration, PioneerTreeConfiguration } from "./pioneer-t
 import { PioneerTreeNode } from "./pioneer-tree-node.model";
 import { IPioneerTreeDropParentService, PioneerTreeDropParentService } from "../services/pioneer-tree-drop-parent.service";
 import { PioneerTreeDropPositionService, IPioneerTreeDropPositionService } from "../services/pioneer-tree-drop-position.service";
+import { IPioneerTreeDropRootService, PioneerTreeDropRootService } from "../services/pioneer-tree-drop-root.service";
 
 export interface IPioneerTree {
     /**
@@ -52,6 +53,7 @@ export class PioneerTree implements IPioneerTree {
 
     constructor(
         @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration,
+        @Inject(PioneerTreeDropRootService) private dropRootService: IPioneerTreeDropRootService,
         @Inject(PioneerTreeDropParentService) private dropParentService: IPioneerTreeDropParentService,
         @Inject(PioneerTreeDropPositionService) private dropPositionService: IPioneerTreeDropPositionService
     ) { }
@@ -80,6 +82,7 @@ export class PioneerTree implements IPioneerTree {
 
         switch (dropType) {
             case 'root':
+                this.dropRootService.dropNode(this.currentNodes, this.currentDragNode);
                 break;
             case 'parent':
                 this.dropParentService.dropNode(dropzone[this.configuration.childPropertyName], this.currentDragNode);

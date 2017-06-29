@@ -11,6 +11,7 @@ import { PioneerTree, IPioneerTree } from "./models/pioneer-tree.model";
 import { PioneerTreeDropParentService } from "./services/pioneer-tree-drop-parent.service";
 import { PioneerTreeConfiguration } from "./models/pioneer-tree-configuration.model";
 import { PioneerTreeDropPositionService } from "./services/pioneer-tree-drop-position.service";
+import { PioneerTreeDropRootService } from "./services/pioneer-tree-drop-root.service";
 
 export {
 };
@@ -37,6 +38,7 @@ export {
     ],
     providers: [
         PioneerTree,
+        PioneerTreeDropRootService,
         PioneerTreeDropParentService,
         PioneerTreeDropPositionService,
         PioneerTreeConfiguration

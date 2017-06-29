@@ -12,12 +12,54 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
         @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration
     ) { }
 
-    dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode): void {
-        collection.push(nodeToDrop);
-        nodeToDrop.pioneerTreeNode.sortIndex = collection.length;
+ dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode): void {
+        this.moveNodeOnPositionDrop(collection, nodeToDrop);
 
+        nodeToDrop.pioneerTreeNode.sortIndex = collection.pioneerTreeNode.sortIndex + 1;
         if (nodeToDrop[this.config.sortPropertyName]) {
             nodeToDrop[this.config.sortPropertyName] = nodeToDrop.pioneerTreeNode.sortIndex
+        }
+
+        this.reorderCollectionOnPositionDrop(collection,nodeToDrop);
+    }
+
+    /**
+     * Move a dropped node into its new home collection while presorting it
+     * @param dropzone Target that houses child collection 
+     */
+    private moveNodeOnPositionDrop(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode): void {
+        if (dropzone.pioneerTreeNode.parentNode) {
+            dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(dropzone.pioneerTreeNode.sortIndex + 1, 0, nodeToDrop);
+            return;
+        } 
+
+        dropzone[this.config.childPropertyName].splice(dropzone.pioneerTreeNode.sortIndex + 1, 0, nodeToDrop);
+    }
+
+    /**
+     * Reorder collection on position drop
+     * @param dropzone Target that houses child collection 
+     */
+    private reorderCollectionOnPositionDrop(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode): void {
+        if (dropzone.pioneerTreeNode.parentNode) {
+            this.reorderCollectionBasedOnSortIndex(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName], nodeToDrop);
+        } else {
+            this.reorderCollectionBasedOnSortIndex(dropzone[this.config.childPropertyName], nodeToDrop);
+        }
+    }
+
+    /**
+     * Reorder a child collection base on a sort index property
+     * @param collection Target child collection 
+     */
+    private reorderCollectionBasedOnSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode): void {
+        for (var i = 0; i < collection.length; i++) {
+            if (i >= nodeToDrop.pioneerTreeNode.sortIndex && nodeToDrop.pioneerTreeNode.getId() != collection[i].pioneerTreeNode.getId()) {
+                collection[i].pioneerTreeNode.sortIndex = collection[i].pioneerTreeNode.sortIndex + 1;
+                if (nodeToDrop[this.config.sortPropertyName]) {
+                    collection[i][this.config.sortPropertyName] = collection[i].pioneerTreeNode.sortIndex
+                }
+            }
         }
     }
 }

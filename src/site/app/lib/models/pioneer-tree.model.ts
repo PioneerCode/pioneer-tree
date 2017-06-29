@@ -100,13 +100,13 @@ export class PioneerTree implements IPioneerTree {
      * @param dropzone Node being dropped on
      */
     private sortCurrentDragNodeOnPosition(dropzone: IPioneerTreeExpandedNode): void {
-        dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName].push(this.currentDragNode);
-
+        dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName].splice(dropzone.pioneerTreeNode.sortIndex + 1, 0, this.currentDragNode);
+        
         this.currentDragNode.pioneerTreeNode.sortIndex = dropzone.pioneerTreeNode.sortIndex + 1;
         if (this.userSortIndexPropertySet) {
             this.currentDragNode[this.configuration.sortPropertyName] = this.currentDragNode.pioneerTreeNode.sortIndex
         }
-
+        
         this.reorderCollectionBasedOnSortIndex(dropzone);
     }
 

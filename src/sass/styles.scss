@@ -62,3 +62,13 @@ header {
         }
     }
 }
+
+.markup {
+    padding: 6rem;
+    background: $primary-color;
+    color: $white;
+    h2 {
+        text-align: center;
+        color: $white;
+    }
+}

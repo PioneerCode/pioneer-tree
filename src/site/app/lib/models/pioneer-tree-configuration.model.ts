@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 /**
  * Global configuration 
  */
@@ -13,6 +14,7 @@ export interface IPioneerTreeConfiguration {
     sortPropertyName: string;
 }
 
+@Injectable()
 export class PioneerTreeConfiguration implements IPioneerTreeConfiguration {
     childPropertyName: string = 'children';
     sortPropertyName: string = 'sort';

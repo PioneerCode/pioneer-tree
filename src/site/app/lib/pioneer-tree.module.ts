@@ -8,6 +8,9 @@ import { PioneerTreeCollapseComponent } from './components/pioneer-tree-collapse
 import { PioneerTreeHandleComponent } from './components/pioneer-tree-handle/pioneer-tree-handle.component'
 import { PioneerTreeDropzoneDirective } from './directives/pioneer-tree-dropzone/pioneer-tree-dropzone.directive'
 import { PioneerTree, IPioneerTree } from "./models/pioneer-tree.model";
+import { PioneerTreeDropParentService } from "./services/pioneer-tree-drop-parent.service";
+import { PioneerTreeConfiguration } from "./models/pioneer-tree-configuration.model";
+import { PioneerTreeDropPositionService } from "./services/pioneer-tree-drop-position.service";
 
 export {
     PioneerTreeComponent,
@@ -16,7 +19,8 @@ export {
     PioneerTreeCollapseComponent,
     PioneerTreeHandleComponent,
     PioneerTreeDropzoneDirective,
-    PioneerTree
+    PioneerTree,
+    PioneerTreeDropParentService
 };
 
 @NgModule({
@@ -40,7 +44,10 @@ export {
         PioneerTreeDropzoneDirective,
     ],
     providers: [
-        PioneerTree
+        PioneerTree,
+        PioneerTreeDropParentService,
+        PioneerTreeDropPositionService,
+        PioneerTreeConfiguration
     ]
 })
 

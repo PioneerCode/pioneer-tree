@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { IPioneerTreeExpandedNode } from "./pioneer-tree-expanded-node.model";
 import { IPioneerTreeConfiguration, PioneerTreeConfiguration } from "./pioneer-tree-configuration.model";
 import { PioneerTreeNode } from "./pioneer-tree-node.model";
+import { IPioneerTreeDropParentService, PioneerTreeDropParentService } from "../services/pioneer-tree-drop-parent.service";
+import { PioneerTreeDropPositionService, IPioneerTreeDropPositionService } from "../services/pioneer-tree-drop-position.service";
 
 export interface IPioneerTree {
     /**
@@ -48,6 +50,12 @@ export class PioneerTree implements IPioneerTree {
      */
     private userSortIndexPropertySet: boolean = false;
 
+    constructor(
+        @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration,
+        @Inject(PioneerTreeDropParentService) private dropParentService: IPioneerTreeDropParentService,
+        @Inject(PioneerTreeDropPositionService) private dropPositionService: IPioneerTreeDropPositionService
+    ) { }
+
     buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
         this.currentNodes = nodes;
 
@@ -71,82 +79,13 @@ export class PioneerTree implements IPioneerTree {
         this.prune(this.currentNodes, this.currentDragNode.pioneerTreeNode.getId())
 
         if (isSortDrop) {
-            this.sortCurrentDragNodeOnPosition(dropzone);
+            this.dropPositionService.dropNode(dropzone, this.currentDragNode);
         } else {
-            this.sortCurrentDragNodeOnParent(dropzone);
+            this.dropParentService.dropNode(dropzone[this.configuration.childPropertyName], this.currentDragNode);
         }
 
         // remove current drag node tracking
         this.currentDragNode = null;
-    }
-
-    /**
-     * Sort a node dropped on a new parent node
-     * @param dropzone Node being dropped on
-     */
-    private sortCurrentDragNodeOnParent(dropzone: IPioneerTreeExpandedNode): void {
-        dropzone[this.configuration.childPropertyName].push(this.currentDragNode);
-
-        this.currentDragNode.pioneerTreeNode.sortIndex = dropzone[this.configuration.childPropertyName].length;
-        if (this.userSortIndexPropertySet) {
-            this.currentDragNode[this.configuration.sortPropertyName] = this.currentDragNode.pioneerTreeNode.sortIndex
-        }
-    }
-
-    /**
-     * Sort a node dropped on a...
-     *  1) Sort dropzone in same parent node
-     *  2) Sort dropzone in new parent node
-     * @param dropzone Node being dropped on
-     */
-    private sortCurrentDragNodeOnPosition(dropzone: IPioneerTreeExpandedNode): void {
-        this.moveNodeOnPositionDrop(dropzone);
-
-        this.currentDragNode.pioneerTreeNode.sortIndex = dropzone.pioneerTreeNode.sortIndex + 1;
-        if (this.userSortIndexPropertySet) {
-            this.currentDragNode[this.configuration.sortPropertyName] = this.currentDragNode.pioneerTreeNode.sortIndex
-        }
-
-        this.reorderCollectionOnPositionDrop(dropzone);
-    }
-
-    /**
-     * Move a dropped node into its new home collection while presorting it
-     * @param dropzone Target that houses child collection 
-     */
-    private moveNodeOnPositionDrop(dropzone: IPioneerTreeExpandedNode): void {
-        if (dropzone.pioneerTreeNode.parentNode) {
-            dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName].splice(dropzone.pioneerTreeNode.sortIndex + 1, 0, this.currentDragNode);
-        } else {
-            dropzone[this.configuration.childPropertyName].splice(dropzone.pioneerTreeNode.sortIndex + 1, 0, this.currentDragNode);
-        }
-    }
-
-    /**
-     * Reorder collection on position drop
-     * @param dropzone Target that houses child collection 
-     */
-    private reorderCollectionOnPositionDrop(dropzone: IPioneerTreeExpandedNode): void {
-        if (dropzone.pioneerTreeNode.parentNode) {
-            this.reorderCollectionBasedOnSortIndex(dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName]);
-        } else {
-            this.reorderCollectionBasedOnSortIndex(dropzone[this.configuration.childPropertyName]);
-        }
-    }
-
-    /**
-     * Reorder a child collection base on a sort index property
-     * @param collection Target child collection 
-     */
-    private reorderCollectionBasedOnSortIndex(collection: IPioneerTreeExpandedNode[]): void {
-        for (var i = 0; i < collection.length; i++) {
-            if (i >= this.currentDragNode.pioneerTreeNode.sortIndex && this.currentDragNode.pioneerTreeNode.getId() != collection[i].pioneerTreeNode.getId()) {
-                collection[i].pioneerTreeNode.sortIndex = collection[i].pioneerTreeNode.sortIndex + 1;
-                if (this.userSortIndexPropertySet) {
-                    collection[i][this.configuration.sortPropertyName] = collection[i].pioneerTreeNode.sortIndex
-                }
-            }
-        }
     }
 
     /**

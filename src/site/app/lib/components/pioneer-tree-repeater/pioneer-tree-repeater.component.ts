@@ -8,8 +8,6 @@ import { PioneerTreeRepeater } from "../../models/pioneer-tree-repeater.model"
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
 import { IPioneerTreeConfiguration, PioneerTreeConfiguration } from "../../models/pioneer-tree-configuration.model"
 
-import { PioneerTreeService, IPioneerTreeService } from "../../services/pioneer-tree.service"
-
 @Component({
   selector: '[pioneer-tree-repeater],[pt-repeater]',
   template: `

@@ -100,26 +100,38 @@ export class PioneerTree implements IPioneerTree {
      * @param dropzone Node being dropped on
      */
     private sortCurrentDragNodeOnPosition(dropzone: IPioneerTreeExpandedNode): void {
-        dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName].splice(dropzone.pioneerTreeNode.sortIndex + 1, 0, this.currentDragNode);
-        
+        this.moveNodeOnPositionDrop(dropzone);
+
         this.currentDragNode.pioneerTreeNode.sortIndex = dropzone.pioneerTreeNode.sortIndex + 1;
         if (this.userSortIndexPropertySet) {
             this.currentDragNode[this.configuration.sortPropertyName] = this.currentDragNode.pioneerTreeNode.sortIndex
         }
-        
-        this.reorderCollectionBasedOnSortIndex(dropzone);
+
+        this.reorderCollectionBasedOnSortIndex(dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName]);
+    }
+
+    /**
+     * Move a dropped node into its new home collection while presorting it
+     * @param dropzone Target that houses child collection 
+     */
+    private moveNodeOnPositionDrop(dropzone: IPioneerTreeExpandedNode): void {
+        if (dropzone.pioneerTreeNode.parentNode) {
+            dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName].splice(dropzone.pioneerTreeNode.sortIndex + 1, 0, this.currentDragNode);
+        } else {
+            dropzone[this.configuration.childPropertyName].splice(dropzone.pioneerTreeNode.sortIndex + 1, 0, this.currentDragNode);
+        }
     }
 
     /**
      * Reorder a child collection base on a sort index property
-     * @param dropzone Target that houses child collection 
+     * @param collection Target child collection 
      */
-    private reorderCollectionBasedOnSortIndex(dropzone: IPioneerTreeExpandedNode): void {
-        for (var i = 0; i < dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName].length; i++) {
-            if (i >= this.currentDragNode.pioneerTreeNode.sortIndex && this.currentDragNode.pioneerTreeNode.getId() != dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName][i].pioneerTreeNode.getId()) {
-                dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName][i].pioneerTreeNode.sortIndex = dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName][i].pioneerTreeNode.sortIndex + 1;
+    private reorderCollectionBasedOnSortIndex(collection: IPioneerTreeExpandedNode[]): void {
+        for (var i = 0; i < collection.length; i++) {
+            if (i >= this.currentDragNode.pioneerTreeNode.sortIndex && this.currentDragNode.pioneerTreeNode.getId() != collection[i].pioneerTreeNode.getId()) {
+                collection[i].pioneerTreeNode.sortIndex = collection[i].pioneerTreeNode.sortIndex + 1;
                 if (this.userSortIndexPropertySet) {
-                    dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName][i][this.configuration.sortPropertyName] = dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName][i].pioneerTreeNode.sortIndex
+                    collection[i][this.configuration.sortPropertyName] = collection[i].pioneerTreeNode.sortIndex
                 }
             }
         }

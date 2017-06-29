@@ -71,11 +71,9 @@ export class PioneerTree implements IPioneerTree {
         this.prune(this.currentNodes, this.currentDragNode.pioneerTreeNode.getId())
 
         if (isSortDrop) {
-            dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName].push(this.currentDragNode);
-            this.sortCurrentDragNodeOnNewParent(dropzone);
-        } else {
-            dropzone[this.configuration.childPropertyName].push(this.currentDragNode);
             this.sortCurrentDragNodeOnPosition(dropzone);
+        } else {
+            this.sortCurrentDragNodeOnParent(dropzone);
         }
 
         // remove current drag node tracking
@@ -86,7 +84,9 @@ export class PioneerTree implements IPioneerTree {
      * Sort a node dropped on a new parent node
      * @param dropzone Node being dropped on
      */
-    private sortCurrentDragNodeOnNewParent(dropzone: IPioneerTreeExpandedNode): void {
+    private sortCurrentDragNodeOnParent(dropzone: IPioneerTreeExpandedNode): void {
+        dropzone[this.configuration.childPropertyName].push(this.currentDragNode);
+
         this.currentDragNode.pioneerTreeNode.sortIndex = dropzone[this.configuration.childPropertyName].length;
         if (this.userSortIndexPropertySet) {
             this.currentDragNode[this.configuration.sortPropertyName] = this.currentDragNode.pioneerTreeNode.sortIndex
@@ -100,9 +100,28 @@ export class PioneerTree implements IPioneerTree {
      * @param dropzone Node being dropped on
      */
     private sortCurrentDragNodeOnPosition(dropzone: IPioneerTreeExpandedNode): void {
-        this.currentDragNode.pioneerTreeNode.sortIndex = dropzone[this.configuration.childPropertyName].sort + 1;
+        dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName].push(this.currentDragNode);
+
+        this.currentDragNode.pioneerTreeNode.sortIndex = dropzone.pioneerTreeNode.sortIndex + 1;
         if (this.userSortIndexPropertySet) {
             this.currentDragNode[this.configuration.sortPropertyName] = this.currentDragNode.pioneerTreeNode.sortIndex
+        }
+
+        this.reorderCollectionBasedOnSortIndex(dropzone);
+    }
+
+    /**
+     * Reorder a child collection base on a sort index property
+     * @param dropzone Target that houses child collection 
+     */
+    private reorderCollectionBasedOnSortIndex(dropzone: IPioneerTreeExpandedNode): void {
+        for (var i = 0; i < dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName].length; i++) {
+            if (i >= this.currentDragNode.pioneerTreeNode.sortIndex && this.currentDragNode.pioneerTreeNode.getId() != dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName][i].pioneerTreeNode.getId()) {
+                dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName][i].pioneerTreeNode.sortIndex = dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName][i].pioneerTreeNode.sortIndex + 1;
+                if (this.userSortIndexPropertySet) {
+                    dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName][i][this.configuration.sortPropertyName] = dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName][i].pioneerTreeNode.sortIndex
+                }
+            }
         }
     }
 

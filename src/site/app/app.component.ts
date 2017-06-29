@@ -93,8 +93,23 @@ import { IPioneerTreeConfiguration } from "./lib/models/pioneer-tree-configurati
 <section class="data">
   <div class="row">
     <div class="large-8 columns">
-      <h2>Data</h2>
-      <pre>{{raw | json}}</pre>
+     <ul class="menu">
+        <li>
+          <h2>Data</h2>
+        </li>
+        <li>
+          <a class="hollow button" (click)="dataView = 'raw'" [ngClass]="dataView === 'raw' ? 'disabled' : ''">Raw</a>
+        </li>
+        <li>
+          <a class="hollow button" (click)="dataView = 'bound'" [ngClass]="dataView === 'bound' ? 'disabled' : ''">Bound</a>
+        </li>
+      </ul>
+      <div *ngIf="dataView === 'raw'">
+        <pre>{{getRawData()}}</pre>
+      </div>
+      <div *ngIf="dataView === 'bound'">
+        <pre>{{getBoundDataMinusCircularReference()}}</pre>
+      </div>
     </div>
     <div class="large-4 columns">
       <h2>Component</h2> 
@@ -153,7 +168,7 @@ import { IPioneerTreeConfiguration } from "./lib/models/pioneer-tree-configurati
 `
 })
 export class AppComponent {
-  dataView = "model";
+  dataView = "raw";
   name = 'Pioneer Tree';
   configuration = {
     childPropertyName: "children",
@@ -192,31 +207,31 @@ export class AppComponent {
       "children": []
     }
   ] as any;
-  raw = [
-    {
-      "name": "root-1",
-      "children": [
-        {
-          "name": "child-1",
-          "children": [
-            {
-              "name": "sub-1",
-              "children": []
-            },
-            {
-              "name": "sub-2",
-              "children": []
-            }
-          ]
-        },
-        {
-          "name": "child-2"
+
+  getBoundDataMinusCircularReference(): any {
+    var cache = [] as any;
+    return JSON.stringify(this.nodes, function (key, value) {
+      if (typeof value === 'object' && value !== null) {
+        if (cache.indexOf(value) !== -1) {
+          return;
         }
-      ]
-    },
-    {
-      "name": "root-2",
-      "children": []
-    }
-  ] as any;
+        cache.push(value);
+      }
+      return value;
+    }, 2);
+  }
+
+  getRawData(): any {
+    let cache = [] as any;
+    return JSON.stringify(JSON.parse(this.getBoundDataMinusCircularReference()), function (key, value) {
+      delete value['pioneerTreeNode'];
+      if (typeof value === 'object' && value !== null) {
+        if (cache.indexOf(value) !== -1) {
+          return;
+        }
+        cache.push(value);
+      }
+      return value;
+    }, 2);
+  }
 }

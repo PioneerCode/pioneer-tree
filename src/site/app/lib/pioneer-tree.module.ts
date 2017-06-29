@@ -13,14 +13,6 @@ import { PioneerTreeConfiguration } from "./models/pioneer-tree-configuration.mo
 import { PioneerTreeDropPositionService } from "./services/pioneer-tree-drop-position.service";
 
 export {
-    PioneerTreeComponent,
-    PioneerTreeRepeaterComponent,
-    PioneerTreeNodeComponent,
-    PioneerTreeCollapseComponent,
-    PioneerTreeHandleComponent,
-    PioneerTreeDropzoneDirective,
-    PioneerTree,
-    PioneerTreeDropParentService
 };
 
 @NgModule({

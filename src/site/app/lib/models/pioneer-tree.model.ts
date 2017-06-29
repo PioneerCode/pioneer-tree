@@ -79,7 +79,7 @@ export class PioneerTree implements IPioneerTree {
         this.prune(this.currentNodes, this.currentDragNode.pioneerTreeNode.getId())
 
         switch (dropType) {
-            case 'top':
+            case 'root':
                 break;
             case 'parent':
                 this.dropParentService.dropNode(dropzone[this.configuration.childPropertyName], this.currentDragNode);

@@ -21,6 +21,28 @@ $white-color: #fefefe;
 .pioneer-tree {
     list-style: none;
 
+    .pioneer-tree-dropzone-sort {
+        height: 2px;
+        
+        &.pt-dropzone-drag-over {
+            height: 1.5rem;
+            // margin: 0 0 0 1rem;
+            border: 2px dashed $white-color;
+            background: $green-color;
+        }
+    }
+
+    .pioneer-tree-dropzone-root {
+        height: 2px;
+        
+        &.pt-dropzone-drag-over {
+            height: 1.5rem;
+            // margin: 0 0 0 1rem;
+            border: 2px dashed $white-color;
+            background: $red-color;
+        }
+    }
+
     .pioneer-tree-node {
 
         .pioneer-tree-node-content {
@@ -49,17 +71,6 @@ $white-color: #fefefe;
 
             &.pt-dropzone-drag-over-deny {
                 background: $red-color;
-            }
-        }
-
-        .pioneer-tree-dropzone-sort {
-            height: 2px;
-            
-            &.pt-dropzone-drag-over {
-                height: 1.5rem;
-               // margin: 0 0 0 1rem;
-                border: 2px dashed $white-color;
-                background: $green-color;
             }
         }
 

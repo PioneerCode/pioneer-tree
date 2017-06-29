@@ -5,6 +5,12 @@ import { PioneerTree } from "../../models/pioneer-tree.model"
 @Component({
     selector: '[pioneer-tree-node],[pt-node]',
     template: `
+<div class="pioneer-tree-dropzone-root"
+    *ngIf="!node.pioneerTreeNode.parentNode"
+    pioneer-tree-dropzone
+    [dropType]="'root'"
+    [node]="node">
+</div>
 <div class="pioneer-tree-node">
     <div class="pioneer-tree-node-content"
         pioneer-tree-dropzone

@@ -107,7 +107,7 @@ export class PioneerTree implements IPioneerTree {
             this.currentDragNode[this.configuration.sortPropertyName] = this.currentDragNode.pioneerTreeNode.sortIndex
         }
 
-        this.reorderCollectionBasedOnSortIndex(dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName]);
+        this.reorderCollectionOnPositionDrop(dropzone);
     }
 
     /**
@@ -119,6 +119,18 @@ export class PioneerTree implements IPioneerTree {
             dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName].splice(dropzone.pioneerTreeNode.sortIndex + 1, 0, this.currentDragNode);
         } else {
             dropzone[this.configuration.childPropertyName].splice(dropzone.pioneerTreeNode.sortIndex + 1, 0, this.currentDragNode);
+        }
+    }
+
+    /**
+     * Reorder collection on position drop
+     * @param dropzone Target that houses child collection 
+     */
+    private reorderCollectionOnPositionDrop(dropzone: IPioneerTreeExpandedNode): void {
+        if (dropzone.pioneerTreeNode.parentNode) {
+            this.reorderCollectionBasedOnSortIndex(dropzone.pioneerTreeNode.parentNode[this.configuration.childPropertyName]);
+        } else {
+            this.reorderCollectionBasedOnSortIndex(dropzone[this.configuration.childPropertyName]);
         }
     }
 

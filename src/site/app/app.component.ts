@@ -133,10 +133,12 @@ import { IPioneerTreeConfiguration } from "./lib/models/pioneer-tree-configurati
       </ul>
     </div>
   </div>
-  <div class="row">
-    <div class="large-12 columns">
-      <h2>HTML</h2>
-      <pre ngNonBindable>&lt;ng-template #nodeTemplate let-node&gt;
+  <section class="markup">
+    <div class="row">
+      <div class="large-12 columns">
+        <h2>HTML</h2>
+        <pre ngNonBindable>
+  &lt;ng-template #nodeTemplate let-node&gt;
   &lt;span pioneer-tree-collapse [node]="node"&gt;
     &lt;i class="fa" 
     [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'"&gt;&lt;/i&gt;
@@ -161,9 +163,10 @@ import { IPioneerTreeConfiguration } from "./lib/models/pioneer-tree-configurati
   [node]="node"&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
-      </pre>
+        </pre>
+      </div>
     </div>
-  </div>
+  </section>
 </section>
 `
 })

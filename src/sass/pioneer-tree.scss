@@ -4,8 +4,8 @@
  *
  * A class with a prefix of "pt" is dynamic and add or removed on events
  *
- * There was a choice to nest styles in order to demonstrate relationships between 
- * components. This is not the most efficient and can be refactored to cut some 
+ * There was a choice to nest styles in order to demonstrate relationships between
+ * components. This is not the most efficient and can be refactored to cut some
  * size out of your style sheet.
  */
 $dark-color: #2A2E31;
@@ -21,25 +21,21 @@ $white-color: #fefefe;
 .pioneer-tree {
   list-style: none;
 
-  .pioneer-tree-dropzone-sort {
+  .pioneer-tree-dropzone {
     height: 2px;
 
     &.pt-dropzone-drag-over {
       height: 1.5rem;
-      // margin: 0 0 0 1rem;
       border: 2px dashed $white-color;
       background: $green-color;
     }
-  }
 
-  .pioneer-tree-dropzone-root {
-    height: 2px;
+    &.pioneer-tree-dropzone-root.pt-dropzone-drag-over {
+      background: $grey-color;
+    }
 
-    &.pt-dropzone-drag-over {
-      height: 1.5rem;
-      // margin: 0 0 0 1rem;
-      border: 2px dashed $white-color;
-      background: $red-color;
+    &.pioneer-tree-dropzone-end.pt-dropzone-drag-over {
+      background: $grey-color;
     }
   }
 

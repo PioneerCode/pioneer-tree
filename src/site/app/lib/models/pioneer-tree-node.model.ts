@@ -130,7 +130,7 @@ export class PioneerTreeNode implements IPioneerTreeNode {
       return false;
     };
 
-    if (this.currentNode[this.config.childPropertyName]) {
+    if (!this.currentNode[this.config.childPropertyName]) {
       return false;
     };
 

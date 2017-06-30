@@ -5,7 +5,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
 @Component({
   selector: '[pioneer-tree-node],[pt-node]',
   template: `
-<div class="pioneer-tree-dropzone-root"
+<div class="pioneer-tree-dropzone pioneer-tree-dropzone-root"
     *ngIf="!node.pioneerTreeNode.parentNode"
     pioneer-tree-dropzone
     [dropType]="'root'"
@@ -22,7 +22,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
         </ng-container>
         : {{node.pioneerTreeNode.sortIndex}}
     </div>
-    <div class="pioneer-tree-dropzone-sort"
+    <div class="pioneer-tree-dropzone pioneer-tree-dropzone-position"
         *ngIf="node.pioneerTreeNode.showDropzonePosition()"
         pioneer-tree-dropzone
         [dropType]="'position'"
@@ -33,7 +33,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
         </ng-container>
     </div>
 </div>
-<div class="pioneer-tree-dropzone-end"
+<div class="pioneer-tree-dropzone pioneer-tree-dropzone-end"
     *ngIf="node.pioneerTreeNode.showDropzoneEnd()"
     pioneer-tree-dropzone
     [dropType]="'end'"

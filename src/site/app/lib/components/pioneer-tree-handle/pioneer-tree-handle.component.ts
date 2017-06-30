@@ -1,6 +1,6 @@
 ﻿import { Component, Input, HostListener, HostBinding, Renderer2, ElementRef } from '@angular/core';
-import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model'
-import { PioneerTree } from '../../models/pioneer-tree.model'
+import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
+import { PioneerTree } from '../../models/pioneer-tree.model';
 
 /**
  * Adds drag and drop functionality to pioneer-tree-node child elements

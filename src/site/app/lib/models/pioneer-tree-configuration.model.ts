@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 /**
- * Global configuration 
+ * Global configuration
  */
 export interface IPioneerTreeConfiguration {
   /**

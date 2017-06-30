@@ -61,7 +61,9 @@ export class PioneerTree implements IPioneerTree {
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
     this.currentNodes = nodes;
 
-    if (configuration) this.buildConfiguration();
+    if (configuration) {
+      this.buildConfiguration();
+    }
 
     for (let i = 0; i < this.currentNodes.length; i++) {
       this.currentNodes[i].pioneerTreeNode = new PioneerTreeNode();
@@ -76,7 +78,10 @@ export class PioneerTree implements IPioneerTree {
   }
 
   isNodeDroppable(nodeId: string): boolean {
-    if (!this.currentDragNode) return false;
+    if (!this.currentDragNode) {
+      return false;
+    }
+
     return nodeId !== this.currentDragNode.pioneerTreeNode.getId();
   }
 
@@ -107,8 +112,8 @@ export class PioneerTree implements IPioneerTree {
    * @param nodeId Node id to target
    */
   private prune(nodes: IPioneerTreeExpandedNode[], nodeId: string) {
-    for (var i = 0; i < nodes.length; ++i) {
-      var obj: IPioneerTreeExpandedNode = nodes[i];
+    for (let i = 0; i < nodes.length; ++i) {
+      const obj: IPioneerTreeExpandedNode = nodes[i];
       if (obj.pioneerTreeNode.getId() === nodeId) {
         // splice out 1 element starting at position i
         nodes.splice(i, 1);

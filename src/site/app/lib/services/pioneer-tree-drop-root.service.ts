@@ -25,7 +25,7 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
 
   /**
    * Move a dropped node into its new home collection while presorting it
-   * @param dropzone Target that houses child collection 
+   * @param dropzone Target that houses child collection
    */
   private moveNodeOnPositionDrop(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, sortIndex: number): void {
     if (sortIndex === 0) {
@@ -37,7 +37,7 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
 
   /**
    * Reorder collection on position drop
-   * @param dropzone Target that houses child collection 
+   * @param dropzone Target that houses child collection
    */
   // private reorderCollectionOnPositionDrop(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode): void {
   //     if (collection.pioneerTreeNode.parentNode) {
@@ -49,7 +49,7 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
 
   /**
    * Reorder a child collection base on a sort index property
-   * @param collection Target child collection 
+   * @param collection Target child collection
    */
   private reorderCollectionBasedOnSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode): void {
     for (let i = 0; i < collection.length; i++) {

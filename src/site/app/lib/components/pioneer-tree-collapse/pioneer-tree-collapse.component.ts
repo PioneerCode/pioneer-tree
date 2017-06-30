@@ -1,5 +1,5 @@
 ﻿import { Component, Input } from '@angular/core';
-import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model'
+import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
 
 @Component({
   selector: '[pioneer-tree-collapse],[pt-collapse]',

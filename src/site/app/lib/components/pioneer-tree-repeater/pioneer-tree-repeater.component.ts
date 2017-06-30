@@ -1,8 +1,8 @@
 ﻿import { Component, Input, ElementRef, Renderer2 } from '@angular/core';
-import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node.component'
-import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-tree-collapse.component'
-import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model'
-import { IPioneerTreeConfiguration } from '../../models/pioneer-tree-configuration.model'
+import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node.component';
+import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-tree-collapse.component';
+import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
+import { IPioneerTreeConfiguration } from '../../models/pioneer-tree-configuration.model';
 
 @Component({
   selector: '[pioneer-tree-repeater],[pt-repeater]',

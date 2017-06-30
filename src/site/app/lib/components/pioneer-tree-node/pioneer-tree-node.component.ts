@@ -1,6 +1,6 @@
 ﻿import { Component, Input, TemplateRef } from '@angular/core';
 import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
-import { PioneerTree } from '../../models/pioneer-tree.model'
+import { PioneerTree } from '../../models/pioneer-tree.model';
 
 @Component({
   selector: '[pioneer-tree-node],[pt-node]',
@@ -19,7 +19,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model'
         [dropType]="'parent'"
         [ngClass]="node.pioneerTreeNode.getContentClasses()">
         <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
-        </ng-container> 
+        </ng-container>
         : {{node.pioneerTreeNode.sortIndex}}
     </div>
     <div class="pioneer-tree-dropzone-sort"

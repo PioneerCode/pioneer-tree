@@ -33,6 +33,12 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
         </ng-container>
     </div>
 </div>
+<div class="pioneer-tree-dropzone-end"
+    *ngIf="node.pioneerTreeNode.showDropzoneEnd()"
+    pioneer-tree-dropzone
+    [dropType]="'end'"
+    [node]="node">
+</div>
     `
 })
 export class PioneerTreeNodeComponent {

@@ -69,6 +69,7 @@ export class PioneerTree implements IPioneerTree {
       this.currentNodes[i].pioneerTreeNode = new PioneerTreeNode();
       this.currentNodes[i].pioneerTreeNode.config = this.configuration;
       this.currentNodes[i].pioneerTreeNode.currentNode = this.currentNodes[i];
+      this.currentNodes[i].pioneerTreeNode.nodesInCollection = this.currentNodes.length;
       this.setSortIndex(this.currentNodes[i], i);
       if (this.currentNodes[i][this.configuration.childPropertyName]) {
         this.bindNodesToInternalTracking(this.currentNodes[i][this.configuration.childPropertyName],
@@ -153,6 +154,7 @@ export class PioneerTree implements IPioneerTree {
       nodes[i].pioneerTreeNode = new PioneerTreeNode();
       nodes[i].pioneerTreeNode.parentNode = parent;
       nodes[i].pioneerTreeNode.previousNode = nodes[i - 1];
+      this.currentNodes[i].pioneerTreeNode.nodesInCollection = nodes.length;
       this.setSortIndex(nodes[i], i);
       if (nodes[i][this.configuration.childPropertyName]) {
         this.bindNodesToInternalTracking(nodes[i][this.configuration.childPropertyName], nodes[i]);

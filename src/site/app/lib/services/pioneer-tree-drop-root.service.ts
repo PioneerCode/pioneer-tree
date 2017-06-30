@@ -36,18 +36,6 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
   }
 
   /**
-   * Reorder collection on position drop
-   * @param dropzone Target that houses child collection
-   */
-  // private reorderCollectionOnPositionDrop(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode): void {
-  //     if (collection.pioneerTreeNode.parentNode) {
-  //         this.reorderCollectionBasedOnSortIndex(collection.pioneerTreeNode.parentNode[this.config.childPropertyName], nodeToDrop);
-  //     } else {
-  //         this.reorderCollectionBasedOnSortIndex(collection[this.config.childPropertyName], nodeToDrop);
-  //     }
-  // }
-
-  /**
    * Reorder a child collection base on a sort index property
    * @param collection Target child collection
    */
@@ -55,7 +43,7 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
     for (let i = 0; i < collection.length; i++) {
       if (i >= nodeToDrop.pioneerTreeNode.sortIndex && nodeToDrop.pioneerTreeNode.getId() !== collection[i].pioneerTreeNode.getId()) {
         collection[i].pioneerTreeNode.sortIndex = collection[i].pioneerTreeNode.sortIndex + 1;
-        if (nodeToDrop[this.config.sortPropertyName]) {
+        if (nodeToDrop[this.config.sortPropertyName] !== null && nodeToDrop[this.config.sortPropertyName] !== undefined) {
           collection[i][this.config.sortPropertyName] = collection[i].pioneerTreeNode.sortIndex;
         }
       }

@@ -1,74 +1,77 @@
-/// <reference path="../../node_modules/foundation-sites/scss/foundation" />
-@import "base"; 
+﻿/// <reference path="../../node_modules/foundation-sites/scss/foundation" />
+@import "base";
 @import "../../node_modules/font-awesome/scss/font-awesome";
 
 body {
-    background: #2A2E31;
+  background: #2A2E31;
 }
 
-h2  {
-    font-weight: 800;
-    color: $white;
+h2 {
+  font-weight: 800;
+  color: $white;
 }
 
 header {
-    padding: 1rem 0;
+  padding: 1rem 0;
+  color: $white;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 100;
     color: $white;
-    h2 {
-        font-size: 1.5rem;
-        font-weight: 100;
-            color: $white;
-        span {
-            font-weight: 800;
-        }
+
+    span {
+      font-weight: 800;
     }
+  }
 }
 
 .hero {
-    text-align: center;
-    padding: 2rem 0 6rem;
+  text-align: center;
+  padding: 2rem 0 6rem;
 
-    p {
-        font-size: 1.2rem;
-    }
+  p {
+    font-size: 1.2rem;
+  }
 
-    h1 {
-        font-size: 6rem;
-        font-weight: 800;
-        color: $white;
-    }
+  h1 {
+    font-size: 6rem;
+    font-weight: 800;
+    color: $white;
+  }
 }
 
 .features {
-    background: $white;
-    padding: 6rem 0;
-    
-    li {
-        color: $dark-gray;
-    }
+  background: $white;
+  padding: 6rem 0;
 
-    h4, h2 {
-        font-weight: 800;
-        color: #2A2E31;
-    }
+  li {
+    color: $dark-gray;
+  }
+
+  h4, h2 {
+    font-weight: 800;
+    color: #2A2E31;
+  }
 }
 
 .data {
-    padding: 6rem 0;
+  padding: 6rem 0;
 
-    .menu {
-        li {
-            padding: 0 1rem 0 0;
-        }
+  .menu {
+    li {
+      padding: 0 1rem 0 0;
     }
+  }
 }
 
 .markup {
-    padding: 6rem;
-    background: $primary-color;
+  padding: 6rem;
+  background: $primary-color;
+  color: $white;
+
+  h2 {
+    text-align: center;
     color: $white;
-    h2 {
-        text-align: center;
-        color: $white;
-    }
+  }
 }

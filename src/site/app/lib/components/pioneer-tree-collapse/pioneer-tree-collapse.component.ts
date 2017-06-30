@@ -1,9 +1,9 @@
-import { Component, Input, Output } from '@angular/core';
-import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
+﻿import { Component, Input } from '@angular/core';
+import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model'
 
 @Component({
-    selector: '[pioneer-tree-collapse],[pt-collapse]',
-    template: `
+  selector: '[pioneer-tree-collapse],[pt-collapse]',
+  template: `
 <span class="pioneer-tree-collapse" (click)="onClicked()">
     <ng-content>
     </ng-content>
@@ -11,9 +11,9 @@ import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-nod
 `
 })
 export class PioneerTreeCollapseComponent {
-    @Input() node: IPioneerTreeExpandedNode;
+  @Input() node: IPioneerTreeExpandedNode;
 
-    onClicked() {
-        this.node.pioneerTreeNode.pioneerTreeRepeater.collapsed = !this.node.pioneerTreeNode.pioneerTreeRepeater.collapsed;
-    }
+  onClicked() {
+    this.node.pioneerTreeNode.pioneerTreeRepeater.collapsed = !this.node.pioneerTreeNode.pioneerTreeRepeater.collapsed;
+  }
 }

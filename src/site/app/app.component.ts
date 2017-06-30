@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IPioneerTreeConfiguration } from "./lib/models/pioneer-tree-configuration.model"
+﻿import { Component } from '@angular/core';
+import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configuration.model'
 
 @Component({
   selector: 'my-app',
@@ -171,27 +171,27 @@ import { IPioneerTreeConfiguration } from "./lib/models/pioneer-tree-configurati
 `
 })
 export class AppComponent {
-  dataView = "raw";
+  dataView = 'raw';
   name = 'Pioneer Tree';
   configuration = {
-    childPropertyName: "children",
-    sortPropertyName: "sort"
+    childPropertyName: 'children',
+    sortPropertyName: 'sort'
   } as IPioneerTreeConfiguration;
   nodes = [
     {
-      "name": "root-1"
+      "name": 'root-1'
     },
     {
-      "name": "root-2"
+      "name": 'root-2'
     },
     {
-      "name": "root-3"
+      "name": 'root-3'
     }
   ] as any;
 
   getBoundDataMinusCircularReference(): any {
     var cache = [] as any;
-    return JSON.stringify(this.nodes, function (key, value) {
+    return JSON.stringify(this.nodes, (key, value) => {
       if (typeof value === 'object' && value !== null) {
         if (cache.indexOf(value) !== -1) {
           return;
@@ -203,8 +203,8 @@ export class AppComponent {
   }
 
   getRawData(): any {
-    let cache = [] as any;
-    return JSON.stringify(JSON.parse(this.getBoundDataMinusCircularReference()), function (key, value) {
+    const cache = [] as any;
+    return JSON.stringify(JSON.parse(this.getBoundDataMinusCircularReference()), (key, value) => {
       delete value['pioneerTreeNode'];
       if (typeof value === 'object' && value !== null) {
         if (cache.indexOf(value) !== -1) {

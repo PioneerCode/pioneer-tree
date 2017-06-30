@@ -1,11 +1,10 @@
-import { Component, Input, TemplateRef, Output } from '@angular/core';
-import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model";
-import { PioneerTree } from "../../models/pioneer-tree.model"
-import { PioneerTreeConfiguration } from "../../models/pioneer-tree-configuration.model";
+﻿import { Component, Input, TemplateRef } from '@angular/core';
+import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
+import { PioneerTree } from '../../models/pioneer-tree.model'
 
 @Component({
-    selector: '[pioneer-tree-node],[pt-node]',
-    template: `
+  selector: '[pioneer-tree-node],[pt-node]',
+  template: `
 <div class="pioneer-tree-dropzone-root"
     *ngIf="!node.pioneerTreeNode.parentNode"
     pioneer-tree-dropzone
@@ -37,21 +36,21 @@ import { PioneerTreeConfiguration } from "../../models/pioneer-tree-configuratio
     `
 })
 export class PioneerTreeNodeComponent {
-    @Input() node: IPioneerTreeExpandedNode;
-    @Input() nodeTemplate: TemplateRef<any>;
-    @Input() repeaterTemplate: TemplateRef<any>;
+  @Input() node: IPioneerTreeExpandedNode;
+  @Input() nodeTemplate: TemplateRef<any>;
+  @Input() repeaterTemplate: TemplateRef<any>;
 
-    constructor(
-        private pioneerTree: PioneerTree
-    ) { }
+  constructor(
+    private pioneerTree: PioneerTree
+  ) { }
 
-    onClicked() {
-        // Clear previous selected node tracking at that node level
-        if (this.pioneerTree.currentSelectedNode) {
-            this.pioneerTree.currentSelectedNode.pioneerTreeNode.isCurrentSelectedNode = false;
-        }
-        // Set this node to current
-        this.node.pioneerTreeNode.isCurrentSelectedNode = true;
-        this.pioneerTree.currentSelectedNode = this.node;
+  onClicked() {
+    // Clear previous selected node tracking at that node level
+    if (this.pioneerTree.currentSelectedNode) {
+      this.pioneerTree.currentSelectedNode.pioneerTreeNode.isCurrentSelectedNode = false;
     }
+    // Set this node to current
+    this.node.pioneerTreeNode.isCurrentSelectedNode = true;
+    this.pioneerTree.currentSelectedNode = this.node;
+  }
 }

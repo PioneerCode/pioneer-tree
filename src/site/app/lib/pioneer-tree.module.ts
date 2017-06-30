@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { PioneerTreeComponent } from './components/pioneer-tree/pioneer-tree.component';
@@ -17,32 +17,32 @@ export {
 };
 
 @NgModule({
-    imports: [
-        BrowserModule
-    ],
-    declarations: [
-        PioneerTreeComponent,
-        PioneerTreeRepeaterComponent, 
-        PioneerTreeNodeComponent,
-        PioneerTreeCollapseComponent,
-        PioneerTreeHandleComponent,
-        PioneerTreeDropzoneDirective,
-    ],
-    exports: [
-        PioneerTreeComponent,
-        PioneerTreeRepeaterComponent,
-        PioneerTreeNodeComponent,
-        PioneerTreeCollapseComponent,
-        PioneerTreeHandleComponent,
-        PioneerTreeDropzoneDirective,
-    ],
-    providers: [
-        PioneerTree,
-        PioneerTreeDropRootService,
-        PioneerTreeDropParentService,
-        PioneerTreeDropPositionService,
-        PioneerTreeConfiguration
-    ]
+  imports: [
+    BrowserModule
+  ],
+  declarations: [
+    PioneerTreeComponent,
+    PioneerTreeRepeaterComponent,
+    PioneerTreeNodeComponent,
+    PioneerTreeCollapseComponent,
+    PioneerTreeHandleComponent,
+    PioneerTreeDropzoneDirective
+  ],
+  exports: [
+    PioneerTreeComponent,
+    PioneerTreeRepeaterComponent,
+    PioneerTreeNodeComponent,
+    PioneerTreeCollapseComponent,
+    PioneerTreeHandleComponent,
+    PioneerTreeDropzoneDirective
+  ],
+  providers: [
+    PioneerTree,
+    PioneerTreeDropRootService,
+    PioneerTreeDropParentService,
+    PioneerTreeDropPositionService,
+    PioneerTreeConfiguration
+  ]
 })
 
 export class PioneerTreeModule { }

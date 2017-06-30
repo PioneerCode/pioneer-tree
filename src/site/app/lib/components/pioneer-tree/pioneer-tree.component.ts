@@ -1,14 +1,7 @@
-import { Component, Input, ViewChild, TemplateRef, ContentChild, ElementRef, Renderer2 } from '@angular/core';
-
-import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node.component'
-import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-tree-collapse.component'
-
-import { PioneerTreeNode } from "../../models/pioneer-tree-node.model"
-import { PioneerTreeRepeater } from "../../models/pioneer-tree-repeater.model"
-import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model"
-import { IPioneerTreeConfiguration, PioneerTreeConfiguration } from "../../models/pioneer-tree-configuration.model"
-
-import { PioneerTree, IPioneerTree } from "../../models/pioneer-tree.model";
+﻿import { Component, Input, ElementRef, Renderer2 } from '@angular/core';
+import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model'
+import { IPioneerTreeConfiguration } from '../../models/pioneer-tree-configuration.model'
+import { PioneerTree } from '../../models/pioneer-tree.model';
 
 @Component({
   selector: '[pioneer-tree],[pt]',
@@ -17,8 +10,8 @@ import { PioneerTree, IPioneerTree } from "../../models/pioneer-tree.model";
   `
 })
 export class PioneerTreeComponent {
-  private isRoot: boolean = false;
-  
+  private isRoot = false;
+
   @Input() nodes: IPioneerTreeExpandedNode[];
   @Input() configuration: IPioneerTreeConfiguration;
 
@@ -29,8 +22,8 @@ export class PioneerTreeComponent {
   }
 
   ngAfterContentInit() {
-    this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree')
-    this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree-root')
+    this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree');
+    this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree-root');
   }
 
   /**

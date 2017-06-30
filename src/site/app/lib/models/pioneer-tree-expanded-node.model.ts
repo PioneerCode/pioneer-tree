@@ -1,9 +1,8 @@
-import { IPioneerTreeNode, PioneerTreeNode } from "./pioneer-tree-node.model"
-import { IPioneerTreeRepeater, PioneerTreeRepeater } from "./pioneer-tree-repeater.model"
+﻿import { PioneerTreeNode } from "./pioneer-tree-node.model"
 
 /**
  * Sets a base type of <any> nodes to allow IntelliSense  
  */
 export interface IPioneerTreeExpandedNode {
-    pioneerTreeNode: PioneerTreeNode;
+  pioneerTreeNode: PioneerTreeNode;
 }

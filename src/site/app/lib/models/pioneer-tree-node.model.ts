@@ -1,6 +1,8 @@
+import { Inject } from '@angular/core';
 import { IPioneerTreeRepeater, PioneerTreeRepeater } from "./pioneer-tree-repeater.model"
 import { PioneerTree } from "./pioneer-tree.model"
 import { IPioneerTreeExpandedNode } from "./pioneer-tree-expanded-node.model";
+import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from "./pioneer-tree-configuration.model";
 
 export interface IPioneerTreeNode {
     /**
@@ -33,7 +35,15 @@ export interface IPioneerTreeNode {
     /**
      * Is this node currently collapsed
      */
-    isCollapsed(): boolean
+    isCollapsed(): boolean;
+
+    /**
+     * Can we show a dropzone of the type position
+     * 0 - is collapsed
+     * 0 - is not collapsed && has !children
+     * 1 - is not collapsed && has children.length > 0
+     */
+    showDropzonePosition(): boolean;
 
     /**
      * Is this node currently selected
@@ -44,6 +54,23 @@ export interface IPioneerTreeNode {
      * Tracking access to parent node
      */
     parentNode: IPioneerTreeExpandedNode;
+
+    /**
+    * Tracking access to current node
+    */
+    currentNode: IPioneerTreeExpandedNode;
+
+    /**
+     * Tracking access to previous node in current
+     * node collection this node lives in
+     * n - 1
+     */
+    previousNode: IPioneerTreeExpandedNode;
+
+    /**
+     * User => default configuration
+     */
+    config: IPioneerTreeConfiguration;
 }
 
 export class PioneerTreeNode implements IPioneerTreeNode {
@@ -51,7 +78,10 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     sortIndex: number;
     isCurrentSelectedNode: boolean = false;
     parentNode: IPioneerTreeExpandedNode;
-    
+    currentNode: IPioneerTreeExpandedNode;
+    previousNode: IPioneerTreeExpandedNode;
+    config: IPioneerTreeConfiguration;
+
     private uid: string;
 
     constructor() {
@@ -74,12 +104,24 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     }
 
     isSelected(): boolean {
-        if(!this.isCurrentSelectedNode) return false;
+        if (!this.isCurrentSelectedNode) return false;
         return this.getId() === this.getId();
     }
 
     isCollapsed(): boolean {
         return this.pioneerTreeRepeater.collapsed;
+    }
+
+    showDropzonePosition(): boolean {
+        if (this.isCollapsed()) {
+            return false;
+        };
+
+        if (this.currentNode[this.config.childPropertyName]) { 
+            return false;
+        };
+
+        return true;
     }
 
     private generateUid(): void {

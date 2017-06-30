@@ -179,35 +179,13 @@ export class AppComponent {
   } as IPioneerTreeConfiguration;
   nodes = [
     {
-      "name": "root-1",
-      "sort": 0,
-      "children": [
-        {
-          "name": "child-1",
-          "sort": 0,
-          "children": [
-            {
-              "name": "sub-1",
-              "sort": 0,
-              "children": []
-            },
-            {
-              "name": "sub-2",
-              "sort": 1,
-              "children": []
-            }
-          ]
-        },
-        {
-          "name": "child-2",
-          "sort": 1
-        }
-      ]
+      "name": "root-1"
     },
     {
-      "name": "root-2",
-      "sort": 1,
-      "children": []
+      "name": "root-2"
+    },
+    {
+      "name": "root-3"
     }
   ] as any;
 

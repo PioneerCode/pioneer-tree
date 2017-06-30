@@ -1,6 +1,7 @@
 import { Component, Input, TemplateRef, Output } from '@angular/core';
 import { IPioneerTreeExpandedNode } from "../../models/pioneer-tree-expanded-node.model";
 import { PioneerTree } from "../../models/pioneer-tree.model"
+import { PioneerTreeConfiguration } from "../../models/pioneer-tree-configuration.model";
 
 @Component({
     selector: '[pioneer-tree-node],[pt-node]',
@@ -23,6 +24,7 @@ import { PioneerTree } from "../../models/pioneer-tree.model"
         : {{node.pioneerTreeNode.sortIndex}}
     </div>
     <div class="pioneer-tree-dropzone-sort"
+        *ngIf="node.pioneerTreeNode.showDropzonePosition()"
         pioneer-tree-dropzone
         [dropType]="'position'"
         [node]="node">

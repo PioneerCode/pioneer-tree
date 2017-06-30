@@ -65,6 +65,8 @@ export class PioneerTree implements IPioneerTree {
 
         for (let i = 0; i < this.currentNodes.length; i++) {
             this.currentNodes[i].pioneerTreeNode = new PioneerTreeNode();
+            this.currentNodes[i].pioneerTreeNode.config = this.configuration;
+            this.currentNodes[i].pioneerTreeNode.currentNode = this.currentNodes[i];
             this.setSortIndex(this.currentNodes[i], i);
             if (this.currentNodes[i][this.configuration.childPropertyName]) {
                 this.bindNodesToInternalTracking(this.currentNodes[i][this.configuration.childPropertyName], this.currentNodes[i])
@@ -77,12 +79,12 @@ export class PioneerTree implements IPioneerTree {
         return nodeId !== this.currentDragNode.pioneerTreeNode.getId();
     }
 
-    dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string): void {
+    dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, sortIndex?: number): void {
         this.prune(this.currentNodes, this.currentDragNode.pioneerTreeNode.getId())
 
         switch (dropType) {
             case 'root':
-                this.dropRootService.dropNode(this.currentNodes, this.currentDragNode);
+                this.dropRootService.dropNode(this.currentNodes, this.currentDragNode, sortIndex);
                 break;
             case 'parent':
                 this.dropParentService.dropNode(dropzone[this.configuration.childPropertyName], this.currentDragNode);
@@ -144,6 +146,7 @@ export class PioneerTree implements IPioneerTree {
         for (let i = 0; i < nodes.length; i++) {
             nodes[i].pioneerTreeNode = new PioneerTreeNode();
             nodes[i].pioneerTreeNode.parentNode = parent;
+            nodes[i].pioneerTreeNode.previousNode = nodes[i - 1]
             this.setSortIndex(nodes[i], i);
             if (nodes[i][this.configuration.childPropertyName]) {
                 this.bindNodesToInternalTracking(nodes[i][this.configuration.childPropertyName], nodes[i])

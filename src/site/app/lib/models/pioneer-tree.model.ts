@@ -87,8 +87,6 @@ export class PioneerTree implements IPioneerTree {
   }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, sortIndex?: number): void {
-    this.prune(this.currentNodes, this.currentDragNode.pioneerTreeNode.getId());
-
     switch (dropType) {
       case 'root':
         this.dropRootService.dropNode(this.currentNodes, this.currentDragNode, sortIndex);
@@ -99,7 +97,8 @@ export class PioneerTree implements IPioneerTree {
       case 'position':
         this.dropPositionService.dropNode(dropzone, this.currentDragNode);
         break;
-      case 'bottom':
+      case 'end':
+        this.dropRootService.dropNode(this.currentNodes, this.currentDragNode, sortIndex);
         break;
     }
 

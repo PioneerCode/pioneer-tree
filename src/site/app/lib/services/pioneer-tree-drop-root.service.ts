@@ -13,40 +13,35 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
   ) { }
 
   dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, sortIndex: number): void {
-    this.moveNodeOnPositionDrop(collection, nodeToDrop, sortIndex);
-
-    nodeToDrop.pioneerTreeNode.sortIndex = sortIndex;
-    if (nodeToDrop[this.config.sortPropertyName]) {
-      nodeToDrop[this.config.sortPropertyName] = nodeToDrop.pioneerTreeNode.sortIndex;
+    // Are we move up or down the tree
+    if (sortIndex > nodeToDrop.pioneerTreeNode.sortIndex) {
+      // down
+      --sortIndex;
     }
 
-    this.reorderCollectionBasedOnSortIndex(collection, nodeToDrop);
+    this.switchNodes(collection, sortIndex, nodeToDrop.pioneerTreeNode.sortIndex);
   }
 
-  /**
-   * Move a dropped node into its new home collection while presorting it
-   * @param dropzone Target that houses child collection
-   */
-  private moveNodeOnPositionDrop(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, sortIndex: number): void {
-    if (sortIndex === 0) {
-      collection.unshift(nodeToDrop);
+  private switchNodes(collection: IPioneerTreeExpandedNode[], newLocation: number, originalLocation: number): void {
+    // Don't do anything if it is the same location
+    if (newLocation === originalLocation) {
       return;
     }
-    collection.splice(sortIndex - 1, 0, nodeToDrop);
-  }
 
-  /**
-   * Reorder a child collection base on a sort index property
-   * @param collection Target child collection
-   */
-  private reorderCollectionBasedOnSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode): void {
-    for (let i = 0; i < collection.length; i++) {
-      if (i >= nodeToDrop.pioneerTreeNode.sortIndex && nodeToDrop.pioneerTreeNode.getId() !== collection[i].pioneerTreeNode.getId()) {
-        collection[i].pioneerTreeNode.sortIndex = collection[i].pioneerTreeNode.sortIndex + 1;
-        if (nodeToDrop[this.config.sortPropertyName] !== null && nodeToDrop[this.config.sortPropertyName] !== undefined) {
-          collection[i][this.config.sortPropertyName] = collection[i].pioneerTreeNode.sortIndex;
-        }
-      }
+    // Swap locations
+    const temp = collection[originalLocation];
+    collection[originalLocation] = collection[newLocation];
+    collection[newLocation] = temp;
+
+    // Adjust indexes
+    collection[newLocation].pioneerTreeNode.sortIndex = newLocation;
+    if (collection[newLocation][this.config.sortPropertyName]) {
+      collection[newLocation][this.config.sortPropertyName] = collection[newLocation].pioneerTreeNode.sortIndex;
+    }
+
+    collection[originalLocation].pioneerTreeNode.sortIndex = originalLocation;
+    if (collection[originalLocation][this.config.sortPropertyName]) {
+      collection[originalLocation][this.config.sortPropertyName] = collection[originalLocation].pioneerTreeNode.sortIndex;
     }
   }
 }

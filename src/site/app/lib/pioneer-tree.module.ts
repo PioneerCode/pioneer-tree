@@ -9,7 +9,7 @@ import { PioneerTreeDropzoneDirective } from './directives/pioneer-tree-dropzone
 import { PioneerTree } from './models/pioneer-tree.model';
 import { PioneerTreeDropParentService } from './services/pioneer-tree-drop-parent.service';
 import { PioneerTreeConfiguration } from './models/pioneer-tree-configuration.model';
-import { PioneerTreeDropPositionService } from './services/pioneer-tree-drop-position.service';
+import { PioneerTreeDropChildService } from './services/pioneer-tree-drop-child.service';
 import { PioneerTreeDropRootService } from './services/pioneer-tree-drop-root.service';
 
 export {
@@ -39,7 +39,7 @@ export {
     PioneerTree,
     PioneerTreeDropRootService,
     PioneerTreeDropParentService,
-    PioneerTreeDropPositionService,
+    PioneerTreeDropChildService,
     PioneerTreeConfiguration
   ]
 })

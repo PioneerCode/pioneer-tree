@@ -6,9 +6,8 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
   selector: '[pioneer-tree-node],[pt-node]',
   template: `
 <div class="pioneer-tree-dropzone pioneer-tree-dropzone-root"
-    *ngIf="!node.pioneerTreeNode.parentNode"
     pioneer-tree-dropzone
-    [dropType]="'root'"
+    [dropType]="node.pioneerTreeNode.parentNode ? 'child' : 'root'"
     [node]="node">
 </div>
 <div class="pioneer-tree-node">
@@ -22,12 +21,12 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
         </ng-container>
         : {{node.pioneerTreeNode.sortIndex}}
     </div>
-    <div class="pioneer-tree-dropzone pioneer-tree-dropzone-position"
+    <!--<div class="pioneer-tree-dropzone pioneer-tree-dropzone-position"
         *ngIf="node.pioneerTreeNode.showDropzonePosition()"
         pioneer-tree-dropzone
         [dropType]="'position'"
         [node]="node">
-    </div>
+    </div>-->
     <div class="pioneer-tree-repeater" [ngClass]="this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()">
         <ng-container [ngTemplateOutlet]="repeaterTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container>
@@ -36,7 +35,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
 <div class="pioneer-tree-dropzone pioneer-tree-dropzone-end"
     *ngIf="node.pioneerTreeNode.showDropzoneEnd()"
     pioneer-tree-dropzone
-    [dropType]="'end'"
+    [dropType]="node.pioneerTreeNode.parentNode ? 'child' : 'root'"
     [node]="node">
 </div>
     `

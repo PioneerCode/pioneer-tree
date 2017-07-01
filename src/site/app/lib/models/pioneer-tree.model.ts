@@ -3,7 +3,7 @@ import { IPioneerTreeExpandedNode } from './pioneer-tree-expanded-node.model';
 import { IPioneerTreeConfiguration, PioneerTreeConfiguration } from './pioneer-tree-configuration.model';
 import { PioneerTreeNode } from './pioneer-tree-node.model';
 import { IPioneerTreeDropParentService, PioneerTreeDropParentService } from '../services/pioneer-tree-drop-parent.service';
-import { PioneerTreeDropPositionService, IPioneerTreeDropPositionService } from '../services/pioneer-tree-drop-position.service';
+import { PioneerTreeDropChildService, IPioneerTreeDropChildService } from '../services/pioneer-tree-drop-child.service';
 import { IPioneerTreeDropRootService, PioneerTreeDropRootService } from '../services/pioneer-tree-drop-root.service';
 
 export interface IPioneerTree {
@@ -55,7 +55,7 @@ export class PioneerTree implements IPioneerTree {
     @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration,
     @Inject(PioneerTreeDropRootService) private dropRootService: IPioneerTreeDropRootService,
     @Inject(PioneerTreeDropParentService) private dropParentService: IPioneerTreeDropParentService,
-    @Inject(PioneerTreeDropPositionService) private dropPositionService: IPioneerTreeDropPositionService
+    @Inject(PioneerTreeDropChildService) private dropChildService: IPioneerTreeDropChildService
   ) { }
 
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
@@ -86,19 +86,16 @@ export class PioneerTree implements IPioneerTree {
     return nodeId !== this.currentDragNode.pioneerTreeNode.getId();
   }
 
-  dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, sortIndex?: number): void {
+  dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, droppedSortIndex?: number): void {
     switch (dropType) {
       case 'root':
-        this.dropRootService.dropNode(this.currentNodes, this.currentDragNode, sortIndex);
+        this.dropRootService.dropNode(this.currentNodes, this.currentDragNode, droppedSortIndex);
         break;
       case 'parent':
-        this.dropParentService.dropNode(dropzone[this.configuration.childPropertyName], this.currentDragNode);
+        this.dropParentService.dropNode(dropzone[this.configuration.childPropertyName], this.currentDragNode, );
         break;
-      case 'position':
-        this.dropPositionService.dropNode(dropzone, this.currentDragNode);
-        break;
-      case 'end':
-        this.dropRootService.dropNode(this.currentNodes, this.currentDragNode, sortIndex);
+      case 'child':
+        this.dropChildService.dropNode(dropzone, this.currentDragNode, droppedSortIndex);
         break;
     }
 

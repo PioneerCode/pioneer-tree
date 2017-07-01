@@ -151,9 +151,11 @@ export class PioneerTree implements IPioneerTree {
   private bindNodesToInternalTracking(nodes: IPioneerTreeExpandedNode[], parent: IPioneerTreeExpandedNode): void {
     for (let i = 0; i < nodes.length; i++) {
       nodes[i].pioneerTreeNode = new PioneerTreeNode();
+      nodes[i].pioneerTreeNode.config = this.configuration;
       nodes[i].pioneerTreeNode.parentNode = parent;
       nodes[i].pioneerTreeNode.previousNode = nodes[i - 1];
-      this.currentNodes[i].pioneerTreeNode.nodesInCollection = nodes.length;
+      nodes[i].pioneerTreeNode.currentNode = nodes[i];
+      nodes[i].pioneerTreeNode.nodesInCollection = nodes.length;
       this.setSortIndex(nodes[i], i);
       if (nodes[i][this.configuration.childPropertyName]) {
         this.bindNodesToInternalTracking(nodes[i][this.configuration.childPropertyName], nodes[i]);

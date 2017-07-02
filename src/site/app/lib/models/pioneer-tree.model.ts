@@ -149,7 +149,8 @@ export class PioneerTree implements IPioneerTree {
     for (let i = 0; i < nodes.length; i++) {
       nodes[i].pioneerTreeNode = new PioneerTreeNode();
       nodes[i].pioneerTreeNode.config = this.configuration;
-      nodes[i].pioneerTreeNode.parentNode = parent;
+      nodes[i].pioneerTreeNode.parentNode = parent ? parent: null;
+      nodes[i].pioneerTreeNode.treeRootNodes = parent ? null : this.currentNodes;
       nodes[i].pioneerTreeNode.previousNode = nodes[i - 1];
       nodes[i].pioneerTreeNode.currentNode = nodes[i];
       nodes[i].pioneerTreeNode.nodesInCollection = nodes.length;

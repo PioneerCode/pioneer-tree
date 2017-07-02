@@ -25,6 +25,12 @@ export interface IPioneerTreeNode {
   parentNode: IPioneerTreeExpandedNode;
 
   /**
+   * Tracking for tree root collection
+   * Set when there is no parent node
+   */
+  treeRootNodes: IPioneerTreeExpandedNode[];
+
+  /**
   * Tracking access to current node
   */
   currentNode: IPioneerTreeExpandedNode;
@@ -87,6 +93,7 @@ export class PioneerTreeNode implements IPioneerTreeNode {
   sortIndex: number;
   isCurrentSelectedNode = false;
   parentNode: IPioneerTreeExpandedNode;
+  treeRootNodes: IPioneerTreeExpandedNode[];
   currentNode: IPioneerTreeExpandedNode;
   previousNode: IPioneerTreeExpandedNode;
   config: IPioneerTreeConfiguration;

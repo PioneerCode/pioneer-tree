@@ -21,7 +21,15 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
   ) { }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number): void {
-    this.switchNodes(dropzone[this.config.childPropertyName], droppedSortIndex, 1)
+    for (let i = 0; i < nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName].length; i++) {
+      if (nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName][i].getId() == nodeToDrop.pioneerTreeNode.getId()) {
+        nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(i, 1);
+        return;
+      }
+    }
+
+    dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(droppedSortIndex, 0, nodeToDrop);
+    //this.switchNodes(dropzone[this.config.childPropertyName], droppedSortIndex, 1)
 
     // this.moveNodeOnChildDrop(dropzone, nodeToDrop);
 
@@ -33,16 +41,48 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
     // this.reorderCollectionOnChildDrop(dropzone, nodeToDrop);
   }
 
+  /**
+ * Search tree and remove target node
+ * @param nodes Tree(s) to traverse
+ * @param nodeId Node id to target
+ */
+  private prune(nodes: IPioneerTreeExpandedNode[], nodeId: string) {
+    for (let i = 0; i < nodes.length; ++i) {
+      const obj: IPioneerTreeExpandedNode = nodes[i];
+      if (obj.pioneerTreeNode.getId() === nodeId) {
+        // splice out 1 element starting at position i
+        nodes.splice(i, 1);
+        return true;
+      }
+      if (obj[this.config.childPropertyName]) {
+        if (this.prune(obj[this.config.childPropertyName], nodeId)) {
+          if (obj[this.config.childPropertyName].length === 0) {
+            // delete children property when empty
+            delete obj[this.config.childPropertyName];
+
+            // or, to delete this parent altogether
+            // as a result of it having no more children
+            // do this instead
+            nodes.splice(i, 1);
+          }
+          return true;
+        }
+      }
+    }
+  }
+
   private switchNodes(collection: IPioneerTreeExpandedNode[], newLocation: number, originalLocation: number): void {
     // Don't do anything if it is the same location
-    if (newLocation === originalLocation) {
-      return;
-    }
+    // if (newLocation === originalLocation) {
+    //   return;
+    // }
 
     // Swap locations
-    const temp = collection[originalLocation];
-    collection[originalLocation] = collection[newLocation];
-    collection[newLocation] = temp;
+    // const temp = collection[originalLocation];
+    // collection[originalLocation] = collection[newLocation];
+    // collection[newLocation] = temp;
+
+    //collection.splice(newLocation - 1, 0, nodeToDrop);
 
     // Adjust indexes
     collection[newLocation].pioneerTreeNode.sortIndex = newLocation;

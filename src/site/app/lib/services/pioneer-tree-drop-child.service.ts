@@ -21,14 +21,22 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
   ) { }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number): void {
+
+
     var parentCollection = nodeToDrop.pioneerTreeNode.parentNode ?
       nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName] :
       nodeToDrop.pioneerTreeNode.treeRootNodes;
+
+    if (droppedSortIndex == dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].length - 1) {
+      ++droppedSortIndex;
+    }
+
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId())
 
     dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(droppedSortIndex, 0, nodeToDrop);
 
     this.adjustIndexes(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName]);
+
   }
 
   /**

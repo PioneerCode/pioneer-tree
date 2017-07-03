@@ -3,7 +3,10 @@ import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.m
 import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
 
 export interface IPioneerTreeDropRootService {
-  dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number): void;
+  /**
+   *
+   */
+  dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd?: boolean): void;
 }
 
 export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
@@ -12,37 +15,37 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
     @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration
   ) { }
 
-  dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number): void {
-    this.adjustDropSortIndex(collection, nodeToDrop, droppedSortIndex);
-    this.switchNodes(collection, droppedSortIndex, nodeToDrop.pioneerTreeNode.sortIndex);
+  dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean = false): void {
+    this.adjustDropSortIndex(collection, nodeToDrop, droppedSortIndex, rootEnd);
+    this.prune(collection, nodeToDrop.pioneerTreeNode.getId())
+    collection.splice(droppedSortIndex, 0, nodeToDrop);
+    this.adjustIndexes(collection);
   }
 
   /**
-   *
-   * @param collection
-   * @param newLocation
-   * @param originalLocation
+   * Re-index sort indexes
+   * @param collection Collection to re-index
    */
-  private switchNodes(collection: IPioneerTreeExpandedNode[], newLocation: number, originalLocation: number): void {
-    // Don't do anything if it is the same location
-    if (newLocation === originalLocation) {
-      return;
+  private adjustIndexes(collection: IPioneerTreeExpandedNode[]): void {
+    for (let i = 0; i < collection.length; i++) {
+      collection[i].pioneerTreeNode.sortIndex = i;
+      if (collection[i][this.config.sortPropertyName]) {
+        collection[i][this.config.sortPropertyName] = collection[i].pioneerTreeNode.sortIndex;
+      }
     }
+  }
 
-    // Swap locations
-    const temp = collection[originalLocation];
-    collection[originalLocation] = collection[newLocation];
-    collection[newLocation] = temp;
-
-    // Adjust indexes
-    collection[newLocation].pioneerTreeNode.sortIndex = newLocation;
-    if (collection[newLocation][this.config.sortPropertyName]) {
-      collection[newLocation][this.config.sortPropertyName] = collection[newLocation].pioneerTreeNode.sortIndex;
-    }
-
-    collection[originalLocation].pioneerTreeNode.sortIndex = originalLocation;
-    if (collection[originalLocation][this.config.sortPropertyName]) {
-      collection[originalLocation][this.config.sortPropertyName] = collection[originalLocation].pioneerTreeNode.sortIndex;
+  /**
+   * Search tree and remove target node
+   * @param nodes Tree(s) to traverse
+   * @param nodeId Node id to target
+   */
+  private prune(nodes: IPioneerTreeExpandedNode[], nodeId: string) {
+    for (let i = 0; i < nodes.length; i++) {
+      if (nodes[i].pioneerTreeNode.getId() == nodeId) {
+        nodes.splice(i, 1);
+        return;
+      }
     }
   }
 
@@ -52,17 +55,22 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
    * @param nodeToDrop
    * @param droppedSortIndex
    */
-  private adjustDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number) {
-    // dropped in end dropzone
-    if (droppedSortIndex == collection.length - 1) {
+  private adjustDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean) {
+    // dropped in root-end of last index
+    if (droppedSortIndex === collection.length - 1 && rootEnd) {
       ++droppedSortIndex;
+      return;
+    }
+
+    // dropped in root of last index
+    if (droppedSortIndex === collection.length - 1 && !rootEnd) {
+      --droppedSortIndex;
       return;
     }
 
     // moving down the tree
     if (droppedSortIndex > nodeToDrop.pioneerTreeNode.sortIndex) {
       --droppedSortIndex;
-      return;
     }
   }
 }

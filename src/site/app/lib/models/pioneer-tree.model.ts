@@ -92,6 +92,9 @@ export class PioneerTree implements IPioneerTree {
       case 'root':
         this.dropRootService.dropNode(this.currentNodes, this.currentDragNode, droppedSortIndex);
         break;
+      case 'root-end':
+        this.dropRootService.dropNode(this.currentNodes, this.currentDragNode, droppedSortIndex, true);
+        break;
       case 'parent':
         this.dropParentService.dropNode(dropzone[this.configuration.childPropertyName], this.currentDragNode, );
         break;

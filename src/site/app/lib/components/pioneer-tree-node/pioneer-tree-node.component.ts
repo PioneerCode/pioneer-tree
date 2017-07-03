@@ -37,7 +37,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
 <div class="pioneer-tree-dropzone pioneer-tree-dropzone-end"
     *ngIf="node.pioneerTreeNode.showDropzoneEnd()"
     pioneer-tree-dropzone
-    [dropType]="node.pioneerTreeNode.parentNode ? 'child' : 'root'"
+    [dropType]="node.pioneerTreeNode.parentNode ? 'child' : 'root-end'"
     [node]="node">
 </div>
     `

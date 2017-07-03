@@ -16,7 +16,7 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
   ) { }
 
   dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean = false): void {
-    this.adjustDropSortIndex(collection, nodeToDrop, droppedSortIndex, rootEnd);
+    droppedSortIndex = this.getAdjustedDropSortIndex(collection, nodeToDrop, droppedSortIndex, rootEnd);
     this.prune(collection, nodeToDrop.pioneerTreeNode.getId())
     collection.splice(droppedSortIndex, 0, nodeToDrop);
     this.adjustIndexes(collection);
@@ -55,22 +55,22 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
    * @param nodeToDrop
    * @param droppedSortIndex
    */
-  private adjustDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean) {
+  private getAdjustedDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean) {
     // dropped in root-end of last index
     if (droppedSortIndex === collection.length - 1 && rootEnd) {
-      ++droppedSortIndex;
-      return;
+      return ++droppedSortIndex;
     }
 
     // dropped in root of last index
     if (droppedSortIndex === collection.length - 1 && !rootEnd) {
-      --droppedSortIndex;
-      return;
+      return --droppedSortIndex;
     }
 
     // moving down the tree
     if (droppedSortIndex > nodeToDrop.pioneerTreeNode.sortIndex) {
-      --droppedSortIndex;
+       return --droppedSortIndex;
     }
+
+    return droppedSortIndex;
   }
 }

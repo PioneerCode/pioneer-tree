@@ -27,8 +27,10 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
         [dropType]="'position'"
         [node]="node">
     </div>-->
-    <div class="pioneer-tree-repeater" [ngClass]="this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()">
-        <ng-container [ngTemplateOutlet]="repeaterTemplate" [ngOutletContext]="{ $implicit: node }">
+    <div class="pioneer-tree-repeater"
+        [ngClass]="this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()">
+        <ng-container [ngTemplateOutlet]="repeaterTemplate"
+        [ngOutletContext]="{ $implicit: node }">
         </ng-container>
     </div>
 </div>

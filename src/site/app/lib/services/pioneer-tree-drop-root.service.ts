@@ -3,7 +3,7 @@ import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.m
 import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
 
 export interface IPioneerTreeDropRootService {
-  dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, sortIndex?: number): void;
+  dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number): void;
 }
 
 export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
@@ -12,16 +12,17 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
     @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration
   ) { }
 
-  dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, sortIndex: number): void {
-    // Are we move up or down the tree
-    if (sortIndex > nodeToDrop.pioneerTreeNode.sortIndex) {
-      // down
-      --sortIndex;
-    }
-
-    this.switchNodes(collection, sortIndex, nodeToDrop.pioneerTreeNode.sortIndex);
+  dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number): void {
+    this.adjustDropSortIndex(collection, nodeToDrop, droppedSortIndex);
+    this.switchNodes(collection, droppedSortIndex, nodeToDrop.pioneerTreeNode.sortIndex);
   }
 
+  /**
+   *
+   * @param collection
+   * @param newLocation
+   * @param originalLocation
+   */
   private switchNodes(collection: IPioneerTreeExpandedNode[], newLocation: number, originalLocation: number): void {
     // Don't do anything if it is the same location
     if (newLocation === originalLocation) {
@@ -42,6 +43,26 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
     collection[originalLocation].pioneerTreeNode.sortIndex = originalLocation;
     if (collection[originalLocation][this.config.sortPropertyName]) {
       collection[originalLocation][this.config.sortPropertyName] = collection[originalLocation].pioneerTreeNode.sortIndex;
+    }
+  }
+
+  /**
+   *
+   * @param collection
+   * @param nodeToDrop
+   * @param droppedSortIndex
+   */
+  private adjustDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number) {
+    // dropped in end dropzone
+    if (droppedSortIndex == collection.length - 1) {
+      ++droppedSortIndex;
+      return;
+    }
+
+    // moving down the tree
+    if (droppedSortIndex > nodeToDrop.pioneerTreeNode.sortIndex) {
+      --droppedSortIndex;
+      return;
     }
   }
 }

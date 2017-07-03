@@ -21,12 +21,11 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
   ) { }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number): void {
-
-
     var parentCollection = nodeToDrop.pioneerTreeNode.parentNode ?
       nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName] :
       nodeToDrop.pioneerTreeNode.treeRootNodes;
 
+    // Adjust if an end dropzone.
     if (droppedSortIndex == dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].length - 1) {
       ++droppedSortIndex;
     }
@@ -36,7 +35,6 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
     dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(droppedSortIndex, 0, nodeToDrop);
 
     this.adjustIndexes(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName]);
-
   }
 
   /**
@@ -53,6 +51,10 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
     }
   }
 
+  /**
+   * Re-index sort indexes
+   * @param collection Collection to re-index
+   */
   private adjustIndexes(collection: IPioneerTreeExpandedNode[]): void {
     for (let i = 0; i < collection.length; i++) {
       collection[i].pioneerTreeNode.sortIndex = i;

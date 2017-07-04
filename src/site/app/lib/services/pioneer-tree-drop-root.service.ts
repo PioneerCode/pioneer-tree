@@ -55,11 +55,6 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
    * @param droppedSortIndex
    */
   private getAdjustedDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean) {
-    // We are climbing up the tree
-    // if (droppedSortIndex < nodeToDrop.pioneerTreeNode.sortIndex) {
-    //   ++droppedSortIndex;
-    // }
-
     // dropped in root-end of last index
     if (droppedSortIndex === collection.length && rootEnd) {
       return ++droppedSortIndex;

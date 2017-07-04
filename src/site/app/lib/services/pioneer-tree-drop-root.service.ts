@@ -16,9 +16,8 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
   ) { }
 
   dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean = false): void {
-    droppedSortIndex = this.getAdjustedDropSortIndex(collection, nodeToDrop, droppedSortIndex, rootEnd);
     this.prune(collection, nodeToDrop.pioneerTreeNode.getId())
-    collection.splice(droppedSortIndex, 0, nodeToDrop);
+    collection.splice(this.getAdjustedDropSortIndex(collection, nodeToDrop, droppedSortIndex, rootEnd), 0, nodeToDrop);
     this.adjustIndexes(collection);
   }
 
@@ -57,7 +56,7 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
    */
   private getAdjustedDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean) {
     // dropped in root-end of last index
-    if (droppedSortIndex === collection.length - 1 && rootEnd) {
+    if (droppedSortIndex === collection.length && rootEnd) {
       return ++droppedSortIndex;
     }
 

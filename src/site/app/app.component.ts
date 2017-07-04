@@ -105,7 +105,7 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
         </li>
       </ul>
       <div *ngIf="dataView === 'raw'">
-        <!--<pre>{{getRawData()}}</pre>-->
+        <pre>{{getRawData()}}</pre>
       </div>
       <div *ngIf="dataView === 'bound'">
         <!--<pre>{{getBoundDataMinusCircularReference()}}</pre>-->
@@ -181,16 +181,6 @@ export class AppComponent {
     {
       'name': 'root-1',
       'sort': 0,
-      'children': [
-        {
-          'name': 'child-1',
-          'sort': 0
-        },
-        {
-          'name': 'child-2',
-          'sort': 1
-        }
-      ]
     },
     {
       'name': 'root-2',
@@ -199,6 +189,14 @@ export class AppComponent {
     {
       'name': 'root-3',
       'sort': 2
+    },
+    {
+      'name': 'root-4',
+      'sort': 3
+    },
+    {
+      'name': 'root-5',
+      'sort': 4
     }
   ] as any;
 

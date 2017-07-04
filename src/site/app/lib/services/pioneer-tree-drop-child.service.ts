@@ -31,9 +31,7 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
     }
 
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId())
-
     dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(droppedSortIndex, 0, nodeToDrop);
-
     this.adjustIndexes(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName]);
   }
 

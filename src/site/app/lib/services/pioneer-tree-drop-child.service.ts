@@ -31,8 +31,10 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
     }
 
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
-    dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(droppedSortIndex, 0, nodeToDrop);
+    //dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(droppedSortIndex, 0, nodeToDrop);
+    this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex);
     this.adjustIndexes(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName]);
+    this.adjustParentTracking(dropzone, nodeToDrop);
   }
 
   /**
@@ -49,6 +51,10 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
     }
   }
 
+  private dropNodeOntoNewCollection(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number) {
+    dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(droppedSortIndex, 0, nodeToDrop);
+  }
+
   /**
    * Re-index sort indexes
    * @param collection Collection to re-index
@@ -63,6 +69,12 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
   }
 
   private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
-
+    if (dropzone.pioneerTreeNode) {
+      nodeToDrop.pioneerTreeNode.parentNode = null;
+      nodeToDrop.pioneerTreeNode.treeRootNodes = dropzone.pioneerTreeNode.treeRootNodes;
+      return;
+    }
+    nodeToDrop.pioneerTreeNode.parentNode = dropzone;
+    nodeToDrop.pioneerTreeNode.treeRootNodes = null;
   }
 }

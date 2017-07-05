@@ -11,7 +11,7 @@ export interface IPioneerTreeDropChildService {
    * @param nodeToDrop Node to drop
    * @param droppedSortIndex Sort index of the node being dropped on
    */
-  dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number): void;
+  dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, childEnd?: boolean): void;
 }
 
 export class PioneerTreeDropChildService implements IPioneerTreeDropChildService {
@@ -20,19 +20,13 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
     @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration
   ) { }
 
-  dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number): void {
+  dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, childEnd: boolean): void {
     const parentCollection = nodeToDrop.pioneerTreeNode.parentNode ?
       nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName] :
       nodeToDrop.pioneerTreeNode.treeRootNodes;
 
-    // Adjust if an end dropzone.
-    if (droppedSortIndex === dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].length - 1) {
-      ++droppedSortIndex;
-    }
-
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
-    //dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(droppedSortIndex, 0, nodeToDrop);
-    this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex);
+    this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex, childEnd);
     this.adjustIndexes(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName]);
     this.adjustParentTracking(dropzone, nodeToDrop);
   }
@@ -51,8 +45,34 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
     }
   }
 
-  private dropNodeOntoNewCollection(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number) {
-    dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(droppedSortIndex, 0, nodeToDrop);
+  private dropNodeOntoNewCollection(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, childEnd: boolean) {
+    dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(this.getAdjustedDropSortIndex(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName], nodeToDrop, droppedSortIndex, childEnd), 0, nodeToDrop);
+  }
+
+  /**
+   *
+   * @param collection
+   * @param nodeToDrop
+   * @param droppedSortIndex
+   */
+  private getAdjustedDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, childEnd: boolean) {
+    // dropped in root-end of last index
+    if (droppedSortIndex === collection.length && childEnd) {
+      return ++droppedSortIndex;
+    }
+
+    // dropped in root of last index
+    // Not moving up the tree
+    if (droppedSortIndex === collection.length && !childEnd && droppedSortIndex >= nodeToDrop.pioneerTreeNode.sortIndex) {
+      return --droppedSortIndex;
+    }
+
+    // moving down the tree
+    if (droppedSortIndex > nodeToDrop.pioneerTreeNode.sortIndex) {
+      return --droppedSortIndex;
+    }
+
+    return droppedSortIndex;
   }
 
   /**

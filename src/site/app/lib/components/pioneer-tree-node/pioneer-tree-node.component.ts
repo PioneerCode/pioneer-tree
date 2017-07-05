@@ -30,14 +30,14 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
     <div class="pioneer-tree-repeater"
         [ngClass]="this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()">
         <ng-container [ngTemplateOutlet]="repeaterTemplate"
-        [ngOutletContext]="{ $implicit: node }">
+          [ngOutletContext]="{ $implicit: node }">
         </ng-container>
     </div>
 </div>
 <div class="pioneer-tree-dropzone pioneer-tree-dropzone-end"
     *ngIf="node.pioneerTreeNode.showDropzoneEnd()"
     pioneer-tree-dropzone
-    [dropType]="node.pioneerTreeNode.parentNode ? 'child' : 'root-end'"
+    [dropType]="node.pioneerTreeNode.parentNode ? 'child-end' : 'root-end'"
     [node]="node">
 </div>
     `

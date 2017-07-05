@@ -90,10 +90,10 @@ export class PioneerTree implements IPioneerTree {
   dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, droppedSortIndex?: number): void {
     switch (dropType) {
       case 'root':
-        this.dropRootService.dropNode(this.currentNodes, this.currentDragNode, droppedSortIndex);
+        this.dropRootService.dropNode(dropzone, this.currentDragNode, droppedSortIndex);
         break;
       case 'root-end':
-        this.dropRootService.dropNode(this.currentNodes, this.currentDragNode, droppedSortIndex, true);
+        this.dropRootService.dropNode(dropzone, this.currentDragNode, droppedSortIndex, true);
         break;
       case 'parent':
         this.dropParentService.dropNode(dropzone, this.currentDragNode);
@@ -105,36 +105,6 @@ export class PioneerTree implements IPioneerTree {
 
     // remove current drag node tracking
     this.currentDragNode = null;
-  }
-
-  /**
-   * Search tree and remove target node
-   * @param nodes Tree(s) to traverse
-   * @param nodeId Node id to target
-   */
-  private prune(nodes: IPioneerTreeExpandedNode[], nodeId: string) {
-    for (let i = 0; i < nodes.length; ++i) {
-      const obj: IPioneerTreeExpandedNode = nodes[i];
-      if (obj.pioneerTreeNode.getId() === nodeId) {
-        // splice out 1 element starting at position i
-        nodes.splice(i, 1);
-        return true;
-      }
-      if (obj[this.configuration.childPropertyName]) {
-        if (this.prune(obj[this.configuration.childPropertyName], nodeId)) {
-          if (obj[this.configuration.childPropertyName].length === 0) {
-            // delete children property when empty
-            delete obj[this.configuration.childPropertyName];
-
-            // or, to delete this parent altogether
-            // as a result of it having no more children
-            // do this instead
-            nodes.splice(i, 1);
-          }
-          return true;
-        }
-      }
-    }
   }
 
   /**

@@ -12,21 +12,14 @@ export class PioneerTreeDropParentService implements IPioneerTreeDropParentServi
   ) { }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode): void {
-    var parentCollection = nodeToDrop.pioneerTreeNode.parentNode ?
+    const parentCollection = nodeToDrop.pioneerTreeNode.parentNode ?
       nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName] :
       nodeToDrop.pioneerTreeNode.treeRootNodes;
+
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
-
-    if (dropzone[this.config.childPropertyName] === undefined) {
-      dropzone[this.config.childPropertyName] = [] as IPioneerTreeExpandedNode[];
-    }
-
-    dropzone[this.config.childPropertyName].push(nodeToDrop);
-    nodeToDrop.pioneerTreeNode.sortIndex = dropzone[this.config.childPropertyName].length;
-
-    if (nodeToDrop[this.config.sortPropertyName]) {
-      nodeToDrop[this.config.sortPropertyName] = nodeToDrop.pioneerTreeNode.sortIndex;
-    }
+    this.dropNodeOntoNewCollection(dropzone, nodeToDrop);
+    this.adjustIndexes(dropzone, nodeToDrop);
+    this.adjustParentTracking(dropzone, nodeToDrop);
   }
 
   /**
@@ -36,10 +29,30 @@ export class PioneerTreeDropParentService implements IPioneerTreeDropParentServi
    */
   private prune(nodes: IPioneerTreeExpandedNode[], nodeId: string) {
     for (let i = 0; i < nodes.length; i++) {
-      if (nodes[i].pioneerTreeNode.getId() == nodeId) {
+      if (nodes[i].pioneerTreeNode.getId() === nodeId) {
         nodes.splice(i, 1);
         return;
       }
     }
+  }
+
+  private dropNodeOntoNewCollection(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
+    if (dropzone[this.config.childPropertyName] === undefined) {
+      dropzone[this.config.childPropertyName] = [] as IPioneerTreeExpandedNode[];
+    }
+
+    dropzone[this.config.childPropertyName].push(nodeToDrop);
+  }
+
+  private adjustIndexes(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
+    nodeToDrop.pioneerTreeNode.sortIndex = dropzone[this.config.childPropertyName].length;
+    if (nodeToDrop[this.config.sortPropertyName]) {
+      nodeToDrop[this.config.sortPropertyName] = nodeToDrop.pioneerTreeNode.sortIndex;
+    }
+  }
+
+  private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
+    nodeToDrop.pioneerTreeNode.parentNode = dropzone;
+    nodeToDrop.pioneerTreeNode.treeRootNodes = null;
   }
 }

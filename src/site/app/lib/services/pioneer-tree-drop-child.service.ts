@@ -21,16 +21,16 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
   ) { }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number): void {
-    var parentCollection = nodeToDrop.pioneerTreeNode.parentNode ?
+    const parentCollection = nodeToDrop.pioneerTreeNode.parentNode ?
       nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName] :
       nodeToDrop.pioneerTreeNode.treeRootNodes;
 
     // Adjust if an end dropzone.
-    if (droppedSortIndex == dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].length - 1) {
+    if (droppedSortIndex === dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].length - 1) {
       ++droppedSortIndex;
     }
 
-    this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId())
+    this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
     dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(droppedSortIndex, 0, nodeToDrop);
     this.adjustIndexes(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName]);
   }
@@ -42,7 +42,7 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
    */
   private prune(nodes: IPioneerTreeExpandedNode[], nodeId: string) {
     for (let i = 0; i < nodes.length; i++) {
-      if (nodes[i].pioneerTreeNode.getId() == nodeId) {
+      if (nodes[i].pioneerTreeNode.getId() === nodeId) {
         nodes.splice(i, 1);
         return;
       }
@@ -60,5 +60,9 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
         collection[i][this.config.sortPropertyName] = collection[i].pioneerTreeNode.sortIndex;
       }
     }
+  }
+
+  private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
+
   }
 }

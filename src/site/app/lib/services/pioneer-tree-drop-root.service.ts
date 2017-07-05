@@ -6,7 +6,7 @@ export interface IPioneerTreeDropRootService {
   /**
    *
    */
-  dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd?: boolean): void;
+  dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd?: boolean): void;
 }
 
 export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
@@ -15,10 +15,18 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
     @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration
   ) { }
 
-  dropNode(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean = false): void {
-    this.prune(collection, nodeToDrop.pioneerTreeNode.getId())
-    collection.splice(this.getAdjustedDropSortIndex(collection, nodeToDrop, droppedSortIndex, rootEnd), 0, nodeToDrop);
-    this.adjustIndexes(collection);
+  dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean): void {
+    // const parentCollection = dropzone[this.config.childPropertyName] ?
+    //   dropzone[this.config.childPropertyName] :
+    //   dropzone.pioneerTreeNode.treeRootNodes;
+
+    const parentCollection = nodeToDrop.pioneerTreeNode.parentNode ?
+      nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName] :
+      nodeToDrop.pioneerTreeNode.treeRootNodes;
+
+    this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
+    this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex, rootEnd);
+    this.adjustIndexes(dropzone.pioneerTreeNode.treeRootNodes);
   }
 
   /**
@@ -34,6 +42,10 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
     }
   }
 
+  private dropNodeOntoNewCollection(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean) {
+    dropzone.pioneerTreeNode.treeRootNodes.splice(this.getAdjustedDropSortIndex(dropzone.pioneerTreeNode.treeRootNodes, nodeToDrop, droppedSortIndex, rootEnd), 0, nodeToDrop);
+  }
+
   /**
    * Search tree and remove target node
    * @param nodes Tree(s) to traverse
@@ -41,7 +53,7 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
    */
   private prune(nodes: IPioneerTreeExpandedNode[], nodeId: string) {
     for (let i = 0; i < nodes.length; i++) {
-      if (nodes[i].pioneerTreeNode.getId() == nodeId) {
+      if (nodes[i].pioneerTreeNode.getId() === nodeId) {
         nodes.splice(i, 1);
         return;
       }
@@ -72,5 +84,9 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
     }
 
     return droppedSortIndex;
+  }
+
+  private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
+
   }
 }

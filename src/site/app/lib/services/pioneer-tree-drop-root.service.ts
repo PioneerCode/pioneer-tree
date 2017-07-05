@@ -27,6 +27,7 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
     this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex, rootEnd);
     this.adjustIndexes(dropzone.pioneerTreeNode.treeRootNodes);
+    this.adjustParentTracking(dropzone, nodeToDrop)
   }
 
   /**
@@ -87,6 +88,7 @@ export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
   }
 
   private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
-
+    nodeToDrop.pioneerTreeNode.parentNode = null;
+    nodeToDrop.pioneerTreeNode.treeRootNodes = dropzone.pioneerTreeNode.treeRootNodes;
   }
 }

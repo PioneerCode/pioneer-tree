@@ -181,23 +181,34 @@ export class AppComponent {
     {
       'name': 'root-1',
       'sort': 0,
-    },
-    {
-      'name': 'root-2',
-      'sort': 1
-    },
-    {
-      'name': 'root-3',
-      'sort': 2
-    },
-    {
-      'name': 'root-4',
-      'sort': 3
-    },
-    {
-      'name': 'root-5',
-      'sort': 4
+      'children': [
+        {
+          'name': 'child-2',
+          'sort': 0
+        },
+        {
+          'name': 'child-3',
+          'sort': 1
+        },
+        {
+          'name': 'child-4',
+          'sort': 2
+        },
+        {
+          'name': 'child-5',
+          'sort': 3
+        },
+        {
+          'name': 'child-6',
+          'sort': 4
+        },
+        {
+          'name': 'child-7',
+          'sort': 5
+        }
+      ]
     }
+
   ] as any;
 
   getBoundDataMinusCircularReference(): any {

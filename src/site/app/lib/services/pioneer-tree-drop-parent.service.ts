@@ -45,7 +45,7 @@ export class PioneerTreeDropParentService implements IPioneerTreeDropParentServi
   }
 
   private adjustIndexes(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
-    nodeToDrop.pioneerTreeNode.sortIndex = dropzone[this.config.childPropertyName].length;
+    nodeToDrop.pioneerTreeNode.sortIndex = dropzone[this.config.childPropertyName].length - 1;
     if (nodeToDrop[this.config.sortPropertyName]) {
       nodeToDrop[this.config.sortPropertyName] = nodeToDrop.pioneerTreeNode.sortIndex;
     }

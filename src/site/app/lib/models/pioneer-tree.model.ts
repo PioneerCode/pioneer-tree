@@ -5,7 +5,7 @@ import { PioneerTreeNode } from './pioneer-tree-node.model';
 import { IPioneerTreeDropParentService, PioneerTreeDropParentService } from '../services/pioneer-tree-drop-parent.service';
 import { PioneerTreeDropChildService, IPioneerTreeDropChildService } from '../services/pioneer-tree-drop-child.service';
 import { IPioneerTreeDropRootService, PioneerTreeDropRootService } from '../services/pioneer-tree-drop-root.service';
-import { IPioneerTreeUidService, PioneerTreeUidService } from "../services/pioneer-tree-uid.service";
+import { IPioneerTreeUidService, PioneerTreeUidService } from '../services/pioneer-tree-uid.service';
 
 export interface IPioneerTree {
   /**

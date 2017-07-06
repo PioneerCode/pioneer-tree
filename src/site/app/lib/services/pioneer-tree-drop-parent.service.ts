@@ -12,9 +12,9 @@ export class PioneerTreeDropParentService implements IPioneerTreeDropParentServi
   ) { }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode): void {
-    const parentCollection = nodeToDrop.pioneerTreeNode.parentNode ?
-      nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName] :
-      nodeToDrop.pioneerTreeNode.treeRootNodes;
+    const parentCollection = nodeToDrop.pioneerTreeNode.treeRootNodes ?
+      nodeToDrop.pioneerTreeNode.treeRootNodes :
+      nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName];
 
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
     this.dropNodeOntoNewCollection(dropzone, nodeToDrop);

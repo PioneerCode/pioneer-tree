@@ -1,5 +1,4 @@
-﻿import { Inject } from '@angular/core';
-import { IPioneerTreeUidService } from '../services/pioneer-tree-uid.service';
+﻿import { IPioneerTreeUidService } from '../services/pioneer-tree-uid.service';
 import { IPioneerTreeRepeater, PioneerTreeRepeater } from './pioneer-tree-repeater.model';
 import { IPioneerTreeExpandedNode } from './pioneer-tree-expanded-node.model';
 import { IPioneerTreeConfiguration } from './pioneer-tree-configuration.model';

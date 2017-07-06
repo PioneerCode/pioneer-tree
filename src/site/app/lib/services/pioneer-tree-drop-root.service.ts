@@ -27,35 +27,8 @@ export class PioneerTreeDropRootService extends PioneerTreeDropService implement
     this.adjustParentTracking(dropzone, nodeToDrop);
   }
 
-  /**
-   * Re-index sort indexes
-   * @param collection Collection to re-index
-   */
-  private adjustCollectionIndexes(collection: IPioneerTreeExpandedNode[]): void {
-    for (let i = 0; i < collection.length; i++) {
-      collection[i].pioneerTreeNode.sortIndex = i;
-      if (collection[i][this.config.sortPropertyName]) {
-        collection[i][this.config.sortPropertyName] = collection[i].pioneerTreeNode.sortIndex;
-      }
-    }
-  }
-
   private dropNodeOntoNewCollection(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean) {
     dropzone.pioneerTreeNode.treeRootNodes.splice(this.getAdjustedDropSortIndex(dropzone.pioneerTreeNode.treeRootNodes, nodeToDrop, droppedSortIndex, rootEnd), 0, nodeToDrop);
-  }
-
-  /**
-   * Search tree and remove target node
-   * @param nodes Tree(s) to traverse
-   * @param nodeId Node id to target
-   */
-  private prune(nodes: IPioneerTreeExpandedNode[], nodeId: string) {
-    for (let i = 0; i < nodes.length; i++) {
-      if (nodes[i].pioneerTreeNode.getId() === nodeId) {
-        nodes.splice(i, 1);
-        return;
-      }
-    }
   }
 
   /**

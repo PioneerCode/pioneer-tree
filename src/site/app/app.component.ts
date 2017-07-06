@@ -183,28 +183,16 @@ export class AppComponent {
       'sort': 0,
       'children': [
         {
-          'name': 'child-2',
+          'name': 'child-0',
           'sort': 0
         },
         {
-          'name': 'child-3',
+          'name': 'child-1',
           'sort': 1
         },
         {
-          'name': 'child-4',
+          'name': 'child-2',
           'sort': 2
-        },
-        {
-          'name': 'child-5',
-          'sort': 3
-        },
-        {
-          'name': 'child-6',
-          'sort': 4
-        },
-        {
-          'name': 'child-7',
-          'sort': 5
         }
       ]
     },

@@ -20,6 +20,7 @@ export class PioneerTreeDropParentService extends PioneerTreeDropService impleme
     this.dropNodeOntoNewCollection(dropzone, nodeToDrop);
     this.adjustIndexes(dropzone, nodeToDrop);
     this.adjustCollectionIndexes(parentCollection);
+    this.adjustMetaTracking(nodeToDrop, parentCollection);
     this.adjustParentTracking(dropzone, nodeToDrop, parentCollection);
   }
 
@@ -39,9 +40,6 @@ export class PioneerTreeDropParentService extends PioneerTreeDropService impleme
   }
 
   private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, parentCollection: IPioneerTreeExpandedNode[]) {
-    nodeToDrop.pioneerTreeNode.previousNode = nodeToDrop.pioneerTreeNode.sortIndex === 0 ? null : parentCollection[nodeToDrop.pioneerTreeNode.sortIndex - 1];
-    nodeToDrop.pioneerTreeNode.nodesInCollection = parentCollection.length;
-
     nodeToDrop.pioneerTreeNode.parentNode = dropzone;
     nodeToDrop.pioneerTreeNode.treeRootNodes = [] as IPioneerTreeExpandedNode[];
   }

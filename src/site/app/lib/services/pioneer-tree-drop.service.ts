@@ -2,20 +2,25 @@ import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.m
 import { IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
 
 export interface IPioneerTreeDropService {
-  getParentCollection(nodeToDrop: IPioneerTreeExpandedNode, ): IPioneerTreeExpandedNode[];
+  getParentCollection(nodeToDrop: IPioneerTreeExpandedNode): IPioneerTreeExpandedNode[];
 
   /**
    * Search tree and remove target node
    * @param nodes Tree(s) to traverse
    * @param nodeId Node id to target
    */
-  prune(nodes: IPioneerTreeExpandedNode[], nodeId: string): void
+  prune(nodes: IPioneerTreeExpandedNode[], nodeId: string): void;
 
   /**
    * Re-index sort indexes
    * @param collection Collection to re-index
    */
   adjustCollectionIndexes(collection: IPioneerTreeExpandedNode[]): void;
+
+  /**
+   *  Re-assign meta after drop
+   */
+  adjustMetaTracking(nodeToDrop: IPioneerTreeExpandedNode, parentCollection: IPioneerTreeExpandedNode[]): void;
 }
 
 export class PioneerTreeDropService implements IPioneerTreeDropService {
@@ -36,6 +41,11 @@ export class PioneerTreeDropService implements IPioneerTreeDropService {
         collection[i][this.config.sortPropertyName] = collection[i].pioneerTreeNode.sortIndex;
       }
     }
+  }
+
+  adjustMetaTracking(nodeToDrop: IPioneerTreeExpandedNode, parentCollection: IPioneerTreeExpandedNode[]): void {
+    nodeToDrop.pioneerTreeNode.previousNode = nodeToDrop.pioneerTreeNode.sortIndex === 0 ? {} as IPioneerTreeExpandedNode : parentCollection[nodeToDrop.pioneerTreeNode.sortIndex - 1];
+    nodeToDrop.pioneerTreeNode.nodesInCollection = parentCollection.length;
   }
 
   prune(nodes: IPioneerTreeExpandedNode[], nodeId: string): void {

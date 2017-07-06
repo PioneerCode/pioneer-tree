@@ -6,13 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var PioneerTreeService = (function () {
-    function PioneerTreeService() {
+var PioneerTreeConfiguration = (function () {
+    function PioneerTreeConfiguration() {
+        this.childPropertyName = 'children';
+        this.sortPropertyName = 'sort';
     }
-    return PioneerTreeService;
+    return PioneerTreeConfiguration;
 }());
-PioneerTreeService = __decorate([
+PioneerTreeConfiguration = __decorate([
     core_1.Injectable()
-], PioneerTreeService);
-exports.PioneerTreeService = PioneerTreeService;
-//# sourceMappingURL=pioneer-tree.service.js.map
+], PioneerTreeConfiguration);
+exports.PioneerTreeConfiguration = PioneerTreeConfiguration;
+//# sourceMappingURL=pioneer-tree-configuration.model.js.map

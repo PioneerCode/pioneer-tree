@@ -1,10 +1,11 @@
 "use strict";
 var pioneer_tree_repeater_model_1 = require("./pioneer-tree-repeater.model");
 var PioneerTreeNode = (function () {
-    function PioneerTreeNode(pioneerTreeService) {
-        this.pioneerTreeService = pioneerTreeService;
-        this.generateUid();
-        this.pioneerTreeRepeater = new pioneer_tree_repeater_model_1.PioneerTreeRepeater();
+    function PioneerTreeNode(uidService) {
+        this.uidService = uidService;
+        this.isCurrentSelectedNode = false;
+        this.uid = this.uidService.getUid();
+        this.pioneerTreeRepeater = new pioneer_tree_repeater_model_1.PioneerTreeRepeater(this.uidService);
     }
     PioneerTreeNode.prototype.getId = function () {
         return this.uid;
@@ -17,16 +18,37 @@ var PioneerTreeNode = (function () {
         return classes;
     };
     PioneerTreeNode.prototype.isSelected = function () {
-        return this.pioneerTreeService.currentSelectedNodeId === this.getId();
+        if (!this.isCurrentSelectedNode) {
+            return false;
+        }
+        return this.getId() === this.getId();
     };
     PioneerTreeNode.prototype.isCollapsed = function () {
         return this.pioneerTreeRepeater.collapsed;
     };
-    PioneerTreeNode.prototype.generateUid = function () {
-        this.uid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
+    PioneerTreeNode.prototype.showDropzonePosition = function () {
+        if (this.isCollapsed()) {
+            return false;
+        }
+        ;
+        if (!this.currentNode[this.config.childPropertyName]) {
+            return false;
+        }
+        ;
+        return true;
+    };
+    PioneerTreeNode.prototype.showDropzoneEnd = function () {
+        if (this.currentNode.pioneerTreeNode.parentNode) {
+            if (this.currentNode.pioneerTreeNode.sortIndex === this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName]) {
+                return true;
+            }
+            ;
+        }
+        if (this.currentNode.pioneerTreeNode.sortIndex === this.nodesInCollection - 1) {
+            return true;
+        }
+        ;
+        return false;
     };
     return PioneerTreeNode;
 }());

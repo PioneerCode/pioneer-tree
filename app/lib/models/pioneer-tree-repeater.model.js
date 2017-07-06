@@ -1,8 +1,9 @@
 "use strict";
 var PioneerTreeRepeater = (function () {
-    function PioneerTreeRepeater() {
+    function PioneerTreeRepeater(uidService) {
+        this.uidService = uidService;
         this.collapsed = false;
-        this.generateUid();
+        this.uid = this.uidService.getUid();
     }
     PioneerTreeRepeater.prototype.getStyles = function () {
         return {
@@ -18,12 +19,6 @@ var PioneerTreeRepeater = (function () {
     };
     PioneerTreeRepeater.prototype.getId = function () {
         return this.uid;
-    };
-    PioneerTreeRepeater.prototype.generateUid = function () {
-        this.uid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
     };
     return PioneerTreeRepeater;
 }());

@@ -9,13 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var pioneer_tree_service_1 = require("../../services/pioneer-tree.service");
+var pioneer_tree_model_1 = require("../../models/pioneer-tree.model");
 var PioneerTreeNodeComponent = (function () {
-    function PioneerTreeNodeComponent(treeService) {
-        this.treeService = treeService;
+    function PioneerTreeNodeComponent(pioneerTree) {
+        this.pioneerTree = pioneerTree;
     }
     PioneerTreeNodeComponent.prototype.onClicked = function () {
-        this.treeService.currentSelectedNodeId = this.node.pioneerTreeNode.getId();
+        // Clear previous selected node tracking at that node level
+        if (this.pioneerTree.currentSelectedNode) {
+            this.pioneerTree.currentSelectedNode.pioneerTreeNode.isCurrentSelectedNode = false;
+        }
+        // Set this node to current
+        this.node.pioneerTreeNode.isCurrentSelectedNode = true;
+        this.pioneerTree.currentSelectedNode = this.node;
     };
     return PioneerTreeNodeComponent;
 }());
@@ -34,9 +40,9 @@ __decorate([
 PioneerTreeNodeComponent = __decorate([
     core_1.Component({
         selector: '[pioneer-tree-node],[pt-node]',
-        template: "\n<div class=\"pioneer-tree-node\">\n    <div class=\"pioneer-tree-node-content\"\n        (click)=\"onClicked()\"\n        [ngClass]=\"this.node.pioneerTreeNode.getContentClasses()\">\n        <ng-container [ngTemplateOutlet]=\"nodeTemplate\" [ngOutletContext]=\"{ $implicit: node }\">\n        </ng-container> \n    </div>\n    <div class=\"pioneer-tree-repeater\" [ngClass]=\"this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()\">\n        <ng-container [ngTemplateOutlet]=\"repeaterTemplate\" [ngOutletContext]=\"{ $implicit: node }\">\n        </ng-container>\n    </div>\n</div>\n    "
+        template: "\n<div class=\"pioneer-tree-dropzone pioneer-tree-dropzone-root\"\n    pioneer-tree-dropzone\n    [dropType]=\"node.pioneerTreeNode.treeRootNodes ? 'root' : 'child'\"\n    [node]=\"node\">\n</div>\n<div class=\"pioneer-tree-node\">\n    <div class=\"pioneer-tree-node-content\"\n        pioneer-tree-dropzone\n        (click)=\"onClicked()\"\n        [node]=\"node\"\n        [dropType]=\"'parent'\"\n        [ngClass]=\"node.pioneerTreeNode.getContentClasses()\">\n        <ng-container [ngTemplateOutlet]=\"nodeTemplate\" [ngOutletContext]=\"{ $implicit: node }\">\n        </ng-container>\n        : {{node.pioneerTreeNode.sortIndex}}\n    </div>\n    <div class=\"pioneer-tree-repeater\"\n        [ngClass]=\"this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()\">\n        <ng-container [ngTemplateOutlet]=\"repeaterTemplate\"\n          [ngOutletContext]=\"{ $implicit: node }\">\n        </ng-container>\n    </div>\n</div>\n<div class=\"pioneer-tree-dropzone pioneer-tree-dropzone-end\"\n    *ngIf=\"node.pioneerTreeNode.showDropzoneEnd()\"\n    pioneer-tree-dropzone\n    [dropType]=\"node.pioneerTreeNode.treeRootNodes ? 'root-end' : 'child-end'\"\n    [node]=\"node\">\n</div>\n    "
     }),
-    __metadata("design:paramtypes", [pioneer_tree_service_1.PioneerTreeService])
+    __metadata("design:paramtypes", [pioneer_tree_model_1.PioneerTree])
 ], PioneerTreeNodeComponent);
 exports.PioneerTreeNodeComponent = PioneerTreeNodeComponent;
 //# sourceMappingURL=pioneer-tree-node.component.js.map

@@ -9,51 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var pioneer_tree_node_component_1 = require("../pioneer-tree-node/pioneer-tree-node.component");
-var pioneer_tree_collapse_component_1 = require("../pioneer-tree-collapse/pioneer-tree-collapse.component");
-var pioneer_tree_node_model_1 = require("../../models/pioneer-tree-node.model");
-var pioneer_tree_service_1 = require("../../services/pioneer-tree.service");
+var pioneer_tree_model_1 = require("../../models/pioneer-tree.model");
 var PioneerTreeComponent = (function () {
-    function PioneerTreeComponent(pioneerTreeService, elementRef) {
-        this.pioneerTreeService = pioneerTreeService;
+    function PioneerTreeComponent(pioneerTree, elementRef, renderer) {
+        this.pioneerTree = pioneerTree;
         this.elementRef = elementRef;
+        this.renderer = renderer;
     }
     PioneerTreeComponent.prototype.ngAfterContentInit = function () {
-        console.log(this.elementRef);
-        this.setClasses();
+        this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree');
+        this.renderer.addClass(this.elementRef.nativeElement, 'pioneer-tree-root');
     };
     /**
-     * TODO: Keep an eye on this to understand the in-memory values
-     *  coming from this.nodes and this.pioneerTreeService.nodes
-     *
      * TODO: Keep an eye on this to understand the update life cycle.
      *  If argument model is updated, do we loose all tracking because we are
      *  resetting nodes from the map
      * @param changes
      */
     PioneerTreeComponent.prototype.ngOnChanges = function (changes) {
-        var _this = this;
-        if (!this.nodes)
+        if (!this.nodes) {
             return;
-        this.nodes = this.nodes.map(function (x) {
-            x.pioneerTreeNode = new pioneer_tree_node_model_1.PioneerTreeNode(_this.pioneerTreeService);
-            return x;
-        });
-    };
-    /**
-     * Identify root & set pioneer-tree-root
-     * Set pioneer-tree for all
-     */
-    PioneerTreeComponent.prototype.setClasses = function () {
-        var isRoot = true;
-        for (var i = 0; i < this.elementRef.nativeElement.parentNode.classList.length; i++) {
-            var parentClass = this.elementRef.nativeElement.parentNode.classList[i];
-            if (parentClass === 'pioneer-tree-repeater' || parentClass === 'pt-repeater' || parentClass === 'pt' || parentClass === 'pioneer-tree') {
-                this.elementRef.nativeElement.className += ' pioneer-tree';
-                return;
-            }
         }
-        this.elementRef.nativeElement.className += ' pioneer-tree-root pioneer-tree';
+        this.pioneerTree.buildTree(this.nodes, this.configuration);
     };
     return PioneerTreeComponent;
 }());
@@ -61,16 +38,18 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Array)
 ], PioneerTreeComponent.prototype, "nodes", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], PioneerTreeComponent.prototype, "configuration", void 0);
 PioneerTreeComponent = __decorate([
     core_1.Component({
-        selector: '[pioneer-tree],[pioneer-tree-repeater],[pt],[pt-repeater]',
-        template: "\n  <ng-content></ng-content>\n  ",
-        entryComponents: [
-            pioneer_tree_node_component_1.PioneerTreeNodeComponent,
-            pioneer_tree_collapse_component_1.PioneerTreeCollapseComponent
-        ]
+        selector: '[pioneer-tree],[pt]',
+        template: "\n  <ng-content></ng-content>\n  "
     }),
-    __metadata("design:paramtypes", [pioneer_tree_service_1.PioneerTreeService, core_1.ElementRef])
+    __metadata("design:paramtypes", [pioneer_tree_model_1.PioneerTree,
+        core_1.ElementRef,
+        core_1.Renderer2])
 ], PioneerTreeComponent);
 exports.PioneerTreeComponent = PioneerTreeComponent;
 //# sourceMappingURL=pioneer-tree.component.js.map

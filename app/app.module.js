@@ -8,10 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_component_1 = require("./app.component");
-var pioneer_tree_component_1 = require("./lib/components/pioneer-tree/pioneer-tree.component");
-var pioneer_tree_node_component_1 = require("./lib/components/pioneer-tree-node/pioneer-tree-node.component");
-var pioneer_tree_collapse_component_1 = require("./lib/components/pioneer-tree-collapse/pioneer-tree-collapse.component");
-var pioneer_tree_service_1 = require("./lib/services/pioneer-tree.service");
+var pioneer_tree_module_1 = require("./lib/pioneer-tree.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -19,15 +16,14 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule],
-        declarations: [
-            app_component_1.AppComponent,
-            pioneer_tree_component_1.PioneerTreeComponent,
-            pioneer_tree_node_component_1.PioneerTreeNodeComponent,
-            pioneer_tree_collapse_component_1.PioneerTreeCollapseComponent
+        imports: [
+            platform_browser_1.BrowserModule,
+            pioneer_tree_module_1.PioneerTreeModule
         ],
-        bootstrap: [app_component_1.AppComponent],
-        providers: [pioneer_tree_service_1.PioneerTreeService]
+        declarations: [
+            app_component_1.AppComponent
+        ],
+        bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
 exports.AppModule = AppModule;

@@ -14,12 +14,12 @@ Head over to the <a href="https://pioneercode.github.io/pioneer-tree" target="_b
 - Collapsible nodes
 - Selected node tracking
 - Opt-in public state tracking 
+- Drag & Drop
+- Sort tracking
 
 ### Coming Soon !
-- Drag & Drop
 - Event subscription
 - Filtering
-- Sort tracking
 
 ## Docs
 

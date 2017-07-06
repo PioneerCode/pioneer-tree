@@ -11,7 +11,7 @@ export interface IPioneerTree {
   /**
    * Track current selected node
    */
-  currentDragNode: IPioneerTreeExpandedNode;
+  currentDragNode?: IPioneerTreeExpandedNode;
 
   /**
    * Track current node being dragged
@@ -43,7 +43,7 @@ export interface IPioneerTree {
 export class PioneerTree implements IPioneerTree {
   currentNodes: IPioneerTreeExpandedNode[];
   configuration: PioneerTreeConfiguration;
-  currentDragNode: IPioneerTreeExpandedNode;
+  currentDragNode?: IPioneerTreeExpandedNode;
   currentSelectedNode: IPioneerTreeExpandedNode;
 
   /**
@@ -90,6 +90,9 @@ export class PioneerTree implements IPioneerTree {
   }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, droppedSortIndex: number): void {
+    if (!this.currentDragNode) {
+      return;
+    }
     switch (dropType) {
       case 'root':
         this.dropRootService.dropNode(dropzone, this.currentDragNode, droppedSortIndex);
@@ -110,7 +113,7 @@ export class PioneerTree implements IPioneerTree {
 
     // remove current drag node tracking
     // TODO: Do we need to remove this
-    this.currentDragNode = null;
+    this.currentDragNode = undefined;
   }
 
   /**

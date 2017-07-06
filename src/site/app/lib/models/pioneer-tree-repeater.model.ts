@@ -66,10 +66,13 @@ export class PioneerTreeRepeater implements IPioneerTreeRepeater {
   }
 
   private generateUid(): void {
-    this.uid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-      const r = Math.random() * 16 | 0;
-      const v = c === 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
+    this.uid = this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +
+      this.s4() + '-' + this.s4() + this.s4() + this.s4();
+  }
+
+  private s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
   }
 }

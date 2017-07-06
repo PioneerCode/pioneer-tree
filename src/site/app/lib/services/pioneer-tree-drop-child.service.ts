@@ -96,6 +96,6 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
       return;
     }
     nodeToDrop.pioneerTreeNode.parentNode = dropzone.pioneerTreeNode.parentNode;
-    nodeToDrop.pioneerTreeNode.treeRootNodes = [] as IPioneerTreeExpandedNode[];
+    nodeToDrop.pioneerTreeNode.treeRootNodes = null;
   }
 }

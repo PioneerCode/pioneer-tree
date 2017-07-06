@@ -63,6 +63,6 @@ export class PioneerTreeDropParentService implements IPioneerTreeDropParentServi
 
   private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
     nodeToDrop.pioneerTreeNode.parentNode = dropzone;
-    nodeToDrop.pioneerTreeNode.treeRootNodes = null;
+    nodeToDrop.pioneerTreeNode.treeRootNodes = [] as IPioneerTreeExpandedNode[];
   }
 }

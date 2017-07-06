@@ -11,7 +11,7 @@ export interface IPioneerTree {
   /**
    * Track current selected node
    */
-  currentDragNode?: IPioneerTreeExpandedNode;
+  currentDragNode: IPioneerTreeExpandedNode | undefined;
 
   /**
    * Track current node being dragged
@@ -43,7 +43,7 @@ export interface IPioneerTree {
 export class PioneerTree implements IPioneerTree {
   currentNodes: IPioneerTreeExpandedNode[];
   configuration: PioneerTreeConfiguration;
-  currentDragNode?: IPioneerTreeExpandedNode;
+  currentDragNode: IPioneerTreeExpandedNode | undefined;
   currentSelectedNode: IPioneerTreeExpandedNode;
 
   /**

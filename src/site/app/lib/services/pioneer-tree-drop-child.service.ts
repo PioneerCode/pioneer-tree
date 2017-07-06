@@ -91,11 +91,11 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
 
   private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
     if (dropzone.pioneerTreeNode.treeRootNodes) {
-      nodeToDrop.pioneerTreeNode.parentNode = null;
+      nodeToDrop.pioneerTreeNode.parentNode = {} as IPioneerTreeExpandedNode;
       nodeToDrop.pioneerTreeNode.treeRootNodes = dropzone.pioneerTreeNode.treeRootNodes;
       return;
     }
     nodeToDrop.pioneerTreeNode.parentNode = dropzone.pioneerTreeNode.parentNode;
-    nodeToDrop.pioneerTreeNode.treeRootNodes = null;
+    nodeToDrop.pioneerTreeNode.treeRootNodes = [] as IPioneerTreeExpandedNode[];
   }
 }

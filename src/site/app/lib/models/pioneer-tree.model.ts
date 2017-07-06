@@ -88,12 +88,17 @@ export class PioneerTree implements IPioneerTree {
     }
 
     // Don't drop on self
-    if(dropNode.pioneerTreeNode.getId() === this.currentDragNode.pioneerTreeNode.getId()) {
+    if (dropNode.pioneerTreeNode.getId() === this.currentDragNode.pioneerTreeNode.getId()) {
       return false;
     }
 
+    // Always allow root drops
+    if (dropNode.pioneerTreeNode.treeRootNodes && dropNode.pioneerTreeNode.treeRootNodes.length > 0) {
+      return true;
+    }
+
     // Don't allow parent to drop in child collection(s)
-    if(dropNode.pioneerTreeNode.parentNode && dropNode.pioneerTreeNode.parentNode.pioneerTreeNode.getId() === this.currentDragNode.pioneerTreeNode.getId()) {
+    if (dropNode.pioneerTreeNode.parentNode.pioneerTreeNode.getId() === this.currentDragNode.pioneerTreeNode.getId()) {
       return false;
     }
 

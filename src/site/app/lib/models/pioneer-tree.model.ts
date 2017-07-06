@@ -35,7 +35,7 @@ export interface IPioneerTree {
   /**
    * Drop currentDragNode event
    */
-  dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string): void;
+  dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, droppedSortIndex: number): void;
 }
 
 @Injectable()
@@ -87,7 +87,7 @@ export class PioneerTree implements IPioneerTree {
     return nodeId !== this.currentDragNode.pioneerTreeNode.getId();
   }
 
-  dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, droppedSortIndex?: number): void {
+  dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, droppedSortIndex: number): void {
     switch (dropType) {
       case 'root':
         this.dropRootService.dropNode(dropzone, this.currentDragNode, droppedSortIndex);
@@ -107,7 +107,8 @@ export class PioneerTree implements IPioneerTree {
     }
 
     // remove current drag node tracking
-    this.currentDragNode = null;
+    // TODO: Do we need to remove this
+    // this.currentDragNode = {} as IPioneerTreeExpandedNode;
   }
 
   /**

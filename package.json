@@ -1,6 +1,6 @@
 {
   "name": "@pioneer-code/pioneer-tree",
-  "version": "1.0.13",
+  "version": "1.1.0",
   "description": "Angular tree component.",
   "scripts": {
     "roll": "node_modules/.bin/rollup -c",

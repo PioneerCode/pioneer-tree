@@ -21,12 +21,6 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
         </ng-container>
         : {{node.pioneerTreeNode.sortIndex}}
     </div>
-    <!--<div class="pioneer-tree-dropzone pioneer-tree-dropzone-position"
-        *ngIf="node.pioneerTreeNode.showDropzonePosition()"
-        pioneer-tree-dropzone
-        [dropType]="'position'"
-        [node]="node">
-    </div>-->
     <div class="pioneer-tree-repeater"
         [ngClass]="this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()">
         <ng-container [ngTemplateOutlet]="repeaterTemplate"

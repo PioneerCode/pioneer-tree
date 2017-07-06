@@ -11,7 +11,7 @@ import { PioneerTreeDropParentService } from './services/pioneer-tree-drop-paren
 import { PioneerTreeConfiguration } from './models/pioneer-tree-configuration.model';
 import { PioneerTreeDropChildService } from './services/pioneer-tree-drop-child.service';
 import { PioneerTreeDropRootService } from './services/pioneer-tree-drop-root.service';
-
+import { PioneerTreeUidService } from './services/pioneer-tree-uid.service';
 export {
 };
 
@@ -40,6 +40,7 @@ export {
     PioneerTreeDropRootService,
     PioneerTreeDropParentService,
     PioneerTreeDropChildService,
+    PioneerTreeUidService,
     PioneerTreeConfiguration
   ]
 })

@@ -1,4 +1,6 @@
-﻿/**
+﻿import { IPioneerTreeUidService } from '../services/pioneer-tree-uid.service';
+
+/**
  * Represents a repeated nested node element
  * Example :
  * <ul>
@@ -41,8 +43,8 @@ export class PioneerTreeRepeater implements IPioneerTreeRepeater {
   collapsed = false;
   private uid: string;
 
-  constructor() {
-    this.generateUid();
+  constructor(private uidService: IPioneerTreeUidService) {
+    this.uid = this.uidService.getUid();
   }
 
   getStyles(): IPioneerTreeRepeaterStyles {
@@ -63,16 +65,5 @@ export class PioneerTreeRepeater implements IPioneerTreeRepeater {
 
   getId(): string {
     return this.uid;
-  }
-
-  private generateUid(): void {
-    this.uid = this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +
-      this.s4() + '-' + this.s4() + this.s4() + this.s4();
-  }
-
-  private s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
   }
 }

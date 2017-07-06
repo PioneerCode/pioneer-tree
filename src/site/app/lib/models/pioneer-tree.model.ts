@@ -5,6 +5,7 @@ import { PioneerTreeNode } from './pioneer-tree-node.model';
 import { IPioneerTreeDropParentService, PioneerTreeDropParentService } from '../services/pioneer-tree-drop-parent.service';
 import { PioneerTreeDropChildService, IPioneerTreeDropChildService } from '../services/pioneer-tree-drop-child.service';
 import { IPioneerTreeDropRootService, PioneerTreeDropRootService } from '../services/pioneer-tree-drop-root.service';
+import { IPioneerTreeUidService, PioneerTreeUidService } from "../services/pioneer-tree-uid.service";
 
 export interface IPioneerTree {
   /**
@@ -55,7 +56,8 @@ export class PioneerTree implements IPioneerTree {
     @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration,
     @Inject(PioneerTreeDropRootService) private dropRootService: IPioneerTreeDropRootService,
     @Inject(PioneerTreeDropParentService) private dropParentService: IPioneerTreeDropParentService,
-    @Inject(PioneerTreeDropChildService) private dropChildService: IPioneerTreeDropChildService
+    @Inject(PioneerTreeDropChildService) private dropChildService: IPioneerTreeDropChildService,
+    @Inject(PioneerTreeUidService) private uidService: IPioneerTreeUidService
   ) { }
 
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
@@ -66,7 +68,7 @@ export class PioneerTree implements IPioneerTree {
     }
 
     for (let i = 0; i < this.currentNodes.length; i++) {
-      this.currentNodes[i].pioneerTreeNode = new PioneerTreeNode();
+      this.currentNodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService);
       this.currentNodes[i].pioneerTreeNode.config = this.configuration;
       this.currentNodes[i].pioneerTreeNode.currentNode = this.currentNodes[i];
       this.currentNodes[i].pioneerTreeNode.nodesInCollection = this.currentNodes.length;
@@ -125,7 +127,7 @@ export class PioneerTree implements IPioneerTree {
    */
   private bindNodesToInternalTracking(nodes: IPioneerTreeExpandedNode[], parent: IPioneerTreeExpandedNode): void {
     for (let i = 0; i < nodes.length; i++) {
-      nodes[i].pioneerTreeNode = new PioneerTreeNode();
+      nodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService);
       nodes[i].pioneerTreeNode.config = this.configuration;
       nodes[i].pioneerTreeNode.parentNode = parent;
       nodes[i].pioneerTreeNode.previousNode = nodes[i - 1];

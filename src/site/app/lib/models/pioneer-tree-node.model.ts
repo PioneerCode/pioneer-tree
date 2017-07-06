@@ -1,4 +1,6 @@
-﻿import { IPioneerTreeRepeater, PioneerTreeRepeater } from './pioneer-tree-repeater.model';
+﻿import { Inject } from '@angular/core';
+import { IPioneerTreeUidService } from '../services/pioneer-tree-uid.service';
+import { IPioneerTreeRepeater, PioneerTreeRepeater } from './pioneer-tree-repeater.model';
 import { IPioneerTreeExpandedNode } from './pioneer-tree-expanded-node.model';
 import { IPioneerTreeConfiguration } from './pioneer-tree-configuration.model';
 
@@ -101,9 +103,10 @@ export class PioneerTreeNode implements IPioneerTreeNode {
 
   private uid: string;
 
-  constructor() {
-    this.generateUid();
-    this.pioneerTreeRepeater = new PioneerTreeRepeater();
+
+  constructor(private uidService: IPioneerTreeUidService) {
+    this.uid = this.uidService.getUid();
+    this.pioneerTreeRepeater = new PioneerTreeRepeater(this.uidService);
   }
 
   getId(): string {
@@ -156,16 +159,5 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     };
 
     return false;
-  }
-
-  private generateUid(): void {
-    this.uid = this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +
-      this.s4() + '-' + this.s4() + this.s4() + this.s4();
-  }
-
-  private s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
   }
 }

@@ -21,7 +21,7 @@ export class PioneerTreeDropChildService extends PioneerTreeDropService implemen
     this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex, childEnd);
     this.adjustCollectionIndexes(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName]);
     this.adjustCollectionIndexes(parentCollection);
-    this.adjustParentTracking(dropzone, nodeToDrop);
+    this.adjustParentTracking(dropzone, nodeToDrop, parentCollection);
   }
 
   private dropNodeOntoNewCollection(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, childEnd: boolean) {
@@ -48,7 +48,10 @@ export class PioneerTreeDropChildService extends PioneerTreeDropService implemen
     return droppedSortIndex;
   }
 
-  private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
+  private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, parentCollection: IPioneerTreeExpandedNode[]) {
+    nodeToDrop.pioneerTreeNode.previousNode = nodeToDrop.pioneerTreeNode.sortIndex === 0 ? null : parentCollection[nodeToDrop.pioneerTreeNode.sortIndex - 1];
+    nodeToDrop.pioneerTreeNode.nodesInCollection = parentCollection.length;
+
     if (dropzone.pioneerTreeNode.treeRootNodes) {
       nodeToDrop.pioneerTreeNode.parentNode = {} as IPioneerTreeExpandedNode;
       nodeToDrop.pioneerTreeNode.treeRootNodes = dropzone.pioneerTreeNode.treeRootNodes;

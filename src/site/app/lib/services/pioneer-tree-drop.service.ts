@@ -24,7 +24,7 @@ export class PioneerTreeDropService implements IPioneerTreeDropService {
   ) { }
 
   getParentCollection(nodeToDrop: IPioneerTreeExpandedNode): IPioneerTreeExpandedNode[] {
-    return nodeToDrop.pioneerTreeNode.treeRootNodes ?
+    return nodeToDrop.pioneerTreeNode.treeRootNodes && nodeToDrop.pioneerTreeNode.treeRootNodes.length > 0 ?
       nodeToDrop.pioneerTreeNode.treeRootNodes :
       nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName];
   }

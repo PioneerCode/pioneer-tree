@@ -3,7 +3,7 @@ import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.m
 import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
 import { IPioneerTreeDropService, PioneerTreeDropService } from './pioneer-tree-drop.service';
 
-export interface IPioneerTreeDropParentService extends IPioneerTreeDropService  {
+export interface IPioneerTreeDropParentService extends IPioneerTreeDropService {
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode): void;
 }
 
@@ -20,7 +20,7 @@ export class PioneerTreeDropParentService extends PioneerTreeDropService impleme
     this.dropNodeOntoNewCollection(dropzone, nodeToDrop);
     this.adjustIndexes(dropzone, nodeToDrop);
     this.adjustCollectionIndexes(parentCollection);
-    this.adjustParentTracking(dropzone, nodeToDrop);
+    this.adjustParentTracking(dropzone, nodeToDrop, parentCollection);
   }
 
   private dropNodeOntoNewCollection(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
@@ -38,7 +38,10 @@ export class PioneerTreeDropParentService extends PioneerTreeDropService impleme
     }
   }
 
-  private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode) {
+  private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, parentCollection: IPioneerTreeExpandedNode[]) {
+    nodeToDrop.pioneerTreeNode.previousNode = nodeToDrop.pioneerTreeNode.sortIndex === 0 ? null : parentCollection[nodeToDrop.pioneerTreeNode.sortIndex - 1];
+    nodeToDrop.pioneerTreeNode.nodesInCollection = parentCollection.length;
+
     nodeToDrop.pioneerTreeNode.parentNode = dropzone;
     nodeToDrop.pioneerTreeNode.treeRootNodes = [] as IPioneerTreeExpandedNode[];
   }

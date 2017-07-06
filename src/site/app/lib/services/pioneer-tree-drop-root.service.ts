@@ -1,6 +1,7 @@
 ﻿import { Inject } from '@angular/core';
 import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.model';
 import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
+import { IPioneerTreeDropService, PioneerTreeDropService } from './pioneer-tree-drop.service';
 
 export interface IPioneerTreeDropRootService {
   /**
@@ -12,14 +13,12 @@ export interface IPioneerTreeDropRootService {
 export class PioneerTreeDropRootService implements IPioneerTreeDropRootService {
 
   constructor(
+    @Inject(PioneerTreeDropService) private dropService: IPioneerTreeDropService,
     @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration
   ) { }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean): void {
-    const parentCollection = nodeToDrop.pioneerTreeNode.treeRootNodes ?
-      nodeToDrop.pioneerTreeNode.treeRootNodes :
-      nodeToDrop.pioneerTreeNode.parentNode[this.config.childPropertyName];
-
+    const parentCollection = this.dropService.getParentCollection(nodeToDrop);
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
     this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex, rootEnd);
     this.adjustCollectionIndexes(dropzone.pioneerTreeNode.treeRootNodes);

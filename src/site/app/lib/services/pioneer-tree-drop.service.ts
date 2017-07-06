@@ -1,18 +1,17 @@
-import { Inject } from '@angular/core';
 import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.model';
-import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
+import { IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
 
 export interface IPioneerTreeDropService {
   getParentCollection(nodeToDrop: IPioneerTreeExpandedNode, ): IPioneerTreeExpandedNode[];
 
-      /**
+  /**
    * Search tree and remove target node
    * @param nodes Tree(s) to traverse
    * @param nodeId Node id to target
    */
- prune(nodes: IPioneerTreeExpandedNode[], nodeId: string): void
+  prune(nodes: IPioneerTreeExpandedNode[], nodeId: string): void
 
-    /**
+  /**
    * Re-index sort indexes
    * @param collection Collection to re-index
    */

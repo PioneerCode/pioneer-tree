@@ -4,14 +4,6 @@ import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from '../models/p
 import { IPioneerTreeDropService, PioneerTreeDropService } from './pioneer-tree-drop.service';
 
 export interface IPioneerTreeDropChildService extends IPioneerTreeDropService {
-  /**
-   * Sort a node dropped on a...
-   *  1) Sort dropzone in same parent node
-   *  2) Sort dropzone in new parent node
-   * @param dropzone Node being dropped on
-   * @param nodeToDrop Node to drop
-   * @param droppedSortIndex Sort index of the node being dropped on
-   */
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, childEnd?: boolean): void;
 }
 
@@ -36,12 +28,6 @@ export class PioneerTreeDropChildService extends PioneerTreeDropService implemen
     dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(this.getAdjustedDropSortIndex(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName], nodeToDrop, droppedSortIndex, childEnd), 0, nodeToDrop);
   }
 
-  /**
-   *
-   * @param collection
-   * @param nodeToDrop
-   * @param droppedSortIndex
-   */
   private getAdjustedDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, childEnd: boolean) {
     // dropped in root-end of last index
     if (droppedSortIndex === collection.length && childEnd) {

@@ -232,8 +232,12 @@ export class AppComponent {
   }
 
   getRawData(): any {
+    let obj = JSON.parse(JSON.stringify(JSON.parse(this.getBoundDataMinusCircularReference())));
     const cache = [] as any;
-    return JSON.stringify(JSON.parse(this.getBoundDataMinusCircularReference()), (key, value) => {
+    return JSON.stringify(obj, (key, value) => {
+      if (value === null) {
+        return;
+      }
       delete value['pioneerTreeNode'];
       if (typeof value === 'object' && value !== null) {
         if (cache.indexOf(value) !== -1) {

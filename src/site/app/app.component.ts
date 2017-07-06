@@ -142,7 +142,8 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
 &lt;ng-template #nodeTemplate let-node&gt;
   &lt;span pioneer-tree-collapse [node]="node"&gt;
     &lt;i class="fa"
-    [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'"&gt;&lt;/i&gt;
+      [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'"&gt;
+    &lt;/i&gt;
   &lt;/span&gt;
   &lt;span pioneer-tree-handle [node]="node"&gt;
     {{node.name}}
@@ -151,17 +152,17 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
 &lt;ng-template #repeaterTemplate let-node&gt;
   &lt;ul pioneer-tree-repeater [nodes]="node.children" [configuration]="configuration"&gt;
     &lt;li pioneer-tree-node *ngFor="let node of node.children"
-    [nodeTemplate]="nodeTemplate"
-    [repeaterTemplate]="repeaterTemplate"
-    [node]="node"&gt;
+      [nodeTemplate]="nodeTemplate"
+      [repeaterTemplate]="repeaterTemplate"
+      [node]="node"&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
 &lt;/ng-template&gt;
 &lt;ul pioneer-tree [nodes]="nodes" [configuration]="configuration"&gt;
   &lt;li pioneer-tree-node *ngFor="let node of nodes"
-  [nodeTemplate]="nodeTemplate"
-  [repeaterTemplate]="repeaterTemplate"
-  [node]="node"&gt;
+    [nodeTemplate]="nodeTemplate"
+    [repeaterTemplate]="repeaterTemplate"
+    [node]="node"&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
         </pre>

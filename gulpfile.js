@@ -63,7 +63,7 @@ gulp.task('default', gulp.series(
 ));
 
 
-/******************** 
+/********************
   gh-pages
 ********************/
 
@@ -92,7 +92,8 @@ function moveRootGhPages() {
 function moveStylesGhPages() {
   return gulp.src([
     './src/site/styles.css',
-    './src/site/pioneer-tree.css'
+    './src/site/pioneer-tree.css',
+    './src/site/favicon.ico'
   ])
     .pipe(gulp.dest('./.github/gh-pages/pioneer-tree'));
 }
@@ -107,7 +108,8 @@ function moveGhPages() {
     '!./src/site/systemjs.config.js',
     '!./src/site/**/*.ts',
     '!./src/site/**/*spec.js',
-    '!./src/site/*.css'
+    '!./src/site/*.css',
+    '!./src/site/images'
   ])
     .pipe(gulp.dest('./.github/gh-pages'));
 }

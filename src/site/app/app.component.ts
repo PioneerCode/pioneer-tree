@@ -54,12 +54,18 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
             <li>
               UMD module with SystemJS support
             </li>
+            <li>
+              Collapsible nodes
+            </li>
           </ul>
         </div>
         <div class="large-6 columns">
           <ul>
             <li>
-              Collapsible nodes
+              Drag & Drop
+            </li>
+            <li>
+              Sort tracking
             </li>
             <li>
               Selected node tracking
@@ -75,16 +81,10 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
       <h4>Coming Soon!</h4>
       <ul>
         <li>
-          Drag & Drop
-        </li>
-        <li>
           Filtering
         </li>
         <li>
           Add & Delete
-        </li>
-        <li>
-          Sort tracking
         </li>
       </ul>
     </div>
@@ -105,10 +105,10 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
         </li>
       </ul>
       <div *ngIf="dataView === 'raw'">
-        <!--<pre>{{getRawData()}}</pre>-->
+        <pre>{{getRawData()}}</pre>
       </div>
       <div *ngIf="dataView === 'bound'">
-        <!--<pre>{{getBoundDataMinusCircularReference()}}</pre>-->
+        <pre>{{getBoundDataMinusCircularReference()}}</pre>
       </div>
     </div>
     <div class="large-4 columns">
@@ -207,8 +207,15 @@ export class AppComponent {
           'sort': 5
         }
       ]
+    },
+    {
+      'name': 'root-2',
+      'sort': 1
+    },
+    {
+      'name': 'root-3',
+      'sort': 2
     }
-
   ] as any;
 
   getBoundDataMinusCircularReference(): any {

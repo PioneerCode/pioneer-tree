@@ -31,7 +31,7 @@ export interface IPioneerTree {
   /**
    * Check to see if draggable node is droppable on drag-over event
    */
-  isNodeDroppable(nodeId: string): boolean;
+  isNodeDroppable(dropNode: IPioneerTreeExpandedNode): boolean;
 
   /**
    * Drop currentDragNode event
@@ -81,12 +81,23 @@ export class PioneerTree implements IPioneerTree {
     }
   }
 
-  isNodeDroppable(nodeId: string): boolean {
+  isNodeDroppable(dropNode: IPioneerTreeExpandedNode): boolean {
+    // Guard
     if (!this.currentDragNode) {
       return false;
     }
 
-    return nodeId !== this.currentDragNode.pioneerTreeNode.getId();
+    // Don't drop on self
+    if(dropNode.pioneerTreeNode.getId() === this.currentDragNode.pioneerTreeNode.getId()) {
+      return false;
+    }
+
+    // Don't allow parent to drop in child collection(s)
+    if(dropNode.pioneerTreeNode.parentNode && dropNode.pioneerTreeNode.parentNode.pioneerTreeNode.getId() === this.currentDragNode.pioneerTreeNode.getId()) {
+      return false;
+    }
+
+    return true;
   }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, droppedSortIndex: number): void {

@@ -3,18 +3,19 @@ import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.m
 import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
 import { IPioneerTreeDropService, PioneerTreeDropService } from './pioneer-tree-drop.service';
 
-export interface IPioneerTreeDropParentService {
+export interface IPioneerTreeDropParentService extends IPioneerTreeDropService  {
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode): void;
 }
 
-export class PioneerTreeDropParentService implements IPioneerTreeDropParentService {
+export class PioneerTreeDropParentService extends PioneerTreeDropService implements IPioneerTreeDropParentService {
   constructor(
-    @Inject(PioneerTreeDropService) private dropService: IPioneerTreeDropService,
-    @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration
-  ) { }
+    @Inject(PioneerTreeConfiguration) public config: IPioneerTreeConfiguration
+  ) {
+    super(config);
+  }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode): void {
-    const parentCollection = this.dropService.getParentCollection(nodeToDrop);
+    const parentCollection = this.getParentCollection(nodeToDrop);
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
     this.dropNodeOntoNewCollection(dropzone, nodeToDrop);
     this.adjustIndexes(dropzone, nodeToDrop);

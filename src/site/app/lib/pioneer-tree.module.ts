@@ -7,7 +7,6 @@ import { PioneerTreeCollapseComponent } from './components/pioneer-tree-collapse
 import { PioneerTreeHandleComponent } from './components/pioneer-tree-handle/pioneer-tree-handle.component';
 import { PioneerTreeDropzoneDirective } from './directives/pioneer-tree-dropzone/pioneer-tree-dropzone.directive';
 import { PioneerTree } from './models/pioneer-tree.model';
-import { PioneerTreeDropService } from './services/pioneer-tree-drop.service';
 import { PioneerTreeDropParentService } from './services/pioneer-tree-drop-parent.service';
 import { PioneerTreeConfiguration } from './models/pioneer-tree-configuration.model';
 import { PioneerTreeDropChildService } from './services/pioneer-tree-drop-child.service';
@@ -38,7 +37,6 @@ export {
   ],
   providers: [
     PioneerTree,
-    PioneerTreeDropService,
     PioneerTreeDropRootService,
     PioneerTreeDropParentService,
     PioneerTreeDropChildService,

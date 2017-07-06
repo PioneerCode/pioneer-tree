@@ -3,7 +3,7 @@ import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.m
 import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
 import { IPioneerTreeDropService, PioneerTreeDropService } from './pioneer-tree-drop.service';
 
-export interface IPioneerTreeDropChildService {
+export interface IPioneerTreeDropChildService extends IPioneerTreeDropService {
   /**
    * Sort a node dropped on a...
    *  1) Sort dropzone in same parent node
@@ -15,15 +15,16 @@ export interface IPioneerTreeDropChildService {
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, childEnd?: boolean): void;
 }
 
-export class PioneerTreeDropChildService implements IPioneerTreeDropChildService {
+export class PioneerTreeDropChildService extends PioneerTreeDropService implements IPioneerTreeDropChildService {
 
   constructor(
-    @Inject(PioneerTreeDropService) private dropService: IPioneerTreeDropService,
-    @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration
-  ) { }
+    @Inject(PioneerTreeConfiguration) public config: IPioneerTreeConfiguration
+  ) {
+    super(config);
+  }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, childEnd: boolean): void {
-    const parentCollection = this.dropService.getParentCollection(nodeToDrop);
+    const parentCollection = this.getParentCollection(nodeToDrop);
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
     this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex, childEnd);
     this.adjustCollectionIndexes(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName]);

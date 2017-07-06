@@ -6,10 +6,9 @@ export interface IPioneerTreeDropService {
   getParentCollection(nodeToDrop: IPioneerTreeExpandedNode, ): IPioneerTreeExpandedNode[];
 }
 
-
 export class PioneerTreeDropService implements IPioneerTreeDropService {
   constructor(
-    @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration
+     public config: IPioneerTreeConfiguration
   ) { }
 
   getParentCollection(nodeToDrop: IPioneerTreeExpandedNode): IPioneerTreeExpandedNode[] {

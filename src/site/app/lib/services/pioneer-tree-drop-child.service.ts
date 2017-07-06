@@ -27,7 +27,8 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
 
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
     this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex, childEnd);
-    this.adjustIndexes(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName]);
+    this.adjustCollectionIndexes(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName]);
+    this.adjustCollectionIndexes(parentCollection);
     this.adjustParentTracking(dropzone, nodeToDrop);
   }
 
@@ -79,7 +80,7 @@ export class PioneerTreeDropChildService implements IPioneerTreeDropChildService
    * Re-index sort indexes
    * @param collection Collection to re-index
    */
-  private adjustIndexes(collection: IPioneerTreeExpandedNode[]): void {
+  private adjustCollectionIndexes(collection: IPioneerTreeExpandedNode[]): void {
     for (let i = 0; i < collection.length; i++) {
       collection[i].pioneerTreeNode.sortIndex = i;
       if (collection[i][this.config.sortPropertyName]) {

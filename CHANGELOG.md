@@ -1,7 +1,7 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
 <a name="1.1.0"></a>
-# 1.1.x
+# 1.1.0
 ### Added
 * Public access to isCollapsed and isSelected
 * Drag and Drop support

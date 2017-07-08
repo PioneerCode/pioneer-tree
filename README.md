@@ -17,6 +17,8 @@ Head over to the <a href="https://pioneercode.github.io/pioneer-tree" target="_b
 - Drag & Drop
 - Sort tracking
 
+For pending new features, please head over to the [coming soon](https://github.com/PioneerCode/pioneer-tree/wiki/ComingSoon) page located in the [wiki](https://github.com/PioneerCode/pioneer-tree/wiki).
+
 ### Coming Soon !
 - Event subscription
 - Filtering

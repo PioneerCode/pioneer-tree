@@ -129,7 +129,7 @@ export class PioneerTree implements IPioneerTree {
 
     // remove current drag node tracking
     // TODO: Do we need to remove this
-    //this.currentDragNode = undefined;
+    this.currentDragNode = undefined;
   }
 
   /**

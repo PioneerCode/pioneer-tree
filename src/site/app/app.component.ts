@@ -198,23 +198,19 @@ export class AppComponent {
   ] as any;
 
   getBoundDataMinusCircularReference(): any {
-    const cache = [] as any;
     const build = JSON.stringify(this.nodes, (key, value) => {
       if (typeof value === 'object' && value !== null) {
         if (key === 'currentNode') {
-          return '@ptRef:currentNode'
+          return '@ptRef:currentNode';
         }
         if (key === 'treeRootNodes') {
-          return '@ptRef:treeRootNodes'
-        }
-        if (key === 'currentDragNode') {
-          return '@ptRef:currentDragNode'
+          return '@ptRef:treeRootNodes';
         }
         if (key === 'parentNode') {
-          return '@ptRef:parentNode'
+          return '@ptRef:parentNode';
         }
         if (key === 'previousNode') {
-          return '@ptRef:previousNode'
+          return '@ptRef:previousNode';
         }
       }
       return value;

@@ -2,6 +2,11 @@
 
 <a name="1.1.0"></a>
 # 1.1.0
+### Fixed
+* Root child descending drop
+
+<a name="1.1.0"></a>
+# 1.1.0
 ### Added
 * Public access to isCollapsed and isSelected
 * Drag and Drop support

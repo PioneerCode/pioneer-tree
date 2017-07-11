@@ -102,7 +102,6 @@ export class PioneerTreeNode implements IPioneerTreeNode {
 
   private uid: string;
 
-
   constructor(private uidService: IPioneerTreeUidService) {
     this.uid = this.uidService.getUid();
     this.pioneerTreeRepeater = new PioneerTreeRepeater(this.uidService);

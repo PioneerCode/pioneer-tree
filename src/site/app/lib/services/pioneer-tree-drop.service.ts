@@ -37,7 +37,7 @@ export class PioneerTreeDropService implements IPioneerTreeDropService {
   adjustCollectionIndexes(collection: IPioneerTreeExpandedNode[]): void {
     for (let i = 0; i < collection.length; i++) {
       collection[i].pioneerTreeNode.sortIndex = i;
-      if (collection[i][this.config.sortPropertyName]) {
+      if (collection[i][this.config.sortPropertyName] !== undefined && collection[i][this.config.sortPropertyName] !== null) {
         collection[i][this.config.sortPropertyName] = collection[i].pioneerTreeNode.sortIndex;
       }
     }

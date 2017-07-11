@@ -180,30 +180,47 @@ export class AppComponent {
   } as IPioneerTreeConfiguration;
   nodes = [
     {
-      'name': 'root-1',
+      'name': 'root-0',
       'sort': 0
     },
     {
-      'name': 'root-2',
+      'name': 'root-1',
       'sort': 1
     },
     {
-      'name': 'root-3',
+      'name': 'root-2',
       'sort': 2
+    },
+    {
+      'name': 'root-3',
+      'sort': 3
     }
   ] as any;
 
   getBoundDataMinusCircularReference(): any {
     const cache = [] as any;
-    return JSON.stringify(this.nodes, (key, value) => {
+    const build = JSON.stringify(this.nodes, (key, value) => {
       if (typeof value === 'object' && value !== null) {
-        if (cache.indexOf(value) !== -1) {
-          return;
+        if (key === 'currentNode') {
+          return '@ptRef:currentNode'
         }
-        cache.push(value);
+        if (key === 'treeRootNodes') {
+          return '@ptRef:treeRootNodes'
+        }
+        if (key === 'currentDragNode') {
+          return '@ptRef:currentDragNode'
+        }
+        if (key === 'parentNode') {
+          return '@ptRef:parentNode'
+        }
+        if (key === 'previousNode') {
+          return '@ptRef:previousNode'
+        }
       }
       return value;
     }, 2);
+
+    return build;
   }
 
   getRawData(): any {

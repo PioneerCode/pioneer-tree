@@ -20,19 +20,19 @@ export class PioneerTreeDropRootService extends PioneerTreeDropService implement
     this.prune(parentCollection, nodeToDrop.pioneerTreeNode.getId());
     this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex, rootEnd);
     this.adjustCollectionIndexes(dropzone.pioneerTreeNode.treeRootNodes);
-    this.adjustCollectionIndexes(parentCollection);
+    //this.adjustCollectionIndexes(parentCollection);
     this.adjustMetaTracking(nodeToDrop, parentCollection);
     this.adjustParentTracking(dropzone, nodeToDrop, parentCollection);
   }
 
   private dropNodeOntoNewCollection(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean) {
-    dropzone.pioneerTreeNode.treeRootNodes.splice(this.getAdjustedDropSortIndex(dropzone.pioneerTreeNode.treeRootNodes, nodeToDrop, droppedSortIndex, rootEnd), 0, nodeToDrop);
+    droppedSortIndex = this.getAdjustedDropSortIndex(dropzone.pioneerTreeNode.treeRootNodes, nodeToDrop, droppedSortIndex, rootEnd);
+    dropzone.pioneerTreeNode.treeRootNodes.splice(droppedSortIndex, 0, nodeToDrop);
   }
 
   private getAdjustedDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean) {
     // Child to root drops
     if (!nodeToDrop.pioneerTreeNode.treeRootNodes) {
-
       return droppedSortIndex;
     }
 
@@ -56,7 +56,7 @@ export class PioneerTreeDropRootService extends PioneerTreeDropService implement
   }
 
   private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, parentCollection: IPioneerTreeExpandedNode[]) {
-    nodeToDrop.pioneerTreeNode.parentNode = {} as IPioneerTreeExpandedNode;
-    nodeToDrop.pioneerTreeNode.treeRootNodes = dropzone.pioneerTreeNode.treeRootNodes;
+    // nodeToDrop.pioneerTreeNode.parentNode = undefined;
+    // nodeToDrop.pioneerTreeNode.treeRootNodes = dropzone.pioneerTreeNode.treeRootNodes;
   }
 }

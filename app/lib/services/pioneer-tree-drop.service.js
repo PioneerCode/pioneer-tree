@@ -11,7 +11,7 @@ var PioneerTreeDropService = (function () {
     PioneerTreeDropService.prototype.adjustCollectionIndexes = function (collection) {
         for (var i = 0; i < collection.length; i++) {
             collection[i].pioneerTreeNode.sortIndex = i;
-            if (collection[i][this.config.sortPropertyName]) {
+            if (collection[i][this.config.sortPropertyName] !== undefined && collection[i][this.config.sortPropertyName] !== null) {
                 collection[i][this.config.sortPropertyName] = collection[i].pioneerTreeNode.sortIndex;
             }
         }

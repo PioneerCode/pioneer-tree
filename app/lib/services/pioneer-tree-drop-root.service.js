@@ -32,13 +32,18 @@ var PioneerTreeDropRootService = (function (_super) {
         this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex, rootEnd);
         this.adjustCollectionIndexes(dropzone.pioneerTreeNode.treeRootNodes);
         this.adjustCollectionIndexes(parentCollection);
-        this.adjustMetaTracking(nodeToDrop, parentCollection);
         this.adjustParentTracking(dropzone, nodeToDrop, parentCollection);
+        this.adjustMetaTracking(nodeToDrop, parentCollection);
     };
     PioneerTreeDropRootService.prototype.dropNodeOntoNewCollection = function (dropzone, nodeToDrop, droppedSortIndex, rootEnd) {
-        dropzone.pioneerTreeNode.treeRootNodes.splice(this.getAdjustedDropSortIndex(dropzone.pioneerTreeNode.treeRootNodes, nodeToDrop, droppedSortIndex, rootEnd), 0, nodeToDrop);
+        droppedSortIndex = this.getAdjustedDropSortIndex(dropzone.pioneerTreeNode.treeRootNodes, nodeToDrop, droppedSortIndex, rootEnd);
+        dropzone.pioneerTreeNode.treeRootNodes.splice(droppedSortIndex, 0, nodeToDrop);
     };
     PioneerTreeDropRootService.prototype.getAdjustedDropSortIndex = function (collection, nodeToDrop, droppedSortIndex, rootEnd) {
+        // Child to root drops
+        if (!nodeToDrop.pioneerTreeNode.treeRootNodes) {
+            return droppedSortIndex;
+        }
         // dropped in root-end of last index
         if (droppedSortIndex === collection.length && rootEnd) {
             return ++droppedSortIndex;

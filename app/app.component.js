@@ -16,7 +16,7 @@ var AppComponent = (function () {
         };
         this.nodes = [
             {
-                'name': 'root-1',
+                'name': 'root-0',
                 'sort': 0,
                 'children': [
                     {
@@ -34,26 +34,38 @@ var AppComponent = (function () {
                 ]
             },
             {
-                'name': 'root-2',
+                'name': 'root-1',
                 'sort': 1
             },
             {
-                'name': 'root-3',
+                'name': 'root-2',
                 'sort': 2
+            },
+            {
+                'name': 'root-3',
+                'sort': 3
             }
         ];
     }
     AppComponent.prototype.getBoundDataMinusCircularReference = function () {
-        var cache = [];
-        return JSON.stringify(this.nodes, function (key, value) {
+        var build = JSON.stringify(this.nodes, function (key, value) {
             if (typeof value === 'object' && value !== null) {
-                if (cache.indexOf(value) !== -1) {
-                    return;
+                if (key === 'currentNode') {
+                    return '@ptRef:currentNode';
                 }
-                cache.push(value);
+                if (key === 'treeRootNodes') {
+                    return '@ptRef:treeRootNodes';
+                }
+                if (key === 'parentNode') {
+                    return '@ptRef:parentNode';
+                }
+                if (key === 'previousNode') {
+                    return '@ptRef:previousNode';
+                }
             }
             return value;
         }, 2);
+        return build;
     };
     AppComponent.prototype.getRawData = function () {
         var obj = JSON.parse(JSON.stringify(JSON.parse(this.getBoundDataMinusCircularReference())));

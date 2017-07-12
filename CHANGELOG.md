@@ -1,10 +1,11 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
-<a name="1.1.0"></a>
-# 1.1.0
+<a name="1.1.1"></a>
+# 1.1.1
 ### Fixed
 * Root child descending drop
 * Circular ref in demo
+* Root end drop show / hide
 
 <a name="1.1.0"></a>
 # 1.1.0

@@ -27,21 +27,21 @@ $white-color: #fefefe;
       border: 2px dashed $white-color;
       background: $green-color;
     }
-    // &.pioneer-tree-dropzone-root.pt-dropzone-drag-over {
-    //   background: $grey-color;
-    // }
-    // &.pioneer-tree-dropzone-end.pt-dropzone-drag-over {
-    //   background: $grey-color;
-    // }
+    &.pioneer-tree-dropzone-root.pt-dropzone-drag-over {
+      background: $grey-color;
+    }
+    &.pioneer-tree-dropzone-end.pt-dropzone-drag-over {
+      background: $grey-color;
+    }
   }
-  .pioneer-tree-dropzone-end {
-    background: #999;
-    height: 5px;
-  }
-  .pioneer-tree-dropzone-root {
-    background: #2ec;
-    height: 5px;
-  }
+  // .pioneer-tree-dropzone-end {
+  //   background: #999;
+  //   height: 5px;
+  // }
+  // .pioneer-tree-dropzone-root {
+  //   background: #2ec;
+  //   height: 5px;
+  // }
   .pioneer-tree-node {
     .pioneer-tree-node-content {
       padding: 0 0.5rem;

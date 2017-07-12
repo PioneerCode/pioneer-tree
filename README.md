@@ -2,6 +2,8 @@ Pioneer Tree
 =======================
 Pioneer Tree is an Angular 4 and up tree component the aims to stay out of your way.  Giving you the freedom and tools necessary to produce dynamic tree components in markup that is defined by you.
 
+![Pioneer Tree](https://raw.githubusercontent.com/PioneerCode/pioneer-blog/master/src/Pioneer.Blog/wwwroot/images/pioneer-tree-an-angular-tree-component/demo.gif)
+
 ## Demo
 
 Head over to the <a href="https://pioneercode.github.io/pioneer-tree" target="_blank">Demo</a> to see it in action.

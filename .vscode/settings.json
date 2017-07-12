@@ -4,5 +4,6 @@
     "**/app/**/*.d.ts": true,
     "**/app/**/*js": true,
     "**/app/**/*map": true
-  }
+  },
+  "beautify.tabSize": 2
 }

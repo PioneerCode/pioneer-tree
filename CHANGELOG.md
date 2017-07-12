@@ -4,6 +4,7 @@
 # 1.1.0
 ### Fixed
 * Root child descending drop
+* Circular ref in demo
 
 <a name="1.1.0"></a>
 # 1.1.0

@@ -21,8 +21,8 @@ export class PioneerTreeDropRootService extends PioneerTreeDropService implement
     this.dropNodeOntoNewCollection(dropzone, nodeToDrop, droppedSortIndex, rootEnd);
     this.adjustCollectionIndexes(dropzone.pioneerTreeNode.treeRootNodes);
     this.adjustCollectionIndexes(parentCollection);
-    this.adjustMetaTracking(nodeToDrop, parentCollection);
     this.adjustParentTracking(dropzone, nodeToDrop, parentCollection);
+    this.adjustMetaTracking(nodeToDrop, parentCollection);
   }
 
   private dropNodeOntoNewCollection(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean) {

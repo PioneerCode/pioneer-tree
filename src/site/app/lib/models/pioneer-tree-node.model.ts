@@ -146,16 +146,23 @@ export class PioneerTreeNode implements IPioneerTreeNode {
   }
 
   showDropzoneEnd(): boolean {
-    if (this.currentNode.pioneerTreeNode.parentNode) {
-      if (this.currentNode.pioneerTreeNode.sortIndex === this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName]) {
+    // child
+    if (!this.currentNode.pioneerTreeNode.treeRootNodes) {
+      if (this.currentNode.pioneerTreeNode.getId() === this.getLastIdInParentNodeChildCollection()) {
         return true;
       };
+      return false;
     }
 
-    if (this.currentNode.pioneerTreeNode.sortIndex === this.nodesInCollection - 1) {
+    // root
+    if (this.currentNode.pioneerTreeNode.sortIndex === this.currentNode.pioneerTreeNode.treeRootNodes.length - 1) {
       return true;
     };
 
     return false;
+  }
+
+  private getLastIdInParentNodeChildCollection(): string {
+    return this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName][this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName].length - 1].pioneerTreeNode.getId();
   }
 }

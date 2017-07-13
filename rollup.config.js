@@ -23,7 +23,8 @@ export default {
   format: 'umd',
   moduleName: '@pioneer-code/pioneer-tree',
   external: [
-    '@angular/core'
+    '@angular/core',
+    '@angular/common'
   ],
   plugins: plugins
 }

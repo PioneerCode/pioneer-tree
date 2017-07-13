@@ -1,5 +1,5 @@
 ﻿import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { PioneerTreeComponent } from './components/pioneer-tree/pioneer-tree.component';
 import { PioneerTreeRepeaterComponent } from './components/pioneer-tree-repeater/pioneer-tree-repeater.component';
 import { PioneerTreeNodeComponent } from './components/pioneer-tree-node/pioneer-tree-node.component';
@@ -12,12 +12,10 @@ import { PioneerTreeConfiguration } from './models/pioneer-tree-configuration.mo
 import { PioneerTreeDropChildService } from './services/pioneer-tree-drop-child.service';
 import { PioneerTreeDropRootService } from './services/pioneer-tree-drop-root.service';
 import { PioneerTreeUidService } from './services/pioneer-tree-uid.service';
-export {
-};
 
 @NgModule({
   imports: [
-    BrowserModule
+    CommonModule
   ],
   declarations: [
     PioneerTreeComponent,
@@ -46,4 +44,3 @@ export {
 })
 
 export class PioneerTreeModule { }
-export default PioneerTreeModule;

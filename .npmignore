@@ -29,3 +29,6 @@ CONTRIBUTING.md
 /src/**/*map
 /src/**/*html
 /src/**/favicon*
+/.publish
+/.vs
+/.vscode

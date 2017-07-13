@@ -1,6 +1,6 @@
 {
   "name": "@pioneer-code/pioneer-tree",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "Angular tree component.",
   "scripts": {
     "roll": "node_modules/.bin/rollup -c",
@@ -37,7 +37,9 @@
   "typings": "./dist/api/pioneer-tree.d.ts",
   "author": "Chad Ramos <dev@pioneercode.com> (http://pioneercode.com)",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "systemjs-builder": "^0.16.9"
+  },
   "devDependencies": {
     "@angular/common": "~4.0.0",
     "@angular/compiler": "~4.0.0",

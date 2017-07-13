@@ -18,6 +18,7 @@ var PioneerTreeDropzoneDirective = (function () {
         this.elementRef = elementRef;
         this.renderer = renderer;
         this.pioneerTree = pioneerTree;
+        this.nodeDropped = new core_1.EventEmitter();
     }
     PioneerTreeDropzoneDirective.prototype.onDragOver = function (event) {
         if (this.pioneerTree.isNodeDroppable(this.node)) {
@@ -35,6 +36,7 @@ var PioneerTreeDropzoneDirective = (function () {
             event.preventDefault();
             this.clearClasses();
             this.pioneerTree.dropNode(this.node, this.dropType, this.node.pioneerTreeNode.sortIndex);
+            this.nodeDropped.emit(this.node);
         }
     };
     PioneerTreeDropzoneDirective.prototype.clearClasses = function () {
@@ -51,6 +53,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", String)
 ], PioneerTreeDropzoneDirective.prototype, "dropType", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], PioneerTreeDropzoneDirective.prototype, "nodeDropped", void 0);
 __decorate([
     core_1.HostListener('dragover', ['$event']),
     __metadata("design:type", Function),

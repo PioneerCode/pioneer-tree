@@ -44,7 +44,7 @@ __decorate([
 ], PioneerTreeComponent.prototype, "configuration", void 0);
 PioneerTreeComponent = __decorate([
     core_1.Component({
-        selector: '[pioneer-tree],[pt]',
+        selector: 'pioneer-tree,[pioneer-tree],[pt]',
         template: "\n  <ng-content></ng-content>\n  "
     }),
     __metadata("design:paramtypes", [pioneer_tree_model_1.PioneerTree,

@@ -1,5 +1,10 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
+<a name="1.2.2"></a>
+# 1.2.2
+### Fix
+* Module build
+
 <a name="1.2.0"></a>
 # 1.2.0
 ### Added

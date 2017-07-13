@@ -123,12 +123,20 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
       </ng-template>
       <ng-template #repeaterTemplate let-node>
         <ul pioneer-tree-repeater [nodes]="node.children" [configuration]="configuration">
-          <li pioneer-tree-node *ngFor="let node of node.children" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
+          <li pioneer-tree-node
+              (nodeDropped)="onNodeDropped($event)"
+              *ngFor="let node of node.children"
+              [nodeTemplate]="nodeTemplate"
+              [repeaterTemplate]="repeaterTemplate" [node]="node">
           </li>
         </ul>
       </ng-template>
-      <ul pioneer-tree [nodes]="nodes" [configuration]="configuration">
-        <li pioneer-tree-node *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
+      <ul pioneer-tree
+        [nodes]="nodes"
+        [configuration]="configuration">
+        <li pioneer-tree-node
+            (nodeDropped)="onNodeDropped($event)"
+            *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
         </li>
       </ul>
     </div>
@@ -210,6 +218,10 @@ export class AppComponent {
       'sort': 3
     }
   ] as any;
+
+  onNodeDropped($event: any): void {
+    alert('test');
+  }
 
   getBoundDataMinusCircularReference(): any {
     const build = JSON.stringify(this.nodes, (key, value) => {

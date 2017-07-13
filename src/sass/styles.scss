@@ -1,7 +1,6 @@
 ﻿/// <reference path="../../node_modules/foundation-sites/scss/foundation" />
 @import "base";
 @import "../../node_modules/font-awesome/scss/font-awesome";
-
 body {
   background: #2A2E31;
 }
@@ -14,12 +13,10 @@ h2 {
 header {
   padding: 1rem 0;
   color: $white;
-
   h2 {
     font-size: 1.5rem;
     font-weight: 100;
     color: $white;
-
     span {
       font-weight: 800;
     }
@@ -29,11 +26,9 @@ header {
 .hero {
   text-align: center;
   padding: 2rem 0 6rem;
-
   p {
     font-size: 1.2rem;
   }
-
   h1 {
     font-size: 6rem;
     font-weight: 800;
@@ -44,12 +39,11 @@ header {
 .features {
   background: $white;
   padding: 6rem 0;
-
   li {
     color: $dark-gray;
   }
-
-  h4, h2 {
+  h4,
+  h2 {
     font-weight: 800;
     color: #2A2E31;
   }
@@ -57,11 +51,30 @@ header {
 
 .data {
   padding: 6rem 0;
-
   .menu {
+    margin: 3rem 0 0;
     li {
       padding: 0 1rem 0 0;
     }
+  }
+  .events {
+    background: $light-gray;
+    height: 250px;
+    overflow: auto;
+    color: #2A2E31;
+    padding: 0.5rem;
+
+    .menu {
+      margin: 0;
+      font-size: 14px;
+    }
+  }
+  .models {
+    background: $light-gray;
+    max-height: 400px;
+    overflow: auto;
+    color: #2A2E31;
+    padding: 0.5rem;
   }
 }
 
@@ -69,7 +82,6 @@ header {
   padding: 6rem;
   background: $primary-color;
   color: $white;
-
   h2 {
     text-align: center;
     color: $white;

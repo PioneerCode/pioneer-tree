@@ -92,8 +92,53 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
 </section>
 <section class="data">
   <div class="row">
-    <div class="large-8 columns">
-     <ul class="menu">
+    <div class="large-6 columns">
+      <h2>Component</h2>
+      <ng-template #nodeTemplate let-node>
+        <span pioneer-tree-collapse [node]="node">
+          <i class="fa"
+            [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'">
+          </i>
+        </span>
+        <span pioneer-tree-handle [node]="node">
+          {{node.name}}
+        </span>
+      </ng-template>
+      <ng-template #repeaterTemplate let-node>
+        <ul pioneer-tree-repeater [nodes]="node.children" [configuration]="configuration">
+          <li pioneer-tree-node
+            *ngFor="let node of node.children"
+            (nodeDropped)="onNodeDropped($event)"
+            [nodeTemplate]="nodeTemplate"
+            [repeaterTemplate]="repeaterTemplate" [node]="node">
+          </li>
+        </ul>
+      </ng-template>
+      <ul pioneer-tree
+        [nodes]="nodes"
+        [configuration]="configuration">
+        <li pioneer-tree-node
+            *ngFor="let node of nodes"
+            (nodeDropped)="onNodeDropped($event)"
+            [nodeTemplate]="nodeTemplate"
+            [repeaterTemplate]="repeaterTemplate" [node]="node">
+        </li>
+      </ul>
+    </div>
+    <div class="large-6 columns">
+      <h2>Events</h2>
+      <div class="events">
+        <ul class="menu vertical">
+          <li *ngFor="let event of events">
+            {{event}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 columns">
+      <ul class="menu">
         <li>
           <h2>Data</h2>
         </li>
@@ -104,41 +149,14 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
           <a class="hollow button" (click)="dataView = 'bound'" [ngClass]="dataView === 'bound' ? 'disabled' : ''">Bound</a>
         </li>
       </ul>
-      <div *ngIf="dataView === 'raw'">
-        <pre>{{getRawData()}}</pre>
+      <div class="models">
+        <div *ngIf="dataView === 'raw'">
+          <pre>{{getRawData()}}</pre>
+        </div>
+        <div *ngIf="dataView === 'bound'">
+          <pre>{{getBoundDataMinusCircularReference()}}</pre>
+        </div>
       </div>
-      <div *ngIf="dataView === 'bound'">
-        <pre>{{getBoundDataMinusCircularReference()}}</pre>
-      </div>
-    </div>
-    <div class="large-4 columns">
-      <h2>Component</h2>
-      <ng-template #nodeTemplate let-node>
-        <span pioneer-tree-collapse [node]="node">
-          <i class="fa" [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'"></i>
-        </span>
-        <span pioneer-tree-handle [node]="node">
-          {{node.name}}
-        </span>
-      </ng-template>
-      <ng-template #repeaterTemplate let-node>
-        <ul pioneer-tree-repeater [nodes]="node.children" [configuration]="configuration">
-          <li pioneer-tree-node
-              (nodeDropped)="onNodeDropped($event)"
-              *ngFor="let node of node.children"
-              [nodeTemplate]="nodeTemplate"
-              [repeaterTemplate]="repeaterTemplate" [node]="node">
-          </li>
-        </ul>
-      </ng-template>
-      <ul pioneer-tree
-        [nodes]="nodes"
-        [configuration]="configuration">
-        <li pioneer-tree-node
-            (nodeDropped)="onNodeDropped($event)"
-            *ngFor="let node of nodes" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
-        </li>
-      </ul>
     </div>
   </div>
 </section>
@@ -147,32 +165,36 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
       <div class="large-12 columns">
         <h2>HTML</h2>
         <pre ngNonBindable>
-&lt;ng-template #nodeTemplate let-node&gt;
-  &lt;span pioneer-tree-collapse [node]="node"&gt;
-    &lt;i class="fa"
-      [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'"&gt;
-    &lt;/i&gt;
-  &lt;/span&gt;
-  &lt;span pioneer-tree-handle [node]="node"&gt;
+&#x3C;ng-template #nodeTemplate let-node&#x3E;
+  &#x3C;span pioneer-tree-collapse [node]=&#x22;node&#x22;&#x3E;
+    &#x3C;i class=&#x22;fa&#x22;
+      [ngClass]=&#x22;this.node.pioneerTreeNode.isCollapsed() ? &#x27;fa-folder&#x27; : &#x27;fa-folder-open&#x27;&#x22;&#x3E;
+    &#x3C;/i&#x3E;
+  &#x3C;/span&#x3E;
+  &#x3C;span pioneer-tree-handle [node]=&#x22;node&#x22;&#x3E;
     {{node.name}}
-  &lt;/span&gt;
-&lt;/ng-template&gt;
-&lt;ng-template #repeaterTemplate let-node&gt;
-  &lt;ul pioneer-tree-repeater [nodes]="node.children" [configuration]="configuration"&gt;
-    &lt;li pioneer-tree-node *ngFor="let node of node.children"
-      [nodeTemplate]="nodeTemplate"
-      [repeaterTemplate]="repeaterTemplate"
-      [node]="node"&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/ng-template&gt;
-&lt;ul pioneer-tree [nodes]="nodes" [configuration]="configuration"&gt;
-  &lt;li pioneer-tree-node *ngFor="let node of nodes"
-    [nodeTemplate]="nodeTemplate"
-    [repeaterTemplate]="repeaterTemplate"
-    [node]="node"&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+  &#x3C;/span&#x3E;
+&#x3C;/ng-template&#x3E;
+&#x3C;ng-template #repeaterTemplate let-node&#x3E;
+  &#x3C;ul pioneer-tree-repeater [nodes]=&#x22;node.children&#x22; [configuration]=&#x22;configuration&#x22;&#x3E;
+    &#x3C;li pioneer-tree-node
+      *ngFor=&#x22;let node of node.children&#x22;
+      (nodeDropped)=&#x22;onNodeDropped($event)&#x22;
+      [nodeTemplate]=&#x22;nodeTemplate&#x22;
+      [repeaterTemplate]=&#x22;repeaterTemplate&#x22; [node]=&#x22;node&#x22;&#x3E;
+    &#x3C;/li&#x3E;
+  &#x3C;/ul&#x3E;
+&#x3C;/ng-template&#x3E;
+&#x3C;ul pioneer-tree
+  [nodes]=&#x22;nodes&#x22;
+  [configuration]=&#x22;configuration&#x22;&#x3E;
+  &#x3C;li pioneer-tree-node
+      *ngFor=&#x22;let node of nodes&#x22;
+      (nodeDropped)=&#x22;onNodeDropped($event)&#x22;
+      [nodeTemplate]=&#x22;nodeTemplate&#x22;
+      [repeaterTemplate]=&#x22;repeaterTemplate&#x22; [node]=&#x22;node&#x22;&#x3E;
+  &#x3C;/li&#x3E;
+&#x3C;/ul&#x3E;
         </pre>
       </div>
     </div>
@@ -182,6 +204,7 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
 export class AppComponent {
   dataView = 'raw';
   name = 'Pioneer Tree';
+  events = [] as string[];
   configuration = {
     childPropertyName: 'children',
     sortPropertyName: 'sort'
@@ -220,7 +243,7 @@ export class AppComponent {
   ] as any;
 
   onNodeDropped($event: any): void {
-    alert('test');
+    this.events.unshift(new Date().toLocaleString() + ' : Node Dropped "' + $event.name + '"');
   }
 
   getBoundDataMinusCircularReference(): any {

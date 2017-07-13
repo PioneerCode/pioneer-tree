@@ -1,5 +1,10 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
+<a name="1.2.0"></a>
+# 1.2.0
+### Added
+* Access to node drop event
+
 <a name="1.1.1"></a>
 # 1.1.1
 ### Fixed

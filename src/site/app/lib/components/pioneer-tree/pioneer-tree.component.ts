@@ -1,4 +1,4 @@
-﻿import { Component, Input, ElementRef, Renderer2, Output, EventEmitter } from '@angular/core';
+﻿import { Component, Input, ElementRef, Renderer2 } from '@angular/core';
 import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
 import { IPioneerTreeConfiguration } from '../../models/pioneer-tree-configuration.model';
 import { PioneerTree } from '../../models/pioneer-tree.model';

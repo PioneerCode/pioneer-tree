@@ -1,4 +1,4 @@
-﻿import { Component, Input, TemplateRef } from '@angular/core';
+﻿import { Component, Input, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
 import { PioneerTree } from '../../models/pioneer-tree.model';
 
@@ -8,6 +8,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
 <div class="pioneer-tree-dropzone pioneer-tree-dropzone-root"
     pioneer-tree-dropzone
     [dropType]="node.pioneerTreeNode.treeRootNodes ? 'root' : 'child'"
+    (nodeDropped)="onNodeDropped($event)"
     [node]="node">
 </div>
 <div class="pioneer-tree-node">
@@ -15,6 +16,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
         pioneer-tree-dropzone
         (click)="onClicked()"
         [node]="node"
+        (nodeDropped)="onNodeDropped($event)"
         [dropType]="'parent'"
         [ngClass]="node.pioneerTreeNode.getContentClasses()">
         <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
@@ -31,6 +33,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
 <div class="pioneer-tree-dropzone pioneer-tree-dropzone-end"
     *ngIf="node.pioneerTreeNode.showDropzoneEnd()"
     pioneer-tree-dropzone
+    (nodeDropped)="onNodeDropped($event)"
     [dropType]="node.pioneerTreeNode.treeRootNodes ? 'root-end' : 'child-end'"
     [node]="node">
 </div>
@@ -40,10 +43,15 @@ export class PioneerTreeNodeComponent {
   @Input() node: IPioneerTreeExpandedNode;
   @Input() nodeTemplate: TemplateRef<any>;
   @Input() repeaterTemplate: TemplateRef<any>;
+  @Output() nodeDropped: EventEmitter<IPioneerTreeExpandedNode> = new EventEmitter<IPioneerTreeExpandedNode>();
 
   constructor(
     private pioneerTree: PioneerTree
   ) { }
+
+  onNodeDropped($event: any): void {
+    this.nodeDropped.emit($event);
+  }
 
   onClicked() {
     // Clear previous selected node tracking at that node level

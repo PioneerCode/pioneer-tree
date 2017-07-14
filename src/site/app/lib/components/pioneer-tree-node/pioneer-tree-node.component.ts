@@ -21,7 +21,6 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
         [ngClass]="node.pioneerTreeNode.getContentClasses()">
         <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
         </ng-container>
-        : {{node.pioneerTreeNode.sortIndex}}
     </div>
     <div class="pioneer-tree-repeater"
         [ngClass]="this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()">

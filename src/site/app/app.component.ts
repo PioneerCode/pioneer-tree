@@ -101,7 +101,7 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
           </i>
         </span>
         <span pioneer-tree-handle [node]="node">
-          {{node.name}}
+          {{node.name}} - {{node.pioneerTreeNode.sortIndex}}
         </span>
       </ng-template>
       <ng-template #repeaterTemplate let-node>

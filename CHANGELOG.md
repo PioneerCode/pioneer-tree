@@ -2,8 +2,8 @@
 
 <a name="1.2.6"></a>
 # 1.2.6
-### Added
-* Added ability to deep target child nodes in object
+### Fixed
+* Deep target child nodes in object
 
 <a name="1.2.4"></a>
 # 1.2.4

@@ -17,6 +17,18 @@ var PioneerTreeNode = (function () {
         }
         return classes;
     };
+    PioneerTreeNode.prototype.getChildNodes = function () {
+        var paths = this.config.childPropertyName.split('.'), current = this.currentNode;
+        for (var i = 0; i < paths.length; ++i) {
+            if (current[paths[i]] === undefined) {
+                return undefined;
+            }
+            else {
+                current = current[paths[i]];
+            }
+        }
+        return current;
+    };
     PioneerTreeNode.prototype.isSelected = function () {
         if (!this.isCurrentSelectedNode) {
             return false;
@@ -31,7 +43,7 @@ var PioneerTreeNode = (function () {
             return false;
         }
         ;
-        if (!this.currentNode[this.config.childPropertyName]) {
+        if (!this.getChildNodes()) {
             return false;
         }
         ;
@@ -54,7 +66,8 @@ var PioneerTreeNode = (function () {
         return false;
     };
     PioneerTreeNode.prototype.getLastIdInParentNodeChildCollection = function () {
-        return this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName][this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName].length - 1].pioneerTreeNode.getId();
+        var a = this.currentNode.pioneerTreeNode.parentNode.pioneerTreeNode.getChildNodes();
+        return a[a.length - 1].pioneerTreeNode.getId();
     };
     return PioneerTreeNode;
 }());

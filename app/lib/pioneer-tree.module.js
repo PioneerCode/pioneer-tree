@@ -19,6 +19,7 @@ var pioneer_tree_configuration_model_1 = require("./models/pioneer-tree-configur
 var pioneer_tree_drop_child_service_1 = require("./services/pioneer-tree-drop-child.service");
 var pioneer_tree_drop_root_service_1 = require("./services/pioneer-tree-drop-root.service");
 var pioneer_tree_uid_service_1 = require("./services/pioneer-tree-uid.service");
+var pioneer_tree_expand_collapse_service_1 = require("./services/pioneer-tree-expand-collapse.service");
 var PioneerTreeModule = (function () {
     function PioneerTreeModule() {
     }
@@ -51,6 +52,7 @@ PioneerTreeModule = __decorate([
             pioneer_tree_drop_parent_service_1.PioneerTreeDropParentService,
             pioneer_tree_drop_child_service_1.PioneerTreeDropChildService,
             pioneer_tree_uid_service_1.PioneerTreeUidService,
+            pioneer_tree_expand_collapse_service_1.PioneerTreeExpandCollapseService,
             pioneer_tree_configuration_model_1.PioneerTreeConfiguration
         ]
     })

@@ -26,10 +26,6 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Array)
 ], PioneerTreeRepeaterComponent.prototype, "nodes", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], PioneerTreeRepeaterComponent.prototype, "configuration", void 0);
 PioneerTreeRepeaterComponent = __decorate([
     core_1.Component({
         selector: '[pioneer-tree-repeater],[pt-repeater]',

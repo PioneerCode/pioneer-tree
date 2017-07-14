@@ -18,31 +18,28 @@ var pioneer_tree_drop_parent_service_1 = require("../services/pioneer-tree-drop-
 var pioneer_tree_drop_child_service_1 = require("../services/pioneer-tree-drop-child.service");
 var pioneer_tree_drop_root_service_1 = require("../services/pioneer-tree-drop-root.service");
 var pioneer_tree_uid_service_1 = require("../services/pioneer-tree-uid.service");
+var pioneer_tree_expand_collapse_service_1 = require("../services/pioneer-tree-expand-collapse.service");
 var PioneerTree = (function () {
-    function PioneerTree(config, dropRootService, dropParentService, dropChildService, uidService) {
+    function PioneerTree(config, dropRootService, dropParentService, dropChildService, uidService, expandCollapseService) {
         this.config = config;
         this.dropRootService = dropRootService;
         this.dropParentService = dropParentService;
         this.dropChildService = dropChildService;
         this.uidService = uidService;
-        /**
-         * Limits the amount of time we need to check if the user has
-         * defined a binding field of a sort index.
-         */
-        this.userSortIndexPropertySet = false;
+        this.expandCollapseService = expandCollapseService;
     }
     PioneerTree.prototype.buildTree = function (nodes, configuration) {
         this.currentNodes = nodes;
-        this.buildConfiguration();
+        this.buildConfiguration(configuration);
         for (var i = 0; i < this.currentNodes.length; i++) {
             this.currentNodes[i].pioneerTreeNode = new pioneer_tree_node_model_1.PioneerTreeNode(this.uidService);
-            this.currentNodes[i].pioneerTreeNode.config = this.configuration;
+            this.currentNodes[i].pioneerTreeNode.config = this.config;
             this.currentNodes[i].pioneerTreeNode.currentNode = this.currentNodes[i];
             this.currentNodes[i].pioneerTreeNode.nodesInCollection = this.currentNodes.length;
             this.currentNodes[i].pioneerTreeNode.treeRootNodes = this.currentNodes;
             this.setSortIndex(this.currentNodes[i], i);
-            if (this.currentNodes[i][this.configuration.childPropertyName]) {
-                this.bindNodesToInternalTracking(this.currentNodes[i][this.configuration.childPropertyName], this.currentNodes[i]);
+            if (this.currentNodes[i].pioneerTreeNode.getChildNodes()) {
+                this.bindNodesToInternalTracking(this.currentNodes[i].pioneerTreeNode.getChildNodes(), this.currentNodes[i]);
             }
         }
     };
@@ -90,12 +87,18 @@ var PioneerTree = (function () {
         // TODO: Do we need to remove this
         this.currentDragNode = undefined;
     };
+    PioneerTree.prototype.expandAllNodes = function () {
+        this.expandCollapseService.expandCollapsedAllNodes(this.currentNodes, false);
+    };
+    PioneerTree.prototype.collapseAllNodes = function () {
+        this.expandCollapseService.expandCollapsedAllNodes(this.currentNodes, true);
+    };
     /**
      * Bind public config to default config
      */
-    PioneerTree.prototype.buildConfiguration = function () {
+    PioneerTree.prototype.buildConfiguration = function (configuration) {
         var config = new pioneer_tree_configuration_model_1.PioneerTreeConfiguration();
-        this.configuration = Object.assign(config, this.configuration);
+        this.config = Object.assign(config, configuration);
     };
     /**
      * Recursively build internal tracking tree
@@ -104,14 +107,15 @@ var PioneerTree = (function () {
     PioneerTree.prototype.bindNodesToInternalTracking = function (nodes, parent) {
         for (var i = 0; i < nodes.length; i++) {
             nodes[i].pioneerTreeNode = new pioneer_tree_node_model_1.PioneerTreeNode(this.uidService);
-            nodes[i].pioneerTreeNode.config = this.configuration;
+            nodes[i].pioneerTreeNode.config = this.config;
             nodes[i].pioneerTreeNode.parentNode = parent;
             nodes[i].pioneerTreeNode.previousNode = nodes[i - 1];
             nodes[i].pioneerTreeNode.currentNode = nodes[i];
             nodes[i].pioneerTreeNode.nodesInCollection = nodes.length;
             this.setSortIndex(nodes[i], i);
-            if (nodes[i][this.configuration.childPropertyName]) {
-                this.bindNodesToInternalTracking(nodes[i][this.configuration.childPropertyName], nodes[i]);
+            nodes[i].pioneerTreeNode.getChildNodes();
+            if (nodes[i].pioneerTreeNode.getChildNodes()) {
+                this.bindNodesToInternalTracking(nodes[i].pioneerTreeNode.getChildNodes(), nodes[i]);
             }
         }
     };
@@ -120,9 +124,8 @@ var PioneerTree = (function () {
      * @param node Bindable node
      */
     PioneerTree.prototype.setSortIndex = function (node, index) {
-        if (node[this.configuration.sortPropertyName]) {
-            this.userSortIndexPropertySet = true;
-            node.pioneerTreeNode.sortIndex = node[this.configuration.sortPropertyName];
+        if (node[this.config.sortPropertyName]) {
+            node.pioneerTreeNode.sortIndex = node[this.config.sortPropertyName];
             return;
         }
         node.pioneerTreeNode.sortIndex = index;
@@ -136,7 +139,8 @@ PioneerTree = __decorate([
     __param(2, core_1.Inject(pioneer_tree_drop_parent_service_1.PioneerTreeDropParentService)),
     __param(3, core_1.Inject(pioneer_tree_drop_child_service_1.PioneerTreeDropChildService)),
     __param(4, core_1.Inject(pioneer_tree_uid_service_1.PioneerTreeUidService)),
-    __metadata("design:paramtypes", [Object, Object, Object, Object, Object])
+    __param(5, core_1.Inject(pioneer_tree_expand_collapse_service_1.PioneerTreeExpandCollapseService)),
+    __metadata("design:paramtypes", [Object, Object, Object, Object, Object, Object])
 ], PioneerTree);
 exports.PioneerTree = PioneerTree;
 //# sourceMappingURL=pioneer-tree.model.js.map

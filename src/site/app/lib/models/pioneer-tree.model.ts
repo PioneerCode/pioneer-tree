@@ -63,7 +63,7 @@ export class PioneerTree implements IPioneerTree {
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
     this.currentNodes = nodes;
 
-    this.buildConfiguration();
+    this.buildConfiguration(configuration);
 
     for (let i = 0; i < this.currentNodes.length; i++) {
       this.currentNodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService);
@@ -72,9 +72,8 @@ export class PioneerTree implements IPioneerTree {
       this.currentNodes[i].pioneerTreeNode.nodesInCollection = this.currentNodes.length;
       this.currentNodes[i].pioneerTreeNode.treeRootNodes = this.currentNodes;
       this.setSortIndex(this.currentNodes[i], i);
-      if (this.currentNodes[i][this.configuration.childPropertyName]) {
-        this.bindNodesToInternalTracking(this.currentNodes[i][this.configuration.childPropertyName],
-          this.currentNodes[i]);
+      if (this.currentNodes[i].pioneerTreeNode.getChildNodes()) {
+        this.bindNodesToInternalTracking(this.currentNodes[i].pioneerTreeNode.getChildNodes(), this.currentNodes[i]);
       }
     }
   }
@@ -133,9 +132,9 @@ export class PioneerTree implements IPioneerTree {
   /**
    * Bind public config to default config
    */
-  private buildConfiguration(): void {
+  private buildConfiguration(configuration?: IPioneerTreeConfiguration): void {
     let config = new PioneerTreeConfiguration();
-    this.configuration = Object.assign(config, this.configuration);
+    this.configuration = Object.assign(config, configuration);
   }
 
   /**
@@ -151,8 +150,9 @@ export class PioneerTree implements IPioneerTree {
       nodes[i].pioneerTreeNode.currentNode = nodes[i];
       nodes[i].pioneerTreeNode.nodesInCollection = nodes.length;
       this.setSortIndex(nodes[i], i);
-      if (nodes[i][this.configuration.childPropertyName]) {
-        this.bindNodesToInternalTracking(nodes[i][this.configuration.childPropertyName], nodes[i]);
+      nodes[i].pioneerTreeNode.getChildNodes()
+      if (nodes[i].pioneerTreeNode.getChildNodes()) {
+        this.bindNodesToInternalTracking(nodes[i].pioneerTreeNode.getChildNodes(), nodes[i]);
       }
     }
   }

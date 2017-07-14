@@ -65,6 +65,12 @@ export interface IPioneerTreeNode {
   getContentClasses(): string[];
 
   /**
+   * Get child objects
+   * TODO: any?
+   */
+  getChildNodes(): any;
+
+  /**
    * Is this node currently selected
    */
   isSelected(): boolean;
@@ -121,6 +127,20 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     return classes;
   }
 
+  getChildNodes(): any {
+    let paths = this.config.childPropertyName.split('.')
+      , current = this.currentNode;
+
+    for (let i = 0; i < paths.length; ++i) {
+      if (current[paths[i]] === undefined) {
+        return undefined;
+      } else {
+        current = current[paths[i]];
+      }
+    }
+    return current;
+  }
+
   isSelected(): boolean {
     if (!this.isCurrentSelectedNode) {
       return false;
@@ -138,7 +158,8 @@ export class PioneerTreeNode implements IPioneerTreeNode {
       return false;
     };
 
-    if (!this.currentNode[this.config.childPropertyName]) {
+    if (!this.getChildNodes()) {
+    //if (!this.currentNode[this.config.childPropertyName]) {
       return false;
     };
 
@@ -163,6 +184,8 @@ export class PioneerTreeNode implements IPioneerTreeNode {
   }
 
   private getLastIdInParentNodeChildCollection(): string {
-    return this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName][this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName].length - 1].pioneerTreeNode.getId();
+    const a = this.currentNode.pioneerTreeNode.parentNode.pioneerTreeNode.getChildNodes();
+    return a[a.length -1].pioneerTreeNode.getId();
+    //return this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName][this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName].length - 1].pioneerTreeNode.getId();
   }
 }

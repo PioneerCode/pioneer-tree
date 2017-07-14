@@ -16,7 +16,6 @@ import { IPioneerTreeConfiguration } from '../../models/pioneer-tree-configurati
 })
 export class PioneerTreeRepeaterComponent {
   @Input() nodes: IPioneerTreeExpandedNode[];
-  @Input() configuration: IPioneerTreeConfiguration;
 
   constructor(
     private elementRef: ElementRef,

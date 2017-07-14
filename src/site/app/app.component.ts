@@ -105,7 +105,7 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
         </span>
       </ng-template>
       <ng-template #repeaterTemplate let-node>
-        <ul pioneer-tree-repeater [nodes]="node.children" [configuration]="configuration">
+        <ul pioneer-tree-repeater [nodes]="node.children">
           <li pioneer-tree-node
             *ngFor="let node of node.children"
             (nodeDropped)="onNodeDropped($event)"

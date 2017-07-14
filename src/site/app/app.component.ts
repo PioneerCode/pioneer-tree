@@ -115,6 +115,7 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
         </ul>
       </ng-template>
       <ul pioneer-tree
+        [configuration]="configuration"
         [nodes]="nodes">
         <li pioneer-tree-node
             *ngFor="let node of nodes"

@@ -1,5 +1,10 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
+<a name="1.2.3"></a>
+# 1.2.3
+### Fix
+* No configuration passed on init bug
+
 <a name="1.2.2"></a>
 # 1.2.2
 ### Fix

@@ -115,8 +115,8 @@ import { IPioneerTreeConfiguration } from './lib/models/pioneer-tree-configurati
         </ul>
       </ng-template>
       <ul pioneer-tree
-        [nodes]="nodes"
-        [configuration]="configuration">
+        [configuration]="configuration"
+        [nodes]="nodes">
         <li pioneer-tree-node
             *ngFor="let node of nodes"
             (nodeDropped)="onNodeDropped($event)"

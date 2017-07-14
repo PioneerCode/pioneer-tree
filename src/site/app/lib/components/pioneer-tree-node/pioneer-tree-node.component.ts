@@ -1,5 +1,4 @@
 ﻿import { Component, Input, TemplateRef, Output, EventEmitter } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
 import { PioneerTree } from '../../models/pioneer-tree.model';
 

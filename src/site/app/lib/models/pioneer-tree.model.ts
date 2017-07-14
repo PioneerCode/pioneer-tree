@@ -63,9 +63,7 @@ export class PioneerTree implements IPioneerTree {
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
     this.currentNodes = nodes;
 
-    if (configuration) {
-      this.buildConfiguration();
-    }
+    this.buildConfiguration();
 
     for (let i = 0; i < this.currentNodes.length; i++) {
       this.currentNodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService);

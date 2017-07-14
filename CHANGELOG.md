@@ -1,13 +1,13 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
-<a name="1.2.3"></a>
-# 1.2.3
-### Fix
+<a name="1.2.4"></a>
+# 1.2.4
+### Fixed
 * No configuration passed on init bug
 
 <a name="1.2.2"></a>
 # 1.2.2
-### Fix
+### Fixed
 * Module build
 
 <a name="1.2.0"></a>

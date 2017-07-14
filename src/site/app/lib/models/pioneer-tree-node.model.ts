@@ -159,7 +159,6 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     };
 
     if (!this.getChildNodes()) {
-    //if (!this.currentNode[this.config.childPropertyName]) {
       return false;
     };
 
@@ -185,7 +184,6 @@ export class PioneerTreeNode implements IPioneerTreeNode {
 
   private getLastIdInParentNodeChildCollection(): string {
     const a = this.currentNode.pioneerTreeNode.parentNode.pioneerTreeNode.getChildNodes();
-    return a[a.length -1].pioneerTreeNode.getId();
-    //return this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName][this.currentNode.pioneerTreeNode.parentNode[this.config.childPropertyName].length - 1].pioneerTreeNode.getId();
+    return a[a.length - 1].pioneerTreeNode.getId();
   }
 }

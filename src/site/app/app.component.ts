@@ -1,5 +1,5 @@
 ﻿import { Component, ViewChild } from '@angular/core';
-import { IPioneerTreeConfiguration, IPioneerTree } from './lib/pioneer-tree.module';
+import { IPioneerTreeConfiguration } from './lib/pioneer-tree.module';
 
 @Component({
   selector: 'my-app',
@@ -278,7 +278,7 @@ export class AppComponent {
   @ViewChild('pt')
   ptComponent: any;
 
-  test(test:any) {
+  test(test: any) {
     this.ptComponent.pioneerTree.expandAllNodes();
   }
 

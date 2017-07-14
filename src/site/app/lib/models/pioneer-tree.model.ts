@@ -6,6 +6,7 @@ import { IPioneerTreeDropParentService, PioneerTreeDropParentService } from '../
 import { PioneerTreeDropChildService, IPioneerTreeDropChildService } from '../services/pioneer-tree-drop-child.service';
 import { IPioneerTreeDropRootService, PioneerTreeDropRootService } from '../services/pioneer-tree-drop-root.service';
 import { IPioneerTreeUidService, PioneerTreeUidService } from '../services/pioneer-tree-uid.service';
+import { IPioneerTreeExpandCollapseService, PioneerTreeExpandCollapseService } from '../services/pioneer-tree-expand-collapse.service';
 
 export interface IPioneerTree {
   /**
@@ -60,7 +61,8 @@ export class PioneerTree implements IPioneerTree {
     @Inject(PioneerTreeDropRootService) private dropRootService: IPioneerTreeDropRootService,
     @Inject(PioneerTreeDropParentService) private dropParentService: IPioneerTreeDropParentService,
     @Inject(PioneerTreeDropChildService) private dropChildService: IPioneerTreeDropChildService,
-    @Inject(PioneerTreeUidService) private uidService: IPioneerTreeUidService
+    @Inject(PioneerTreeUidService) private uidService: IPioneerTreeUidService,
+    @Inject(PioneerTreeExpandCollapseService) private expandCollapseService: IPioneerTreeExpandCollapseService
   ) { }
 
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
@@ -133,11 +135,11 @@ export class PioneerTree implements IPioneerTree {
   }
 
   expandAllNodes(): void {
-    alert('test')
+    this.expandCollapseService.expandCollapsedAllNodes(this.currentNodes, false);
   }
 
   collapseAllNodes(): void {
-    alert('test')
+    this.expandCollapseService.expandCollapsedAllNodes(this.currentNodes, true);
   }
 
   /**
@@ -161,7 +163,7 @@ export class PioneerTree implements IPioneerTree {
       nodes[i].pioneerTreeNode.currentNode = nodes[i];
       nodes[i].pioneerTreeNode.nodesInCollection = nodes.length;
       this.setSortIndex(nodes[i], i);
-      nodes[i].pioneerTreeNode.getChildNodes()
+      nodes[i].pioneerTreeNode.getChildNodes();
       if (nodes[i].pioneerTreeNode.getChildNodes()) {
         this.bindNodesToInternalTracking(nodes[i].pioneerTreeNode.getChildNodes(), nodes[i]);
       }

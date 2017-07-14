@@ -18,6 +18,10 @@ Head over to the <a href="https://pioneercode.github.io/pioneer-tree" target="_b
 - Opt-in public state tracking 
 - Drag & Drop
 - Sort tracking
+- Events
+  - Node Dropped
+- Filtering
+- Configurable 
 
 For pending new features, please head over to the [coming soon](https://github.com/PioneerCode/pioneer-tree/wiki/ComingSoon) page located in the [wiki](https://github.com/PioneerCode/pioneer-tree/wiki).
 

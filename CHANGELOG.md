@@ -1,5 +1,10 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
+<a name="1.3.0"></a>
+# 1.3.0
+### Added
+* Expand and Collapse public API
+
 <a name="1.2.6"></a>
 # 1.2.6
 ### Fixed

@@ -92,71 +92,47 @@ import { IPioneerTreeConfiguration } from './lib/pioneer-tree.module';
 </section>
 <section class="data">
   <div class="row">
-    <div class="large-6 columns">
-      <h2>Component</h2>
-      <ng-template #nodeTemplate let-node>
-        <span pioneer-tree-collapse [node]="node">
-          <i class="fa"
-            [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'">
-          </i>
-        </span>
-        <span pioneer-tree-handle [node]="node">
-          {{node.name}} - {{node.pioneerTreeNode.sortIndex}}
-        </span>
-      </ng-template>
-      <ng-template #repeaterTemplate let-node>
-        <ul pioneer-tree-repeater [nodes]="node.children">
-          <li pioneer-tree-node
-            *ngFor="let node of node.children"
-            (nodeDropped)="onNodeDropped($event)"
-            [nodeTemplate]="nodeTemplate"
-            [repeaterTemplate]="repeaterTemplate" [node]="node">
-          </li>
-        </ul>
-      </ng-template>
-      <ul pioneer-tree
-        #pt
-        [configuration]="configuration"
-        [nodes]="nodes">
-        <li pioneer-tree-node
-            *ngFor="let node of nodes"
-            (nodeDropped)="onNodeDropped($event)"
-            [nodeTemplate]="nodeTemplate"
-            [repeaterTemplate]="repeaterTemplate" [node]="node">
-        </li>
-      </ul>
-      <!--<ng-template #nodeTemplate let-node>
-        <div pioneer-tree-collapse [node]="node">
-          <a>
-            <i class="fa fa-folder"></i>
-            {{ node.name }}
-          </a>
-        </div>
-      </ng-template>
-      <ng-template #repeaterTemplate let-node>
-        <ul pioneer-tree-repeater [nodes]="node.folders.directories">
-          <li pioneer-tree-node *ngFor="let node of node.folders.directories" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate"
-            [node]="node">
-          </li>
-        </ul>
-      </ng-template>
-      <ul class="root">
+    <div class="large-8 columns">
+      <ul class="menu">
         <li>
-          <a href="#">
-            <i class="fa fa-folder-open-o"></i> /
-          </a>
-          <ul pioneer-tree
-            [configuration]="configuration"
-            [nodes]="nodes.directories">
-            <li pioneer-tree-node *ngFor="let node of nodes.directories" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate" [node]="node">
-            </li>
-          </ul>
+          <h2>Component</h2>
         </li>
-      </ul>-->
+        <li><button class="button tiny" (click)="ptComponent.pioneerTree.expandAllNodes()">Expand</button></li>
+        <li><button class="button tiny" (click)="ptComponent.pioneerTree.collapseAllNodes()">Collapse</button></li>
+      </ul>
+<ng-template #nodeTemplate let-node>
+  <span pioneer-tree-collapse [node]="node">
+    <i class="fa"
+      [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'">
+    </i>
+  </span>
+  <span pioneer-tree-handle [node]="node">
+    {{node.name}} - {{node.pioneerTreeNode.sortIndex}}
+  </span>
+</ng-template>
+<ng-template #repeaterTemplate let-node>
+  <ul pioneer-tree-repeater [nodes]="node.children">
+    <li pioneer-tree-node
+      *ngFor="let node of node.children"
+      (nodeDropped)="onNodeDropped($event)"
+      [nodeTemplate]="nodeTemplate"
+      [repeaterTemplate]="repeaterTemplate" [node]="node">
+    </li>
+  </ul>
+</ng-template>
+<ul pioneer-tree #pt
+  [configuration]="configuration"
+  [nodes]="nodes">
+  <li pioneer-tree-node
+      *ngFor="let node of nodes"
+      (nodeDropped)="onNodeDropped($event)"
+      [nodeTemplate]="nodeTemplate"
+      [repeaterTemplate]="repeaterTemplate" [node]="node">
+  </li>
+</ul>
     </div>
-    <div class="large-6 columns">
-      <h2
-        (click)="test(pt)">Events</h2>
+    <div class="large-4 columns">
+      <h2>Events</h2>
       <div class="events">
         <ul class="menu vertical">
           <li *ngFor="let event of events">
@@ -202,11 +178,11 @@ import { IPioneerTreeConfiguration } from './lib/pioneer-tree.module';
     &#x3C;/i&#x3E;
   &#x3C;/span&#x3E;
   &#x3C;span pioneer-tree-handle [node]=&#x22;node&#x22;&#x3E;
-    {{node.name}}
+    {{node.name}} - {{node.pioneerTreeNode.sortIndex}}
   &#x3C;/span&#x3E;
 &#x3C;/ng-template&#x3E;
 &#x3C;ng-template #repeaterTemplate let-node&#x3E;
-  &#x3C;ul pioneer-tree-repeater [nodes]=&#x22;node.children&#x22; [configuration]=&#x22;configuration&#x22;&#x3E;
+  &#x3C;ul pioneer-tree-repeater [nodes]=&#x22;node.children&#x22;&#x3E;
     &#x3C;li pioneer-tree-node
       *ngFor=&#x22;let node of node.children&#x22;
       (nodeDropped)=&#x22;onNodeDropped($event)&#x22;
@@ -215,9 +191,9 @@ import { IPioneerTreeConfiguration } from './lib/pioneer-tree.module';
     &#x3C;/li&#x3E;
   &#x3C;/ul&#x3E;
 &#x3C;/ng-template&#x3E;
-&#x3C;ul pioneer-tree
-  [nodes]=&#x22;nodes&#x22;
-  [configuration]=&#x22;configuration&#x22;&#x3E;
+&#x3C;ul pioneer-tree #pt
+  [configuration]=&#x22;configuration&#x22;
+  [nodes]=&#x22;nodes&#x22;&#x3E;
   &#x3C;li pioneer-tree-node
       *ngFor=&#x22;let node of nodes&#x22;
       (nodeDropped)=&#x22;onNodeDropped($event)&#x22;
@@ -277,10 +253,6 @@ export class AppComponent {
    */
   @ViewChild('pt')
   ptComponent: any;
-
-  test(test: any) {
-    this.ptComponent.pioneerTree.expandAllNodes();
-  }
 
   onNodeDropped($event: any): void {
     this.events.unshift(new Date().toLocaleString() + ' : Node Dropped "' + $event.name + '"');

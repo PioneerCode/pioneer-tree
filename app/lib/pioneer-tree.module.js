@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
+var common_1 = require("@angular/common");
 var pioneer_tree_component_1 = require("./components/pioneer-tree/pioneer-tree.component");
 var pioneer_tree_repeater_component_1 = require("./components/pioneer-tree-repeater/pioneer-tree-repeater.component");
 var pioneer_tree_node_component_1 = require("./components/pioneer-tree-node/pioneer-tree-node.component");
@@ -27,7 +27,7 @@ var PioneerTreeModule = (function () {
 PioneerTreeModule = __decorate([
     core_1.NgModule({
         imports: [
-            platform_browser_1.BrowserModule
+            common_1.CommonModule
         ],
         declarations: [
             pioneer_tree_component_1.PioneerTreeComponent,
@@ -56,6 +56,4 @@ PioneerTreeModule = __decorate([
     })
 ], PioneerTreeModule);
 exports.PioneerTreeModule = PioneerTreeModule;
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = PioneerTreeModule;
 //# sourceMappingURL=pioneer-tree.module.js.map

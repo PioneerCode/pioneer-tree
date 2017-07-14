@@ -33,9 +33,7 @@ var PioneerTree = (function () {
     }
     PioneerTree.prototype.buildTree = function (nodes, configuration) {
         this.currentNodes = nodes;
-        if (configuration) {
-            this.buildConfiguration();
-        }
+        this.buildConfiguration();
         for (var i = 0; i < this.currentNodes.length; i++) {
             this.currentNodes[i].pioneerTreeNode = new pioneer_tree_node_model_1.PioneerTreeNode(this.uidService);
             this.currentNodes[i].pioneerTreeNode.config = this.configuration;

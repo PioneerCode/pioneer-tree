@@ -67,19 +67,10 @@ export class PioneerTree implements IPioneerTree {
 
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
     this.currentNodes = nodes;
-
     this.buildConfiguration(configuration);
-
-    for (let i = 0; i < this.currentNodes.length; i++) {
-      this.currentNodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService);
-      this.currentNodes[i].pioneerTreeNode.config = this.config;
-      this.currentNodes[i].pioneerTreeNode.currentNode = this.currentNodes[i];
-      this.currentNodes[i].pioneerTreeNode.nodesInCollection = this.currentNodes.length;
-      this.currentNodes[i].pioneerTreeNode.treeRootNodes = this.currentNodes;
-      this.setSortIndex(this.currentNodes[i], i);
-      if (this.currentNodes[i].pioneerTreeNode.getChildNodes()) {
-        this.bindNodesToInternalTracking(this.currentNodes[i].pioneerTreeNode.getChildNodes(), this.currentNodes[i]);
-      }
+    this.buildExpandedNoded();
+    if (this.config.collapseAllOnLoad) {
+      this.collapseAllNodes();
     }
   }
 
@@ -148,6 +139,23 @@ export class PioneerTree implements IPioneerTree {
   private buildConfiguration(configuration?: IPioneerTreeConfiguration): void {
     let config = new PioneerTreeConfiguration();
     this.config = Object.assign(config, configuration);
+  }
+
+  /**
+   * Bind IPioneerTreeExpandedNodes
+   */
+  private buildExpandedNoded(): void {
+    for (let i = 0; i < this.currentNodes.length; i++) {
+      this.currentNodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService);
+      this.currentNodes[i].pioneerTreeNode.config = this.config;
+      this.currentNodes[i].pioneerTreeNode.currentNode = this.currentNodes[i];
+      this.currentNodes[i].pioneerTreeNode.nodesInCollection = this.currentNodes.length;
+      this.currentNodes[i].pioneerTreeNode.treeRootNodes = this.currentNodes;
+      this.setSortIndex(this.currentNodes[i], i);
+      if (this.currentNodes[i].pioneerTreeNode.getChildNodes()) {
+        this.bindNodesToInternalTracking(this.currentNodes[i].pioneerTreeNode.getChildNodes(), this.currentNodes[i]);
+      }
+    }
   }
 
   /**

@@ -206,7 +206,8 @@ export class AppComponent {
   events = [] as string[];
   configuration = {
     childPropertyName: 'children',
-    sortPropertyName: 'sort'
+    sortPropertyName: 'sort',
+    collapseAllOnLoad: true
   } as IPioneerTreeConfiguration;
   nodes = [
     {

@@ -1,5 +1,10 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
+<a name="1.4.0"></a>
+# 1.4.0
+### Added
+* Configure default expand or collapsed state
+
 <a name="1.3.0"></a>
 # 1.3.0
 ### Added

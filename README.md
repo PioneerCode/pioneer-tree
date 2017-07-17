@@ -22,7 +22,10 @@ Head over to the <a href="https://pioneercode.github.io/pioneer-tree" target="_b
   - Node Dropped
 - Filtering
 - Configurable 
-- Expand & Collapse all
+  - Sort property binding
+  - Child property binding
+  - Default collapse & expand state
+- Expand & Collapse all public access
 
 For pending new features, please head over to the [coming soon](https://github.com/PioneerCode/pioneer-tree/wiki/ComingSoon) page located in the [wiki](https://github.com/PioneerCode/pioneer-tree/wiki).
 

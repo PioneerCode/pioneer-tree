@@ -1,6 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IPioneerTreeConfiguration } from './models/pioneer-tree-configuration.model';
+import { IPioneerTreeExpandedNode } from './models/pioneer-tree-expanded-node.model';
 import { PioneerTreeComponent } from './components/pioneer-tree/pioneer-tree.component';
 import { PioneerTreeRepeaterComponent } from './components/pioneer-tree-repeater/pioneer-tree-repeater.component';
 import { PioneerTreeNodeComponent } from './components/pioneer-tree-node/pioneer-tree-node.component';
@@ -16,7 +17,8 @@ import { PioneerTreeUidService } from './services/pioneer-tree-uid.service';
 import { PioneerTreeExpandCollapseService } from './services/pioneer-tree-expand-collapse.service';
 export {
   IPioneerTreeConfiguration,
-  IPioneerTree
+  IPioneerTree,
+  IPioneerTreeExpandedNode
 }
 @NgModule({
   imports: [

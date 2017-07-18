@@ -48,5 +48,5 @@ export {
     PioneerTreeConfiguration
   ]
 })
-
 export class PioneerTreeModule { }
+export default PioneerTreeModule;

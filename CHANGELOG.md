@@ -1,5 +1,10 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
+<a name="1.4.2"></a>
+# 1.4.2
+### Fixed
+* Package Module targeting
+
 <a name="1.4.0"></a>
 # 1.4.0
 ### Added

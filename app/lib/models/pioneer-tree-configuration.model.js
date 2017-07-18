@@ -10,6 +10,7 @@ var PioneerTreeConfiguration = (function () {
     function PioneerTreeConfiguration() {
         this.childPropertyName = 'children';
         this.sortPropertyName = 'sort';
+        this.collapseAllOnLoad = false;
     }
     return PioneerTreeConfiguration;
 }());

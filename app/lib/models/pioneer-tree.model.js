@@ -31,16 +31,9 @@ var PioneerTree = (function () {
     PioneerTree.prototype.buildTree = function (nodes, configuration) {
         this.currentNodes = nodes;
         this.buildConfiguration(configuration);
-        for (var i = 0; i < this.currentNodes.length; i++) {
-            this.currentNodes[i].pioneerTreeNode = new pioneer_tree_node_model_1.PioneerTreeNode(this.uidService);
-            this.currentNodes[i].pioneerTreeNode.config = this.config;
-            this.currentNodes[i].pioneerTreeNode.currentNode = this.currentNodes[i];
-            this.currentNodes[i].pioneerTreeNode.nodesInCollection = this.currentNodes.length;
-            this.currentNodes[i].pioneerTreeNode.treeRootNodes = this.currentNodes;
-            this.setSortIndex(this.currentNodes[i], i);
-            if (this.currentNodes[i].pioneerTreeNode.getChildNodes()) {
-                this.bindNodesToInternalTracking(this.currentNodes[i].pioneerTreeNode.getChildNodes(), this.currentNodes[i]);
-            }
+        this.buildExpandedNoded();
+        if (this.config.collapseAllOnLoad) {
+            this.collapseAllNodes();
         }
     };
     PioneerTree.prototype.isNodeDroppable = function (dropNode) {
@@ -99,6 +92,22 @@ var PioneerTree = (function () {
     PioneerTree.prototype.buildConfiguration = function (configuration) {
         var config = new pioneer_tree_configuration_model_1.PioneerTreeConfiguration();
         this.config = Object.assign(config, configuration);
+    };
+    /**
+     * Bind IPioneerTreeExpandedNodes
+     */
+    PioneerTree.prototype.buildExpandedNoded = function () {
+        for (var i = 0; i < this.currentNodes.length; i++) {
+            this.currentNodes[i].pioneerTreeNode = new pioneer_tree_node_model_1.PioneerTreeNode(this.uidService);
+            this.currentNodes[i].pioneerTreeNode.config = this.config;
+            this.currentNodes[i].pioneerTreeNode.currentNode = this.currentNodes[i];
+            this.currentNodes[i].pioneerTreeNode.nodesInCollection = this.currentNodes.length;
+            this.currentNodes[i].pioneerTreeNode.treeRootNodes = this.currentNodes;
+            this.setSortIndex(this.currentNodes[i], i);
+            if (this.currentNodes[i].pioneerTreeNode.getChildNodes()) {
+                this.bindNodesToInternalTracking(this.currentNodes[i].pioneerTreeNode.getChildNodes(), this.currentNodes[i]);
+            }
+        }
     };
     /**
      * Recursively build internal tracking tree

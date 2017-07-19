@@ -11,7 +11,7 @@ export interface IPioneerTreeExpandCollapseService {
 export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandCollapseService {
   expandCollapsedAllNodes(nodes: IPioneerTreeExpandedNode[], isCollapsed: boolean): void {
     for (let i = 0; i < nodes.length; i++) {
-      nodes[i].pioneerTreeNode.pioneerTreeRepeater.collapsed = isCollapsed;
+      nodes[i].pioneerTreeNode.pioneerTreeRepeater.setCollapsed(isCollapsed);
       if (nodes[i].pioneerTreeNode.getChildNodes()) {
         this.recursivelySetCollapsedFlag(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed);
       }
@@ -20,7 +20,7 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
 
   private recursivelySetCollapsedFlag(nodes: IPioneerTreeExpandedNode[], isCollapsed: boolean): void {
     for (let i = 0; i < nodes.length; i++) {
-      nodes[i].pioneerTreeNode.pioneerTreeRepeater.collapsed = isCollapsed;
+      nodes[i].pioneerTreeNode.pioneerTreeRepeater.setCollapsed(isCollapsed);
       if (nodes[i].pioneerTreeNode.getChildNodes()) {
         this.recursivelySetCollapsedFlag(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed);
       }

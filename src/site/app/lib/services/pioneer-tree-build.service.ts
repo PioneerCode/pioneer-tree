@@ -4,6 +4,7 @@ import { IPioneerTreeConfiguration, PioneerTreeConfiguration } from '../models/p
 import { PioneerTreeNode } from '../models/pioneer-tree-node.model';
 import { IPioneerTreeUidService, PioneerTreeUidService } from '../services/pioneer-tree-uid.service';
 import { IPioneerTreeExpandCollapseService, PioneerTreeExpandCollapseService } from '../services/pioneer-tree-expand-collapse.service';
+
 export interface IPioneerTreeBuildService {
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void;
 }
@@ -16,7 +17,7 @@ export class PioneerTreeBuildService implements IPioneerTreeBuildService {
     @Inject(PioneerTreeExpandCollapseService) private expandCollapseService: IPioneerTreeExpandCollapseService
   ) { }
 
-  buildTree(nodes: any[], configuration?: any): void {
+  buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: any): void {
     this.buildConfiguration(configuration);
     this.buildExpandedNode(nodes);
     if (this.config.collapseAllOnLoad) {
@@ -25,8 +26,8 @@ export class PioneerTreeBuildService implements IPioneerTreeBuildService {
   }
 
   /**
- * Bind public config to default config
- */
+   * Bind public config to default config
+   */
   private buildConfiguration(configuration?: IPioneerTreeConfiguration): void {
     let config = new PioneerTreeConfiguration();
     this.config = Object.assign(config, configuration);

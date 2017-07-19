@@ -48,6 +48,12 @@ export interface IPioneerTree {
    * Collapse all nodes
    */
   expandAllNodes(): void;
+
+  /**
+   * Collapse all nodes
+   * Expand this node and set it as active
+   */
+  collapseAllExpandThisSetActive(node: IPioneerTreeExpandedNode): void;
 }
 
 @Injectable()
@@ -128,5 +134,12 @@ export class PioneerTree implements IPioneerTree {
 
   collapseAllNodes(): void {
     this.expandCollapseService.expandCollapsedAllNodes(this.currentNodes, true);
+  }
+
+  collapseAllExpandThisSetActive(node: IPioneerTreeExpandedNode): void {
+    this.collapseAllNodes();
+    node.pioneerTreeNode.setCollapsed(false);
+    node.pioneerTreeNode.isCurrentSelectedNode = true;
+    this.currentSelectedNode = node;
   }
 }

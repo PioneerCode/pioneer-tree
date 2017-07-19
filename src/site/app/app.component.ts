@@ -23,12 +23,12 @@ import { IPioneerTreeConfiguration } from './lib/pioneer-tree.module';
           </li>
           <li>
             <span pioneer-tree-handle [node]="node">
-              {{node.name}} - {{node.pioneerTreeNode.sortIndex}}
+              {{node.name}} - {{node.pioneerTreeNode.sortIndex}} :
             </span>
           </li>
           <li>
             <a title="Collapse All, Expand This, Set Active" (click)="ptComponent.pioneerTree.collapseAllExpandThisSetActive(node)">
-              <i class="fa fa-bath"></i>
+              <i class="fa fa-heart-o"></i>
             </a>
           </li>
         </ul>

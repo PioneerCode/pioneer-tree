@@ -4,6 +4,7 @@ import { IPioneerTreeConfiguration, PioneerTreeConfiguration } from '../models/p
 import { PioneerTreeNode } from '../models/pioneer-tree-node.model';
 import { IPioneerTreeUidService, PioneerTreeUidService } from '../services/pioneer-tree-uid.service';
 import { IPioneerTreeExpandCollapseService, PioneerTreeExpandCollapseService } from '../services/pioneer-tree-expand-collapse.service';
+import { IPioneerTreeDropService, PioneerTreeDropService } from '../services/pioneer-tree-drop.service';
 
 export interface IPioneerTreeBuildService {
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void;
@@ -14,7 +15,8 @@ export class PioneerTreeBuildService implements IPioneerTreeBuildService {
   constructor(
     @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration,
     @Inject(PioneerTreeUidService) private uidService: IPioneerTreeUidService,
-    @Inject(PioneerTreeExpandCollapseService) private expandCollapseService: IPioneerTreeExpandCollapseService
+    @Inject(PioneerTreeExpandCollapseService) private expandCollapseService: IPioneerTreeExpandCollapseService,
+    @Inject(PioneerTreeDropService) private treeDropService: IPioneerTreeDropService
   ) { }
 
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: any): void {
@@ -38,7 +40,7 @@ export class PioneerTreeBuildService implements IPioneerTreeBuildService {
    */
   private buildExpandedNode(nodes: any[]): void {
     for (let i = 0; i < nodes.length; i++) {
-      nodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService);
+      nodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService, this.treeDropService);
       nodes[i].pioneerTreeNode.config = this.config;
       nodes[i].pioneerTreeNode.currentNode = nodes[i];
       nodes[i].pioneerTreeNode.nodesInCollection = nodes.length;
@@ -56,7 +58,7 @@ export class PioneerTreeBuildService implements IPioneerTreeBuildService {
    */
   private bindNodesToInternalTracking(nodes: IPioneerTreeExpandedNode[], parent: IPioneerTreeExpandedNode): void {
     for (let i = 0; i < nodes.length; i++) {
-      nodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService);
+      nodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService, this.treeDropService);
       nodes[i].pioneerTreeNode.config = this.config;
       nodes[i].pioneerTreeNode.parentNode = parent;
       nodes[i].pioneerTreeNode.previousNode = nodes[i - 1];

@@ -149,6 +149,9 @@ export class AppComponent {
         if (key === 'previousNode') {
           return '@ptRef:previousNode';
         }
+        if (key === 'currentDragNode') {
+          return '@ptRef:currentDragNode';
+        }
       }
       return value;
     }, 2);

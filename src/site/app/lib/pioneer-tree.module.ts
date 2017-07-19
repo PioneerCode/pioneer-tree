@@ -16,6 +16,7 @@ import { PioneerTreeDropRootService } from './services/pioneer-tree-drop-root.se
 import { PioneerTreeBuildService } from './services/pioneer-tree-build.service';
 import { PioneerTreeUidService } from './services/pioneer-tree-uid.service';
 import { PioneerTreeExpandCollapseService } from './services/pioneer-tree-expand-collapse.service';
+import { IPioneerTreeDropService, PioneerTreeDropService } from './services/pioneer-tree-drop.service';
 
 export {
   IPioneerTreeConfiguration,
@@ -51,6 +52,7 @@ export {
     PioneerTreeUidService,
     PioneerTreeExpandCollapseService,
     PioneerTreeBuildService,
+    PioneerTreeDropService,
     PioneerTreeConfiguration
   ]
 })

@@ -2,6 +2,7 @@
 import { IPioneerTreeRepeater, PioneerTreeRepeater } from './pioneer-tree-repeater.model';
 import { IPioneerTreeExpandedNode } from './pioneer-tree-expanded-node.model';
 import { IPioneerTreeConfiguration } from './pioneer-tree-configuration.model';
+import { IPioneerTreeDropService, PioneerTreeDropService } from '../services/pioneer-tree-drop.service';
 
 export interface IPioneerTreeNode {
   /**
@@ -101,6 +102,7 @@ export interface IPioneerTreeNode {
 }
 
 export class PioneerTreeNode implements IPioneerTreeNode {
+
   pioneerTreeRepeater: IPioneerTreeRepeater;
   sortIndex: number;
   isCurrentSelectedNode = false;
@@ -113,7 +115,10 @@ export class PioneerTreeNode implements IPioneerTreeNode {
 
   private uid: string;
 
-  constructor(private uidService: IPioneerTreeUidService) {
+  constructor(
+    private uidService: IPioneerTreeUidService,
+    private treeDropService: IPioneerTreeDropService
+  ) {
     this.uid = this.uidService.getUid();
     this.pioneerTreeRepeater = new PioneerTreeRepeater(this.uidService);
   }

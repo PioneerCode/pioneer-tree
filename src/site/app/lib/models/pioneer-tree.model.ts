@@ -7,13 +7,9 @@ import { IPioneerTreeDropRootService, PioneerTreeDropRootService } from '../serv
 import { IPioneerTreeUidService, PioneerTreeUidService } from '../services/pioneer-tree-uid.service';
 import { IPioneerTreeBuildService, PioneerTreeBuildService } from '../services/pioneer-tree-build.service';
 import { IPioneerTreeExpandCollapseService, PioneerTreeExpandCollapseService } from '../services/pioneer-tree-expand-collapse.service';
+import { IPioneerTreeDropService, PioneerTreeDropService } from '../services/pioneer-tree-drop.service';
 
 export interface IPioneerTree {
-  /**
-   * Track current selected node
-   */
-  currentDragNode: IPioneerTreeExpandedNode | undefined;
-
   /**
    * Track current node being dragged
    */
@@ -32,7 +28,7 @@ export interface IPioneerTree {
   /**
    * Check to see if draggable node is droppable on drag-over event
    */
-  isNodeDroppable(dropNode: IPioneerTreeExpandedNode): boolean;
+  //isNodeDroppable(dropNode: IPioneerTreeExpandedNode): boolean;
 
   /**
    * Drop currentDragNode event
@@ -54,12 +50,15 @@ export interface IPioneerTree {
    * Expand this node and set it as active
    */
   collapseAllExpandThisSetActive(node: IPioneerTreeExpandedNode): void;
+
+  getCurrentDragNode(): IPioneerTreeExpandedNode;
+  setCurrentDragNode(node: IPioneerTreeExpandedNode): void;
+  isNodeDroppable(dropNode: IPioneerTreeExpandedNode): boolean;
 }
 
 @Injectable()
 export class PioneerTree implements IPioneerTree {
   currentNodes: IPioneerTreeExpandedNode[];
-  currentDragNode: IPioneerTreeExpandedNode | undefined;
   currentSelectedNode: IPioneerTreeExpandedNode;
 
   constructor(
@@ -69,7 +68,8 @@ export class PioneerTree implements IPioneerTree {
     @Inject(PioneerTreeDropParentService) private dropParentService: IPioneerTreeDropParentService,
     @Inject(PioneerTreeDropChildService) private dropChildService: IPioneerTreeDropChildService,
     @Inject(PioneerTreeUidService) private uidService: IPioneerTreeUidService,
-    @Inject(PioneerTreeExpandCollapseService) private expandCollapseService: IPioneerTreeExpandCollapseService
+    @Inject(PioneerTreeExpandCollapseService) private expandCollapseService: IPioneerTreeExpandCollapseService,
+    @Inject(PioneerTreeDropService) private treeDropService: IPioneerTreeDropService
   ) { }
 
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
@@ -77,55 +77,41 @@ export class PioneerTree implements IPioneerTree {
     this.buildService.buildTree(this.currentNodes, configuration);
   }
 
-  isNodeDroppable(dropNode: IPioneerTreeExpandedNode): boolean {
-    // Guard
-    if (!this.currentDragNode) {
-      return false;
-    }
-
-    // Don't drop on self
-    if (dropNode.pioneerTreeNode.getId() === this.currentDragNode.pioneerTreeNode.getId()) {
-      return false;
-    }
-
-    // Always allow root drops
-    if (dropNode.pioneerTreeNode.treeRootNodes && dropNode.pioneerTreeNode.treeRootNodes.length > 0) {
-      return true;
-    }
-
-    // Don't allow parent to drop in child collection(s)
-    if (dropNode.pioneerTreeNode.parentNode.pioneerTreeNode.getId() === this.currentDragNode.pioneerTreeNode.getId()) {
-      return false;
-    }
-
-    return true;
+  getCurrentDragNode(): IPioneerTreeExpandedNode {
+    return this.treeDropService.getCurrentDragNode();
+  }
+  setCurrentDragNode(node: IPioneerTreeExpandedNode): void {
+    this.treeDropService.setCurrentDragNode(node);
   }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, droppedSortIndex: number): void {
-    if (!this.currentDragNode) {
+    if (!this.treeDropService.getCurrentDragNode()) {
       return;
     }
     switch (dropType) {
       case 'root':
-        this.dropRootService.dropNode(dropzone, this.currentDragNode, droppedSortIndex);
+        this.dropRootService.dropNode(dropzone, this.treeDropService.getCurrentDragNode(), droppedSortIndex);
         break;
       case 'root-end':
-        this.dropRootService.dropNode(dropzone, this.currentDragNode, droppedSortIndex, true);
+        this.dropRootService.dropNode(dropzone, this.treeDropService.getCurrentDragNode(), droppedSortIndex, true);
         break;
       case 'parent':
-        this.dropParentService.dropNode(dropzone, this.currentDragNode);
+        this.dropParentService.dropNode(dropzone, this.treeDropService.getCurrentDragNode());
         break;
       case 'child':
-        this.dropChildService.dropNode(dropzone, this.currentDragNode, droppedSortIndex);
+        this.dropChildService.dropNode(dropzone, this.treeDropService.getCurrentDragNode(), droppedSortIndex);
         break;
       case 'child-end':
-        this.dropChildService.dropNode(dropzone, this.currentDragNode, droppedSortIndex, true);
+        this.dropChildService.dropNode(dropzone, this.treeDropService.getCurrentDragNode(), droppedSortIndex, true);
         break;
     }
 
     // remove current drag node tracking
-    // TODO: Do we need to remove this
-    this.currentDragNode = undefined;
+    this.treeDropService.setCurrentDragNode(undefined);
+  }
+
+  isNodeDroppable(dropNode: IPioneerTreeExpandedNode): boolean {
+    return this.treeDropService.isNodeDroppable(dropNode);
   }
 
   expandAllNodes(): void {

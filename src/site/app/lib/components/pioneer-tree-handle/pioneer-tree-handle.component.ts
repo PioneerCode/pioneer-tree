@@ -36,7 +36,7 @@ export class PioneerTreeHandleComponent {
    */
   @HostListener('dragstart', ['$event'])
   onDragStart(event: DragEvent) {
-    this.pioneerTree.currentDragNode = this.node;
+    this.pioneerTree.setCurrentDragNode(this.node);
     this.renderer.addClass(this.elementRef.nativeElement, 'pt-handle-drag-start');
   }
 

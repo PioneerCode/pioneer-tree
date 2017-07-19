@@ -60,5 +60,7 @@ export class PioneerTreeNodeComponent {
     // Set this node to current
     this.node.pioneerTreeNode.isCurrentSelectedNode = true;
     this.pioneerTree.currentSelectedNode = this.node;
+
+    //this.node.pioneerTreeNode.setActive(node);
   }
 }

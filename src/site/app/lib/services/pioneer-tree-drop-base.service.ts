@@ -1,7 +1,7 @@
 import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.model';
 import { IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
 
-export interface IPioneerTreeDropService {
+export interface IPioneerTreeDropBaseService {
   getParentCollection(nodeToDrop: IPioneerTreeExpandedNode): IPioneerTreeExpandedNode[];
 
   /**
@@ -23,7 +23,7 @@ export interface IPioneerTreeDropService {
   adjustMetaTracking(nodeToDrop: IPioneerTreeExpandedNode, parentCollection: IPioneerTreeExpandedNode[]): void;
 }
 
-export class PioneerTreeDropService implements IPioneerTreeDropService {
+export class PioneerTreeDropBaseService implements IPioneerTreeDropBaseService {
   constructor(
     public config: IPioneerTreeConfiguration
   ) { }

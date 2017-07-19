@@ -1,13 +1,13 @@
 ﻿import { Inject } from '@angular/core';
 import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.model';
 import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
-import { IPioneerTreeDropService, PioneerTreeDropService } from './pioneer-tree-drop.service';
+import { IPioneerTreeDropBaseService, PioneerTreeDropBaseService } from './pioneer-tree-drop-base.service';
 
-export interface IPioneerTreeDropParentService extends IPioneerTreeDropService {
+export interface IPioneerTreeDropParentService extends IPioneerTreeDropBaseService {
   dropNode(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode): void;
 }
 
-export class PioneerTreeDropParentService extends PioneerTreeDropService implements IPioneerTreeDropParentService {
+export class PioneerTreeDropParentService extends PioneerTreeDropBaseService implements IPioneerTreeDropParentService {
   constructor(
     @Inject(PioneerTreeConfiguration) public config: IPioneerTreeConfiguration
   ) {

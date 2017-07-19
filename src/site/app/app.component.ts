@@ -13,38 +13,38 @@ import { IPioneerTreeConfiguration } from './lib/pioneer-tree.module';
         <li><button class="button tiny" (click)="ptComponent.pioneerTree.expandAllNodes()">Expand</button></li>
         <li><button class="button tiny" (click)="ptComponent.pioneerTree.collapseAllNodes()">Collapse</button></li>
       </ul>
-      <ng-template #nodeTemplate let-node>
-        <ul class="menu content">
-          <li>
-            <span pioneer-tree-collapse [node]="node">
-              <i class="fa" [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'">
-              </i>
-            </span>
-          </li>
-          <li>
-            <span pioneer-tree-handle [node]="node">
-              {{node.name}} - {{node.pioneerTreeNode.sortIndex}} :
-            </span>
-          </li>
-          <li>
-            <a title="Collapse All, Expand This, Set Active" (click)="ptComponent.pioneerTree.collapseAllExpandThisSetActive(node)">
-              <i class="fa fa-heart-o"></i>
-            </a>
-          </li>
-        </ul>
-      </ng-template>
-      <ng-template #repeaterTemplate let-node>
-        <ul pioneer-tree-repeater [nodes]="node.children">
-          <li pioneer-tree-node *ngFor="let node of node.children" (nodeDropped)="onNodeDropped($event)" [nodeTemplate]="nodeTemplate"
-            [repeaterTemplate]="repeaterTemplate" [node]="node">
-          </li>
-        </ul>
-      </ng-template>
-      <ul pioneer-tree #pt [configuration]="configuration" [nodes]="nodes">
-        <li pioneer-tree-node *ngFor="let node of nodes" (nodeDropped)="onNodeDropped($event)" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate"
-          [node]="node">
-        </li>
-      </ul>
+<ng-template #nodeTemplate let-node>
+  <ul class="menu content">
+    <li>
+      <span pioneer-tree-collapse [node]="node">
+        <i class="fa" [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'">
+        </i>
+      </span>
+    </li>
+    <li>
+      <span pioneer-tree-handle [node]="node">
+        {{node.name}} - {{node.pioneerTreeNode.sortIndex}} :
+      </span>
+    </li>
+    <li>
+      <a title="Collapse All, Expand This, Set Active" (click)="ptComponent.pioneerTree.collapseAllExpandThisSetActive(node)">
+        <i class="fa fa-heart-o"></i>
+      </a>
+    </li>
+  </ul>
+</ng-template>
+<ng-template #repeaterTemplate let-node>
+  <ul pioneer-tree-repeater [nodes]="node.children">
+    <li pioneer-tree-node *ngFor="let node of node.children" (nodeDropped)="onNodeDropped($event)" [nodeTemplate]="nodeTemplate"
+      [repeaterTemplate]="repeaterTemplate" [node]="node">
+    </li>
+  </ul>
+</ng-template>
+<ul pioneer-tree #pt [configuration]="configuration" [nodes]="nodes">
+  <li pioneer-tree-node *ngFor="let node of nodes" (nodeDropped)="onNodeDropped($event)" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate"
+    [node]="node">
+  </li>
+</ul>
     </div>
     <div class="large-6 columns">
       <h2>Events</h2>
@@ -132,48 +132,5 @@ export class AppComponent {
 
   onNodeDropped($event: any): void {
     this.events.unshift(new Date().toLocaleString() + ' : Node Dropped "' + $event.name + '"');
-  }
-
-  getBoundDataMinusCircularReference(): any {
-    const build = JSON.stringify(this.nodes, (key, value) => {
-      if (typeof value === 'object' && value !== null) {
-        if (key === 'currentNode') {
-          return '@ptRef:currentNode';
-        }
-        if (key === 'treeRootNodes') {
-          return '@ptRef:treeRootNodes';
-        }
-        if (key === 'parentNode') {
-          return '@ptRef:parentNode';
-        }
-        if (key === 'previousNode') {
-          return '@ptRef:previousNode';
-        }
-        if (key === 'currentDragNode') {
-          return '@ptRef:currentDragNode';
-        }
-      }
-      return value;
-    }, 2);
-
-    return build;
-  }
-
-  getRawData(): any {
-    let obj = JSON.parse(JSON.stringify(JSON.parse(this.getBoundDataMinusCircularReference())));
-    const cache = [] as any;
-    return JSON.stringify(obj, (key, value) => {
-      if (value === null) {
-        return;
-      }
-      delete value['pioneerTreeNode'];
-      if (typeof value === 'object' && value !== null) {
-        if (cache.indexOf(value) !== -1) {
-          return;
-        }
-        cache.push(value);
-      }
-      return value;
-    }, 2);
   }
 }

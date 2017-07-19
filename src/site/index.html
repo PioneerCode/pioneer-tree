@@ -102,6 +102,9 @@
               <li>
                 Collapsible nodes
               </li>
+              <li>
+                Event subscription
+              </li>
             </ul>
           </div>
           <div class="large-6 columns">
@@ -117,6 +120,9 @@
               </li>
               <li>
                 Opt-in public state tracking
+              </li>
+              <li>
+                Configurable
               </li>
             </ul>
           </div>
@@ -144,33 +150,43 @@
         <h2>HTML</h2>
         <pre ngNonBindable>
 &#x3C;ng-template #nodeTemplate let-node&#x3E;
-  &#x3C;span pioneer-tree-collapse [node]=&#x22;node&#x22;&#x3E;
-    &#x3C;i class=&#x22;fa&#x22;
-      [ngClass]=&#x22;this.node.pioneerTreeNode.isCollapsed() ? &#x27;fa-folder&#x27; : &#x27;fa-folder-open&#x27;&#x22;&#x3E;
-    &#x3C;/i&#x3E;
-  &#x3C;/span&#x3E;
-  &#x3C;span pioneer-tree-handle [node]=&#x22;node&#x22;&#x3E;
-    {{node.name}} - {{node.pioneerTreeNode.sortIndex}}
-  &#x3C;/span&#x3E;
+  &#x3C;ul class=&#x22;menu content&#x22;&#x3E;
+    &#x3C;li&#x3E;
+      &#x3C;span pioneer-tree-collapse
+        [node]=&#x22;node&#x22;&#x3E;
+        &#x3C;i class=&#x22;fa&#x22;
+          [ngClass]=&#x22;this.node.pioneerTreeNode.isCollapsed() ? &#x27;fa-folder&#x27; : &#x27;fa-folder-open&#x27;&#x22;&#x3E;
+        &#x3C;/i&#x3E;
+      &#x3C;/span&#x3E;
+    &#x3C;/li&#x3E;
+    &#x3C;li&#x3E;
+      &#x3C;span pioneer-tree-handle [node]=&#x22;node&#x22;&#x3E;
+        {{node.name}} - {{node.pioneerTreeNode.sortIndex}} :
+      &#x3C;/span&#x3E;
+    &#x3C;/li&#x3E;
+    &#x3C;li&#x3E;
+      &#x3C;a title=&#x22;Collapse All, Expand This, Set Active&#x22;
+        (click)=&#x22;ptComponent.pioneerTree.collapseAllExpandThisSetActive(node)&#x22;&#x3E;
+        &#x3C;i class=&#x22;fa fa-heart-o&#x22;&#x3E;&#x3C;/i&#x3E;
+      &#x3C;/a&#x3E;
+    &#x3C;/li&#x3E;
+  &#x3C;/ul&#x3E;
 &#x3C;/ng-template&#x3E;
 &#x3C;ng-template #repeaterTemplate let-node&#x3E;
   &#x3C;ul pioneer-tree-repeater [nodes]=&#x22;node.children&#x22;&#x3E;
     &#x3C;li pioneer-tree-node
-      *ngFor=&#x22;let node of node.children&#x22;
-      (nodeDropped)=&#x22;onNodeDropped($event)&#x22;
+      *ngFor=&#x22;let node of node.children&#x22; (nodeDropped)=&#x22;onNodeDropped($event)&#x22;
       [nodeTemplate]=&#x22;nodeTemplate&#x22;
       [repeaterTemplate]=&#x22;repeaterTemplate&#x22; [node]=&#x22;node&#x22;&#x3E;
     &#x3C;/li&#x3E;
   &#x3C;/ul&#x3E;
 &#x3C;/ng-template&#x3E;
-&#x3C;ul pioneer-tree #pt
-  [configuration]=&#x22;configuration&#x22;
-  [nodes]=&#x22;nodes&#x22;&#x3E;
-  &#x3C;li pioneer-tree-node
-      *ngFor=&#x22;let node of nodes&#x22;
-      (nodeDropped)=&#x22;onNodeDropped($event)&#x22;
-      [nodeTemplate]=&#x22;nodeTemplate&#x22;
-      [repeaterTemplate]=&#x22;repeaterTemplate&#x22; [node]=&#x22;node&#x22;&#x3E;
+&#x3C;ul pioneer-tree #pt [configuration]=&#x22;configuration&#x22; [nodes]=&#x22;nodes&#x22;&#x3E;
+  &#x3C;li pioneer-tree-node *ngFor=&#x22;let node of nodes&#x22;
+    (nodeDropped)=&#x22;onNodeDropped($event)&#x22;
+    [nodeTemplate]=&#x22;nodeTemplate&#x22;
+    [repeaterTemplate]=&#x22;repeaterTemplate&#x22;
+    [node]=&#x22;node&#x22;&#x3E;
   &#x3C;/li&#x3E;
 &#x3C;/ul&#x3E;
         </pre>

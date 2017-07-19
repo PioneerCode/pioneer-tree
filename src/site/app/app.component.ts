@@ -14,14 +14,24 @@ import { IPioneerTreeConfiguration } from './lib/pioneer-tree.module';
         <li><button class="button tiny" (click)="ptComponent.pioneerTree.collapseAllNodes()">Collapse</button></li>
       </ul>
       <ng-template #nodeTemplate let-node>
-        <span pioneer-tree-collapse [node]="node">
-          <i class="fa"
-            [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'">
-          </i>
-        </span>
-        <span pioneer-tree-handle [node]="node">
-          {{node.name}} - {{node.pioneerTreeNode.sortIndex}}
-        </span>
+        <ul class="menu content">
+          <li>
+            <span pioneer-tree-collapse [node]="node">
+              <i class="fa" [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'">
+              </i>
+            </span>
+          </li>
+          <li>
+            <span pioneer-tree-handle [node]="node">
+              {{node.name}} - {{node.pioneerTreeNode.sortIndex}}
+            </span>
+          </li>
+          <li>
+            <a title="Collapse All, Expand This, Set Active" (click)="ptComponent.pioneerTree.collapseAllExpandThisSetActive(node)">
+              <i class="fa fa-bath"></i>
+            </a>
+          </li>
+        </ul>
       </ng-template>
       <ng-template #repeaterTemplate let-node>
         <ul pioneer-tree-repeater [nodes]="node.children">

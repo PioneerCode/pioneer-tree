@@ -14,6 +14,6 @@ export class PioneerTreeCollapseComponent {
   @Input() node: IPioneerTreeExpandedNode;
 
   onClicked() {
-    this.node.pioneerTreeNode.pioneerTreeRepeater.collapsed = !this.node.pioneerTreeNode.pioneerTreeRepeater.collapsed;
+    this.node.pioneerTreeNode.pioneerTreeRepeater.setCollapsed(!this.node.pioneerTreeNode.pioneerTreeRepeater.isCollapsed());
   }
 }

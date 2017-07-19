@@ -81,6 +81,11 @@ export interface IPioneerTreeNode {
   isCollapsed(): boolean;
 
   /**
+   * Collapse or expand individual node
+   */
+  setCollapsed(isCollapsed: boolean): void;
+
+  /**
    * Can we show a dropzone of the type position
    * 0 - is collapsed
    * 0 - is not collapsed && has !children
@@ -150,7 +155,11 @@ export class PioneerTreeNode implements IPioneerTreeNode {
   }
 
   isCollapsed(): boolean {
-    return this.pioneerTreeRepeater.collapsed;
+    return this.pioneerTreeRepeater.isCollapsed();
+  }
+
+  setCollapsed(isCollapsed: boolean): void {
+    this.pioneerTreeRepeater.setCollapsed(isCollapsed);
   }
 
   showDropzonePosition(): boolean {

@@ -78,6 +78,15 @@ header {
   }
 }
 
+.menu.content {
+  li {
+    padding: 0 0.5rem 0 0;
+    a {
+      padding: 0;
+    }
+  }
+}
+
 .markup {
   padding: 6rem;
   background: $primary-color;

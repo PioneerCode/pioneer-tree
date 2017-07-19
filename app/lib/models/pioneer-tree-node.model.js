@@ -1,8 +1,9 @@
 "use strict";
 var pioneer_tree_repeater_model_1 = require("./pioneer-tree-repeater.model");
 var PioneerTreeNode = (function () {
-    function PioneerTreeNode(uidService) {
+    function PioneerTreeNode(uidService, treeDropService) {
         this.uidService = uidService;
+        this.treeDropService = treeDropService;
         this.isCurrentSelectedNode = false;
         this.uid = this.uidService.getUid();
         this.pioneerTreeRepeater = new pioneer_tree_repeater_model_1.PioneerTreeRepeater(this.uidService);
@@ -36,7 +37,10 @@ var PioneerTreeNode = (function () {
         return this.getId() === this.getId();
     };
     PioneerTreeNode.prototype.isCollapsed = function () {
-        return this.pioneerTreeRepeater.collapsed;
+        return this.pioneerTreeRepeater.isCollapsed();
+    };
+    PioneerTreeNode.prototype.setCollapsed = function (isCollapsed) {
+        this.pioneerTreeRepeater.setCollapsed(isCollapsed);
     };
     PioneerTreeNode.prototype.showDropzonePosition = function () {
         if (this.isCollapsed()) {

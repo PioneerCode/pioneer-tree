@@ -13,7 +13,7 @@ var PioneerTreeCollapseComponent = (function () {
     function PioneerTreeCollapseComponent() {
     }
     PioneerTreeCollapseComponent.prototype.onClicked = function () {
-        this.node.pioneerTreeNode.pioneerTreeRepeater.collapsed = !this.node.pioneerTreeNode.pioneerTreeRepeater.collapsed;
+        this.node.pioneerTreeNode.pioneerTreeRepeater.setCollapsed(!this.node.pioneerTreeNode.pioneerTreeRepeater.isCollapsed());
     };
     return PioneerTreeCollapseComponent;
 }());

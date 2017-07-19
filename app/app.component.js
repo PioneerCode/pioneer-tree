@@ -55,43 +55,6 @@ var AppComponent = (function () {
     AppComponent.prototype.onNodeDropped = function ($event) {
         this.events.unshift(new Date().toLocaleString() + ' : Node Dropped "' + $event.name + '"');
     };
-    AppComponent.prototype.getBoundDataMinusCircularReference = function () {
-        var build = JSON.stringify(this.nodes, function (key, value) {
-            if (typeof value === 'object' && value !== null) {
-                if (key === 'currentNode') {
-                    return '@ptRef:currentNode';
-                }
-                if (key === 'treeRootNodes') {
-                    return '@ptRef:treeRootNodes';
-                }
-                if (key === 'parentNode') {
-                    return '@ptRef:parentNode';
-                }
-                if (key === 'previousNode') {
-                    return '@ptRef:previousNode';
-                }
-            }
-            return value;
-        }, 2);
-        return build;
-    };
-    AppComponent.prototype.getRawData = function () {
-        var obj = JSON.parse(JSON.stringify(JSON.parse(this.getBoundDataMinusCircularReference())));
-        var cache = [];
-        return JSON.stringify(obj, function (key, value) {
-            if (value === null) {
-                return;
-            }
-            delete value['pioneerTreeNode'];
-            if (typeof value === 'object' && value !== null) {
-                if (cache.indexOf(value) !== -1) {
-                    return;
-                }
-                cache.push(value);
-            }
-            return value;
-        }, 2);
-    };
     return AppComponent;
 }());
 __decorate([
@@ -101,7 +64,7 @@ __decorate([
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "\n  <div class=\"row\">\n    <div class=\"large-6 columns\">\n      <ul class=\"menu\">\n        <li>\n          <h2>Component</h2>\n        </li>\n        <li><button class=\"button tiny\" (click)=\"ptComponent.pioneerTree.expandAllNodes()\">Expand</button></li>\n        <li><button class=\"button tiny\" (click)=\"ptComponent.pioneerTree.collapseAllNodes()\">Collapse</button></li>\n      </ul>\n      <ng-template #nodeTemplate let-node>\n        <span pioneer-tree-collapse [node]=\"node\">\n          <i class=\"fa\"\n            [ngClass]=\"this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'\">\n          </i>\n        </span>\n        <span pioneer-tree-handle [node]=\"node\">\n          {{node.name}} - {{node.pioneerTreeNode.sortIndex}}\n        </span>\n      </ng-template>\n      <ng-template #repeaterTemplate let-node>\n        <ul pioneer-tree-repeater [nodes]=\"node.children\">\n          <li pioneer-tree-node *ngFor=\"let node of node.children\" (nodeDropped)=\"onNodeDropped($event)\" [nodeTemplate]=\"nodeTemplate\"\n            [repeaterTemplate]=\"repeaterTemplate\" [node]=\"node\">\n          </li>\n        </ul>\n      </ng-template>\n      <ul pioneer-tree #pt [configuration]=\"configuration\" [nodes]=\"nodes\">\n        <li pioneer-tree-node *ngFor=\"let node of nodes\" (nodeDropped)=\"onNodeDropped($event)\" [nodeTemplate]=\"nodeTemplate\" [repeaterTemplate]=\"repeaterTemplate\"\n          [node]=\"node\">\n        </li>\n      </ul>\n    </div>\n    <div class=\"large-6 columns\">\n      <h2>Events</h2>\n      <div class=\"events\">\n        <ul class=\"menu vertical\">\n          <li *ngFor=\"let event of events\">\n            {{event}}\n          </li>\n        </ul>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"large-12 columns\">\n      <ul class=\"menu\">\n        <li>\n          <h2>Data</h2>\n        </li>\n        <li>\n          <a class=\"hollow button\" (click)=\"dataView = 'raw'\" [ngClass]=\"dataView === 'raw' ? 'disabled' : ''\">Raw</a>\n        </li>\n        <li>\n          <a class=\"hollow button\" (click)=\"dataView = 'bound'\" [ngClass]=\"dataView === 'bound' ? 'disabled' : ''\">Bound</a>\n        </li>\n      </ul>\n      <div class=\"models\">\n        <div *ngIf=\"dataView === 'raw'\">\n          <pre>{{getRawData()}}</pre>\n        </div>\n        <div *ngIf=\"dataView === 'bound'\">\n          <pre>{{getBoundDataMinusCircularReference()}}</pre>\n        </div>\n      </div>\n    </div>\n  </div>\n  "
+        template: "\n  <div class=\"row\">\n    <div class=\"large-6 columns\">\n      <ul class=\"menu\">\n        <li>\n          <h2>Component</h2>\n        </li>\n        <li><button class=\"button tiny\" (click)=\"ptComponent.pioneerTree.expandAllNodes()\">Expand</button></li>\n        <li><button class=\"button tiny\" (click)=\"ptComponent.pioneerTree.collapseAllNodes()\">Collapse</button></li>\n      </ul>\n<ng-template #nodeTemplate let-node>\n  <ul class=\"menu content\">\n    <li>\n      <span pioneer-tree-collapse [node]=\"node\">\n        <i class=\"fa\" [ngClass]=\"this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'\">\n        </i>\n      </span>\n    </li>\n    <li>\n      <span pioneer-tree-handle [node]=\"node\">\n        {{node.name}} - {{node.pioneerTreeNode.sortIndex}} :\n      </span>\n    </li>\n    <li>\n      <a title=\"Collapse All, Expand This, Set Active\" (click)=\"ptComponent.pioneerTree.collapseAllExpandThisSetActive(node)\">\n        <i class=\"fa fa-heart-o\"></i>\n      </a>\n    </li>\n  </ul>\n</ng-template>\n<ng-template #repeaterTemplate let-node>\n  <ul pioneer-tree-repeater [nodes]=\"node.children\">\n    <li pioneer-tree-node *ngFor=\"let node of node.children\" (nodeDropped)=\"onNodeDropped($event)\" [nodeTemplate]=\"nodeTemplate\"\n      [repeaterTemplate]=\"repeaterTemplate\" [node]=\"node\">\n    </li>\n  </ul>\n</ng-template>\n<ul pioneer-tree #pt [configuration]=\"configuration\" [nodes]=\"nodes\">\n  <li pioneer-tree-node *ngFor=\"let node of nodes\" (nodeDropped)=\"onNodeDropped($event)\" [nodeTemplate]=\"nodeTemplate\" [repeaterTemplate]=\"repeaterTemplate\"\n    [node]=\"node\">\n  </li>\n</ul>\n    </div>\n    <div class=\"large-6 columns\">\n      <h2>Events</h2>\n      <div class=\"events\">\n        <ul class=\"menu vertical\">\n          <li *ngFor=\"let event of events\">\n            {{event}}\n          </li>\n        </ul>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"large-12 columns\">\n      <ul class=\"menu\">\n        <li>\n          <h2>Data</h2>\n        </li>\n        <li>\n          <a class=\"hollow button\" (click)=\"dataView = 'raw'\" [ngClass]=\"dataView === 'raw' ? 'disabled' : ''\">Raw</a>\n        </li>\n        <li>\n          <a class=\"hollow button\" (click)=\"dataView = 'bound'\" [ngClass]=\"dataView === 'bound' ? 'disabled' : ''\">Bound</a>\n        </li>\n      </ul>\n      <div class=\"models\">\n        <div *ngIf=\"dataView === 'raw'\">\n          <pre>{{ptComponent.pioneerTree.getRawTree()}}</pre>\n        </div>\n        <div *ngIf=\"dataView === 'bound'\">\n          <pre>{{ptComponent.pioneerTree.getExpandedTree()}}</pre>\n        </div>\n      </div>\n    </div>\n  </div>\n  "
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

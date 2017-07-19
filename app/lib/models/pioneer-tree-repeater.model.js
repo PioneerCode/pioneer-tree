@@ -20,6 +20,12 @@ var PioneerTreeRepeater = (function () {
     PioneerTreeRepeater.prototype.getId = function () {
         return this.uid;
     };
+    PioneerTreeRepeater.prototype.isCollapsed = function () {
+        return this.collapsed;
+    };
+    PioneerTreeRepeater.prototype.setCollapsed = function (isCollapsed) {
+        this.collapsed = isCollapsed;
+    };
     return PioneerTreeRepeater;
 }());
 exports.PioneerTreeRepeater = PioneerTreeRepeater;

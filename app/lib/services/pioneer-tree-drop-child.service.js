@@ -18,7 +18,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var core_1 = require("@angular/core");
 var pioneer_tree_configuration_model_1 = require("../models/pioneer-tree-configuration.model");
-var pioneer_tree_drop_service_1 = require("./pioneer-tree-drop.service");
+var pioneer_tree_drop_base_service_1 = require("./pioneer-tree-drop-base.service");
 var PioneerTreeDropChildService = (function (_super) {
     __extends(PioneerTreeDropChildService, _super);
     function PioneerTreeDropChildService(config) {
@@ -64,7 +64,7 @@ var PioneerTreeDropChildService = (function (_super) {
         nodeToDrop.pioneerTreeNode.treeRootNodes = [];
     };
     return PioneerTreeDropChildService;
-}(pioneer_tree_drop_service_1.PioneerTreeDropService));
+}(pioneer_tree_drop_base_service_1.PioneerTreeDropBaseService));
 PioneerTreeDropChildService = __decorate([
     __param(0, core_1.Inject(pioneer_tree_configuration_model_1.PioneerTreeConfiguration)),
     __metadata("design:paramtypes", [Object])

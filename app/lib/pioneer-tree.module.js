@@ -7,19 +7,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
+var pioneer_tree_model_1 = require("./models/pioneer-tree.model");
 var pioneer_tree_component_1 = require("./components/pioneer-tree/pioneer-tree.component");
 var pioneer_tree_repeater_component_1 = require("./components/pioneer-tree-repeater/pioneer-tree-repeater.component");
 var pioneer_tree_node_component_1 = require("./components/pioneer-tree-node/pioneer-tree-node.component");
 var pioneer_tree_collapse_component_1 = require("./components/pioneer-tree-collapse/pioneer-tree-collapse.component");
 var pioneer_tree_handle_component_1 = require("./components/pioneer-tree-handle/pioneer-tree-handle.component");
 var pioneer_tree_dropzone_directive_1 = require("./directives/pioneer-tree-dropzone/pioneer-tree-dropzone.directive");
-var pioneer_tree_model_1 = require("./models/pioneer-tree.model");
 var pioneer_tree_drop_parent_service_1 = require("./services/pioneer-tree-drop-parent.service");
 var pioneer_tree_configuration_model_1 = require("./models/pioneer-tree-configuration.model");
 var pioneer_tree_drop_child_service_1 = require("./services/pioneer-tree-drop-child.service");
 var pioneer_tree_drop_root_service_1 = require("./services/pioneer-tree-drop-root.service");
+var pioneer_tree_build_service_1 = require("./services/pioneer-tree-build.service");
 var pioneer_tree_uid_service_1 = require("./services/pioneer-tree-uid.service");
 var pioneer_tree_expand_collapse_service_1 = require("./services/pioneer-tree-expand-collapse.service");
+var pioneer_tree_drop_service_1 = require("./services/pioneer-tree-drop.service");
+var pioneer_tree_stringify_service_1 = require("./services/pioneer-tree-stringify.service");
 var PioneerTreeModule = (function () {
     function PioneerTreeModule() {
     }
@@ -53,9 +56,14 @@ PioneerTreeModule = __decorate([
             pioneer_tree_drop_child_service_1.PioneerTreeDropChildService,
             pioneer_tree_uid_service_1.PioneerTreeUidService,
             pioneer_tree_expand_collapse_service_1.PioneerTreeExpandCollapseService,
+            pioneer_tree_build_service_1.PioneerTreeBuildService,
+            pioneer_tree_drop_service_1.PioneerTreeDropService,
+            pioneer_tree_stringify_service_1.PioneerTreeStringifyService,
             pioneer_tree_configuration_model_1.PioneerTreeConfiguration
         ]
     })
 ], PioneerTreeModule);
 exports.PioneerTreeModule = PioneerTreeModule;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = PioneerTreeModule;
 //# sourceMappingURL=pioneer-tree.module.js.map

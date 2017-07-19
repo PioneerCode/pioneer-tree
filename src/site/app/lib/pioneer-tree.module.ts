@@ -13,13 +13,16 @@ import { PioneerTreeDropParentService } from './services/pioneer-tree-drop-paren
 import { PioneerTreeConfiguration } from './models/pioneer-tree-configuration.model';
 import { PioneerTreeDropChildService } from './services/pioneer-tree-drop-child.service';
 import { PioneerTreeDropRootService } from './services/pioneer-tree-drop-root.service';
+import { PioneerTreeBuildService } from './services/pioneer-tree-build.service';
 import { PioneerTreeUidService } from './services/pioneer-tree-uid.service';
 import { PioneerTreeExpandCollapseService } from './services/pioneer-tree-expand-collapse.service';
+
 export {
   IPioneerTreeConfiguration,
   IPioneerTree,
   IPioneerTreeExpandedNode
 }
+
 @NgModule({
   imports: [
     CommonModule
@@ -47,6 +50,7 @@ export {
     PioneerTreeDropChildService,
     PioneerTreeUidService,
     PioneerTreeExpandCollapseService,
+    PioneerTreeBuildService,
     PioneerTreeConfiguration
   ]
 })

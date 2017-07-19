@@ -1,11 +1,11 @@
 ﻿import { Injectable, Inject } from '@angular/core';
 import { IPioneerTreeExpandedNode } from './pioneer-tree-expanded-node.model';
 import { IPioneerTreeConfiguration, PioneerTreeConfiguration } from './pioneer-tree-configuration.model';
-import { PioneerTreeNode } from './pioneer-tree-node.model';
 import { IPioneerTreeDropParentService, PioneerTreeDropParentService } from '../services/pioneer-tree-drop-parent.service';
 import { PioneerTreeDropChildService, IPioneerTreeDropChildService } from '../services/pioneer-tree-drop-child.service';
 import { IPioneerTreeDropRootService, PioneerTreeDropRootService } from '../services/pioneer-tree-drop-root.service';
 import { IPioneerTreeUidService, PioneerTreeUidService } from '../services/pioneer-tree-uid.service';
+import { IPioneerTreeBuildService, PioneerTreeBuildService } from '../services/pioneer-tree-build.service';
 import { IPioneerTreeExpandCollapseService, PioneerTreeExpandCollapseService } from '../services/pioneer-tree-expand-collapse.service';
 
 export interface IPioneerTree {
@@ -58,6 +58,7 @@ export class PioneerTree implements IPioneerTree {
 
   constructor(
     @Inject(PioneerTreeConfiguration) private config: IPioneerTreeConfiguration,
+    @Inject(PioneerTreeBuildService) private buildService: IPioneerTreeBuildService,
     @Inject(PioneerTreeDropRootService) private dropRootService: IPioneerTreeDropRootService,
     @Inject(PioneerTreeDropParentService) private dropParentService: IPioneerTreeDropParentService,
     @Inject(PioneerTreeDropChildService) private dropChildService: IPioneerTreeDropChildService,
@@ -67,11 +68,7 @@ export class PioneerTree implements IPioneerTree {
 
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
     this.currentNodes = nodes;
-    this.buildConfiguration(configuration);
-    this.buildExpandedNoded();
-    if (this.config.collapseAllOnLoad) {
-      this.collapseAllNodes();
-    }
+    this.buildService.buildTree(this.currentNodes, configuration);
   }
 
   isNodeDroppable(dropNode: IPioneerTreeExpandedNode): boolean {
@@ -131,63 +128,5 @@ export class PioneerTree implements IPioneerTree {
 
   collapseAllNodes(): void {
     this.expandCollapseService.expandCollapsedAllNodes(this.currentNodes, true);
-  }
-
-  /**
-   * Bind public config to default config
-   */
-  private buildConfiguration(configuration?: IPioneerTreeConfiguration): void {
-    let config = new PioneerTreeConfiguration();
-    this.config = Object.assign(config, configuration);
-  }
-
-  /**
-   * Bind IPioneerTreeExpandedNodes
-   */
-  private buildExpandedNoded(): void {
-    for (let i = 0; i < this.currentNodes.length; i++) {
-      this.currentNodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService);
-      this.currentNodes[i].pioneerTreeNode.config = this.config;
-      this.currentNodes[i].pioneerTreeNode.currentNode = this.currentNodes[i];
-      this.currentNodes[i].pioneerTreeNode.nodesInCollection = this.currentNodes.length;
-      this.currentNodes[i].pioneerTreeNode.treeRootNodes = this.currentNodes;
-      this.setSortIndex(this.currentNodes[i], i);
-      if (this.currentNodes[i].pioneerTreeNode.getChildNodes()) {
-        this.bindNodesToInternalTracking(this.currentNodes[i].pioneerTreeNode.getChildNodes(), this.currentNodes[i]);
-      }
-    }
-  }
-
-  /**
-   * Recursively build internal tracking tree
-   * @param nodes Collection of nodes
-   */
-  private bindNodesToInternalTracking(nodes: IPioneerTreeExpandedNode[], parent: IPioneerTreeExpandedNode): void {
-    for (let i = 0; i < nodes.length; i++) {
-      nodes[i].pioneerTreeNode = new PioneerTreeNode(this.uidService);
-      nodes[i].pioneerTreeNode.config = this.config;
-      nodes[i].pioneerTreeNode.parentNode = parent;
-      nodes[i].pioneerTreeNode.previousNode = nodes[i - 1];
-      nodes[i].pioneerTreeNode.currentNode = nodes[i];
-      nodes[i].pioneerTreeNode.nodesInCollection = nodes.length;
-      this.setSortIndex(nodes[i], i);
-      nodes[i].pioneerTreeNode.getChildNodes();
-      if (nodes[i].pioneerTreeNode.getChildNodes()) {
-        this.bindNodesToInternalTracking(nodes[i].pioneerTreeNode.getChildNodes(), nodes[i]);
-      }
-    }
-  }
-
-  /**
-   * Bind sort property through configuration
-   * @param node Bindable node
-   */
-  private setSortIndex(node: IPioneerTreeExpandedNode, index: number): void {
-    if (node[this.config.sortPropertyName]) {
-      node.pioneerTreeNode.sortIndex = node[this.config.sortPropertyName];
-      return;
-    }
-
-    node.pioneerTreeNode.sortIndex = index;
   }
 }

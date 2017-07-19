@@ -8,7 +8,7 @@ import { IPioneerTreeUidService, PioneerTreeUidService } from '../services/pione
 import { IPioneerTreeBuildService, PioneerTreeBuildService } from '../services/pioneer-tree-build.service';
 import { IPioneerTreeExpandCollapseService, PioneerTreeExpandCollapseService } from '../services/pioneer-tree-expand-collapse.service';
 import { IPioneerTreeDropService, PioneerTreeDropService } from '../services/pioneer-tree-drop.service';
-
+import { IPioneerTreeStringifyService, PioneerTreeStringifyService } from '../services/pioneer-tree-stringify.service';
 export interface IPioneerTree {
   /**
    * Track current node being dragged
@@ -49,6 +49,8 @@ export interface IPioneerTree {
   getCurrentDragNode(): IPioneerTreeExpandedNode;
   setCurrentDragNode(node: IPioneerTreeExpandedNode): void;
   isNodeDroppable(dropNode: IPioneerTreeExpandedNode): boolean;
+  getRawTree(): any[];
+  getExpandedTree(): IPioneerTreeExpandedNode[];
 }
 
 @Injectable()
@@ -64,7 +66,8 @@ export class PioneerTree implements IPioneerTree {
     @Inject(PioneerTreeDropChildService) private dropChildService: IPioneerTreeDropChildService,
     @Inject(PioneerTreeUidService) private uidService: IPioneerTreeUidService,
     @Inject(PioneerTreeExpandCollapseService) private expandCollapseService: IPioneerTreeExpandCollapseService,
-    @Inject(PioneerTreeDropService) private treeDropService: IPioneerTreeDropService
+    @Inject(PioneerTreeDropService) private treeDropService: IPioneerTreeDropService,
+    @Inject(PioneerTreeStringifyService) private stringifyService: IPioneerTreeStringifyService
   ) { }
 
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void {
@@ -98,5 +101,12 @@ export class PioneerTree implements IPioneerTree {
 
   collapseAllExpandThisSetActive(node: IPioneerTreeExpandedNode): void {
     this.expandCollapseService.collapseAllExpandThisSetActive(this.currentNodes, node, this.currentSelectedNode);
+  }
+
+  getRawTree(): any[] {
+    return this.stringifyService.getRawTree(this.currentNodes);
+  }
+  getExpandedTree(): IPioneerTreeExpandedNode[] {
+    return this.stringifyService.getExpandedTree(this.currentNodes);
   }
 }

@@ -31,6 +31,7 @@ export class PioneerTreeDropRootService extends PioneerTreeDropBaseService imple
   }
 
   private getAdjustedDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, rootEnd: boolean) {
+
     // Child to root drops
     if (!nodeToDrop.pioneerTreeNode.treeRootNodes) {
       return droppedSortIndex;

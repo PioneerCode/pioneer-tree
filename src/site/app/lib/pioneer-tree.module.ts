@@ -2,13 +2,13 @@
 import { CommonModule } from '@angular/common';
 import { IPioneerTreeConfiguration } from './models/pioneer-tree-configuration.model';
 import { IPioneerTreeExpandedNode } from './models/pioneer-tree-expanded-node.model';
+import { PioneerTree, IPioneerTree } from './models/pioneer-tree.model';
 import { PioneerTreeComponent } from './components/pioneer-tree/pioneer-tree.component';
 import { PioneerTreeRepeaterComponent } from './components/pioneer-tree-repeater/pioneer-tree-repeater.component';
 import { PioneerTreeNodeComponent } from './components/pioneer-tree-node/pioneer-tree-node.component';
 import { PioneerTreeCollapseComponent } from './components/pioneer-tree-collapse/pioneer-tree-collapse.component';
 import { PioneerTreeHandleComponent } from './components/pioneer-tree-handle/pioneer-tree-handle.component';
 import { PioneerTreeDropzoneDirective } from './directives/pioneer-tree-dropzone/pioneer-tree-dropzone.directive';
-import { PioneerTree, IPioneerTree } from './models/pioneer-tree.model';
 import { PioneerTreeDropParentService } from './services/pioneer-tree-drop-parent.service';
 import { PioneerTreeConfiguration } from './models/pioneer-tree-configuration.model';
 import { PioneerTreeDropChildService } from './services/pioneer-tree-drop-child.service';
@@ -16,8 +16,8 @@ import { PioneerTreeDropRootService } from './services/pioneer-tree-drop-root.se
 import { PioneerTreeBuildService } from './services/pioneer-tree-build.service';
 import { PioneerTreeUidService } from './services/pioneer-tree-uid.service';
 import { PioneerTreeExpandCollapseService } from './services/pioneer-tree-expand-collapse.service';
-import { IPioneerTreeDropService, PioneerTreeDropService } from './services/pioneer-tree-drop.service';
-
+import { PioneerTreeDropService } from './services/pioneer-tree-drop.service';
+import { PioneerTreeStringifyService } from './services/pioneer-tree-stringify.service';
 export {
   IPioneerTreeConfiguration,
   IPioneerTree,
@@ -53,6 +53,7 @@ export {
     PioneerTreeExpandCollapseService,
     PioneerTreeBuildService,
     PioneerTreeDropService,
+    PioneerTreeStringifyService,
     PioneerTreeConfiguration
   ]
 })

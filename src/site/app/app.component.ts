@@ -72,10 +72,10 @@ import { IPioneerTreeConfiguration } from './lib/pioneer-tree.module';
       </ul>
       <div class="models">
         <div *ngIf="dataView === 'raw'">
-          <pre>{{getRawData()}}</pre>
+          <pre>{{ptComponent.pioneerTree.getRawTree()}}</pre>
         </div>
         <div *ngIf="dataView === 'bound'">
-          <pre>{{getBoundDataMinusCircularReference()}}</pre>
+          <pre>{{ptComponent.pioneerTree.getExpandedTree()}}</pre>
         </div>
       </div>
     </div>

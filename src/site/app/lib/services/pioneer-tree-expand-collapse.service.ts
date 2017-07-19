@@ -1,4 +1,6 @@
+import { Inject } from '@angular/core';
 import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.model';
+import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
 
 export interface IPioneerTreeExpandCollapseService {
 
@@ -15,12 +17,22 @@ export interface IPioneerTreeExpandCollapseService {
 }
 
 export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandCollapseService {
+  constructor(
+    @Inject(PioneerTreeConfiguration) public config: IPioneerTreeConfiguration
+  ) { }
+
   collapseAllExpandThisSetActive(currentNodes: IPioneerTreeExpandedNode[], expandNode: IPioneerTreeExpandedNode, currentSelectedNode: IPioneerTreeExpandedNode): void {
+    // Collapse All
     this.expandCollapsedAllNodes(currentNodes, true);
+    // Flip selected
     if (currentSelectedNode) {
       currentSelectedNode.pioneerTreeNode.isCurrentSelectedNode = false;
     }
+    // Expand new
     expandNode.pioneerTreeNode.setCollapsed(false);
+    // Open parents
+    this.recursivelySetCollapsedFlagOfParents(expandNode, false);
+    // Set as active
     expandNode.pioneerTreeNode.isCurrentSelectedNode = true;
     currentSelectedNode = expandNode;
   }
@@ -40,6 +52,13 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
       if (nodes[i].pioneerTreeNode.getChildNodes()) {
         this.recursivelySetCollapsedFlag(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed);
       }
+    }
+  }
+
+  private recursivelySetCollapsedFlagOfParents(node: IPioneerTreeExpandedNode, isCollapsed: boolean): void {
+    if(node.pioneerTreeNode.parentNode){
+      node.pioneerTreeNode.parentNode.pioneerTreeNode.setCollapsed(isCollapsed);
+      this.recursivelySetCollapsedFlagOfParents(node.pioneerTreeNode.parentNode, isCollapsed)
     }
   }
 }

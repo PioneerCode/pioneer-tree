@@ -1,5 +1,12 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
+<a name="1.5.0"></a>
+# 1.5.0
+### Added
+* getRawTree to public API
+* getExpandedTree to public API
+* collapseAllExpandThisSetActive to public API
+
 <a name="1.4.2"></a>
 # 1.4.2
 ### Fixed

@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Inject } from '@angular/core';
 import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.model';
 import { IPioneerTreeDropParentService, PioneerTreeDropParentService } from '../services/pioneer-tree-drop-parent.service';
 import { PioneerTreeDropChildService, IPioneerTreeDropChildService } from '../services/pioneer-tree-drop-child.service';

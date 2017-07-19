@@ -2,7 +2,7 @@ import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.m
 
 export interface IPioneerTreeStringifyService {
   getExpandedTree(nodes: IPioneerTreeExpandedNode[]): any;
-  getRawTree(nodes: IPioneerTreeExpandedNode[]): any
+  getRawTree(nodes: IPioneerTreeExpandedNode[]): any;
 }
 
 export class PioneerTreeStringifyService implements IPioneerTreeStringifyService {

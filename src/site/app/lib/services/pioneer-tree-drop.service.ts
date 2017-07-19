@@ -12,7 +12,7 @@ export interface IPioneerTreeDropService {
 }
 
 export class PioneerTreeDropService implements IPioneerTreeDropService {
-  private currentDragNode: IPioneerTreeExpandedNode | undefined;
+  private currentDragNode: IPioneerTreeExpandedNode;
 
   constructor(
     @Inject(PioneerTreeDropRootService) private dropRootService: IPioneerTreeDropRootService,
@@ -74,7 +74,7 @@ export class PioneerTreeDropService implements IPioneerTreeDropService {
         break;
     }
 
-    // remove current drag node tracking
-    this.setCurrentDragNode(undefined);
+    // // remove current drag node tracking
+    // this.setCurrentDragNode(undefined);
   }
 }

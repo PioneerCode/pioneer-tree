@@ -2,7 +2,7 @@
 import { IPioneerTreeRepeater, PioneerTreeRepeater } from './pioneer-tree-repeater.model';
 import { IPioneerTreeExpandedNode } from './pioneer-tree-expanded-node.model';
 import { IPioneerTreeConfiguration } from './pioneer-tree-configuration.model';
-import { IPioneerTreeDropService, PioneerTreeDropService } from '../services/pioneer-tree-drop.service';
+import { IPioneerTreeDropService } from '../services/pioneer-tree-drop.service';
 
 export interface IPioneerTreeNode {
   /**

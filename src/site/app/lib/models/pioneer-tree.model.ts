@@ -7,7 +7,7 @@ import { IPioneerTreeDropRootService, PioneerTreeDropRootService } from '../serv
 import { IPioneerTreeUidService, PioneerTreeUidService } from '../services/pioneer-tree-uid.service';
 import { IPioneerTreeBuildService, PioneerTreeBuildService } from '../services/pioneer-tree-build.service';
 import { IPioneerTreeExpandCollapseService, PioneerTreeExpandCollapseService } from '../services/pioneer-tree-expand-collapse.service';
-import { IPioneerTreeDropService } from '../services/pioneer-tree-drop.service';
+import { IPioneerTreeDropService, PioneerTreeDropService } from '../services/pioneer-tree-drop.service';
 import { IPioneerTreeStringifyService, PioneerTreeStringifyService } from '../services/pioneer-tree-stringify.service';
 
 export interface IPioneerTree {

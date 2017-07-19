@@ -1,6 +1,11 @@
 ## Pioneer Code - Pioneer Tree Changelog
 
 <a name="1.5.0"></a>
+# 1.5.1
+### Fixed
+* collapseAllExpandThisSetActive closing parent nodes
+
+<a name="1.5.0"></a>
 # 1.5.0
 ### Added
 * getRawTree to public API

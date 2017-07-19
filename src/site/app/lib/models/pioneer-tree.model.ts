@@ -26,11 +26,6 @@ export interface IPioneerTree {
   buildTree(nodes: IPioneerTreeExpandedNode[], configuration?: IPioneerTreeConfiguration): void;
 
   /**
-   * Check to see if draggable node is droppable on drag-over event
-   */
-  //isNodeDroppable(dropNode: IPioneerTreeExpandedNode): boolean;
-
-  /**
    * Drop currentDragNode event
    */
   dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, droppedSortIndex: number): void;
@@ -80,34 +75,13 @@ export class PioneerTree implements IPioneerTree {
   getCurrentDragNode(): IPioneerTreeExpandedNode {
     return this.treeDropService.getCurrentDragNode();
   }
+
   setCurrentDragNode(node: IPioneerTreeExpandedNode): void {
     this.treeDropService.setCurrentDragNode(node);
   }
 
   dropNode(dropzone: IPioneerTreeExpandedNode, dropType: string, droppedSortIndex: number): void {
-    if (!this.treeDropService.getCurrentDragNode()) {
-      return;
-    }
-    switch (dropType) {
-      case 'root':
-        this.dropRootService.dropNode(dropzone, this.treeDropService.getCurrentDragNode(), droppedSortIndex);
-        break;
-      case 'root-end':
-        this.dropRootService.dropNode(dropzone, this.treeDropService.getCurrentDragNode(), droppedSortIndex, true);
-        break;
-      case 'parent':
-        this.dropParentService.dropNode(dropzone, this.treeDropService.getCurrentDragNode());
-        break;
-      case 'child':
-        this.dropChildService.dropNode(dropzone, this.treeDropService.getCurrentDragNode(), droppedSortIndex);
-        break;
-      case 'child-end':
-        this.dropChildService.dropNode(dropzone, this.treeDropService.getCurrentDragNode(), droppedSortIndex, true);
-        break;
-    }
-
-    // remove current drag node tracking
-    this.treeDropService.setCurrentDragNode(undefined);
+    this.treeDropService.dropNode(dropzone, dropType, droppedSortIndex);
   }
 
   isNodeDroppable(dropNode: IPioneerTreeExpandedNode): boolean {

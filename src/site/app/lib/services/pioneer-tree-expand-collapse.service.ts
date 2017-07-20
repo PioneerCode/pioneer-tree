@@ -52,7 +52,7 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
   private recursivelySetCollapsedFlagOfParents(node: IPioneerTreeExpandedNode, isCollapsed: boolean): void {
     if (node.pioneerTreeNode.parentNode) {
       node.pioneerTreeNode.parentNode.pioneerTreeNode.setCollapsed(isCollapsed);
-      this.recursivelySetCollapsedFlagOfParents(node.pioneerTreeNode.parentNode, isCollapsed)
+      this.recursivelySetCollapsedFlagOfParents(node.pioneerTreeNode.parentNode, isCollapsed);
     }
   }
 }

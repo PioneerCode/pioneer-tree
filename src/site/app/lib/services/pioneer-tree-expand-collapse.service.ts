@@ -41,16 +41,7 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
     for (let i = 0; i < nodes.length; i++) {
       nodes[i].pioneerTreeNode.pioneerTreeRepeater.setCollapsed(isCollapsed);
       if (nodes[i].pioneerTreeNode.getChildNodes()) {
-        this.recursivelySetCollapsedFlag(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed);
-      }
-    }
-  }
-
-  private recursivelySetCollapsedFlag(nodes: IPioneerTreeExpandedNode[], isCollapsed: boolean): void {
-    for (let i = 0; i < nodes.length; i++) {
-      nodes[i].pioneerTreeNode.pioneerTreeRepeater.setCollapsed(isCollapsed);
-      if (nodes[i].pioneerTreeNode.getChildNodes()) {
-        this.recursivelySetCollapsedFlag(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed);
+        this.expandCollapsedAllNodes(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed);
       }
     }
   }

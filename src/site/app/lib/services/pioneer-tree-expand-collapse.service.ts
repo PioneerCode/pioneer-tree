@@ -37,9 +37,12 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
     currentSelectedNode = expandNode;
   }
 
-  expandCollapsedAllNodes(nodes: IPioneerTreeExpandedNode[], isCollapsed: boolean): void {
+  expandCollapsedAllNodes(nodes: IPioneerTreeExpandedNode[], isCollapsed: boolean, deactivate?: boolean): void {
     for (let i = 0; i < nodes.length; i++) {
       nodes[i].pioneerTreeNode.pioneerTreeRepeater.setCollapsed(isCollapsed);
+      if (deactivate) {
+        nodes[i].pioneerTreeNode.isCurrentSelectedNode = false;
+      }
       if (nodes[i].pioneerTreeNode.getChildNodes()) {
         this.expandCollapsedAllNodes(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed);
       }
@@ -47,7 +50,7 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
   }
 
   private recursivelySetCollapsedFlagOfParents(node: IPioneerTreeExpandedNode, isCollapsed: boolean): void {
-    if(node.pioneerTreeNode.parentNode){
+    if (node.pioneerTreeNode.parentNode) {
       node.pioneerTreeNode.parentNode.pioneerTreeNode.setCollapsed(isCollapsed);
       this.recursivelySetCollapsedFlagOfParents(node.pioneerTreeNode.parentNode, isCollapsed)
     }

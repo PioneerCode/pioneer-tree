@@ -23,7 +23,7 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
 
   collapseAllExpandThisSetActive(currentNodes: IPioneerTreeExpandedNode[], expandNode: IPioneerTreeExpandedNode, currentSelectedNode: IPioneerTreeExpandedNode): void {
     // Collapse All
-    this.expandCollapsedAllNodes(currentNodes, true);
+    this.expandCollapsedAllNodes(currentNodes, true, true);
     // Flip selected
     if (currentSelectedNode) {
       currentSelectedNode.pioneerTreeNode.isCurrentSelectedNode = false;
@@ -37,26 +37,20 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
     currentSelectedNode = expandNode;
   }
 
-  expandCollapsedAllNodes(nodes: IPioneerTreeExpandedNode[], isCollapsed: boolean): void {
+  expandCollapsedAllNodes(nodes: IPioneerTreeExpandedNode[], isCollapsed: boolean, deactivate?: boolean): void {
     for (let i = 0; i < nodes.length; i++) {
       nodes[i].pioneerTreeNode.pioneerTreeRepeater.setCollapsed(isCollapsed);
-      if (nodes[i].pioneerTreeNode.getChildNodes()) {
-        this.recursivelySetCollapsedFlag(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed);
+      if (deactivate) {
+        nodes[i].pioneerTreeNode.isCurrentSelectedNode = false;
       }
-    }
-  }
-
-  private recursivelySetCollapsedFlag(nodes: IPioneerTreeExpandedNode[], isCollapsed: boolean): void {
-    for (let i = 0; i < nodes.length; i++) {
-      nodes[i].pioneerTreeNode.pioneerTreeRepeater.setCollapsed(isCollapsed);
       if (nodes[i].pioneerTreeNode.getChildNodes()) {
-        this.recursivelySetCollapsedFlag(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed);
+        this.expandCollapsedAllNodes(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed);
       }
     }
   }
 
   private recursivelySetCollapsedFlagOfParents(node: IPioneerTreeExpandedNode, isCollapsed: boolean): void {
-    if(node.pioneerTreeNode.parentNode){
+    if (node.pioneerTreeNode.parentNode) {
       node.pioneerTreeNode.parentNode.pioneerTreeNode.setCollapsed(isCollapsed);
       this.recursivelySetCollapsedFlagOfParents(node.pioneerTreeNode.parentNode, isCollapsed)
     }

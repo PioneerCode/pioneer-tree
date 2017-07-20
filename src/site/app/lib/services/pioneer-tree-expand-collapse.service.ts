@@ -23,7 +23,7 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
 
   collapseAllExpandThisSetActive(currentNodes: IPioneerTreeExpandedNode[], expandNode: IPioneerTreeExpandedNode, currentSelectedNode: IPioneerTreeExpandedNode): void {
     // Collapse All
-    this.expandCollapsedAllNodes(currentNodes, true);
+    this.expandCollapsedAllNodes(currentNodes, true, true);
     // Flip selected
     if (currentSelectedNode) {
       currentSelectedNode.pioneerTreeNode.isCurrentSelectedNode = false;

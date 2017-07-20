@@ -59,7 +59,7 @@ var AppComponent = (function () {
 }());
 __decorate([
     core_1.ViewChild('pt'),
-    __metadata("design:type", Object)
+    __metadata("design:type", core_1.ViewChild)
 ], AppComponent.prototype, "ptComponent", void 0);
 AppComponent = __decorate([
     core_1.Component({

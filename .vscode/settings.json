@@ -5,5 +5,12 @@
     "**/app/**/*js": true,
     "**/app/**/*map": true
   },
-  "beautify.tabSize": 2
+  "beautify.tabSize": 2,
+  "cSpell.words": [
+    "pioneercode",
+    "pree",
+    "preprotractor",
+    "prestart",
+    "systemjs"
+  ]
 }

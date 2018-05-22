@@ -1,20 +1,80 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="row">
+  <div class="large-6 columns">
+    <ul class="menu">
+      <li>
+        <h2>Component</h2>
+      </li>
+      <li>
+        <button class="button tiny" (click)="ptComponent.pioneerTree.expandAllNodes()">Expand</button>
+      </li>
+      <li>
+        <button class="button tiny" (click)="ptComponent.pioneerTree.collapseAllNodes()">Collapse</button>
+      </li>
+    </ul>
+    <ng-template #nodeTemplate let-node>
+      <ul class="menu content">
+        <li>
+          <span pioneer-tree-collapse [node]="node">
+            <i class="fa" [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'">
+            </i>
+          </span>
+        </li>
+        <li>
+          <span pioneer-tree-handle [node]="node">
+            {{node.name}} - {{node.pioneerTreeNode.sortIndex}} :
+          </span>
+        </li>
+        <li>
+          <a title="Collapse All, Expand This, Set Active" (click)="ptComponent.pioneerTree.collapseAllExpandThisSetActive(node)">
+            <i class="fa fa-heart-o"></i>
+          </a>
+        </li>
+      </ul>
+    </ng-template>
+    <ng-template #repeaterTemplate let-node>
+      <ul pioneer-tree-repeater [nodes]="node.children">
+        <li pioneer-tree-node *ngFor="let node of node.children" (nodeDropped)="onNodeDropped($event)" [nodeTemplate]="nodeTemplate"
+          [repeaterTemplate]="repeaterTemplate" [node]="node">
+        </li>
+      </ul>
+    </ng-template>
+    <ul pioneer-tree #pt [configuration]="configuration" [nodes]="nodes">
+      <li pioneer-tree-node *ngFor="let node of nodes" (nodeDropped)="onNodeDropped($event)" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate"
+        [node]="node">
+      </li>
+    </ul>
+  </div>
+  <div class="large-6 columns">
+    <h2>Events</h2>
+    <div class="events">
+      <ul class="menu vertical">
+        <li *ngFor="let event of events">
+          {{event}}
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<div class="row">
+  <div class="large-12 columns">
+    <ul class="menu">
+      <li>
+        <h2>Data</h2>
+      </li>
+      <li>
+        <a class="hollow button" (click)="dataView = 'raw'" [ngClass]="dataView === 'raw' ? 'disabled' : ''">Raw</a>
+      </li>
+      <li>
+        <a class="hollow button" (click)="dataView = 'bound'" [ngClass]="dataView === 'bound' ? 'disabled' : ''">Bound</a>
+      </li>
+    </ul>
+    <div class="models">
+      <div *ngIf="dataView === 'raw'">
+        <pre>{{ptComponent.pioneerTree.getRawTree()}}</pre>
+      </div>
+      <div *ngIf="dataView === 'bound'">
+        <pre>{{ptComponent.pioneerTree.getExpandedTree()}}</pre>
+      </div>
+    </div>
+  </div>
+</div>

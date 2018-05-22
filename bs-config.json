@@ -1,8 +1,0 @@
-{
-  "server": {
-    "baseDir": "src/site",
-    "routes": {
-      "/node_modules": "node_modules"
-    }
-  }
-}

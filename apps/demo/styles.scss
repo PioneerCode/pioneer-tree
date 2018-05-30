@@ -3,6 +3,10 @@
 $fa-font-path: "./assets/fonts" !default;
 @import 'imports';
 @import '../../node_modules/font-awesome/scss/font-awesome.scss';
+button {
+    border-radius: 0;
+}
+
 @media (min-width: 768px) {
     .pc-header {
         position: sticky;
@@ -60,5 +64,16 @@ $fa-font-path: "./assets/fonts" !default;
     h2 {
         font-weight: 800;
         color: #2A2E31;
+    }
+}
+
+.markup {
+    padding: 6rem;
+    background: $primary;
+    color: $white;
+    h2 {
+        font-weight: bold;
+        text-align: center;
+        color: $white;
     }
 }

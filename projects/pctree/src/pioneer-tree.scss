@@ -11,25 +11,23 @@ $grey-color: #666;
 $green-color: #3b805e;
 $red-color: #cc4b37;
 $white-color: #fefefe;
-$font-color: $white;
+$font-color: #a7aeb3;
 ul.pioneer-tree-root {
     margin: 0 !important;
     list-style: none;
     padding: 0;
     color: $font-color;
     .menu.content {
+        margin-left: 0;
         li {
-            // padding: 0 .5rem 0 0;
+            padding: 0 .5rem 0 0;
             display: table-cell;
         }
     }
     ul {
         list-style: none;
         padding-left: 0;
-        ul {
-            padding-left: 1rem;
-            margin-left: 1.25rem;
-        }
+        margin-left: 1.25rem;
     }
     .pioneer-tree-node {
         .pioneer-tree-node-content {
@@ -73,16 +71,3 @@ ul.pioneer-tree-root {
         }
     }
 }
-
-// ul.pioneer-tree {
-//     list-style: none;
-//     padding: 0;
-// .pioneer-tree-dropzone-end {
-//     //   background: #999;
-//     //   height: 5px;
-//     // }
-//     // .pioneer-tree-dropzone-root {
-//     //   background: #2ec;
-//     //   height: 5px;
-//     // }
-// }

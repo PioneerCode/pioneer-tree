@@ -40,9 +40,25 @@ $fa-font-path: "./assets/fonts" !default;
     padding: 2rem 0 6rem;
     color: $white;
     h1 {
-      font-weight: bold;
+        font-weight: bold;
     }
     p {
-      color: gray("100");
+        color: gray("100");
+    }
+}
+
+.features {
+    background: $white;
+    padding: 6rem 0;
+    ul {
+        padding-left: 20px;
+    }
+    li {
+        color: gray("600");
+    }
+    h4,
+    h2 {
+        font-weight: 800;
+        color: #2A2E31;
     }
 }

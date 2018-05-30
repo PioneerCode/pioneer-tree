@@ -1,4 +1,4 @@
-﻿import { Component, Input, ElementRef, Renderer2 } from '@angular/core';
+﻿import { Component, Input, ElementRef, Renderer2, OnChanges, AfterContentInit } from '@angular/core';
 import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
 import { IPioneerTreeConfiguration } from '../../models/pioneer-tree-configuration.model';
 import { PioneerTree } from '../../models/pioneer-tree.model';
@@ -9,7 +9,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
   <ng-content></ng-content>
   `
 })
-export class PioneerTreeComponent {
+export class PioneerTreeComponent implements OnChanges, AfterContentInit {
   @Input() nodes: IPioneerTreeExpandedNode[];
   @Input() configuration: IPioneerTreeConfiguration;
 

@@ -1,4 +1,4 @@
-﻿import { Component, Input, ElementRef, Renderer2 } from '@angular/core';
+﻿import { Component, Input, ElementRef, Renderer2, AfterContentInit } from '@angular/core';
 import { PioneerTreeNodeComponent } from '../pioneer-tree-node/pioneer-tree-node.component';
 import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-tree-collapse.component';
 import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
@@ -13,7 +13,7 @@ import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-nod
     PioneerTreeCollapseComponent
   ]
 })
-export class PioneerTreeRepeaterComponent {
+export class PioneerTreeRepeaterComponent implements AfterContentInit {
   @Input() nodes: IPioneerTreeExpandedNode[];
 
   constructor(

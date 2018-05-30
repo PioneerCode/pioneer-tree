@@ -2,7 +2,7 @@
 
 $fa-font-path: "./assets/fonts" !default;
 @import 'imports';
-@import 'pioneer-tree';
+@import '../../projects/pctree/src/pioneer-tree';
 @import '../../node_modules/font-awesome/scss/font-awesome.scss';
 button {
     border-radius: 0;

@@ -222,7 +222,7 @@
       "root": "projects/pctree",
       "sourceRoot": "projects/pctree/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "pioneer-tree",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

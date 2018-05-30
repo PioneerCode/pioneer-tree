@@ -1,10 +1,16 @@
 {
     "cSpell.words": [
         "browserconfig",
+        "codelyzer",
         "devkit",
         "dropzone",
+        "jasminewd",
         "packagr",
         "pctree",
-        "polyfills"
+        "pioneercode",
+        "polyfills",
+        "styleext",
+        "tsickle",
+        "tslib"
     ]
 }

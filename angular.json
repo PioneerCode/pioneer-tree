@@ -8,7 +8,11 @@
       "sourceRoot": "apps/demo",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -23,7 +27,7 @@
               "apps/demo/assets"
             ],
             "styles": [
-              "apps/demo/styles.css"
+              "apps/demo/styles.scss"
             ],
             "scripts": []
           },
@@ -122,7 +126,11 @@
       "sourceRoot": "apps/dev",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

@@ -24,7 +24,8 @@
             "tsConfig": "apps/demo/tsconfig.app.json",
             "assets": [
               "apps/demo/favicon.ico",
-              "apps/demo/assets"
+              "apps/demo/assets",
+              "apps/demo/assets/fonts"
             ],
             "styles": [
               "apps/demo/styles.scss"

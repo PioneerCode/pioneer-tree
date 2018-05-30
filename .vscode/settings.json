@@ -13,6 +13,7 @@
         "polyfills",
         "styleext",
         "tsickle",
-        "tslib"
+        "tslib",
+        "xlink"
     ]
 }

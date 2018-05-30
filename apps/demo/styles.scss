@@ -1,2 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+$fa-font-path: "./assets/fonts" !default;
 @import 'imports';
+@import '../../node_modules/font-awesome/scss/font-awesome.scss';
+@media (min-width: 768px) {
+  .pc-header {
+      position: sticky;
+      top: 0;
+      z-index: 2000;
+  }
+}
+
+.pc-header {
+  .pc-header-brand {
+      padding: 1rem 1rem 1rem 2rem;
+  }
+  .pc-header-content {
+      padding: 0.5rem 1rem;
+      a {
+          color: $body-bg;
+          div {
+              padding-right: 1rem;
+          }
+          &:hover {
+              transition: all 0.25s;
+          }
+      }
+  }
+}
+
+.logo-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}

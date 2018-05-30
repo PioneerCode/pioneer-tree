@@ -145,7 +145,7 @@
               "apps/dev/assets"
             ],
             "styles": [
-              "apps/dev/styles.css"
+              "apps/dev/styles.scss"
             ],
             "scripts": []
           },
@@ -194,7 +194,7 @@
             "tsConfig": "apps/dev/tsconfig.spec.json",
             "karmaConfig": "apps/dev/karma.conf.js",
             "styles": [
-              "apps/dev/styles.css"
+              "apps/dev/styles.scss"
             ],
             "scripts": [],
             "assets": [

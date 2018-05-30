@@ -19,13 +19,13 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
         (nodeDropped)="onNodeDropped($event)"
         [dropType]="'parent'"
         [ngClass]="node.pioneerTreeNode.getContentClasses()">
-        <ng-container [ngTemplateOutlet]="nodeTemplate" [ngOutletContext]="{ $implicit: node }">
+        <ng-container [ngTemplateOutlet]="nodeTemplate" [ngTemplateOutletContext]="{ $implicit: node }">
         </ng-container>
     </div>
     <div class="pioneer-tree-repeater"
         [ngClass]="this.node.pioneerTreeNode.pioneerTreeRepeater.getClasses()">
         <ng-container [ngTemplateOutlet]="repeaterTemplate"
-          [ngOutletContext]="{ $implicit: node }">
+          [ngTemplateOutletContext]="{ $implicit: node }">
         </ng-container>
     </div>
 </div>

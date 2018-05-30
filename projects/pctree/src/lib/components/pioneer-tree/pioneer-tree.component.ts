@@ -5,9 +5,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
 
 @Component({
   selector: 'pioneer-tree,[pioneer-tree],[pt]',
-  template: `
-  <ng-content></ng-content>
-  `
+  template: `<ng-content></ng-content>`
 })
 export class PioneerTreeComponent implements OnChanges, AfterContentInit {
   @Input() nodes: IPioneerTreeExpandedNode[];

@@ -63,10 +63,10 @@
           <h2>Data</h2>
         </li>
         <li class="list-inline-item">
-          <a class="hollow btn btn-outline-primary btn-sm rounded-0" (click)="dataView = 'raw'" [ngClass]="dataView === 'raw' ? 'disabled' : ''">Raw</a>
+          <button class="hollow btn btn-primary btn-sm rounded-0" (click)="dataView = 'raw'" [ngClass]="dataView === 'raw' ? 'disabled' : ''">Raw</button>
         </li>
         <li class="list-inline-item">
-          <a class="hollow btn btn-outline-primary btn-sm rounded-0" (click)="dataView = 'bound'" [ngClass]="dataView === 'bound' ? 'disabled' : ''">Bound</a>
+          <button class="hollow btn btn-primary btn-sm rounded-0" (click)="dataView = 'bound'" [ngClass]="dataView === 'bound' ? 'disabled' : ''">Bound</button>
         </li>
       </ul>
       <div class="models">

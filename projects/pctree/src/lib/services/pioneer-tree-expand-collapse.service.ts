@@ -13,7 +13,11 @@ export interface IPioneerTreeExpandCollapseService {
    * Collapse all nodes
    * Expand this node and set it as active
    */
-  collapseAllExpandThisSetActive(currentNodes: IPioneerTreeExpandedNode[], expandNode: IPioneerTreeExpandedNode, currentSelectedNode: IPioneerTreeExpandedNode): void;
+  collapseAllExpandThisSetActive(
+    currentNodes: IPioneerTreeExpandedNode[],
+    expandNode: IPioneerTreeExpandedNode,
+    currentSelectedNode: IPioneerTreeExpandedNode
+  ): void;
 }
 
 export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandCollapseService {
@@ -21,7 +25,11 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
     @Inject(PioneerTreeConfiguration) public config: IPioneerTreeConfiguration
   ) { }
 
-  collapseAllExpandThisSetActive(currentNodes: IPioneerTreeExpandedNode[], expandNode: IPioneerTreeExpandedNode, currentSelectedNode: IPioneerTreeExpandedNode): void {
+  collapseAllExpandThisSetActive(
+    currentNodes: IPioneerTreeExpandedNode[],
+    expandNode: IPioneerTreeExpandedNode,
+    currentSelectedNode: IPioneerTreeExpandedNode
+  ): void {
     // Collapse All
     this.expandCollapsedAllNodes(currentNodes, true, true);
     // Flip selected

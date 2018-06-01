@@ -25,11 +25,27 @@ export class PioneerTreeDropChildService extends PioneerTreeDropBaseService impl
     this.adjustParentTracking(dropzone, nodeToDrop, parentCollection);
   }
 
-  private dropNodeOntoNewCollection(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, childEnd: boolean) {
-    dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName].splice(this.getAdjustedDropSortIndex(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName], nodeToDrop, droppedSortIndex, childEnd), 0, nodeToDrop);
+  private dropNodeOntoNewCollection(
+    dropzone: IPioneerTreeExpandedNode,
+    nodeToDrop: IPioneerTreeExpandedNode,
+    droppedSortIndex: number,
+    childEnd: boolean
+  ) {
+    dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName]
+      .splice(
+        this.getAdjustedDropSortIndex(dropzone.pioneerTreeNode.parentNode[this.config.childPropertyName],
+          nodeToDrop,
+          droppedSortIndex,
+          childEnd
+        ), 0, nodeToDrop);
   }
 
-  private getAdjustedDropSortIndex(collection: IPioneerTreeExpandedNode[], nodeToDrop: IPioneerTreeExpandedNode, droppedSortIndex: number, childEnd: boolean) {
+  private getAdjustedDropSortIndex(
+    collection: IPioneerTreeExpandedNode[],
+    nodeToDrop: IPioneerTreeExpandedNode,
+    droppedSortIndex: number,
+    childEnd: boolean
+  ) {
     // dropped in root-end of last index
     if (droppedSortIndex === collection.length && childEnd) {
       return ++droppedSortIndex;
@@ -49,7 +65,11 @@ export class PioneerTreeDropChildService extends PioneerTreeDropBaseService impl
     return droppedSortIndex;
   }
 
-  private adjustParentTracking(dropzone: IPioneerTreeExpandedNode, nodeToDrop: IPioneerTreeExpandedNode, parentCollection: IPioneerTreeExpandedNode[]) {
+  private adjustParentTracking(
+    dropzone: IPioneerTreeExpandedNode,
+    nodeToDrop: IPioneerTreeExpandedNode,
+    parentCollection: IPioneerTreeExpandedNode[]
+  ) {
     if (dropzone.pioneerTreeNode.treeRootNodes) {
       nodeToDrop.pioneerTreeNode.parentNode = {} as IPioneerTreeExpandedNode;
       nodeToDrop.pioneerTreeNode.treeRootNodes = dropzone.pioneerTreeNode.treeRootNodes;

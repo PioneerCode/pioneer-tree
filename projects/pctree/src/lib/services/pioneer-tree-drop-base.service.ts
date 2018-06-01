@@ -44,7 +44,9 @@ export class PioneerTreeDropBaseService implements IPioneerTreeDropBaseService {
   }
 
   adjustMetaTracking(nodeToDrop: IPioneerTreeExpandedNode, parentCollection: IPioneerTreeExpandedNode[]): void {
-    nodeToDrop.pioneerTreeNode.previousNode = nodeToDrop.pioneerTreeNode.sortIndex === 0 ? {} as IPioneerTreeExpandedNode : parentCollection[nodeToDrop.pioneerTreeNode.sortIndex - 1];
+    nodeToDrop.pioneerTreeNode.previousNode = nodeToDrop.pioneerTreeNode.sortIndex === 0 ?
+      {} as IPioneerTreeExpandedNode :
+      parentCollection[nodeToDrop.pioneerTreeNode.sortIndex - 1];
     nodeToDrop.pioneerTreeNode.nodesInCollection = parentCollection.length;
   }
 

@@ -6,6 +6,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
  * Adds drag and drop functionality to pioneer-tree-node child elements
  */
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: '[pioneer-tree-handle],[pt-handle]',
   template: `
 <span class="pioneer-tree-handle">

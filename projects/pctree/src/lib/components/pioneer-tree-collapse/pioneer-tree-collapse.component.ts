@@ -2,6 +2,7 @@
 import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: '[pioneer-tree-collapse],[pt-collapse]',
   template: `
 <span class="pioneer-tree-collapse" (click)="onClicked()">

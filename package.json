@@ -6,6 +6,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:docs": "ng build pctree",
+    "build:docs:prod": "npm run build:lib && npm run build:docs && npm run build:docs:404",
+    "build:lib:package": "ng build pctree",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

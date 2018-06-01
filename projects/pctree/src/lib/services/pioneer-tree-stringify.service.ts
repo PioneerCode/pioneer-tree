@@ -32,7 +32,7 @@ export class PioneerTreeStringifyService implements IPioneerTreeStringifyService
   }
 
   getRawTree(nodes: IPioneerTreeExpandedNode[]): any {
-    let obj = JSON.parse(JSON.stringify(JSON.parse(this.getExpandedTree(nodes))));
+    const obj = JSON.parse(JSON.stringify(JSON.parse(this.getExpandedTree(nodes))));
     const cache = [] as any;
     return JSON.stringify(obj, (key, value) => {
       if (value === null) {

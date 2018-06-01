@@ -3,6 +3,7 @@ import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-nod
 import { PioneerTree } from '../../models/pioneer-tree.model';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: '[pioneer-tree-node],[pt-node]',
   template: `
 <div class="pioneer-tree-dropzone pioneer-tree-dropzone-root"

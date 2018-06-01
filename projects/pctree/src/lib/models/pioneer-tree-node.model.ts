@@ -138,8 +138,8 @@ export class PioneerTreeNode implements IPioneerTreeNode {
   }
 
   getChildNodes(): any {
-    let paths = this.config.childPropertyName.split('.')
-      , current = this.currentNode;
+    const paths = this.config.childPropertyName.split('.');
+    let current = this.currentNode;
 
     for (let i = 0; i < paths.length; ++i) {
       if (current[paths[i]] === undefined) {
@@ -170,11 +170,11 @@ export class PioneerTreeNode implements IPioneerTreeNode {
   showDropzonePosition(): boolean {
     if (this.isCollapsed()) {
       return false;
-    };
+    }
 
     if (!this.getChildNodes()) {
       return false;
-    };
+    }
 
     return true;
   }
@@ -184,14 +184,14 @@ export class PioneerTreeNode implements IPioneerTreeNode {
     if (!this.currentNode.pioneerTreeNode.treeRootNodes) {
       if (this.currentNode.pioneerTreeNode.getId() === this.getLastIdInParentNodeChildCollection()) {
         return true;
-      };
+      }
       return false;
     }
 
     // root
     if (this.currentNode.pioneerTreeNode.sortIndex === this.currentNode.pioneerTreeNode.treeRootNodes.length - 1) {
       return true;
-    };
+    }
 
     return false;
   }

@@ -31,7 +31,7 @@ export class PioneerTreeBuildService implements IPioneerTreeBuildService {
    * Bind public config to default config
    */
   private buildConfiguration(configuration?: IPioneerTreeConfiguration): void {
-    let config = new PioneerTreeConfiguration();
+    const config = new PioneerTreeConfiguration();
     this.config = Object.assign(config, configuration);
   }
 

@@ -6,6 +6,7 @@ import { PioneerTree } from '../../models/pioneer-tree.model';
  * Define a dom element as droppable
  */
 @Directive({
+  // tslint:disable-next-line:directive-selector
   selector: '[pioneer-tree-dropzone],[pt-dropzone]'
 })
 export class PioneerTreeDropzoneDirective {

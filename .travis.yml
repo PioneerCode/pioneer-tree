@@ -1,0 +1,32 @@
+language: node_js
+dist: trusty
+sudo: false
+
+node_js:
+  # Use the explicit NodeJS LTS version 8.9.4 to avoid any automatic upgrade of the version.
+  # This ensures that all Travis jobs run consistently and don't have different Node versions.
+  - '9.8.0'
+
+branches:
+   only:
+      - master
+
+before_script:
+  - npm install -g @angular/cli
+  - npm install
+
+script:
+  - npm run build:demo:prod
+
+cache:
+  directories:
+    - ./node_modules/
+
+deploy:
+  local-dir: 'dist/pioneer-tree'
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: true
+  on:
+    branch: master

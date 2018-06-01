@@ -4,6 +4,7 @@ import { PioneerTreeCollapseComponent } from '../pioneer-tree-collapse/pioneer-t
 import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: '[pioneer-tree-repeater],[pt-repeater]',
   template: `
   <ng-content></ng-content>

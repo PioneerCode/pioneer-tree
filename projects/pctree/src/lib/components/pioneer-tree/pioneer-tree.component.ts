@@ -4,6 +4,7 @@ import { IPioneerTreeConfiguration } from '../../models/pioneer-tree-configurati
 import { PioneerTree } from '../../models/pioneer-tree.model';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'pioneer-tree,[pioneer-tree],[pt]',
   template: `<ng-content></ng-content>`
 })

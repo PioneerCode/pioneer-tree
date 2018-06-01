@@ -1,0 +1,82 @@
+<div class="container data">
+  <div class="row">
+    <div class="col">
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <h2>Component</h2>
+        </li>
+        <li class="list-inline-item">
+          <button class="btn btn-primary btn-sm rounded-0" (click)="ptComponent.pioneerTree.expandAllNodes()">Expand</button>
+        </li>
+        <li class="list-inline-item">
+          <button class="btn btn-primary btn-sm rounded-0" (click)="ptComponent.pioneerTree.collapseAllNodes()">Collapse</button>
+        </li>
+      </ul>
+      <ng-template #nodeTemplate let-node>
+        <ul class="menu content">
+          <li>
+            <span pioneer-tree-collapse [node]="node">
+              <i class="fa" [ngClass]="this.node.pioneerTreeNode.isCollapsed() ? 'fa-folder' : 'fa-folder-open'">
+              </i>
+            </span>
+          </li>
+          <li>
+            <span pioneer-tree-handle [node]="node">
+              {{node.name}} - {{node.pioneerTreeNode.sortIndex}} :
+            </span>
+          </li>
+          <li>
+            <a title="Collapse All, Expand This, Set Active" (click)="ptComponent.pioneerTree.collapseAllExpandThisSetActive(node)">
+              <i class="fa fa-heart-o"></i>
+            </a>
+          </li>
+        </ul>
+      </ng-template>
+      <ng-template #repeaterTemplate let-node>
+        <ul pioneer-tree-repeater [nodes]="node.children">
+          <li pioneer-tree-node *ngFor="let node of node.children" (nodeDropped)="onNodeDropped($event)" [nodeTemplate]="nodeTemplate"
+            [repeaterTemplate]="repeaterTemplate" [node]="node">
+          </li>
+        </ul>
+      </ng-template>
+      <ul pioneer-tree #pt [configuration]="configuration" [nodes]="nodes">
+        <li pioneer-tree-node *ngFor="let node of nodes" (nodeDropped)="onNodeDropped($event)" [nodeTemplate]="nodeTemplate" [repeaterTemplate]="repeaterTemplate"
+          [node]="node">
+        </li>
+      </ul>
+    </div>
+    <div class="col">
+      <h2>Events</h2>
+      <div class="events">
+        <ul class="menu vertical">
+          <li *ngFor="let event of events">
+            {{event}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <h2>Data</h2>
+        </li>
+        <li class="list-inline-item">
+          <button class="hollow btn btn-primary btn-sm rounded-0" (click)="dataView = 'raw'" [ngClass]="dataView === 'raw' ? 'disabled' : ''">Raw</button>
+        </li>
+        <li class="list-inline-item">
+          <button class="hollow btn btn-primary btn-sm rounded-0" (click)="dataView = 'bound'" [ngClass]="dataView === 'bound' ? 'disabled' : ''">Bound</button>
+        </li>
+      </ul>
+      <div class="models">
+        <div *ngIf="dataView === 'raw'">
+          <pre>{{ptComponent.pioneerTree.getRawTree()}}</pre>
+        </div>
+        <div *ngIf="dataView === 'bound'">
+          <pre>{{ptComponent.pioneerTree.getExpandedTree()}}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

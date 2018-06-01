@@ -1,0 +1,124 @@
+$fa-font-path: "./assets/fonts" !default;
+@import 'imports';
+@import '../../projects/pctree/src/pioneer-tree';
+@import '../../node_modules/font-awesome/scss/font-awesome.scss';
+button {
+    border-radius: 0;
+}
+
+@media (min-width: 768px) {
+    .pc-header {
+        position: sticky;
+        top: 0;
+        z-index: 2000;
+    }
+}
+
+.pc-header {
+    background-color: $dark;
+    .pc-header-brand {
+        padding: 1rem 1rem 1rem 2rem;
+    }
+    .pc-header-content {
+        padding: 0.5rem 1rem;
+        a {
+            color: $body-bg;
+            div {
+                padding-right: 1rem;
+            }
+            &:hover {
+                transition: all 0.25s;
+            }
+        }
+    }
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+}
+
+.hero {
+    text-align: center;
+    padding: 2rem 0 6rem;
+    color: $white;
+    h1 {
+        font-weight: bold;
+    }
+    p {
+        color: gray("100");
+    }
+}
+
+.features {
+    background: $white;
+    padding: 6rem 0;
+    ul {
+        padding-left: 20px;
+    }
+    li {
+        color: gray("600");
+    }
+    h4,
+    h2 {
+        font-weight: 800;
+        color: #2A2E31;
+    }
+}
+
+.markup {
+    padding: 6rem;
+    background: $primary;
+    color: $white;
+    h2 {
+        font-weight: bold;
+        text-align: center;
+        color: $white;
+    }
+}
+
+footer {
+    background: $dark;
+    .meta-top {
+        padding: 2rem 0 3rem;
+        text-align: center;
+        color: theme-color-level("primary", -8);
+        h5 {
+            color: color("white");
+            a {
+                color: color("white");
+            }
+        }
+        .pages a,
+        .social a {
+            color: theme-color-level("primary", -8);
+            cursor: pointer;
+            &:hover {
+                color: color("white");
+                transition: color 0.25s;
+            }
+        }
+        .pages {
+            font-size: 14px;
+        }
+        .social {
+            margin: 1rem 0 0;
+        }
+    }
+    .meta-bottom {
+        font-size: 12px;
+        color: theme-color-level("primary", -8);
+        border-top: 1px solid theme-color-level("primary", 6);
+        a {
+            color: theme-color-level("primary", -8);
+            &:hover {
+                transition: color 0.25s;
+            }
+            font-weight: bold;
+        }
+        p {
+            margin: 8px 0 10px;
+        }
+    }
+}

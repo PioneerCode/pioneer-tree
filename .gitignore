@@ -1,27 +1,39 @@
-.idea
-node_modules
-jspm_packages
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
 npm-debug.log
-debug.log
-src/**/*.js
-src/site/systemjs.config.extras.js
-src/site/systemjs.config.js
-src/site/systemjs-angular-loader.js
-*.js.map
-e2e/**/*.js
-e2e/**/*.js.map
-_test-output
-_temp
-bundles
-dist
-src/site/app/lib/**/*.js
-src/site/site/app/lib/**/*.map
-src/site/app/lib/**/*.d.ts
-src/site/app/**/*.js
-src/site/app/**/*.map
-src/site/app/**/*.d*
-src/site/**/*.d*
-src/site/pioneer-tree/**/*
-package-lock.json
-.publish
-.github/gh-pages
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db

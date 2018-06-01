@@ -1,20 +1,32 @@
-dist: trusty
-sudo: required
 language: node_js
+dist: trusty
+sudo: false
+
 node_js:
-  - "5"
-os:
-  - linux
-env:
-  global:
-    - DBUS_SESSION_BUS_ADDRESS=/dev/null
-    - DISPLAY=:99.0
-    - CHROME_BIN=chromium-browser
+  # Use the explicit NodeJS LTS version 8.9.4 to avoid any automatic upgrade of the version.
+  # This ensures that all Travis jobs run consistently and don't have different Node versions.
+  - '9.8.0'
+
+branches:
+   only:
+      - master
+
 before_script:
-  - sh -e /etc/init.d/xvfb start
-install:
+  - npm install -g @angular/cli
   - npm install
+
 script:
-  - npm run lint
-  - npm run test:once
-  - npm run e2e
+  - npm run build:demo:prod
+
+cache:
+  directories:
+    - ./node_modules/
+
+deploy:
+  local-dir: 'dist/pioneer-tree'
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: true
+  on:
+    branch: master

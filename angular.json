@@ -25,7 +25,9 @@
             "assets": [
               "apps/demo/favicon.ico",
               "apps/demo/assets",
-              "apps/demo/assets/fonts"
+              "apps/demo/assets/fonts",
+              "apps/demo/assets/images",
+              "apps/docs/src/CNAME"
             ],
             "styles": [
               "apps/demo/styles.scss"

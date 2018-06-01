@@ -5,12 +5,16 @@
             true,
             "attribute",
             "pioneer-tree",
+            "pt",
+            "pioneer-tree-node",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
             "pioneer-tree",
+            "pt",
+            "pioneer-tree-node",
             "kebab-case"
         ]
     }

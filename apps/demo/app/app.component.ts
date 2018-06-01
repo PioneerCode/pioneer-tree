@@ -51,7 +51,7 @@ export class AppComponent {
   /**
    * Grab reference to pioneer tree component
    */
-  @ViewChild('pt') ptComponent: ViewChild;
+  @ViewChild('pt') ptComponent: any;
 
   onNodeDropped($event: any): void {
     this.events.unshift(new Date().toLocaleString() + ' : Node Dropped "' + $event.name + '"');

@@ -1,18 +1,24 @@
 {
-  "name": "pctree",
+  "name": "@pioneer-code/pioneer-tree",
   "version": "2.0.0",
-  "description": "Angular tree component.",
-  "author": "Chad Ramos <dev@pioneercode.com> (http://pioneercode.com)",
+  "description": "Pioneer Tree, an angular tree component.",
+  "homepage": "https://tree.pioneercode.com",
+  "author": {
+    "name": "Chad Ramos",
+    "email": "hello@pioneercode.com",
+    "url": "https://pioneercode.com"
+  },
+  "bugs": {
+    "url": "https://github.com/PioneerCode/pioneer-tree/issues"
+  },
   "license": "MIT",
   "keywords": [
+    "pioneer code",
     "angular",
-    "angular2",
-    "angular4",
+    "angular component",
     "tree",
     "angular tree",
-    "pioneer tree",
-    "angular-tree",
-    "pioneer-tree"
+    "pioneer tree"
   ],
   "repository": {
     "type": "git",

@@ -1,27 +1,46 @@
-# PioneerTree
+Pioneer Tree
+=======================
+Pioneer Tree is an Angular 4 and up tree component the aims to stay out of your way.  Giving you the freedom and tools necessary to produce dynamic tree components in markup that is defined by you.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
+![Pioneer Tree](https://pioneercode.com/images/pioneer-tree-an-angular-tree-component/demo.gif)
 
-## Development server
+## Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Head over to the <a href="https://tree.pioneercode.com" target="_blank">Demo</a> to see it in action.
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Intuitive markup defined by you.
+- Does not take a dependencies on third party libraries.
+- UMD module loading with support for SystemJS.
+- Collapsible nodes
+- Selected node tracking
+- Opt-in public state tracking 
+- Drag & Drop
+- Sort tracking
+- Events
+  - Node Dropped
+- Filtering
+- Configurable 
+  - Sort property binding
+  - Child property binding
+  - Default collapse & expand state
+- Public API
+  - Expand or Collapse all
+  - Collapse all, expand and set node as active. 
 
-## Build
+For pending and new features, please head over to the [issues](https://github.com/PioneerCode/pioneer-tree/issues) page.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Docs
 
-## Running unit tests
+Documentation can be found at the [wiki](https://github.com/PioneerCode/pioneer-tree/wiki).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Changelog
 
-## Running end-to-end tests
+<a href="CHANGELOG.md" target="_blank">CHANGELOG</a>
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Contributing
 
-## Further help
+Are you interested in contributing features or squashing bugs? Please take a look at the following to get started.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<a href="CONTRIBUTING.md" target="_blank">CONTRIBUTING</a>

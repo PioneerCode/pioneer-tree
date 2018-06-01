@@ -27,7 +27,7 @@
               "apps/demo/assets",
               "apps/demo/assets/fonts",
               "apps/demo/assets/images",
-              "apps/docs/src/CNAME"
+              "apps/demo/CNAME"
             ],
             "styles": [
               "apps/demo/styles.scss"

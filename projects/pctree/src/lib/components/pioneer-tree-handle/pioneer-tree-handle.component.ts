@@ -44,7 +44,7 @@ export class PioneerTreeHandleComponent {
   /**
    * Act on drag end event
    */
-  @HostListener('dragend')
+  @HostListener('dragend', ['$event'])
   onDragEnd(event: DragEvent) {
     this.renderer.removeClass(this.elementRef.nativeElement, 'pt-handle-drag-start');
   }

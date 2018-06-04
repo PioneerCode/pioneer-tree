@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IPioneerTreeConfiguration } from '../../../projects/pctree/src/lib/models/pioneer-tree-configuration.model';
+import { IPioneerTreeConfiguration } from '@pioneer-code/pioneer-tree';
 
 @Component({
   selector: 'app-root',

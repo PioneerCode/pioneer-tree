@@ -10,7 +10,7 @@
 
 ### Added
 
-- Support for Angular >= 5.x 
+- Support for Angular >= 5.x.
 - Utilizes native CLI package build.
 
 ### Removed  

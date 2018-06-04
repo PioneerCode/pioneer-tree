@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { PioneerTreeModule } from '../../../projects/pctree/src/lib/pioneer-tree.module';
+import { PioneerTreeModule } from '@pioneer-code/pioneer-tree';
 
 @NgModule({
   declarations: [

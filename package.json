@@ -4,7 +4,7 @@
   "description": "Angular tree component.",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --configuration=production",
     "build": "ng build",
     "build:demo": "ng build pioneer-tree --configuration=production",
     "build:demo:404": "node ./build/404.js",

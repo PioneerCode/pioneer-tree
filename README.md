@@ -1,4 +1,4 @@
-Pioneer Tree
+Pioneer Tree [![Build Status](https://travis-ci.org/PioneerCode/pioneer-tree.svg?branch=master)](https://travis-ci.org/PioneerCode/pioneer-tree)
 =======================
 Pioneer Tree is an Angular tree component the aims to stay out of your way.  Giving you the freedom and tools necessary to produce dynamic tree components in markup that is defined by you.
 

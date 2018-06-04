@@ -123,7 +123,8 @@
             "tsConfig": "apps/dev/tsconfig.app.json",
             "assets": [
               "apps/dev/favicon.ico",
-              "apps/dev/assets"
+              "apps/dev/assets",
+              "apps/dev/assets/fonts"
             ],
             "styles": [
               "apps/dev/styles.scss"

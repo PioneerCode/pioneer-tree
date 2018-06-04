@@ -3,6 +3,7 @@
         "Droppable",
         "browserconfig",
         "codelyzer",
+        "copyfiles",
         "devkit",
         "dropzone",
         "itemprop",

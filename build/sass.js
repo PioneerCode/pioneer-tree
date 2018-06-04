@@ -4,6 +4,6 @@
 const copyfiles = require('copyfiles');
 const chalk = require('chalk');
 
-copyfiles(['./projects/pcac/src/lib/**/*.scss', './dist/pcac/scss'], { up: 4 }, function () {
-  console.log(chalk.cyan('Pioneer Charts: Sass moved!'));
+copyfiles(['./projects/pctree/src/pioneer-tree.scss', './dist/pctree/scss'], { up: 3 }, function () {
+  console.log(chalk.cyan('Pioneer Tree: Sass moved!'));
 });

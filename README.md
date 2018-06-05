@@ -11,8 +11,6 @@ Head over to the <a href="https://tree.pioneercode.com" target="_blank">Demo</a>
 ## Features
 
 - Intuitive markup defined by you.
-- Does not take a dependencies on third party libraries.
-- UMD module loading with support for SystemJS.
 - Collapsible nodes
 - Selected node tracking
 - Opt-in public state tracking 

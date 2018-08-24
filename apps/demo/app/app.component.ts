@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IPioneerTreeConfiguration } from '@pioneer-code/pioneer-tree';
+import { PioneerTreeComponent } from 'projects/pctree/src/lib/components/pioneer-tree/pioneer-tree.component';
 
 @Component({
   selector: 'app-root',
@@ -51,7 +52,7 @@ export class AppComponent {
   /**
    * Grab reference to pioneer tree component
    */
-  @ViewChild('pt') ptComponent: any;
+  @ViewChild('pt') ptComponent: PioneerTreeComponent;
 
   onNodeDropped($event: any): void {
     this.events.unshift(new Date().toLocaleString() + ' : Node Dropped "' + $event.name + '"');

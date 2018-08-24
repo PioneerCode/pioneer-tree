@@ -13,7 +13,7 @@ export class PioneerTreeComponent implements OnChanges, AfterContentInit {
   @Input() configuration: IPioneerTreeConfiguration;
 
   constructor(
-    private pioneerTree: PioneerTree,
+    public pioneerTree: PioneerTree,
     private elementRef: ElementRef,
     private renderer: Renderer2) {
   }

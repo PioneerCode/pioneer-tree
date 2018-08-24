@@ -1,3 +1,11 @@
+<a name="2.0.2"></a>
+# [v2.0.1](https://github.com/PioneerCode/pioneer-charts/releases/tag/2.0.2) (2018-08-024)
+
+### Fixed
+
+* Marked the `PioneerTreeService` in the `PioneerTreeComponent` as public.
+This allows a `@ViewChild` reference to the component to have intellisense access.
+
 <a name="2.0.1"></a>
 # [v2.0.1](https://github.com/PioneerCode/pioneer-charts/releases/tag/2.0.1) (2018-06-05)
 

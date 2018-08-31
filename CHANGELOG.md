@@ -1,5 +1,13 @@
+<a name="2.1.0"></a>
+# [v2.0.1](https://github.com/PioneerCode/pioneer-charts/releases/tag/2.0.3) (2018-08-31)
+
+### Add
+
+* Public interface to `PioneerTreeComponent` via `IPioneerTreeComponent`
+
+
 <a name="2.0.2"></a>
-# [v2.0.1](https://github.com/PioneerCode/pioneer-charts/releases/tag/2.0.2) (2018-08-024)
+# [v2.0.1](https://github.com/PioneerCode/pioneer-charts/releases/tag/2.0.2) (2018-08-24)
 
 ### Fixed
 

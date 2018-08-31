@@ -3,7 +3,6 @@ import { IPioneerTreeExpandedNode } from '../models/pioneer-tree-expanded-node.m
 import { PioneerTreeConfiguration, IPioneerTreeConfiguration } from '../models/pioneer-tree-configuration.model';
 
 export interface IPioneerTreeExpandCollapseService {
-
   /**
    * Collapse or Expand all nodes
    */

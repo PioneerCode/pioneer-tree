@@ -39,7 +39,7 @@ export interface IPioneerTree {
   /**
    * Collapse all nodes
    */
-  expandAllNodes(): void;
+  collapseAllNodes(): void;
 
   /**
    * Collapse all nodes

@@ -2,6 +2,11 @@
 import { IPioneerTreeExpandedNode } from '../../models/pioneer-tree-expanded-node.model';
 import { IPioneerTreeConfiguration } from '../../models/pioneer-tree-configuration.model';
 import { PioneerTree } from '../../models/pioneer-tree.model';
+import { IPioneerTree } from '../../models/pioneer-tree.model';
+
+export interface IPioneerTreeComponent {
+  pioneerTree: IPioneerTree;
+}
 
 @Component({
   // tslint:disable-next-line:component-selector

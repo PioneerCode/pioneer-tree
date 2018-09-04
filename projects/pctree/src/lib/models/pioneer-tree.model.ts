@@ -37,9 +37,10 @@ export interface IPioneerTree {
   expandAllNodes(): void;
 
   /**
-   * Collapse all nodes
+   * Collapse all nodes to optional depth
+   * @param depth Depth to stop collapse at
    */
-  collapseAllNodes(): void;
+  collapseAllNodes(depth?: number): void;
 
   /**
    * Collapse all nodes
@@ -96,7 +97,7 @@ export class PioneerTree implements IPioneerTree {
     this.expandCollapseService.expandCollapsedAllNodes(this.currentNodes, false);
   }
 
-  collapseAllNodes(): void {
+  collapseAllNodes(depth?: number): void {
     this.expandCollapseService.expandCollapsedAllNodes(this.currentNodes, true);
   }
 

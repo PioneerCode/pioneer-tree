@@ -6,7 +6,7 @@ export interface IPioneerTreeExpandCollapseService {
   /**
    * Collapse or Expand all nodes
    */
-  expandCollapsedAllNodes(nodes: IPioneerTreeExpandedNode[], isCollapsed: boolean): void;
+  expandCollapsedAllNodes(nodes: IPioneerTreeExpandedNode[], isCollapsed: boolean, deactivate?: boolean, depth?: number): void;
 
   /**
    * Collapse all nodes
@@ -44,6 +44,13 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
     currentSelectedNode = expandNode;
   }
 
+  /**
+   * Expand or Collapse nodes
+   * @param nodes current tree of nodes
+   * @param isCollapsed If true we are collapesing the tree
+   * @param deactivate If true we are removing classes that indicate any give node is selected
+   * @param depth If set, and isCollapsed is true, we only collapse to given depth in the tree
+   */
   expandCollapsedAllNodes(nodes: IPioneerTreeExpandedNode[], isCollapsed: boolean, deactivate?: boolean): void {
     for (let i = 0; i < nodes.length; i++) {
       nodes[i].pioneerTreeNode.pioneerTreeRepeater.setCollapsed(isCollapsed);

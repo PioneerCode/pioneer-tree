@@ -98,7 +98,7 @@ export class PioneerTree implements IPioneerTree {
   }
 
   collapseAllNodes(depth?: number): void {
-    this.expandCollapseService.expandCollapsedAllNodes(this.currentNodes, true);
+    this.expandCollapseService.expandCollapsedAllNodes(this.currentNodes, true, false, depth);
   }
 
   collapseAllExpandThisSetActive(node: IPioneerTreeExpandedNode): void {

@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration=production",
+    "start:dev": "ng serve pioneer-tree-dev",
     "build": "ng build",
     "build:demo": "ng build pioneer-tree --configuration=production",
     "build:demo:404": "node ./build/404.js",

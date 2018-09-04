@@ -1,3 +1,14 @@
+<ul class="list-inline">
+  <li class="list-inline-item">
+    <h2>Component</h2>
+  </li>
+  <li class="list-inline-item">
+    <button class="btn btn-primary btn-sm rounded-0" (click)="ptComponent.pioneerTree.expandAllNodes()">Expand</button>
+  </li>
+  <li class="list-inline-item">
+    <button class="btn btn-primary btn-sm rounded-0" (click)="ptComponent.pioneerTree.collapseAllNodes(1)">Collapse</button>
+  </li>
+</ul>
 <ng-template #nodeTemplate let-node>
   <ul class="menu content">
     <li>

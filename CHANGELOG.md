@@ -1,10 +1,20 @@
-<a name="2.3.0"></a>
+<a name="2.1.0"></a>
+# [v2.1.0](https://github.com/PioneerCode/pioneer-charts/releases/tag/2.1.0) (2018-09-02)
+
+### Add
+
+* Ability to specify the depth you want the `collapseAllNodes()` function to collapse to.
+```typescript
+const depth = 1;
+pt.ptree.collapseAllNodes(depth);
+```
+
+<a name="2.0.3"></a>
 # [v2.0.3](https://github.com/PioneerCode/pioneer-charts/releases/tag/2.0.3) (2018-08-31)
 
 ### Add
 
 * Public interface to `PioneerTreeComponent` via `IPioneerTreeComponent`
-
 
 <a name="2.0.2"></a>
 # [v2.0.1](https://github.com/PioneerCode/pioneer-charts/releases/tag/2.0.2) (2018-08-24)

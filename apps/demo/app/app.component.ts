@@ -22,7 +22,17 @@ export class AppComponent {
       'children': [
         {
           'name': 'child-0',
-          'sort': 0
+          'sort': 0,
+          'children': [
+            {
+              'name': 'child-children-0',
+              'sort': 0
+            },
+            {
+              'name': 'child-children-1',
+              'sort': 1
+            }
+          ]
         },
         {
           'name': 'child-1',

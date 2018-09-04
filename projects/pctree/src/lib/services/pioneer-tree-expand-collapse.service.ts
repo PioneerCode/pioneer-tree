@@ -77,7 +77,7 @@ export class PioneerTreeExpandCollapseService implements IPioneerTreeExpandColla
       }
 
       if (nodes[i].pioneerTreeNode.getChildNodes()) {
-        this.expandCollapsedAllNodes(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed, deactivate, depth, trackingDepth);
+        this.expandCollapsedAllNodes(nodes[i].pioneerTreeNode.getChildNodes(), isCollapsed, deactivate, collapseDepth, trackingDepth);
       }
     }
   }

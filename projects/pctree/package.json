@@ -1,6 +1,6 @@
 {
   "name": "@pioneer-code/pioneer-tree",
-  "version": "2.1.0-rc1",
+  "version": "2.1.0",
   "description": "Pioneer Tree, an angular tree component.",
   "homepage": "https://tree.pioneercode.com",
   "author": {

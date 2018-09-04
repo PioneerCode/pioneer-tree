@@ -1,6 +1,6 @@
 {
   "name": "pioneer-tree",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "Angular tree component.",
   "scripts": {
     "ng": "ng",
@@ -43,7 +43,7 @@
     "@angular/cli": "~6.1.5",
     "@angular/compiler-cli": "^6.1.6",
     "@angular/language-service": "^6.1.6",
-    "@pioneer-code/pioneer-tree": "2.1.0-rc1",
+    "@pioneer-code/pioneer-tree": "2.1.0",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",

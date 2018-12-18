@@ -1,7 +1,7 @@
 Pioneer Tree 
 =======================
-[![](https://img.shields.io/npm/dt/@pioneer-code/pioneer-charts.svg)](https://www.npmjs.com/package/@pioneer-code/pioneer-charts)
-[![](https://img.shields.io/npm/v/@pioneer-code/pioneer-charts.svg)](https://www.npmjs.com/package/@pioneer-code/pioneer-charts)
+[![](https://img.shields.io/npm/dt/@pioneer-code/pioneer-tree.svg)](https://www.npmjs.com/package/@pioneer-tree/pioneer-tree)
+[![](https://img.shields.io/npm/v/@pioneer-code/pioneer-tree.svg)](https://www.npmjs.com/package/@pioneer-tree/pioneer-tree)
 
 Pioneer Tree is an Angular tree component the aims to stay out of your way.  Giving you the freedom and tools necessary to produce dynamic tree components in markup that is defined by you.
 
